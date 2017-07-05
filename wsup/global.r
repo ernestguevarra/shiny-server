@@ -11,7 +11,7 @@ library(stringr)
 library(leaflet)
 library(shinycssloaders)
 library(shinythemes)
-#library(geojsonio)
+library(geojsonio)
 
 ################################################################################
 #
