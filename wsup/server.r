@@ -1152,7 +1152,7 @@ function(input, output, session) {
   #
   #
   #
-  }, height = 700)
+  }, height = 500)
 
 
 
@@ -1230,7 +1230,7 @@ function(input, output, session) {
   #
   #
   #
-  }, height = 700)
+  }, height = 500)
 
 
 ################################################################################
@@ -1388,7 +1388,7 @@ function(input, output, session) {
     # Print plot
     #       
     print(p)
-  }, height = 700)
+  }, height = 500)
 
 
 ################################################################################
@@ -1494,7 +1494,7 @@ function(input, output, session) {
     # Print plot
     #       
     print(p)
-  }, height = 700)
+  }, height = 500)
 
 
 ################################################################################
@@ -1597,7 +1597,7 @@ function(input, output, session) {
     # Print plot
     #       
     print(p)
-  }, height = 700)
+  }, height = 500)
   
   
 ################################################################################
@@ -1701,7 +1701,7 @@ function(input, output, session) {
     # Print plot
     #       
     print(p)
-  }, height = 700)
+  }, height = 500)
 
 
 ################################################################################
@@ -1796,7 +1796,7 @@ function(input, output, session) {
     # Print plot
     #       
     print(p)
-  }, height = 700)
+  }, height = 500)
 
 
 ################################################################################
@@ -1870,7 +1870,7 @@ function(input, output, session) {
       #
       #
       #
-      setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 12) %>%
+      setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 11) %>%
       #
       #
       #
@@ -2078,7 +2078,7 @@ function(input, output, session) {
       #
       #
       #
-      setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 12) %>%
+      setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 11) %>%
       #
       #
       #
@@ -2286,7 +2286,7 @@ function(input, output, session) {
       #
       #
       #
-      setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 12) %>%
+      setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 11) %>%
       #
       #
       #
@@ -2504,7 +2504,7 @@ function(input, output, session) {
     #
     #
     #
-    setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 12) %>%
+    setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 11) %>%
     #  
     #
     #
@@ -2663,7 +2663,7 @@ function(input, output, session) {
     #
     #
     #
-    setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 12) %>%
+    setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 11) %>%
     #  
     #
     #
@@ -2807,7 +2807,7 @@ function(input, output, session) {
     #
     #
     #    
-    setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 12) %>%
+    setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 11) %>%
     #
     #
     #
@@ -2955,7 +2955,7 @@ function(input, output, session) {
       #
       #
       #
-      setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 12) %>%
+      setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 11) %>%
       #
       #
       #

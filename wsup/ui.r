@@ -136,7 +136,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           #
           tabPanel(title = "Maps", value = 12, 
-                   withSpinner(leafletOutput("map.demographics", width = "100%", height = 800), type = 5))
+                   withSpinner(leafletOutput("map.demographics", width = "100%", height = 500), type = 5))
         ),
       #
       #
@@ -275,7 +275,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           #
           tabPanel(title = "Maps", value = 22,
-                   withSpinner(leafletOutput("map.poverty", width = "100%", height = 800), type = 5))
+                   withSpinner(leafletOutput("map.poverty", width = "100%", height = 500), type = 5))
         ),
       #
       #
@@ -423,7 +423,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           #
           tabPanel(title = "Maps", value = 32,
-                   withSpinner(leafletOutput("map.ladder", width = "100%", height = 800), type = 5))
+                   withSpinner(leafletOutput("map.ladder", width = "100%", height = 500), type = 5))
         ),
       #
       #
@@ -569,7 +569,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           #
           tabPanel(title = "Maps", value = 42,
-                   withSpinner(leafletOutput("map.water", width = "100%", height = 800), type = 5))
+                   withSpinner(leafletOutput("map.water", width = "100%", height = 500), type = 5))
         ),
       #
       #
@@ -717,7 +717,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           #
           tabPanel(title = "Maps", value = 52,
-                   withSpinner(leafletOutput("map.sanitation", width = "100%", height = 800), type = 5))
+                   withSpinner(leafletOutput("map.sanitation", width = "100%", height = 500), type = 5))
         ),
       #
       #
@@ -859,7 +859,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           #
           tabPanel(title = "Maps", value = 62,
-                   withSpinner(leafletOutput("map.hygiene", width = "100%", height = 800), type = 5))
+                   withSpinner(leafletOutput("map.hygiene", width = "100%", height = 500), type = 5))
         ),
       #
       #
@@ -1007,7 +1007,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           #
           tabPanel(title = "Maps", value = 72,
-                   withSpinner(leafletOutput("map.overall", width = "100%", height = 800), type = 5))
+                   withSpinner(leafletOutput("map.overall", width = "100%", height = 500), type = 5))
         ),
       #
       #
