@@ -6,10 +6,8 @@
 #
 # Create fluid page layout for user interactivity
 #
-navbarPage(title = "Water and Sanitation for the Urban Poor", 
+navbarPage(title = "Urban Water and Sanitation Survey", 
            id = "chosenTab", inverse = FALSE, theme = shinytheme("cerulean"),
-           header = h4(style="text-align:left; margin-left:20px",
-                        "Urban Water and Sanitation Survey"),
   #
   #
   #
@@ -43,16 +41,80 @@ navbarPage(title = "Water and Sanitation for the Urban Poor",
           #
           selectInput(inputId = "z.demographics", 
                       label = "Select Indicator Set", 
-                      choices = list("Mean number of households" = "nMembers")),
+                      choices = list("Mean number of household members" = "nMembers")),
           #
           #
           #
-          selectInput(inputId = "x.demographics", 
-                      label = "Stratify by", 
-                      choices = list(None = ".",
-                                     "Survey Area" = "zone", 
-                                     "Area Type" = "type", 
-                                     "Wealth Quintile" = "pQuintile"))),
+          conditionalPanel(condition = "input.tabs1 == 11",
+            #
+            #
+            #
+            selectInput(inputId = "x.demographics", 
+                        label = "Stratify by", 
+                        choices = list(None = ".",
+                                       "Survey Area" = "zone", 
+                                       "Area Type" = "type", 
+                                       "Wealth Quintile" = "pQuintile")),
+            #
+            #
+            #
+            sliderInput(inputId = "bins.demographics", "Number of bins:",
+                        min = 1, max = 5, value = 1)),
+          #
+          #
+          #
+          conditionalPanel(condition = "input.tabs1 == 12",
+              #
+              #
+              #
+              selectInput(inputId = "palette.demographics",
+                          label = "Select colour palette",
+                          choices = list("Sequential" = c("Blues" = "Blues",
+                                                          "Blue to Green" = "BuGn",
+                                                          "Blue to Purple" = "BuPu",
+                                                          "Green to Blue" = "GnBu",
+                                                          "Greens" = "Greens",
+                                                          "Greys" = "Greys",
+                                                          "Oranges" = "Oranges",
+                                                          "Orange to Red" = "OrRd",
+                                                          "Purples" = "Purples",
+                                                          "Purple to Blue" = "PuBu",
+                                                          "Purple to Blue to Green" = "PuBuGn",
+                                                          "Purple to Red" = "PuRd",
+                                                          "Reds" = "Reds",
+                                                          "Yellow to Green" = "YlGn",
+                                                          "Yellow to Green to Blue" = "YlGnBu",
+                                                          "Yellow to Orange to Brown" = "YlOrBr",
+                                                          "Yellow to Orange to Red" = "YlOrRd"),
+                                         "Divergent" = c("Brown to Blue to Green" = "BrBG",
+                                                         "Pink to Yellow to Green" = "PiYG",
+                                                         "Purple to Red to Green" = "PRGn",
+                                                         "Purple to Orange" = "PuOr",
+                                                         "Red to Blue" = "RdBu",
+                                                         "Red to Grey" = "RdGy",
+                                                         "Red to Yellow to Blue" = "RdYlBu",
+                                                         "Red to Yellow to Green" = "RdYlGn",
+                                                         "Spectral" = "Spectral")),
+                          selected = "YlGnBu"),
+              #
+              #
+              #
+              selectInput(inputId = "map.colour.demographics", 
+                          label = "Select colour mapping method", 
+                          choices = list("Linear" = "linear", 
+                                         "Equal Interval" = "interval", 
+                                         "Quantile" = "quantile"),
+                          selected = "interval"),
+              #
+              #
+              #
+              uiOutput("map.bins.demographics.control"),
+              #
+              #
+              #
+              uiOutput("map.quantile.demographics.control")            
+            )
+          ),
         #
         #
         #                           
@@ -60,9 +122,28 @@ navbarPage(title = "Water and Sanitation for the Urban Poor",
       #
       #
       #
-      mainPanel(withSpinner(plotOutput("demographics"), type = 5), width = 9)
-      )
-    ), 
+      mainPanel(
+        #
+        #
+        #
+        tabsetPanel(type = "tabs", id = "tabs1",
+          #
+          #
+          #
+          tabPanel(title = "Charts", value = 11, 
+                   withSpinner(plotOutput("demographics"), type = 5)),
+          #
+          #
+          #
+          tabPanel(title = "Maps", value = 12, 
+                   withSpinner(leafletOutput("map.demographics", width = "100%", height = 800), type = 5))
+        ),
+      #
+      #
+      #
+      width = 9)
+    )
+  ),   
   #
   #
   #
@@ -103,18 +184,105 @@ navbarPage(title = "Water and Sanitation for the Urban Poor",
           #
           #
           #
-          selectInput(inputId = "x.poverty", 
-                      label = "Select primary stratification", 
-                      choices = list(None = ".",
-                                     "Survey Area" = "zone", 
-                                     "Area Type" = "type", 
-                                     "Wealth Quintile" = "pQuintile"))),
-
+          conditionalPanel(condition = "input.tabs2 == 21",
+            #
+            #
+            #
+            selectInput(inputId = "x.poverty", 
+                        label = "Select primary stratification", 
+                        choices = list(None = ".",
+                                       "Survey Area" = "zone", 
+                                       "Area Type" = "type", 
+                                       "Wealth Quintile" = "pQuintile")),
+            #
+            #
+            #
+            sliderInput(inputId = "bins.poverty", label = "Number of bins:",
+                        min = 1, max = 5, value = 3, step = 0.25)),
+          #
+          #
+          #
+          conditionalPanel(condition = "input.tabs2 == 22",
+            #
+            #
+            #
+            selectInput(inputId = "palette.poverty",
+                        label = "Select colour palette",
+                        choices = list("Sequential" = c("Blues" = "Blues",
+                                                        "Blue to Green" = "BuGn",
+                                                        "Blue to Purple" = "BuPu",
+                                                        "Green to Blue" = "GnBu",
+                                                        "Greens" = "Greens",
+                                                        "Greys" = "Greys",
+                                                        "Oranges" = "Oranges",
+                                                        "Orange to Red" = "OrRd",
+                                                        "Purples" = "Purples",
+                                                        "Purple to Blue" = "PuBu",
+                                                        "Purple to Blue to Green" = "PuBuGn",
+                                                        "Purple to Red" = "PuRd",
+                                                        "Reds" = "Reds",
+                                                        "Yellow to Green" = "YlGn",
+                                                        "Yellow to Green to Blue" = "YlGnBu",
+                                                        "Yellow to Orange to Brown" = "YlOrBr",
+                                                        "Yellow to Orange to Red" = "YlOrRd"),
+                                       "Divergent" = c("Brown to Blue to Green" = "BrBG",
+                                                       "Pink to Yellow to Green" = "PiYG",
+                                                       "Purple to Red to Green" = "PRGn",
+                                                       "Purple to Orange" = "PuOr",
+                                                       "Red to Blue" = "RdBu",
+                                                       "Red to Grey" = "RdGy",
+                                                       "Red to Yellow to Blue" = "RdYlBu",
+                                                       "Red to Yellow to Green" = "RdYlGn",
+                                                       "Spectral" = "Spectral")),
+                        selected = "YlGnBu"),
+            #
+            #
+            #
+            selectInput(inputId = "map.colour.poverty", 
+                        label = "Select colour mapping method", 
+                        choices = list("Linear" = "linear", 
+                                       "Equal Interval" = "interval", 
+                                       "Quantile" = "quantile"),
+                        selected = "interval"),
+            #
+            #
+            #
+            uiOutput("map.bins.poverty.control"),
+            #
+            #
+            #
+            uiOutput("map.quantile.poverty.control")            
+          )
+        ),
+        #
+        #
+        #
         width = 3),
-
-      mainPanel(withSpinner(plotOutput("poverty"), type = 5), width = 9)
-      )
-    ),
+      #
+      #
+      #
+      mainPanel(
+        #
+        #
+        #
+        tabsetPanel(type = "tabs", id = "tabs2",
+          #
+          #
+          #
+          tabPanel(title = "Chart", value = 21,
+                   withSpinner(plotOutput("poverty"), type = 5)),
+          #
+          #
+          #
+          tabPanel(title = "Maps", value = 22,
+                   withSpinner(leafletOutput("map.poverty", width = "100%", height = 800), type = 5))
+        ),
+      #
+      #
+      #
+      width = 9)
+    )
+  ),
   #
   #
   #
@@ -155,18 +323,85 @@ navbarPage(title = "Water and Sanitation for the Urban Poor",
           #
           #
           #
-          selectInput(inputId = "x.ladder", 
-                      label = "Select primary stratification", 
-                      choices = list("Survey Area" = "surveyArea", 
-                                     "Area Type" = "type", 
-                                     "Wealth Quintile" = "wealth")),
-
-          selectInput(inputId = "y.ladder", 
-                      label = "Select secondary stratification", 
-                      choices = list(None = ".", 
-                                     "Survey Area" = "surveyArea", 
-                                     "Area Type" = "type", 
-                                     "Wealth Quintile" = "wealth"))),
+          conditionalPanel(condition = "input.tabs3 == 31",            
+            #
+            #
+            #
+            selectInput(inputId = "x.ladder", 
+                        label = "Select primary stratification", 
+                        choices = list("Survey Area" = "surveyArea", 
+                                       "Area Type" = "type", 
+                                       "Wealth Quintile" = "wealth")),
+            #
+            #
+            #
+            selectInput(inputId = "y.ladder", 
+                        label = "Select secondary stratification", 
+                        choices = list(None = ".", 
+                                       "Survey Area" = "surveyArea", 
+                                       "Area Type" = "type", 
+                                       "Wealth Quintile" = "wealth"))),
+          #
+          #
+          #
+          conditionalPanel(condition = "input.tabs3 == 32",
+            #
+            #
+            #
+            selectInput(inputId = "indicator.ladder",
+                        label = "Select indicators",
+                        choices = list("Select indicators" = "")),
+            #
+            #
+            #
+            selectInput(inputId = "palette.ladder",
+                        label = "Select colour palette",
+                        choices = list("Sequential" = c("Blues" = "Blues",
+                                                        "Blue to Green" = "BuGn",
+                                                        "Blue to Purple" = "BuPu",
+                                                        "Green to Blue" = "GnBu",
+                                                        "Greens" = "Greens",
+                                                        "Greys" = "Greys",
+                                                        "Oranges" = "Oranges",
+                                                        "Orange to Red" = "OrRd",
+                                                        "Purples" = "Purples",
+                                                        "Purple to Blue" = "PuBu",
+                                                        "Purple to Blue to Green" = "PuBuGn",
+                                                        "Purple to Red" = "PuRd",
+                                                        "Reds" = "Reds",
+                                                        "Yellow to Green" = "YlGn",
+                                                        "Yellow to Green to Blue" = "YlGnBu",
+                                                        "Yellow to Orange to Brown" = "YlOrBr",
+                                                        "Yellow to Orange to Red" = "YlOrRd"),
+                                       "Divergent" = c("Brown to Blue to Green" = "BrBG",
+                                                       "Pink to Yellow to Green" = "PiYG",
+                                                       "Purple to Red to Green" = "PRGn",
+                                                       "Purple to Orange" = "PuOr",
+                                                       "Red to Blue" = "RdBu",
+                                                       "Red to Grey" = "RdGy",
+                                                       "Red to Yellow to Blue" = "RdYlBu",
+                                                       "Red to Yellow to Green" = "RdYlGn",
+                                                       "Spectral" = "Spectral")),
+                        selected = "YlGnBu"),
+            #
+            #
+            #
+            selectInput(inputId = "map.colour.ladder", 
+                        label = "Select colour mapping method", 
+                        choices = list("Linear" = "linear", 
+                                       "Equal Interval" = "interval", 
+                                       "Quantile" = "quantile"),
+                        selected = "interval"),
+            #
+            #
+            #
+            uiOutput("map.bins.ladder.control"),
+            #
+            #
+            #
+            uiOutput("map.quantile.ladder.control")            
+          )
+        ),
         #
         #
         #
@@ -174,9 +409,28 @@ navbarPage(title = "Water and Sanitation for the Urban Poor",
       #
       #
       #
-      mainPanel(withSpinner(plotOutput("ladder"), type = 5), width = 9)
-      )
-    ),
+      mainPanel(
+        #
+        #
+        #
+        tabsetPanel(type = "tabs", id = "tabs3",
+          #
+          #
+          #
+          tabPanel(title = "Charts", value = 31,
+                   withSpinner(plotOutput("ladder"), type = 5)), 
+          #
+          #
+          #
+          tabPanel(title = "Maps", value = 32,
+                   withSpinner(leafletOutput("map.ladders", width = "100%", height = 800), type = 5))
+        ),
+      #
+      #
+      #
+      width = 9)
+    )
+  ),
   #
   # Water indicators menu
   #
@@ -370,9 +624,25 @@ navbarPage(title = "Water and Sanitation for the Urban Poor",
       #
       #
       #
-      mainPanel(withSpinner(plotOutput("hygiene"), type = 5), width = 9)
-      )
-    ),
+      mainPanel(
+        #
+        #
+        #
+        tabsetPanel(type = "tabs", id = "tabs6",
+          #
+          #
+          #
+          tabPanel(title = "Charts", 
+                   withSpinner(plotOutput("hygiene"), type = 5)),
+          tabPanel(title = "Maps",
+                   withSpinner(leafletOutput("map.hygiene", width = "100%", height = 800), type = 5))
+        ),
+      #
+      #
+      #
+      width = 9)
+    )
+  ),
   #
   #
   #

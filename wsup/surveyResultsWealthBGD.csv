@@ -34,56 +34,56 @@ Bangladesh,BGD,Households safely storing drinking water,water18,Wealth Quintile 
 Bangladesh,BGD,Households safely storing drinking water,water18,Wealth Quintile 3,167,151,High,94,80,High,261,0.8931,0.8395,0.9338,0.8804,0.811,0.9451,0.8851,0.8407,0.9244
 Bangladesh,BGD,Households safely storing drinking water,water18,Wealth Quintile 4,61,51,High,193,171,High,254,0.9286,0.8421,0.9833,0.9251,0.8736,0.9669,0.9274,0.8902,0.9588
 Bangladesh,BGD,Households safely storing drinking water,water18,Wealth Quintile 5,17,17,High,231,202,High,248,1,1,1,0.8791,0.8189,0.9269,0.8857,0.834,0.9289
-Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater1,Wealth Quintile 1,231,47,Low,37,3,Low,268,0.2771,0.2106,0.3462,0.0857,0,0.1821,0.2566,0.1954,0.3174
-Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater1,Wealth Quintile 2,212,40,Low,39,8,Low,251,0.1505,0.0909,0.2156,0.2564,0.1248,0.3947,0.1734,0.1216,0.2271
-Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater1,Wealth Quintile 3,167,37,Low,94,23,Low,261,0.3293,0.2452,0.4153,0.2391,0.1505,0.334,0.2745,0.217,0.3398
-Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater1,Wealth Quintile 4,61,11,Low,193,46,Low,254,0.2787,0.1579,0.39,0.2682,0.2021,0.3439,0.2702,0.2177,0.3402
-Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater1,Wealth Quintile 5,17,2,Low,231,73,Low,248,0,0,0.2353,0.2748,0.2097,0.3502,0.2623,0.1966,0.327
-Bangladesh,BGD,Households using an improved source of drinking water that takes 30 minutes or less to collect from,jmpWater2,Wealth Quintile 1,231,167,Moderate,37,27,Moderate,268,0.6623,0.5932,0.7337,0.8182,0.6389,0.9413,0.679,0.61,0.7463
-Bangladesh,BGD,Households using an improved source of drinking water that takes 30 minutes or less to collect from,jmpWater2,Wealth Quintile 2,212,161,Moderate,39,23,Moderate,251,0.8213,0.7535,0.8841,0.6341,0.4737,0.7897,0.7791,0.7171,0.8395
-Bangladesh,BGD,Households using an improved source of drinking water that takes 30 minutes or less to collect from,jmpWater2,Wealth Quintile 3,167,118,Moderate,94,62,Moderate,261,0.6235,0.5296,0.7063,0.7204,0.621,0.8153,0.684,0.6146,0.75
-Bangladesh,BGD,Households using an improved source of drinking water that takes 30 minutes or less to collect from,jmpWater2,Wealth Quintile 4,61,42,Moderate,193,125,Moderate,254,0.6552,0.5352,0.7905,0.6816,0.6125,0.7501,0.68,0.6048,0.746
-Bangladesh,BGD,Households using an improved source of drinking water that takes 30 minutes or less to collect from,jmpWater2,Wealth Quintile 5,17,14,High,231,143,Moderate,248,1,0.7647,1,0.7,0.6192,0.7703,0.7131,0.6408,0.7866
+Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater5,Wealth Quintile 1,231,47,Low,37,3,Low,268,0.2771,0.2106,0.3462,0.0857,0,0.1821,0.2566,0.1954,0.3174
+Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater5,Wealth Quintile 2,212,40,Low,39,8,Low,251,0.1505,0.0909,0.2156,0.2564,0.1248,0.3947,0.1734,0.1216,0.2271
+Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater5,Wealth Quintile 3,167,37,Low,94,23,Low,261,0.3293,0.2452,0.4153,0.2391,0.1505,0.334,0.2745,0.217,0.3398
+Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater5,Wealth Quintile 4,61,11,Low,193,46,Low,254,0.2787,0.1579,0.39,0.2682,0.2021,0.3439,0.2702,0.2177,0.3402
+Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater5,Wealth Quintile 5,17,2,Low,231,73,Low,248,0,0,0.2353,0.2748,0.2097,0.3502,0.2623,0.1966,0.327
+Bangladesh,BGD,Households using an improved source of drinking water that takes 30 minutes or less to collect from,jmpWater4,Wealth Quintile 1,231,167,Moderate,37,27,Moderate,268,0.6623,0.5932,0.7337,0.8182,0.6389,0.9413,0.679,0.61,0.7463
+Bangladesh,BGD,Households using an improved source of drinking water that takes 30 minutes or less to collect from,jmpWater4,Wealth Quintile 2,212,161,Moderate,39,23,Moderate,251,0.8213,0.7535,0.8841,0.6341,0.4737,0.7897,0.7791,0.7171,0.8395
+Bangladesh,BGD,Households using an improved source of drinking water that takes 30 minutes or less to collect from,jmpWater4,Wealth Quintile 3,167,118,Moderate,94,62,Moderate,261,0.6235,0.5296,0.7063,0.7204,0.621,0.8153,0.684,0.6146,0.75
+Bangladesh,BGD,Households using an improved source of drinking water that takes 30 minutes or less to collect from,jmpWater4,Wealth Quintile 4,61,42,Moderate,193,125,Moderate,254,0.6552,0.5352,0.7905,0.6816,0.6125,0.7501,0.68,0.6048,0.746
+Bangladesh,BGD,Households using an improved source of drinking water that takes 30 minutes or less to collect from,jmpWater4,Wealth Quintile 5,17,14,High,231,143,Moderate,248,1,0.7647,1,0.7,0.6192,0.7703,0.7131,0.6408,0.7866
 Bangladesh,BGD,Households using an improved source of drinking water that takes more than 30 minutes to collect from,jmpWater3,Wealth Quintile 1,231,2,Low,37,1,Low,268,0.0244,0.0043,0.0519,0,0,0.0313,0.0226,0.0038,0.0458
 Bangladesh,BGD,Households using an improved source of drinking water that takes more than 30 minutes to collect from,jmpWater3,Wealth Quintile 2,212,0,Low,39,0,Low,251,0,0,0,0,0,0,0,0,0
 Bangladesh,BGD,Households using an improved source of drinking water that takes more than 30 minutes to collect from,jmpWater3,Wealth Quintile 3,167,2,Low,94,0,Low,261,0,0,0.0123,0,0,0,0,0,0.004
 Bangladesh,BGD,Households using an improved source of drinking water that takes more than 30 minutes to collect from,jmpWater3,Wealth Quintile 4,61,3,Low,193,0,Low,254,0.0167,0,0.068,0,0,0,0,0,0.0118
 Bangladesh,BGD,Households using an improved source of drinking water that takes more than 30 minutes to collect from,jmpWater3,Wealth Quintile 5,17,0,Low,231,0,Low,248,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan2,Wealth Quintile 1,231,2,Low,37,1,Low,268,0.0258,0.0044,0.0559,0,0,0.0625,0.0255,0.0072,0.0515
-Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan2,Wealth Quintile 2,212,0,Low,39,2,Low,251,0,0,0,0,0,0.0526,0.0039,0,0.0123
-Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan2,Wealth Quintile 3,167,0,Low,94,2,Low,261,0,0,0,0,0,0.0213,0,0,0.0081
-Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan2,Wealth Quintile 4,61,1,Low,193,8,Low,254,0,0,0.0334,0.0107,0,0.0374,0.012,0,0.0334
-Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan2,Wealth Quintile 5,17,0,Low,231,3,Low,248,0,0,0,0,0,0.0091,0,0,0.0123
-Bangladesh,BGD,Households using open defecation,jmpSan5,Wealth Quintile 1,231,4,Low,37,1,Low,268,0,0,0.0134,0,0,0.0312,0,0,0.0143
-Bangladesh,BGD,Households using open defecation,jmpSan5,Wealth Quintile 2,212,0,Low,39,0,Low,251,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using open defecation,jmpSan5,Wealth Quintile 3,167,1,Low,94,0,Low,261,0,0,0.0181,0,0,0,0,0,0.008
-Bangladesh,BGD,Households using open defecation,jmpSan5,Wealth Quintile 4,61,0,Low,193,0,Low,254,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using open defecation,jmpSan5,Wealth Quintile 5,17,0,Low,231,0,Low,248,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan1,Wealth Quintile 1,231,2,Low,37,2,Low,268,0,0,0.0085,0.0303,0,0.1212,0.0038,0,0.0154
-Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan1,Wealth Quintile 2,212,5,Low,39,6,Low,251,0.032,0.0096,0.0562,0.2308,0.122,0.3684,0.0795,0.046,0.1129
-Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan1,Wealth Quintile 3,167,8,Low,94,52,Moderate,261,0.0424,0.0125,0.0813,0.6067,0.4896,0.7175,0.3822,0.3133,0.4413
-Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan1,Wealth Quintile 4,61,2,Low,193,145,Moderate,254,0.0164,0,0.0492,0.801,0.7395,0.8587,0.7302,0.6666,0.7977
-Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan1,Wealth Quintile 5,17,1,Low,231,209,High,248,0,0,0.0667,0.9217,0.8771,0.9558,0.876,0.8291,0.918
+Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan4,Wealth Quintile 1,231,2,Low,37,1,Low,268,0.0258,0.0044,0.0559,0,0,0.0625,0.0255,0.0072,0.0515
+Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan4,Wealth Quintile 2,212,0,Low,39,2,Low,251,0,0,0,0,0,0.0526,0.0039,0,0.0123
+Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan4,Wealth Quintile 3,167,0,Low,94,2,Low,261,0,0,0,0,0,0.0213,0,0,0.0081
+Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan4,Wealth Quintile 4,61,1,Low,193,8,Low,254,0,0,0.0334,0.0107,0,0.0374,0.012,0,0.0334
+Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan4,Wealth Quintile 5,17,0,Low,231,3,Low,248,0,0,0,0,0,0.0091,0,0,0.0123
+Bangladesh,BGD,Households using open defecation,jmpSan1,Wealth Quintile 1,231,4,Low,37,1,Low,268,0,0,0.0134,0,0,0.0312,0,0,0.0143
+Bangladesh,BGD,Households using open defecation,jmpSan1,Wealth Quintile 2,212,0,Low,39,0,Low,251,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using open defecation,jmpSan1,Wealth Quintile 3,167,1,Low,94,0,Low,261,0,0,0.0181,0,0,0,0,0,0.008
+Bangladesh,BGD,Households using open defecation,jmpSan1,Wealth Quintile 4,61,0,Low,193,0,Low,254,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using open defecation,jmpSan1,Wealth Quintile 5,17,0,Low,231,0,Low,248,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan5,Wealth Quintile 1,231,2,Low,37,2,Low,268,0,0,0.0085,0.0303,0,0.1212,0.0038,0,0.0154
+Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan5,Wealth Quintile 2,212,5,Low,39,6,Low,251,0.032,0.0096,0.0562,0.2308,0.122,0.3684,0.0795,0.046,0.1129
+Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan5,Wealth Quintile 3,167,8,Low,94,52,Moderate,261,0.0424,0.0125,0.0813,0.6067,0.4896,0.7175,0.3822,0.3133,0.4413
+Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan5,Wealth Quintile 4,61,2,Low,193,145,Moderate,254,0.0164,0,0.0492,0.801,0.7395,0.8587,0.7302,0.6666,0.7977
+Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan5,Wealth Quintile 5,17,1,Low,231,209,High,248,0,0,0.0667,0.9217,0.8771,0.9558,0.876,0.8291,0.918
 Bangladesh,BGD,Households using shared improved sanitation facility,jmpSan3,Wealth Quintile 1,231,205,High,37,18,Low,268,0.9025,0.8512,0.9455,0.7143,0.5152,0.8788,0.8801,0.8253,0.9254
 Bangladesh,BGD,Households using shared improved sanitation facility,jmpSan3,Wealth Quintile 2,212,191,High,39,25,Moderate,251,0.9091,0.8673,0.9503,0.6579,0.5,0.7949,0.8508,0.8042,0.8948
 Bangladesh,BGD,Households using shared improved sanitation facility,jmpSan3,Wealth Quintile 3,167,147,High,94,32,Low,261,0.9191,0.8623,0.9573,0.3696,0.2473,0.4848,0.5889,0.5292,0.6607
 Bangladesh,BGD,Households using shared improved sanitation facility,jmpSan3,Wealth Quintile 4,61,54,High,193,32,Low,254,0.9286,0.8306,1,0.173,0.1123,0.2296,0.241,0.1885,0.3096
 Bangladesh,BGD,Households using shared improved sanitation facility,jmpSan3,Wealth Quintile 5,17,16,High,231,12,Low,248,1,0.9333,1,0.0644,0.0354,0.1022,0.112,0.0714,0.1607
-Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater5,Wealth Quintile 1,231,0,Low,37,0,Low,268,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater5,Wealth Quintile 2,212,0,Low,39,0,Low,251,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater5,Wealth Quintile 3,167,0,Low,94,0,Low,261,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater5,Wealth Quintile 4,61,0,Low,193,0,Low,254,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater5,Wealth Quintile 5,17,0,Low,231,0,Low,248,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan4,Wealth Quintile 1,231,14,Low,37,15,Low,268,0.0638,0.0308,0.1039,0.2286,0.0645,0.412,0.0858,0.0494,0.1298
-Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan4,Wealth Quintile 2,212,10,Low,39,5,Low,251,0.0566,0.0271,0.0905,0.0769,0,0.1797,0.062,0.0328,0.0939
-Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan4,Wealth Quintile 3,167,5,Low,94,8,Low,261,0.0241,0,0.0543,0.0213,0,0.0653,0.0233,0.0077,0.0467
-Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan4,Wealth Quintile 4,61,4,Low,193,8,Low,254,0.0645,0,0.15,0.0105,0,0.0311,0.0158,0,0.037
-Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan4,Wealth Quintile 5,17,0,Low,231,6,Low,248,0,0,0,0.0082,0,0.0255,0.0079,0,0.0243
-Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater4,Wealth Quintile 1,231,10,Low,37,2,Low,268,0.0086,0,0.03,0.0606,0,0.2162,0.0153,0,0.0409
-Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater4,Wealth Quintile 2,212,11,Low,39,7,Low,251,0.029,0.0098,0.0545,0.1026,0,0.2105,0.0455,0.0204,0.0744
-Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater4,Wealth Quintile 3,167,9,Low,94,6,Low,261,0.0419,0.0123,0.0793,0.0109,0,0.044,0.0241,0.0078,0.048
-Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater4,Wealth Quintile 4,61,4,Low,193,12,Low,254,0.0339,0,0.0925,0.0305,0.0056,0.0588,0.0292,0.0118,0.0567
-Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater4,Wealth Quintile 5,17,1,Low,231,8,Low,248,0,0,0.0667,0.018,0.0043,0.0437,0.0198,0.004,0.04
+Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater1,Wealth Quintile 1,231,0,Low,37,0,Low,268,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater1,Wealth Quintile 2,212,0,Low,39,0,Low,251,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater1,Wealth Quintile 3,167,0,Low,94,0,Low,261,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater1,Wealth Quintile 4,61,0,Low,193,0,Low,254,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater1,Wealth Quintile 5,17,0,Low,231,0,Low,248,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan2,Wealth Quintile 1,231,14,Low,37,15,Low,268,0.0638,0.0308,0.1039,0.2286,0.0645,0.412,0.0858,0.0494,0.1298
+Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan2,Wealth Quintile 2,212,10,Low,39,5,Low,251,0.0566,0.0271,0.0905,0.0769,0,0.1797,0.062,0.0328,0.0939
+Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan2,Wealth Quintile 3,167,5,Low,94,8,Low,261,0.0241,0,0.0543,0.0213,0,0.0653,0.0233,0.0077,0.0467
+Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan2,Wealth Quintile 4,61,4,Low,193,8,Low,254,0.0645,0,0.15,0.0105,0,0.0311,0.0158,0,0.037
+Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan2,Wealth Quintile 5,17,0,Low,231,6,Low,248,0,0,0,0.0082,0,0.0255,0.0079,0,0.0243
+Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater2,Wealth Quintile 1,231,10,Low,37,2,Low,268,0.0086,0,0.03,0.0606,0,0.2162,0.0153,0,0.0409
+Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater2,Wealth Quintile 2,212,11,Low,39,7,Low,251,0.029,0.0098,0.0545,0.1026,0,0.2105,0.0455,0.0204,0.0744
+Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater2,Wealth Quintile 3,167,9,Low,94,6,Low,261,0.0419,0.0123,0.0793,0.0109,0,0.044,0.0241,0.0078,0.048
+Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater2,Wealth Quintile 4,61,4,Low,193,12,Low,254,0.0339,0,0.0925,0.0305,0.0056,0.0588,0.0292,0.0118,0.0567
+Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater2,Wealth Quintile 5,17,1,Low,231,8,Low,248,0,0,0.0667,0.018,0.0043,0.0437,0.0198,0.004,0.04
 Bangladesh,BGD,Households whose women are comfortable using sanitation facility during menstruation,jmpWoman,Wealth Quintile 1,231,148,Moderate,37,27,Moderate,268,0.5112,0.4425,0.5916,0.7097,0.5293,0.8529,0.5354,0.4627,0.6
 Bangladesh,BGD,Households whose women are comfortable using sanitation facility during menstruation,jmpWoman,Wealth Quintile 2,212,137,Moderate,39,28,Moderate,251,0.4313,0.3525,0.5137,0.7297,0.5496,0.865,0.5,0.432,0.5673
 Bangladesh,BGD,Households whose women are comfortable using sanitation facility during menstruation,jmpWoman,Wealth Quintile 3,167,124,Moderate,94,83,High,261,0.5949,0.5153,0.6709,0.9043,0.8202,0.967,0.7795,0.7165,0.8348
@@ -119,21 +119,21 @@ Bangladesh,BGD,Households with adequate sanitation facility,adequateSan,Wealth Q
 Bangladesh,BGD,Households with adequate sanitation facility,adequateSan,Wealth Quintile 3,167,155,High,94,86,High,261,0.9641,0.9286,0.9937,0.9787,0.9387,1,0.9725,0.9409,0.9921
 Bangladesh,BGD,Households with adequate sanitation facility,adequateSan,Wealth Quintile 4,61,57,High,193,185,High,254,0.9344,0.8361,1,0.9893,0.9679,1,0.9841,0.9635,1
 Bangladesh,BGD,Households with adequate sanitation facility,adequateSan,Wealth Quintile 5,17,17,High,231,224,High,248,1,1,1,0.9911,0.9734,1,0.9918,0.9721,1
-Bangladesh,BGD,Households with adequate sanitation services only,overall2,Wealth Quintile 1,231,0,NA,37,0,NA,268,0.8932,0.8468,0.9348,0.7273,0.5714,0.9032,0.8731,0.8252,0.9112
-Bangladesh,BGD,Households with adequate sanitation services only,overall2,Wealth Quintile 2,212,0,NA,39,0,NA,251,0.9029,0.8511,0.9426,0.8462,0.7179,0.9487,0.8858,0.8429,0.9225
-Bangladesh,BGD,Households with adequate sanitation services only,overall2,Wealth Quintile 3,167,0,NA,94,0,NA,261,0.9509,0.9107,0.9871,0.8925,0.821,0.9479,0.9167,0.8784,0.9492
-Bangladesh,BGD,Households with adequate sanitation services only,overall2,Wealth Quintile 4,61,0,NA,193,0,NA,254,0.9153,0.8135,1,0.7906,0.7323,0.8482,0.8031,0.7419,0.8595
-Bangladesh,BGD,Households with adequate sanitation services only,overall2,Wealth Quintile 5,17,0,NA,231,0,NA,248,1,1,1,0.8341,0.7737,0.8814,0.8471,0.7951,0.9026
-Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall1,Wealth Quintile 1,231,0,NA,37,0,NA,268,0.0315,0.0127,0.0662,0.0294,0,0.0938,0.0341,0.0113,0.0632
-Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall1,Wealth Quintile 2,212,0,NA,39,0,NA,251,0.0372,0.0097,0.0715,0.0769,0,0.1797,0.0447,0.0195,0.0803
-Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall1,Wealth Quintile 3,167,0,NA,94,0,NA,261,0.0123,0,0.038,0.0805,0.0312,0.1524,0.0545,0.0303,0.0863
-Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall1,Wealth Quintile 4,61,0,NA,193,0,NA,254,0.0179,0,0.0834,0.2,0.1383,0.2678,0.186,0.1406,0.2361
-Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall1,Wealth Quintile 5,17,0,NA,231,0,NA,248,0,0,0,0.15,0.0986,0.2088,0.1445,0.102,0.2
-Bangladesh,BGD,Households with adequate water services only,overall3,Wealth Quintile 1,231,0,NA,37,0,NA,268,0.0256,0.0043,0.0517,0,0,0.0606,0.0226,0.0038,0.0475
-Bangladesh,BGD,Households with adequate water services only,overall3,Wealth Quintile 2,212,0,NA,39,0,NA,251,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households with adequate water services only,overall3,Wealth Quintile 3,167,0,NA,94,0,NA,261,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households with adequate water services only,overall3,Wealth Quintile 4,61,0,NA,193,0,NA,254,0,0,0,0,0,0.0106,0,0,0.008
-Bangladesh,BGD,Households with adequate water services only,overall3,Wealth Quintile 5,17,0,NA,231,0,NA,248,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households with adequate sanitation services only,overall3,Wealth Quintile 1,231,0,NA,37,0,NA,268,0.8932,0.8468,0.9348,0.7273,0.5714,0.9032,0.8731,0.8252,0.9112
+Bangladesh,BGD,Households with adequate sanitation services only,overall3,Wealth Quintile 2,212,0,NA,39,0,NA,251,0.9029,0.8511,0.9426,0.8462,0.7179,0.9487,0.8858,0.8429,0.9225
+Bangladesh,BGD,Households with adequate sanitation services only,overall3,Wealth Quintile 3,167,0,NA,94,0,NA,261,0.9509,0.9107,0.9871,0.8925,0.821,0.9479,0.9167,0.8784,0.9492
+Bangladesh,BGD,Households with adequate sanitation services only,overall3,Wealth Quintile 4,61,0,NA,193,0,NA,254,0.9153,0.8135,1,0.7906,0.7323,0.8482,0.8031,0.7419,0.8595
+Bangladesh,BGD,Households with adequate sanitation services only,overall3,Wealth Quintile 5,17,0,NA,231,0,NA,248,1,1,1,0.8341,0.7737,0.8814,0.8471,0.7951,0.9026
+Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall4,Wealth Quintile 1,231,0,NA,37,0,NA,268,0.0315,0.0127,0.0662,0.0294,0,0.0938,0.0341,0.0113,0.0632
+Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall4,Wealth Quintile 2,212,0,NA,39,0,NA,251,0.0372,0.0097,0.0715,0.0769,0,0.1797,0.0447,0.0195,0.0803
+Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall4,Wealth Quintile 3,167,0,NA,94,0,NA,261,0.0123,0,0.038,0.0805,0.0312,0.1524,0.0545,0.0303,0.0863
+Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall4,Wealth Quintile 4,61,0,NA,193,0,NA,254,0.0179,0,0.0834,0.2,0.1383,0.2678,0.186,0.1406,0.2361
+Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall4,Wealth Quintile 5,17,0,NA,231,0,NA,248,0,0,0,0.15,0.0986,0.2088,0.1445,0.102,0.2
+Bangladesh,BGD,Households with adequate water services only,overall2,Wealth Quintile 1,231,0,NA,37,0,NA,268,0.0256,0.0043,0.0517,0,0,0.0606,0.0226,0.0038,0.0475
+Bangladesh,BGD,Households with adequate water services only,overall2,Wealth Quintile 2,212,0,NA,39,0,NA,251,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households with adequate water services only,overall2,Wealth Quintile 3,167,0,NA,94,0,NA,261,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households with adequate water services only,overall2,Wealth Quintile 4,61,0,NA,193,0,NA,254,0,0,0,0,0,0.0106,0,0,0.008
+Bangladesh,BGD,Households with adequate water services only,overall2,Wealth Quintile 5,17,0,NA,231,0,NA,248,0,0,0,0,0,0,0,0,0
 Bangladesh,BGD,Households with appropriate / acceptable sanitation facilities,acceptSan,Wealth Quintile 1,231,4,Low,37,0,Low,268,0.0082,0,0.0254,0,0,0,0.0072,0,0.0226
 Bangladesh,BGD,Households with appropriate / acceptable sanitation facilities,acceptSan,Wealth Quintile 2,212,0,Low,39,1,Low,251,0,0,0,0,0,0.0263,0,0,0.0081
 Bangladesh,BGD,Households with appropriate / acceptable sanitation facilities,acceptSan,Wealth Quintile 3,167,0,Low,94,4,Low,261,0,0,0,0.022,0,0.0632,0.0154,0.0038,0.0313
@@ -149,26 +149,26 @@ Bangladesh,BGD,Households with good self-perceived quality of drinking water,wat
 Bangladesh,BGD,Households with good self-perceived quality of drinking water,water14a,Wealth Quintile 3,167,97,Moderate,94,59,Moderate,261,0.5385,0.4526,0.6183,0.4688,0.3543,0.5745,0.4981,0.4356,0.5638
 Bangladesh,BGD,Households with good self-perceived quality of drinking water,water14a,Wealth Quintile 4,61,41,Moderate,193,138,Moderate,254,0.6769,0.5517,0.7969,0.5515,0.4839,0.6334,0.5663,0.5019,0.6332
 Bangladesh,BGD,Households with good self-perceived quality of drinking water,water14a,Wealth Quintile 5,17,10,Moderate,231,150,Moderate,248,0.8667,0.6,1,0.4851,0.4164,0.5605,0.5083,0.4415,0.5746
-Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand1,Wealth Quintile 1,231,77,Low,37,4,Low,268,0.3047,0.2446,0.3761,0.0909,0,0.2,0.2829,0.221,0.3434
-Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand1,Wealth Quintile 2,212,85,Low,39,11,Low,251,0.3411,0.2687,0.4065,0.3077,0.1951,0.5,0.3333,0.2682,0.4
-Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand1,Wealth Quintile 3,167,80,Low,94,57,Moderate,261,0.5513,0.4683,0.6292,0.6082,0.4947,0.7235,0.5796,0.5095,0.6413
-Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand1,Wealth Quintile 4,61,38,Moderate,193,164,High,254,0.6964,0.5763,0.8276,0.8595,0.8042,0.9068,0.8455,0.7944,0.8889
-Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand1,Wealth Quintile 5,17,11,Moderate,231,208,High,248,0.4667,0.2,0.6667,0.9264,0.8854,0.9574,0.9004,0.8602,0.9396
+Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand3,Wealth Quintile 1,231,77,Low,37,4,Low,268,0.3047,0.2446,0.3761,0.0909,0,0.2,0.2829,0.221,0.3434
+Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand3,Wealth Quintile 2,212,85,Low,39,11,Low,251,0.3411,0.2687,0.4065,0.3077,0.1951,0.5,0.3333,0.2682,0.4
+Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand3,Wealth Quintile 3,167,80,Low,94,57,Moderate,261,0.5513,0.4683,0.6292,0.6082,0.4947,0.7235,0.5796,0.5095,0.6413
+Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand3,Wealth Quintile 4,61,38,Moderate,193,164,High,254,0.6964,0.5763,0.8276,0.8595,0.8042,0.9068,0.8455,0.7944,0.8889
+Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand3,Wealth Quintile 5,17,11,Moderate,231,208,High,248,0.4667,0.2,0.6667,0.9264,0.8854,0.9574,0.9004,0.8602,0.9396
 Bangladesh,BGD,Households with handwashing facility with water only,jmpHand2,Wealth Quintile 1,231,110,Low,37,23,Moderate,268,0.5284,0.4545,0.5947,0.7812,0.6176,0.9144,0.5576,0.4906,0.6264
 Bangladesh,BGD,Households with handwashing facility with water only,jmpHand2,Wealth Quintile 2,212,96,Low,39,19,Low,251,0.4712,0.401,0.5447,0.4474,0.2891,0.6053,0.4675,0.3998,0.5248
 Bangladesh,BGD,Households with handwashing facility with water only,jmpHand2,Wealth Quintile 3,167,70,Low,94,32,Low,261,0.35,0.2726,0.4286,0.3196,0.2181,0.4222,0.3282,0.2734,0.3978
 Bangladesh,BGD,Households with handwashing facility with water only,jmpHand2,Wealth Quintile 4,61,17,Low,193,21,Low,254,0.2712,0.1609,0.4211,0.0955,0.0523,0.1361,0.1079,0.068,0.1548
 Bangladesh,BGD,Households with handwashing facility with water only,jmpHand2,Wealth Quintile 5,17,4,Low,231,21,Low,248,0.5333,0.3102,0.8,0.0578,0.0264,0.0962,0.0826,0.0483,0.1229
-Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall4,Wealth Quintile 1,231,0,NA,37,0,NA,268,0.0458,0.0214,0.076,0.2353,0.087,0.3889,0.0693,0.0369,0.1019
-Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall4,Wealth Quintile 2,212,0,NA,39,0,NA,251,0.0574,0.029,0.0905,0.0976,0.0244,0.1842,0.0667,0.0401,0.1021
-Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall4,Wealth Quintile 3,167,0,NA,94,0,NA,261,0.0357,0.0118,0.0727,0.0208,0,0.0646,0.0272,0.0114,0.0537
-Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall4,Wealth Quintile 4,61,0,NA,193,0,NA,254,0.0645,0,0.1776,0.0105,0,0.0275,0.0125,0,0.0368
-Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall4,Wealth Quintile 5,17,0,NA,231,0,NA,248,0,0,0,0.0088,0,0.027,0.0083,0,0.0282
-Bangladesh,BGD,Households with no handwashing facility,jmpHand3,Wealth Quintile 1,231,44,Low,37,10,Low,268,0.1616,0.109,0.2134,0.125,0.0294,0.265,0.1593,0.1147,0.2073
-Bangladesh,BGD,Households with no handwashing facility,jmpHand3,Wealth Quintile 2,212,31,Low,39,9,Low,251,0.1932,0.1414,0.2538,0.2368,0.1053,0.3905,0.2041,0.1566,0.2592
-Bangladesh,BGD,Households with no handwashing facility,jmpHand3,Wealth Quintile 3,167,17,Low,94,5,Low,261,0.1012,0.0587,0.1526,0.0745,0.0312,0.1225,0.0871,0.0538,0.13
-Bangladesh,BGD,Households with no handwashing facility,jmpHand3,Wealth Quintile 4,61,6,Low,193,8,Low,254,0.0172,0,0.0867,0.0428,0.0107,0.0863,0.0437,0.0159,0.0774
-Bangladesh,BGD,Households with no handwashing facility,jmpHand3,Wealth Quintile 5,17,2,Low,231,2,Low,248,0,0,0.125,0.0137,0.0042,0.0354,0.0163,0.004,0.0331
+Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall1,Wealth Quintile 1,231,0,NA,37,0,NA,268,0.0458,0.0214,0.076,0.2353,0.087,0.3889,0.0693,0.0369,0.1019
+Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall1,Wealth Quintile 2,212,0,NA,39,0,NA,251,0.0574,0.029,0.0905,0.0976,0.0244,0.1842,0.0667,0.0401,0.1021
+Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall1,Wealth Quintile 3,167,0,NA,94,0,NA,261,0.0357,0.0118,0.0727,0.0208,0,0.0646,0.0272,0.0114,0.0537
+Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall1,Wealth Quintile 4,61,0,NA,193,0,NA,254,0.0645,0,0.1776,0.0105,0,0.0275,0.0125,0,0.0368
+Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall1,Wealth Quintile 5,17,0,NA,231,0,NA,248,0,0,0,0.0088,0,0.027,0.0083,0,0.0282
+Bangladesh,BGD,Households with no handwashing facility,jmpHand1,Wealth Quintile 1,231,44,Low,37,10,Low,268,0.1616,0.109,0.2134,0.125,0.0294,0.265,0.1593,0.1147,0.2073
+Bangladesh,BGD,Households with no handwashing facility,jmpHand1,Wealth Quintile 2,212,31,Low,39,9,Low,251,0.1932,0.1414,0.2538,0.2368,0.1053,0.3905,0.2041,0.1566,0.2592
+Bangladesh,BGD,Households with no handwashing facility,jmpHand1,Wealth Quintile 3,167,17,Low,94,5,Low,261,0.1012,0.0587,0.1526,0.0745,0.0312,0.1225,0.0871,0.0538,0.13
+Bangladesh,BGD,Households with no handwashing facility,jmpHand1,Wealth Quintile 4,61,6,Low,193,8,Low,254,0.0172,0,0.0867,0.0428,0.0107,0.0863,0.0437,0.0159,0.0774
+Bangladesh,BGD,Households with no handwashing facility,jmpHand1,Wealth Quintile 5,17,2,Low,231,2,Low,248,0,0,0.125,0.0137,0.0042,0.0354,0.0163,0.004,0.0331
 Bangladesh,BGD,Mean expenditure in drinking water,water12,Wealth Quintile 1,231,1356,High,37,730,High,268,9.719,5.7586,14.7207,7,0,24.1833,9.5769,5.8289,13.7261
 Bangladesh,BGD,Mean expenditure in drinking water,water12,Wealth Quintile 2,212,2097,High,39,358,High,251,23.6889,16.9931,33.8326,19.55,6.9875,35.5074,22.7195,15.5146,30.495
 Bangladesh,BGD,Mean expenditure in drinking water,water12,Wealth Quintile 3,167,1262,High,94,3934,High,261,23.767,11.5331,36.5055,72.2,37.4898,119.8562,51.6415,34.2875,73.8678

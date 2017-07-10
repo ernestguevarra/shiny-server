@@ -12,6 +12,11 @@ library(leaflet)
 library(shinycssloaders)
 library(shinythemes)
 library(geojsonio)
+library(rgdal)
+library(rgeos)
+library(raster)
+library(maps)
+
 
 ################################################################################
 #
@@ -45,7 +50,7 @@ addWealth <- function(string, prefix = "Wealth Quintile") paste(prefix, string, 
 #
 # Steer indicators
 #
-steerIndicators <- read.csv("steerIndicatorsV6.csv", header = TRUE, sep = ",")
+steerIndicators <- read.csv("steerIndicatorsV7.csv", header = TRUE, sep = ",")
 #
 #
 #
@@ -516,4 +521,101 @@ theme_wsup <- theme_bw() +
                     legend.key.size = unit(25, "pt"),
                     legend.title = element_text(size = 16),
                     legend.text = element_text(size = 14))
-                    
+
+
+################################################################################
+#
+# Mapping
+#
+################################################################################
+#
+#
+#
+long.lat.crs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+#
+# Read shapefiles - outline of survey areas
+#
+outline <- readOGR(dsn = "surveyArea3",
+                   layer = "surveyArea3",
+                   verbose = FALSE)
+#
+#
+#
+outline <- spTransform(outline, CRSobj = CRS(long.lat.crs))
+#
+# Read shapefiles - wards
+#
+wards <- readOGR(dsn = "surveyArea",
+                 layer = "surveyArea",
+                 verbose = FALSE)
+#
+# Read shapefiles - upazila
+#
+upazila <- readOGR(dsn = "dhaka3",
+                   layer = "dhaka3",
+                   verbose = FALSE)
+#
+#
+#
+wards <- spTransform(wards, CRSobj = CRS(long.lat.crs))
+#
+#
+#                 
+map.results <- merge(areaResults, outline, by.x = "strata", by.y = "surveyArea")
+#
+#
+#
+slum.results.df <- data.frame(matrix(nrow = 9, ncol = 50))
+#
+#
+#
+names(slum.results.df) <- steerIndicators$varList
+#
+#
+#
+city.results.df <- data.frame(matrix(nrow = 9, ncol = 50))
+#
+#
+#
+names(city.results.df) <- steerIndicators$varList
+#
+#
+#
+for(i in steerIndicators$varList)
+  {
+  #
+  #
+  #
+  slum.results <- subset(x = map.results, 
+                         subset = indicatorCode == i, 
+                         select = slumEst)
+  #
+  #
+  #
+  city.results <- subset(x = map.results, 
+                         subset = indicatorCode == i, 
+                         select = totalEst)
+  #
+  #
+  #
+  slum.results.df[ , i] <- slum.results
+  city.results.df[ , i] <- city.results
+  }
+#
+#
+#         
+slum.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:9, sep = " "), slum.results.df)
+city.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:9, sep = " "), city.results.df)
+#
+#
+#
+slum.results.sp <- merge(outline, slum.results.df, by = "surveyArea")
+city.results.sp <- merge(outline, city.results.df, by = "surveyArea")
+#
+#
+#
+mapbox.satellite <- "https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
+mapbox.street <- "https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
+mapbox.dark <- "https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
+mapbox.light <- "https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
+

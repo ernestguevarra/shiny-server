@@ -4,16 +4,16 @@ Bangladesh,BGD,Households in which every member is able to use and actually use 
 Bangladesh,BGD,Households with access to sufficient and sustained drinking water,accessWater,Survey Area 1,68,0,Low,66,6,Low,134,0,0,0,0.0758,0.0152,0.1674,0.0522,0.0149,0.1049
 Bangladesh,BGD,Households with adequate sanitation facility,adequateSan,Survey Area 1,68,56,High,66,56,High,134,0.8971,0.7941,0.9706,0.8788,0.7576,0.9705,0.8806,0.791,0.9403
 Bangladesh,BGD,Mean likelihood of household being below the USAID extreme poverty line,extreme,Survey Area 1,68,6.54,Low,66,1.302,Low,134,0.0922,0.0726,0.1166,0.0177,0.0069,0.0359,0.0409,0.0276,0.0565
-Bangladesh,BGD,Households using open defecation,jmpSan5,Survey Area 1,68,0,Low,66,0,Low,134,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan4,Survey Area 1,68,9,Low,66,10,Low,134,0.0882,0.0147,0.1919,0.1212,0.0303,0.2576,0.1119,0.0444,0.194
+Bangladesh,BGD,Households using open defecation,jmpSan1,Survey Area 1,68,0,Low,66,0,Low,134,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan2,Survey Area 1,68,9,Low,66,10,Low,134,0.0882,0.0147,0.1919,0.1212,0.0303,0.2576,0.1119,0.0444,0.194
 Bangladesh,BGD,Households using shared improved sanitation facility,jmpSan3,Survey Area 1,68,50,Moderate,66,10,Low,134,0.7647,0.6324,0.8971,0.1515,0.0758,0.2576,0.3507,0.2463,0.4627
-Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan2,Survey Area 1,68,6,Low,66,46,Moderate,134,0.1176,0.0294,0.2059,0.7273,0.5758,0.8485,0.5224,0.4179,0.6347
-Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan1,Survey Area 1,68,4,Low,66,45,Moderate,134,0.0735,0.0147,0.1765,0.7121,0.575,0.8333,0.5075,0.403,0.6194
-Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater5,Survey Area 1,68,0,Low,66,0,Low,134,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater4,Survey Area 1,68,1,Low,66,8,Low,134,0,0,0.0441,0.1212,0.0303,0.2273,0.0896,0.0373,0.1567
+Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan4,Survey Area 1,68,6,Low,66,46,Moderate,134,0.1176,0.0294,0.2059,0.7273,0.5758,0.8485,0.5224,0.4179,0.6347
+Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan5,Survey Area 1,68,4,Low,66,45,Moderate,134,0.0735,0.0147,0.1765,0.7121,0.575,0.8333,0.5075,0.403,0.6194
+Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater1,Survey Area 1,68,0,Low,66,0,Low,134,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater2,Survey Area 1,68,1,Low,66,8,Low,134,0,0,0.0441,0.1212,0.0303,0.2273,0.0896,0.0373,0.1567
 Bangladesh,BGD,Households using improved source of drinking water that takes more than 30 minutes to collect from,jmpWater3,Survey Area 1,68,67,High,66,58,High,134,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater2,Survey Area 1,68,2,Low,66,14,Low,134,0.9559,0.8676,1,0.6818,0.5455,0.8182,0.7687,0.6642,0.8582
-Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater1,Survey Area 1,68,2,Low,66,7,Low,134,0.0441,0,0.1176,0.1061,0.0303,0.2121,0.0896,0.0299,0.1571
+Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater4,Survey Area 1,68,2,Low,66,14,Low,134,0.9559,0.8676,1,0.6818,0.5455,0.8182,0.7687,0.6642,0.8582
+Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater5,Survey Area 1,68,2,Low,66,7,Low,134,0.0441,0,0.1176,0.1061,0.0303,0.2121,0.0896,0.0299,0.1571
 Bangladesh,BGD,Households whose women are comfortable using sanitation facility during menstruation,jmpWoman,Survey Area 1,68,37,Moderate,66,61,High,134,0.6176,0.4559,0.7647,0.9846,0.9231,1,0.8692,0.7846,0.9389
 Bangladesh,BGD,Households whose women practice good menstrual hygiene behaviour,jmpWomenHygiene,Survey Area 1,68,0,Low,66,0,Low,134,0.9531,0.8656,1,0.9385,0.8413,1,0.9389,0.8758,0.9845
 Bangladesh,BGD,Mean likelihood of household being below the Bangladesh lower national poverty line,nl,Survey Area 1,68,7.285,Low,66,1.442,Low,134,0.1014,0.0784,0.1294,0.0182,0.0071,0.039,0.0451,0.028,0.063
@@ -44,16 +44,16 @@ Bangladesh,BGD,Households in which every member is able to use and actually use 
 Bangladesh,BGD,Households with access to sufficient and sustained drinking water,accessWater,Survey Area 2,160,16,Low,66,2,Low,226,0.0438,0.0062,0.0878,0.0152,0,0.0909,0.0398,0.0133,0.0752
 Bangladesh,BGD,Households with adequate sanitation facility,adequateSan,Survey Area 2,160,154,High,66,52,Moderate,226,0.9438,0.8875,0.9875,0.8788,0.7576,0.9697,0.9292,0.8805,0.969
 Bangladesh,BGD,Mean likelihood of household being below the USAID extreme poverty line,extreme,Survey Area 2,160,18.277,Low,66,3.907,Low,226,0.1264,0.1057,0.1458,0.0431,0.0214,0.0654,0.1132,0.0978,0.1322
-Bangladesh,BGD,Households using open defecation,jmpSan5,Survey Area 2,160,0,Low,66,0,Low,226,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan4,Survey Area 2,160,6,Low,66,14,Low,226,0.0562,0.0125,0.1188,0.1364,0.0303,0.2424,0.0708,0.031,0.1195
+Bangladesh,BGD,Households using open defecation,jmpSan1,Survey Area 2,160,0,Low,66,0,Low,226,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan2,Survey Area 2,160,6,Low,66,14,Low,226,0.0562,0.0125,0.1188,0.1364,0.0303,0.2424,0.0708,0.031,0.1195
 Bangladesh,BGD,Households using shared improved sanitation facility,jmpSan3,Survey Area 2,160,150,High,66,20,Low,226,0.9062,0.8438,0.9625,0.303,0.1667,0.4402,0.8186,0.7564,0.8805
-Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan2,Survey Area 2,160,4,Low,66,32,Low,226,0.0312,0.0062,0.0688,0.5758,0.4091,0.697,0.1106,0.0664,0.1681
-Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan1,Survey Area 2,160,3,Low,66,25,Low,226,0.0125,0,0.0438,0.5152,0.3788,0.6674,0.0885,0.0442,0.1374
-Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater5,Survey Area 2,160,0,Low,66,0,Low,226,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater4,Survey Area 2,160,3,Low,66,11,Low,226,0,0,0.025,0.1061,0.0152,0.2273,0.0177,0,0.0487
+Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan4,Survey Area 2,160,4,Low,66,32,Low,226,0.0312,0.0062,0.0688,0.5758,0.4091,0.697,0.1106,0.0664,0.1681
+Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan5,Survey Area 2,160,3,Low,66,25,Low,226,0.0125,0,0.0438,0.5152,0.3788,0.6674,0.0885,0.0442,0.1374
+Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater1,Survey Area 2,160,0,Low,66,0,Low,226,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater2,Survey Area 2,160,3,Low,66,11,Low,226,0,0,0.025,0.1061,0.0152,0.2273,0.0177,0,0.0487
 Bangladesh,BGD,Households using improved source of drinking water that takes more than 30 minutes to collect from,jmpWater3,Survey Area 2,160,157,High,66,55,High,226,0.0125,0,0.0438,0,0,0.0303,0.0133,0,0.0354
-Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater2,Survey Area 2,160,64,Low,66,7,Low,226,0.7188,0.6188,0.8062,0.7879,0.6364,0.8947,0.7212,0.6416,0.7876
-Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater1,Survey Area 2,160,60,Low,66,3,Low,226,0.25,0.1688,0.3566,0.0455,0,0.1364,0.2212,0.1504,0.292
+Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater4,Survey Area 2,160,64,Low,66,7,Low,226,0.7188,0.6188,0.8062,0.7879,0.6364,0.8947,0.7212,0.6416,0.7876
+Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater5,Survey Area 2,160,60,Low,66,3,Low,226,0.25,0.1688,0.3566,0.0455,0,0.1364,0.2212,0.1504,0.292
 Bangladesh,BGD,Households whose women are comfortable using sanitation facility during menstruation,jmpWoman,Survey Area 2,160,100,Moderate,66,57,High,226,0.4091,0.3139,0.5128,0.9531,0.8768,1,0.482,0.3946,0.5773
 Bangladesh,BGD,Households whose women practice good menstrual hygiene behaviour,jmpWomenHygiene,Survey Area 2,160,0,Low,66,0,Low,226,0.9517,0.9066,0.9867,0.9836,0.9192,1,0.9565,0.9175,0.9856
 Bangladesh,BGD,Mean likelihood of household being below the Bangladesh lower national poverty line,nl,Survey Area 2,160,20.222,Low,66,4.434,Low,226,0.1396,0.1188,0.1627,0.0476,0.0242,0.0782,0.1266,0.1102,0.1477
@@ -84,16 +84,16 @@ Bangladesh,BGD,Households in which every member is able to use and actually use 
 Bangladesh,BGD,Households with access to sufficient and sustained drinking water,accessWater,Survey Area 3,64,1,Low,66,5,Low,130,0,0,0.0312,0.0303,0,0.0909,0.0154,0,0.0462
 Bangladesh,BGD,Households with adequate sanitation facility,adequateSan,Survey Area 3,64,53,High,66,55,High,130,0.8281,0.7031,0.9375,0.9242,0.8182,1,0.8923,0.8,0.9692
 Bangladesh,BGD,Mean likelihood of household being below the USAID extreme poverty line,extreme,Survey Area 3,64,7.392,Low,66,2.144,Low,130,0.0905,0.0586,0.1228,0.0247,0.011,0.0413,0.0421,0.0276,0.0583
-Bangladesh,BGD,Households using open defecation,jmpSan5,Survey Area 3,64,0,Low,66,1,Low,130,0,0,0,0,0,0.0303,0,0,0.0154
-Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan4,Survey Area 3,64,7,Low,66,10,Low,130,0.1406,0.0312,0.2812,0.0758,0,0.1674,0.0923,0.0308,0.1696
+Bangladesh,BGD,Households using open defecation,jmpSan1,Survey Area 3,64,0,Low,66,1,Low,130,0,0,0,0,0,0.0303,0,0,0.0154
+Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan2,Survey Area 3,64,7,Low,66,10,Low,130,0.1406,0.0312,0.2812,0.0758,0,0.1674,0.0923,0.0308,0.1696
 Bangladesh,BGD,Households using shared improved sanitation facility,jmpSan3,Survey Area 3,64,52,High,66,12,Low,130,0.8281,0.6719,0.9375,0.3182,0.1818,0.4697,0.4538,0.3462,0.5615
-Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan2,Survey Area 3,64,1,Low,66,43,Moderate,130,0,0,0.0312,0.5909,0.4545,0.7424,0.4308,0.3304,0.5462
-Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan1,Survey Area 3,64,1,Low,66,41,Moderate,130,0,0,0.0469,0.5909,0.4242,0.7129,0.4231,0.3077,0.5615
-Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater5,Survey Area 3,64,0,Low,66,0,Low,130,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater4,Survey Area 3,64,2,Low,66,6,Low,130,0.0312,0,0.0938,0.0455,0,0.1212,0.0385,0,0.0923
+Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan4,Survey Area 3,64,1,Low,66,43,Moderate,130,0,0,0.0312,0.5909,0.4545,0.7424,0.4308,0.3304,0.5462
+Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan5,Survey Area 3,64,1,Low,66,41,Moderate,130,0,0,0.0469,0.5909,0.4242,0.7129,0.4231,0.3077,0.5615
+Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater1,Survey Area 3,64,0,Low,66,0,Low,130,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater2,Survey Area 3,64,2,Low,66,6,Low,130,0.0312,0,0.0938,0.0455,0,0.1212,0.0385,0,0.0923
 Bangladesh,BGD,Households using improved source of drinking water that takes more than 30 minutes to collect from,jmpWater3,Survey Area 3,64,62,High,66,60,High,130,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater2,Survey Area 3,64,6,Low,66,16,Low,130,0.9219,0.8281,1,0.8788,0.7727,0.9697,0.8846,0.815,0.9538
-Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater1,Survey Area 3,64,5,Low,66,4,Low,130,0.0469,0,0.125,0.0303,0,0.1212,0.0385,0,0.0923
+Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater4,Survey Area 3,64,6,Low,66,16,Low,130,0.9219,0.8281,1,0.8788,0.7727,0.9697,0.8846,0.815,0.9538
+Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater5,Survey Area 3,64,5,Low,66,4,Low,130,0.0469,0,0.125,0.0303,0,0.1212,0.0385,0,0.0923
 Bangladesh,BGD,Households whose women are comfortable using sanitation facility during menstruation,jmpWoman,Survey Area 3,64,35,Moderate,66,60,High,130,0.4677,0.288,0.6454,0.9516,0.8792,1,0.8268,0.7187,0.9114
 Bangladesh,BGD,Households whose women practice good menstrual hygiene behaviour,jmpWomenHygiene,Survey Area 3,64,0,Low,66,0,Low,130,0.9818,0.9072,1,0.9385,0.857,1,0.944,0.8896,0.9841
 Bangladesh,BGD,Mean likelihood of household being below the Bangladesh lower national poverty line,nl,Survey Area 3,64,8.196,Low,66,2.395,Low,130,0.0977,0.0625,0.1433,0.0262,0.0125,0.0453,0.0456,0.0297,0.0644
@@ -124,16 +124,16 @@ Bangladesh,BGD,Households in which every member is able to use and actually use 
 Bangladesh,BGD,Households with access to sufficient and sustained drinking water,accessWater,Survey Area 4,66,3,Low,66,17,Low,132,0.0152,0,0.0758,0.2424,0.1364,0.3795,0.2197,0.1436,0.3186
 Bangladesh,BGD,Households with adequate sanitation facility,adequateSan,Survey Area 4,66,65,High,66,65,High,132,0.8788,0.7727,0.9697,1,0.9697,1,0.9773,0.9394,1
 Bangladesh,BGD,Mean likelihood of household being below the USAID extreme poverty line,extreme,Survey Area 4,66,7.821,Low,66,1.054,Low,132,0.1002,0.07,0.1388,0.0165,0.0038,0.0412,0.0293,0.0148,0.0476
-Bangladesh,BGD,Households using open defecation,jmpSan5,Survey Area 4,66,0,Low,66,0,Low,132,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan4,Survey Area 4,66,1,Low,66,1,Low,132,0.1212,0.0447,0.2273,0,0,0.0303,0.0227,0,0.053
+Bangladesh,BGD,Households using open defecation,jmpSan1,Survey Area 4,66,0,Low,66,0,Low,132,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan2,Survey Area 4,66,1,Low,66,1,Low,132,0.1212,0.0447,0.2273,0,0,0.0303,0.0227,0,0.053
 Bangladesh,BGD,Households using shared improved sanitation facility,jmpSan3,Survey Area 4,66,64,High,66,18,Low,132,0.7576,0.6061,0.8788,0.2879,0.1515,0.4394,0.3561,0.2496,0.4621
-Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan2,Survey Area 4,66,1,Low,66,47,Moderate,132,0.1212,0.0455,0.2273,0.697,0.5447,0.8333,0.6136,0.5076,0.7273
-Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan1,Survey Area 4,66,1,Low,66,47,Moderate,132,0.1212,0.0455,0.2273,0.697,0.5455,0.8485,0.6212,0.5152,0.7197
-Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater5,Survey Area 4,66,0,Low,66,0,Low,132,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater4,Survey Area 4,66,3,Low,66,2,Low,132,0.2727,0.1364,0.4242,0.0303,0,0.0909,0.0606,0.0152,0.1216
+Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan4,Survey Area 4,66,1,Low,66,47,Moderate,132,0.1212,0.0455,0.2273,0.697,0.5447,0.8333,0.6136,0.5076,0.7273
+Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan5,Survey Area 4,66,1,Low,66,47,Moderate,132,0.1212,0.0455,0.2273,0.697,0.5455,0.8485,0.6212,0.5152,0.7197
+Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater1,Survey Area 4,66,0,Low,66,0,Low,132,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater2,Survey Area 4,66,3,Low,66,2,Low,132,0.2727,0.1364,0.4242,0.0303,0,0.0909,0.0606,0.0152,0.1216
 Bangladesh,BGD,Households using improved source of drinking water that takes more than 30 minutes to collect from,jmpWater3,Survey Area 4,66,63,High,66,64,High,132,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater2,Survey Area 4,66,14,Low,66,30,Low,132,0.4242,0.2727,0.6061,0.5758,0.4091,0.7121,0.5455,0.4318,0.6591
-Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater1,Survey Area 4,66,14,Low,66,30,Low,132,0.303,0.1515,0.4545,0.4091,0.2417,0.5758,0.3939,0.2652,0.4924
+Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater4,Survey Area 4,66,14,Low,66,30,Low,132,0.4242,0.2727,0.6061,0.5758,0.4091,0.7121,0.5455,0.4318,0.6591
+Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater5,Survey Area 4,66,14,Low,66,30,Low,132,0.303,0.1515,0.4545,0.4091,0.2417,0.5758,0.3939,0.2652,0.4924
 Bangladesh,BGD,Households whose women are comfortable using sanitation facility during menstruation,jmpWoman,Survey Area 4,66,34,Moderate,66,57,High,132,0.5152,0.3228,0.6515,0.8594,0.7302,0.9538,0.8092,0.7208,0.8925
 Bangladesh,BGD,Households whose women practice good menstrual hygiene behaviour,jmpWomenHygiene,Survey Area 4,66,0,Low,66,0,Low,132,1,1,1,0.9492,0.8569,1,0.9533,0.9043,0.9913
 Bangladesh,BGD,Mean likelihood of household being below the Bangladesh lower national poverty line,nl,Survey Area 4,66,8.706,Low,66,1.11,Low,132,0.1101,0.0774,0.1466,0.0178,0.0044,0.0453,0.0309,0.0159,0.0536
@@ -164,16 +164,16 @@ Bangladesh,BGD,Households in which every member is able to use and actually use 
 Bangladesh,BGD,Households with access to sufficient and sustained drinking water,accessWater,Survey Area 5,66,4,Low,66,19,Low,132,0.0455,0,0.1212,0.2879,0.1667,0.4545,0.2045,0.1212,0.303
 Bangladesh,BGD,Households with adequate sanitation facility,adequateSan,Survey Area 5,66,66,High,66,66,High,132,1,1,1,1,1,1,1,1,1
 Bangladesh,BGD,Mean likelihood of household being below the USAID extreme poverty line,extreme,Survey Area 5,66,5.711,Low,66,0.299,Low,132,0.0616,0.0468,0.0781,0.0045,0.0017,0.0086,0.0261,0.0159,0.0373
-Bangladesh,BGD,Households using open defecation,jmpSan5,Survey Area 5,66,0,Low,66,0,Low,132,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan4,Survey Area 5,66,0,Low,66,0,Low,132,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using open defecation,jmpSan1,Survey Area 5,66,0,Low,66,0,Low,132,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan2,Survey Area 5,66,0,Low,66,0,Low,132,0,0,0,0,0,0,0,0,0
 Bangladesh,BGD,Households using shared improved sanitation facility,jmpSan3,Survey Area 5,66,66,High,66,3,Low,132,1,1,1,0.0455,0,0.1212,0.3939,0.2727,0.5152
-Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan2,Survey Area 5,66,0,Low,66,63,High,132,0,0,0,0.9545,0.8636,1,0.5985,0.4845,0.7125
-Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan1,Survey Area 5,66,0,Low,66,63,High,132,0,0,0,0.9545,0.878,1,0.6061,0.4848,0.7121
-Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater5,Survey Area 5,66,0,Low,66,0,Low,132,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater4,Survey Area 5,66,2,Low,66,2,Low,132,0,0,0.0303,0,0,0.0606,0.0152,0,0.0455
+Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan4,Survey Area 5,66,0,Low,66,63,High,132,0,0,0,0.9545,0.8636,1,0.5985,0.4845,0.7125
+Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan5,Survey Area 5,66,0,Low,66,63,High,132,0,0,0,0.9545,0.878,1,0.6061,0.4848,0.7121
+Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater1,Survey Area 5,66,0,Low,66,0,Low,132,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater2,Survey Area 5,66,2,Low,66,2,Low,132,0,0,0.0303,0,0,0.0606,0.0152,0,0.0455
 Bangladesh,BGD,Households using improved source of drinking water that takes more than 30 minutes to collect from,jmpWater3,Survey Area 5,66,64,High,66,64,High,132,0,0,0.0303,0,0,0,0,0,0.008
-Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater2,Survey Area 5,66,29,Low,66,36,Moderate,132,0.6061,0.4394,0.7576,0.4697,0.3023,0.6364,0.5227,0.4239,0.6288
-Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater1,Survey Area 5,66,29,Low,66,34,Moderate,132,0.4091,0.2424,0.5758,0.4848,0.3182,0.6515,0.4545,0.3409,0.5682
+Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater4,Survey Area 5,66,29,Low,66,36,Moderate,132,0.6061,0.4394,0.7576,0.4697,0.3023,0.6364,0.5227,0.4239,0.6288
+Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater5,Survey Area 5,66,29,Low,66,34,Moderate,132,0.4091,0.2424,0.5758,0.4848,0.3182,0.6515,0.4545,0.3409,0.5682
 Bangladesh,BGD,Households whose women are comfortable using sanitation facility during menstruation,jmpWoman,Survey Area 5,66,30,Low,66,64,High,132,0.5303,0.3634,0.7121,0.9697,0.9242,1,0.8092,0.7121,0.8939
 Bangladesh,BGD,Households whose women practice good menstrual hygiene behaviour,jmpWomenHygiene,Survey Area 5,66,0,Low,66,0,Low,132,1,0.9394,1,1,1,1,1,0.9829,1
 Bangladesh,BGD,Mean likelihood of household being below the Bangladesh lower national poverty line,nl,Survey Area 5,66,6.25,Low,66,0.318,Low,132,0.0678,0.0501,0.0864,0.0047,0.0022,0.0083,0.0265,0.0173,0.0383
@@ -204,16 +204,16 @@ Bangladesh,BGD,Households in which every member is able to use and actually use 
 Bangladesh,BGD,Households with access to sufficient and sustained drinking water,accessWater,Survey Area 6,66,0,Low,66,16,Low,132,0,0,0,0.2576,0.1356,0.3939,0.2273,0.1364,0.3186
 Bangladesh,BGD,Households with adequate sanitation facility,adequateSan,Survey Area 6,66,54,High,66,60,High,132,0.8939,0.7871,0.9697,0.9545,0.8788,1,0.947,0.8788,0.9848
 Bangladesh,BGD,Mean likelihood of household being below the USAID extreme poverty line,extreme,Survey Area 6,66,6.817,Low,66,1.033,Low,132,0.0862,0.0651,0.1239,0.0126,0.0055,0.0229,0.0239,0.0124,0.037
-Bangladesh,BGD,Households using open defecation,jmpSan5,Survey Area 6,66,3,Low,66,0,Low,132,0.0303,0,0.0909,0,0,0,0,0,0.0227
-Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan4,Survey Area 6,66,3,Low,66,4,Low,132,0.0303,0,0.1061,0.0152,0,0.0909,0.0227,0,0.0682
+Bangladesh,BGD,Households using open defecation,jmpSan1,Survey Area 6,66,3,Low,66,0,Low,132,0.0303,0,0.0909,0,0,0,0,0,0.0227
+Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan2,Survey Area 6,66,3,Low,66,4,Low,132,0.0303,0,0.1061,0.0152,0,0.0909,0.0227,0,0.0682
 Bangladesh,BGD,Households using shared improved sanitation facility,jmpSan3,Survey Area 6,66,52,Moderate,66,8,Low,132,0.8636,0.7576,0.9697,0.1818,0.0758,0.3333,0.2803,0.1818,0.3867
-Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan2,Survey Area 6,66,2,Low,66,52,Moderate,132,0.0152,0,0.0758,0.7727,0.6212,0.9242,0.6515,0.5303,0.7727
-Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan1,Survey Area 6,66,2,Low,66,47,Moderate,132,0.0303,0,0.0909,0.7424,0.5902,0.8788,0.6364,0.5148,0.7424
-Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater5,Survey Area 6,66,0,Low,66,0,Low,132,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater4,Survey Area 6,66,14,Low,66,2,Low,132,0.1061,0.0303,0.2273,0,0,0.0606,0.0227,0,0.061
+Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan4,Survey Area 6,66,2,Low,66,52,Moderate,132,0.0152,0,0.0758,0.7727,0.6212,0.9242,0.6515,0.5303,0.7727
+Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan5,Survey Area 6,66,2,Low,66,47,Moderate,132,0.0303,0,0.0909,0.7424,0.5902,0.8788,0.6364,0.5148,0.7424
+Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater1,Survey Area 6,66,0,Low,66,0,Low,132,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater2,Survey Area 6,66,14,Low,66,2,Low,132,0.1061,0.0303,0.2273,0,0,0.0606,0.0227,0,0.061
 Bangladesh,BGD,Households using improved source of drinking water that takes more than 30 minutes to collect from,jmpWater3,Survey Area 6,66,52,Moderate,66,64,High,132,0.0455,0,0.1068,0,0,0,0,0,0.0303
-Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater2,Survey Area 6,66,0,Low,66,37,Moderate,132,0.8485,0.7258,0.9697,0.2727,0.1356,0.425,0.3636,0.2576,0.4928
-Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater1,Survey Area 6,66,0,Low,66,37,Moderate,132,0,0,0,0.7121,0.5303,0.8485,0.6061,0.492,0.7277
+Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater4,Survey Area 6,66,0,Low,66,37,Moderate,132,0.8485,0.7258,0.9697,0.2727,0.1356,0.425,0.3636,0.2576,0.4928
+Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater5,Survey Area 6,66,0,Low,66,37,Moderate,132,0,0,0,0.7121,0.5303,0.8485,0.6061,0.492,0.7277
 Bangladesh,BGD,Households whose women are comfortable using sanitation facility during menstruation,jmpWoman,Survey Area 6,66,58,High,66,59,High,132,0.75,0.5872,0.8943,1,0.9374,1,0.952,0.8984,1
 Bangladesh,BGD,Households whose women practice good menstrual hygiene behaviour,jmpWomenHygiene,Survey Area 6,66,0,Low,66,0,Low,132,0.9683,0.8922,1,1,0.9607,1,0.9913,0.9636,1
 Bangladesh,BGD,Mean likelihood of household being below the Bangladesh lower national poverty line,nl,Survey Area 6,66,7.528,Low,66,1.177,Low,132,0.099,0.0667,0.1368,0.0143,0.006,0.028,0.0274,0.0145,0.0433
@@ -244,16 +244,16 @@ Bangladesh,BGD,Households in which every member is able to use and actually use 
 Bangladesh,BGD,Households with access to sufficient and sustained drinking water,accessWater,Survey Area 7,66,0,Low,66,3,Low,132,0,0,0,0.0303,0,0.1212,0.0303,0,0.0833
 Bangladesh,BGD,Households with adequate sanitation facility,adequateSan,Survey Area 7,66,59,High,66,64,High,132,0.9091,0.803,1,0.9848,0.9242,1,0.9697,0.9314,1
 Bangladesh,BGD,Mean likelihood of household being below the USAID extreme poverty line,extreme,Survey Area 7,66,6.892,Low,66,1.859,Low,132,0.0955,0.0762,0.1214,0.0276,0.0161,0.0432,0.0335,0.0232,0.0439
-Bangladesh,BGD,Households using open defecation,jmpSan5,Survey Area 7,66,2,Low,66,0,Low,132,0.0303,0,0.1212,0,0,0,0,0,0.0152
-Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan4,Survey Area 7,66,2,Low,66,2,Low,132,0,0,0.0606,0.0152,0,0.0909,0.0227,0,0.0606
+Bangladesh,BGD,Households using open defecation,jmpSan1,Survey Area 7,66,2,Low,66,0,Low,132,0.0303,0,0.1212,0,0,0,0,0,0.0152
+Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan2,Survey Area 7,66,2,Low,66,2,Low,132,0,0,0.0606,0.0152,0,0.0909,0.0227,0,0.0606
 Bangladesh,BGD,Households using shared improved sanitation facility,jmpSan3,Survey Area 7,66,55,High,66,21,Low,132,0.8939,0.7727,0.9697,0.3182,0.197,0.4705,0.3788,0.2727,0.4773
-Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan2,Survey Area 7,66,4,Low,66,43,Moderate,132,0.0152,0,0.0758,0.6515,0.5,0.7879,0.5985,0.492,0.697
-Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan1,Survey Area 7,66,4,Low,66,43,Moderate,132,0.0152,0,0.0765,0.6515,0.5152,0.7735,0.5985,0.4924,0.6894
-Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater5,Survey Area 7,66,0,Low,66,0,Low,132,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater4,Survey Area 7,66,2,Low,66,1,Low,132,0.0303,0,0.1212,0.0152,0,0.0606,0.0152,0,0.0455
+Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan4,Survey Area 7,66,4,Low,66,43,Moderate,132,0.0152,0,0.0758,0.6515,0.5,0.7879,0.5985,0.492,0.697
+Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan5,Survey Area 7,66,4,Low,66,43,Moderate,132,0.0152,0,0.0765,0.6515,0.5152,0.7735,0.5985,0.4924,0.6894
+Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater1,Survey Area 7,66,0,Low,66,0,Low,132,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater2,Survey Area 7,66,2,Low,66,1,Low,132,0.0303,0,0.1212,0.0152,0,0.0606,0.0152,0,0.0455
 Bangladesh,BGD,Households using improved source of drinking water that takes more than 30 minutes to collect from,jmpWater3,Survey Area 7,66,64,High,66,65,High,132,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater2,Survey Area 7,66,2,Low,66,11,Low,132,0.9394,0.8485,1,0.8485,0.7417,0.9402,0.8636,0.7879,0.9394
-Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater1,Survey Area 7,66,2,Low,66,11,Low,132,0,0,0.0606,0.1364,0.0455,0.2424,0.1212,0.053,0.197
+Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater4,Survey Area 7,66,2,Low,66,11,Low,132,0.9394,0.8485,1,0.8485,0.7417,0.9402,0.8636,0.7879,0.9394
+Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater5,Survey Area 7,66,2,Low,66,11,Low,132,0,0,0.0606,0.1364,0.0455,0.2424,0.1212,0.053,0.197
 Bangladesh,BGD,Households whose women are comfortable using sanitation facility during menstruation,jmpWoman,Survey Area 7,66,60,High,66,59,High,132,0.9394,0.8333,1,0.9333,0.841,1,0.928,0.8671,0.9688
 Bangladesh,BGD,Households whose women practice good menstrual hygiene behaviour,jmpWomenHygiene,Survey Area 7,66,0,Low,66,0,Low,132,0.9848,0.9394,1,0.918,0.8197,0.9841,0.9213,0.8535,0.969
 Bangladesh,BGD,Mean likelihood of household being below the Bangladesh lower national poverty line,nl,Survey Area 7,66,7.611,Low,66,2.032,Low,132,0.1014,0.0799,0.1355,0.0308,0.0165,0.0485,0.0374,0.0247,0.0498
@@ -284,16 +284,16 @@ Bangladesh,BGD,Households in which every member is able to use and actually use 
 Bangladesh,BGD,Households with access to sufficient and sustained drinking water,accessWater,Survey Area 8,58,8,Low,68,8,Low,126,0.2069,0.0862,0.3793,0.1176,0.0294,0.2353,0.119,0.0556,0.1984
 Bangladesh,BGD,Households with adequate sanitation facility,adequateSan,Survey Area 8,58,58,High,68,68,High,126,1,1,1,1,1,1,1,1,1
 Bangladesh,BGD,Mean likelihood of household being below the USAID extreme poverty line,extreme,Survey Area 8,58,3.641,Low,68,0.257,Low,126,0.0734,0.0541,0.0926,0.0037,0.0016,0.007,0.0067,0.0031,0.0125
-Bangladesh,BGD,Households using open defecation,jmpSan5,Survey Area 8,58,0,Low,68,0,Low,126,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan4,Survey Area 8,58,0,Low,68,0,Low,126,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using open defecation,jmpSan1,Survey Area 8,58,0,Low,68,0,Low,126,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan2,Survey Area 8,58,0,Low,68,0,Low,126,0,0,0,0,0,0,0,0,0
 Bangladesh,BGD,Households using shared improved sanitation facility,jmpSan3,Survey Area 8,58,57,High,68,8,Low,126,1,0.931,1,0.0882,0.0147,0.1772,0.1349,0.0556,0.2222
-Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan2,Survey Area 8,58,1,Low,68,60,High,126,0,0,0.069,0.9118,0.7941,0.9853,0.8651,0.7857,0.9365
-Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan1,Survey Area 8,58,1,Low,68,60,High,126,0,0,0.069,0.9118,0.8081,0.9853,0.8651,0.7778,0.9365
-Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater5,Survey Area 8,58,0,Low,68,0,Low,126,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater4,Survey Area 8,58,5,Low,68,2,Low,126,0.0345,0,0.1034,0,0,0.0588,0.0159,0,0.0476
+Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan4,Survey Area 8,58,1,Low,68,60,High,126,0,0,0.069,0.9118,0.7941,0.9853,0.8651,0.7857,0.9365
+Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan5,Survey Area 8,58,1,Low,68,60,High,126,0,0,0.069,0.9118,0.8081,0.9853,0.8651,0.7778,0.9365
+Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater1,Survey Area 8,58,0,Low,68,0,Low,126,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater2,Survey Area 8,58,5,Low,68,2,Low,126,0.0345,0,0.1034,0,0,0.0588,0.0159,0,0.0476
 Bangladesh,BGD,Households using improved source of drinking water that takes more than 30 minutes to collect from,jmpWater3,Survey Area 8,58,53,High,68,66,High,126,0,0,0.069,0,0,0,0,0,0.0159
-Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater2,Survey Area 8,58,8,Low,68,9,Low,126,0.7241,0.5172,0.8621,0.8529,0.7353,0.9559,0.8413,0.7536,0.9206
-Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater1,Survey Area 8,58,6,Low,68,9,Low,126,0.2069,0.069,0.3448,0.1324,0.0441,0.25,0.1429,0.0714,0.2222
+Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater4,Survey Area 8,58,8,Low,68,9,Low,126,0.7241,0.5172,0.8621,0.8529,0.7353,0.9559,0.8413,0.7536,0.9206
+Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater5,Survey Area 8,58,6,Low,68,9,Low,126,0.2069,0.069,0.3448,0.1324,0.0441,0.25,0.1429,0.0714,0.2222
 Bangladesh,BGD,Households whose women are comfortable using sanitation facility during menstruation,jmpWoman,Survey Area 8,58,51,High,68,63,High,126,0.2069,0.069,0.3448,0.1324,0.0441,0.25,0.1429,0.0714,0.2222
 Bangladesh,BGD,Households whose women practice good menstrual hygiene behaviour,jmpWomenHygiene,Survey Area 8,58,0,Low,68,0,Low,126,1,1,1,0.9844,0.9355,1,0.9904,0.9569,1
 Bangladesh,BGD,Mean likelihood of household being below the Bangladesh lower national poverty line,nl,Survey Area 8,58,3.939,Low,68,0.287,Low,126,0.081,0.0582,0.1037,0.0042,0.0024,0.0068,0.0075,0.0037,0.0137
@@ -324,16 +324,16 @@ Bangladesh,BGD,Households in which every member is able to use and actually use 
 Bangladesh,BGD,Households with access to sufficient and sustained drinking water,accessWater,Survey Area 9,74,12,Low,64,5,Low,138,0.027,0,0.0946,0.0781,0,0.1875,0.058,0.0145,0.1091
 Bangladesh,BGD,Households with adequate sanitation facility,adequateSan,Survey Area 9,74,69,High,64,63,High,138,0.9865,0.9189,1,1,0.9531,1,0.9855,0.9565,1
 Bangladesh,BGD,Mean likelihood of household being below the USAID extreme poverty line,extreme,Survey Area 9,74,6.081,Low,64,1.125,Low,138,0.1153,0.0942,0.1438,0.0132,0.0045,0.0302,0.0581,0.0423,0.0779
-Bangladesh,BGD,Households using open defecation,jmpSan5,Survey Area 9,74,0,Low,64,0,Low,138,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan4,Survey Area 9,74,5,Low,64,1,Low,138,0,0,0.0541,0,0,0.0312,0.0145,0,0.0435
+Bangladesh,BGD,Households using open defecation,jmpSan1,Survey Area 9,74,0,Low,64,0,Low,138,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved sanitation facility,jmpSan2,Survey Area 9,74,5,Low,64,1,Low,138,0,0,0.0541,0,0,0.0312,0.0145,0,0.0435
 Bangladesh,BGD,Households using shared improved sanitation facility,jmpSan3,Survey Area 9,74,67,High,64,19,Low,138,0.9865,0.9324,1,0.3906,0.2344,0.5625,0.6522,0.5435,0.7464
-Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan2,Survey Area 9,74,2,Low,64,44,Moderate,138,0,0,0.027,0.5938,0.4375,0.75,0.3406,0.2246,0.442
-Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan1,Survey Area 9,74,2,Low,64,43,Moderate,138,0,0,0.027,0.5938,0.4375,0.7344,0.3406,0.2533,0.4569
-Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater5,Survey Area 9,74,0,Low,64,0,Low,138,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater4,Survey Area 9,74,10,Low,64,2,Low,138,0.027,0,0.0811,0.0312,0,0.125,0.029,0,0.087
+Bangladesh,BGD,Households using improved sanitation facility not shared with others,jmpSan4,Survey Area 9,74,2,Low,64,44,Moderate,138,0,0,0.027,0.5938,0.4375,0.75,0.3406,0.2246,0.442
+Bangladesh,BGD,Households using safely managed sanitaion facility,jmpSan5,Survey Area 9,74,2,Low,64,43,Moderate,138,0,0,0.027,0.5938,0.4375,0.7344,0.3406,0.2533,0.4569
+Bangladesh,BGD,Households using surface water as source of drinking water,jmpWater1,Survey Area 9,74,0,Low,64,0,Low,138,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households using unimproved source of drinking water,jmpWater2,Survey Area 9,74,10,Low,64,2,Low,138,0.027,0,0.0811,0.0312,0,0.125,0.029,0,0.087
 Bangladesh,BGD,Households using improved source of drinking water that takes more than 30 minutes to collect from,jmpWater3,Survey Area 9,74,64,High,64,62,High,138,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater2,Survey Area 9,74,19,Low,64,18,Low,138,0.8514,0.7297,0.9459,0.8125,0.6562,0.9219,0.8261,0.7319,0.9058
-Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater1,Survey Area 9,74,19,Low,64,18,Low,13,0.1351,0.027,0.2432,0.1562,0.0461,0.2812,0.1449,0.0652,0.2391
+Bangladesh,BGD,Households using improved source of drinking water that takes 30 minutes or less to collect from,jmpWater4,Survey Area 9,74,19,Low,64,18,Low,138,0.8514,0.7297,0.9459,0.8125,0.6562,0.9219,0.8261,0.7319,0.9058
+Bangladesh,BGD,Households using an improved source of drinking water that is located on premises and is available when needed,jmpWater5,Survey Area 9,74,19,Low,64,18,Low,13,0.1351,0.027,0.2432,0.1562,0.0461,0.2812,0.1449,0.0652,0.2391
 Bangladesh,BGD,Households whose women are comfortable using sanitation facility during menstruation,jmpWoman,Survey Area 9,74,65,High,64,58,High,138,0.9189,0.8333,0.9872,0.9828,0.9153,1,0.9542,0.8931,0.9925
 Bangladesh,BGD,Households whose women practice good menstrual hygiene behaviour,jmpWomenHygiene,Survey Area 9,74,0,Low,64,0,Low,138,1,0.973,1,0.9016,0.7966,0.9822,0.9453,0.8906,0.9849
 Bangladesh,BGD,Mean likelihood of household being below the Bangladesh lower national poverty line,nl,Survey Area 9,74,6.699,Low,64,1.257,Low,138,0.1281,0.1013,0.156,0.0147,0.0042,0.0343,0.0632,0.0441,0.0862
@@ -359,33 +359,33 @@ Bangladesh,BGD,Households relying on formal provider for service supply maintena
 Bangladesh,BGD,Households safely storing drinking water,water18,Survey Area 9,74,71,High,64,62,High,138,1,0.9595,1,0.9844,0.9219,1,0.9855,0.9565,1
 Bangladesh,BGD,Households with formal drinking water service provision,water2a,Survey Area 9,74,72,High,64,42,Moderate,138,1,0.973,1,0.875,0.75,0.9688,0.9275,0.857,0.9853
 Bangladesh,BGD,Households with adequate physical access to drinking water,water7a,Survey Area 9,74,74,High,64,64,High,138,1,1,1,1,1,1,1,1,1
-Bangladesh,BGD,Households with no handwashing facility,jmpHand3,Survey Area 1,68,10,Low,66,5,Low,134,0.0882,0,0.1912,0.0455,0,0.1364,0.0597,0.0149,0.1123
+Bangladesh,BGD,Households with no handwashing facility,jmpHand1,Survey Area 1,68,10,Low,66,5,Low,134,0.0882,0,0.1912,0.0455,0,0.1364,0.0597,0.0149,0.1123
 Bangladesh,BGD,Households with handwashing facility with water only,jmpHand2,Survey Area 1,68,32,Low,66,8,Low,134,0.4853,0.3382,0.6324,0.1515,0.0455,0.2727,0.2537,0.1642,0.3657
-Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand1,Survey Area 1,68,26,Low,66,53,High,134,0.4265,0.2647,0.5735,0.803,0.6811,0.9091,0.6866,0.5821,0.7836
-Bangladesh,BGD,Households with no handwashing facility,jmpHand3,Survey Area 2,160,25,Low,66,10,Low,226,0.175,0.0938,0.2691,0.0909,0.0152,0.1818,0.1593,0.0927,0.2345
+Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand3,Survey Area 1,68,26,Low,66,53,High,134,0.4265,0.2647,0.5735,0.803,0.6811,0.9091,0.6866,0.5821,0.7836
+Bangladesh,BGD,Households with no handwashing facility,jmpHand1,Survey Area 2,160,25,Low,66,10,Low,226,0.175,0.0938,0.2691,0.0909,0.0152,0.1818,0.1593,0.0927,0.2345
 Bangladesh,BGD,Households with handwashing facility with water only,jmpHand2,Survey Area 2,160,71,Low,66,24,Low,226,0.5,0.3938,0.6125,0.4091,0.2576,0.5455,0.4823,0.3982,0.5708
-Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand1,Survey Area 2,160,64,Low,66,32,Low,226,0.3188,0.2312,0.4194,0.5152,0.3788,0.6523,0.3496,0.2699,0.4294
-Bangladesh,BGD,Households with no handwashing facility,jmpHand3,Survey Area 3,64,8,Low,66,6,Low,130,0.125,0.0312,0.2352,0.0758,0,0.1667,0.0923,0.0381,0.1615
+Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand3,Survey Area 2,160,64,Low,66,32,Low,226,0.3188,0.2312,0.4194,0.5152,0.3788,0.6523,0.3496,0.2699,0.4294
+Bangladesh,BGD,Households with no handwashing facility,jmpHand1,Survey Area 3,64,8,Low,66,6,Low,130,0.125,0.0312,0.2352,0.0758,0,0.1667,0.0923,0.0381,0.1615
 Bangladesh,BGD,Households with handwashing facility with water only,jmpHand2,Survey Area 3,64,35,Moderate,66,25,Low,130,0.4688,0.3125,0.6562,0.3788,0.2424,0.5455,0.4077,0.2923,0.5081
-Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand1,Survey Area 3,64,21,Low,66,35,Moderate,130,0.4062,0.2344,0.5781,0.5455,0.4091,0.697,0.5,0.3919,0.6077
-Bangladesh,BGD,Households with no handwashing facility,jmpHand3,Survey Area 5,66,4,Low,66,0,Low,132,0,0,0.0303,0,0,0,0,0,0.0152
+Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand3,Survey Area 3,64,21,Low,66,35,Moderate,130,0.4062,0.2344,0.5781,0.5455,0.4091,0.697,0.5,0.3919,0.6077
+Bangladesh,BGD,Households with no handwashing facility,jmpHand1,Survey Area 5,66,4,Low,66,0,Low,132,0,0,0.0303,0,0,0,0,0,0.0152
 Bangladesh,BGD,Households with handwashing facility with water only,jmpHand2,Survey Area 5,66,25,Low,66,1,Low,132,0.1818,0.0606,0.3333,0.0152,0,0.0606,0.0758,0.0152,0.1439
-Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand1,Survey Area 5,66,37,Moderate,66,65,High,132,0.8182,0.6818,0.9402,0.9848,0.9394,1,0.9242,0.8561,0.9773
-Bangladesh,BGD,Households with no handwashing facility,jmpHand3,Survey Area 4,66,6,Low,66,1,Low,132,0.1515,0.0606,0.2735,0.0152,0,0.0606,0.0379,0.0076,0.0833
+Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand3,Survey Area 5,66,37,Moderate,66,65,High,132,0.8182,0.6818,0.9402,0.9848,0.9394,1,0.9242,0.8561,0.9773
+Bangladesh,BGD,Households with no handwashing facility,jmpHand1,Survey Area 4,66,6,Low,66,1,Low,132,0.1515,0.0606,0.2735,0.0152,0,0.0606,0.0379,0.0076,0.0833
 Bangladesh,BGD,Households with handwashing facility with water only,jmpHand2,Survey Area 4,66,29,Low,66,14,Low,132,0.2273,0.1205,0.3636,0.2273,0.1212,0.3795,0.2273,0.1288,0.3258
-Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand1,Survey Area 4,66,31,Low,66,51,Moderate,132,0.6212,0.4545,0.7432,0.7424,0.5758,0.8636,0.7273,0.6212,0.8261
-Bangladesh,BGD,Households with no handwashing facility,jmpHand3,Survey Area 6,66,14,Low,66,1,Low,132,0.1061,0,0.2273,0,0,0.0455,0.0152,0,0.0606
+Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand3,Survey Area 4,66,31,Low,66,51,Moderate,132,0.6212,0.4545,0.7432,0.7424,0.5758,0.8636,0.7273,0.6212,0.8261
+Bangladesh,BGD,Households with no handwashing facility,jmpHand1,Survey Area 6,66,14,Low,66,1,Low,132,0.1061,0,0.2273,0,0,0.0455,0.0152,0,0.0606
 Bangladesh,BGD,Households with handwashing facility with water only,jmpHand2,Survey Area 6,66,23,Low,66,11,Low,132,0.4394,0.2727,0.5909,0.1061,0.0303,0.2424,0.1667,0.0758,0.2652
-Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand1,Survey Area 6,66,29,Low,66,54,High,132,0.4394,0.2727,0.5765,0.8788,0.7576,0.9697,0.8106,0.7197,0.9015
-Bangladesh,BGD,Households with no handwashing facility,jmpHand3,Survey Area 7,66,10,Low,66,6,Low,132,0.1818,0.0606,0.303,0.1364,0.0303,0.2583,0.1364,0.0682,0.2273
+Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand3,Survey Area 6,66,29,Low,66,54,High,132,0.4394,0.2727,0.5765,0.8788,0.7576,0.9697,0.8106,0.7197,0.9015
+Bangladesh,BGD,Households with no handwashing facility,jmpHand1,Survey Area 7,66,10,Low,66,6,Low,132,0.1818,0.0606,0.303,0.1364,0.0303,0.2583,0.1364,0.0682,0.2273
 Bangladesh,BGD,Households with handwashing facility with water only,jmpHand2,Survey Area 7,66,28,Low,66,13,Low,132,0.5758,0.4091,0.7424,0.1818,0.0606,0.303,0.2121,0.1288,0.303
-Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand1,Survey Area 7,66,28,Low,66,47,Moderate,132,0.2424,0.1061,0.4091,0.6667,0.5303,0.8182,0.6364,0.5379,0.7428
-Bangladesh,BGD,Households with no handwashing facility,jmpHand3,Survey Area 8,58,12,Low,68,4,Low,126,0.1724,0.0345,0.3121,0.0588,0,0.1324,0.0635,0.0159,0.1349
+Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand3,Survey Area 7,66,28,Low,66,47,Moderate,132,0.2424,0.1061,0.4091,0.6667,0.5303,0.8182,0.6364,0.5379,0.7428
+Bangladesh,BGD,Households with no handwashing facility,jmpHand1,Survey Area 8,58,12,Low,68,4,Low,126,0.1724,0.0345,0.3121,0.0588,0,0.1324,0.0635,0.0159,0.1349
 Bangladesh,BGD,Households with handwashing facility with water only,jmpHand2,Survey Area 8,58,26,Low,68,6,Low,126,0.5517,0.3793,0.7259,0.0882,0.0147,0.1765,0.1032,0.0476,0.1825
-Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand1,Survey Area 8,58,20,Low,68,58,High,126,0.2759,0.1379,0.4483,0.8529,0.7346,0.9559,0.8254,0.7302,0.9127
-Bangladesh,BGD,Households with no handwashing facility,jmpHand3,Survey Area 9,74,11,Low,64,1,Low,138,0.1622,0.0541,0.2845,0.0156,0,0.0625,0.0797,0.029,0.1449
+Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand3,Survey Area 8,58,20,Low,68,58,High,126,0.2759,0.1379,0.4483,0.8529,0.7346,0.9559,0.8254,0.7302,0.9127
+Bangladesh,BGD,Households with no handwashing facility,jmpHand1,Survey Area 9,74,11,Low,64,1,Low,138,0.1622,0.0541,0.2845,0.0156,0,0.0625,0.0797,0.029,0.1449
 Bangladesh,BGD,Households with handwashing facility with water only,jmpHand2,Survey Area 9,74,28,Low,64,14,Low,138,0.7027,0.5534,0.8378,0.1562,0.0469,0.282,0.3913,0.2967,0.5217
-Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand1,Survey Area 9,74,35,Low,64,49,Moderate,138,0.1216,0.027,0.2446,0.8281,0.6875,0.9375,0.5362,0.4264,0.6449
+Bangladesh,BGD,Households with handwashing facility with clean water and soap,jmpHand3,Survey Area 9,74,35,Low,64,49,Moderate,138,0.1216,0.027,0.2446,0.8281,0.6875,0.9375,0.5362,0.4264,0.6449
 Bangladesh,BGD,Mean expenditure in sanitation facility,san14,Survey Area 1,68,0,NA,66,0,NA,134,7.7059,4.1132,12.2353,40.9848,31.1318,52.2273,31.1418,24,39.4728
 Bangladesh,BGD,Mean expenditure in sanitation facility,san14,Survey Area 2,160,0,NA,66,0,NA,226,8.925,6.8784,11.3894,38.2121,25.3174,56.5379,13.4071,9.8301,18.1788
 Bangladesh,BGD,Mean expenditure in sanitation facility,san14,Survey Area 3,64,0,NA,66,0,NA,130,6.1406,3.8094,9.1336,34.8485,23.0568,49.8303,27.3077,19.4758,38.1985
@@ -395,50 +395,50 @@ Bangladesh,BGD,Mean expenditure in sanitation facility,san14,Survey Area 6,66,0,
 Bangladesh,BGD,Mean expenditure in sanitation facility,san14,Survey Area 7,66,0,NA,66,0,NA,132,5.3636,3.4545,7.2576,31.1364,23.3386,39.2326,28.9924,23.6932,34.1595
 Bangladesh,BGD,Mean expenditure in sanitation facility,san14,Survey Area 8,58,0,NA,68,0,NA,126,11.3103,7.944,15.6457,45.1618,35.0426,56.5787,43.5397,35.8286,53.3429
 Bangladesh,BGD,Mean expenditure in sanitation facility,san14,Survey Area 9,74,0,NA,64,0,NA,138,9.1757,7.9858,10.1216,35.9375,30.0742,42.4258,24.3333,19.9406,29.0978
-Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall4,Survey Area 1,68,0,NA,66,0,NA,134,0.0294,0,0.1176,0.1364,0.0303,0.2727,0.1045,0.0448,0.1791
-Bangladesh,BGD,Households with adequate water services only,overall3,Survey Area 1,68,0,NA,66,0,NA,134,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households with adequate sanitation services only,overall2,Survey Area 1,68,0,NA,66,0,NA,134,0.7206,0.5882,0.8382,0.8636,0.7121,0.9697,0.8134,0.7239,0.9104
-Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall1,Survey Area 1,68,0,NA,66,0,NA,134,0.25,0.1169,0.3831,0,0,0,0.0746,0.0224,0.1347
+Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall1,Survey Area 1,68,0,NA,66,0,NA,134,0.0294,0,0.1176,0.1364,0.0303,0.2727,0.1045,0.0448,0.1791
+Bangladesh,BGD,Households with adequate water services only,overall2,Survey Area 1,68,0,NA,66,0,NA,134,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households with adequate sanitation services only,overall3,Survey Area 1,68,0,NA,66,0,NA,134,0.7206,0.5882,0.8382,0.8636,0.7121,0.9697,0.8134,0.7239,0.9104
+Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall4,Survey Area 1,68,0,NA,66,0,NA,134,0.25,0.1169,0.3831,0,0,0,0.0746,0.0224,0.1347
 Bangladesh,BGD,Mean household expenditure in water and sanitation services,overallSpend,Survey Area 1,68,0,NA,66,0,NA,134,18.5588,9.0926,32.2265,135.303,78.2348,239.9508,100.9179,64.1851,162.6187
-Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall4,Survey Area 2,160,0,NA,66,0,NA,226,0.0562,0.0125,0.1,0.0455,0,0.1515,0.0531,0.0177,0.0887
-Bangladesh,BGD,Households with adequate water services only,overall3,Survey Area 2,160,0,NA,66,0,NA,226,0,0,0,0,0,0.0311,0,0,0.0088
-Bangladesh,BGD,Households with adequate sanitation services only,overall2,Survey Area 2,160,0,NA,66,0,NA,226,0.925,0.8622,0.975,0.8939,0.7879,0.9705,0.9204,0.8673,0.9646
-Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall1,Survey Area 2,160,0,NA,66,0,NA,226,0.0188,0,0.0562,0.0455,0,0.1212,0.0265,0.0044,0.0575
+Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall1,Survey Area 2,160,0,NA,66,0,NA,226,0.0562,0.0125,0.1,0.0455,0,0.1515,0.0531,0.0177,0.0887
+Bangladesh,BGD,Households with adequate water services only,overall2,Survey Area 2,160,0,NA,66,0,NA,226,0,0,0,0,0,0.0311,0,0,0.0088
+Bangladesh,BGD,Households with adequate sanitation services only,overall3,Survey Area 2,160,0,NA,66,0,NA,226,0.925,0.8622,0.975,0.8939,0.7879,0.9705,0.9204,0.8673,0.9646
+Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall4,Survey Area 2,160,0,NA,66,0,NA,226,0.0188,0,0.0562,0.0455,0,0.1212,0.0265,0.0044,0.0575
 Bangladesh,BGD,Mean household expenditure in water and sanitation services,overallSpend,Survey Area 2,160,0,NA,66,0,NA,226,56.7,22.1262,98.6112,184.6667,94.603,383.6333,75.7389,38.8031,129.3591
-Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall4,Survey Area 3,64,0,NA,66,0,NA,130,0.0625,0,0.1562,0.0303,0,0.0909,0.0308,0,0.0923
-Bangladesh,BGD,Households with adequate water services only,overall3,Survey Area 3,64,0,NA,66,0,NA,130,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households with adequate sanitation services only,overall2,Survey Area 3,64,0,NA,66,0,NA,130,0.8438,0.7188,0.9531,0.9697,0.8788,1,0.9308,0.8688,0.9846
-Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall1,Survey Area 3,64,0,NA,66,0,NA,130,0.0938,0.0148,0.2039,0,0,0.0303,0.0308,0,0.0846
+Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall1,Survey Area 3,64,0,NA,66,0,NA,130,0.0625,0,0.1562,0.0303,0,0.0909,0.0308,0,0.0923
+Bangladesh,BGD,Households with adequate water services only,overall2,Survey Area 3,64,0,NA,66,0,NA,130,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households with adequate sanitation services only,overall3,Survey Area 3,64,0,NA,66,0,NA,130,0.8438,0.7188,0.9531,0.9697,0.8788,1,0.9308,0.8688,0.9846
+Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall4,Survey Area 3,64,0,NA,66,0,NA,130,0.0938,0.0148,0.2039,0,0,0.0303,0.0308,0,0.0846
 Bangladesh,BGD,Mean household expenditure in water and sanitation services,overallSpend,Survey Area 3,64,0,NA,66,0,NA,130,10.5938,4.8406,24.5648,84.303,47.8462,143.0705,63.7231,41.2508,100.6892
-Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall4,Survey Area 4,66,0,NA,66,0,NA,132,0.0455,0,0.1212,0,0,0,0,0,0.0303
-Bangladesh,BGD,Households with adequate water services only,overall3,Survey Area 4,66,0,NA,66,0,NA,132,0,0,0,0.0303,0,0.0909,0.0227,0,0.0606
-Bangladesh,BGD,Households with adequate sanitation services only,overall2,Survey Area 4,66,0,NA,66,0,NA,132,0.8636,0.7273,0.9545,0.803,0.6659,0.9242,0.803,0.7045,0.8943
-Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall1,Survey Area 4,66,0,NA,66,0,NA,132,0.1061,0.0152,0.2121,0.1818,0.0606,0.3045,0.1667,0.0909,0.2727
+Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall1,Survey Area 4,66,0,NA,66,0,NA,132,0.0455,0,0.1212,0,0,0,0,0,0.0303
+Bangladesh,BGD,Households with adequate water services only,overall2,Survey Area 4,66,0,NA,66,0,NA,132,0,0,0,0.0303,0,0.0909,0.0227,0,0.0606
+Bangladesh,BGD,Households with adequate sanitation services only,overall3,Survey Area 4,66,0,NA,66,0,NA,132,0.8636,0.7273,0.9545,0.803,0.6659,0.9242,0.803,0.7045,0.8943
+Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall4,Survey Area 4,66,0,NA,66,0,NA,132,0.1061,0.0152,0.2121,0.1818,0.0606,0.3045,0.1667,0.0909,0.2727
 Bangladesh,BGD,Mean household expenditure in water and sanitation services,overallSpend,Survey Area 4,66,0,NA,66,0,NA,132,14.5455,10.0417,19.1439,415.9545,173.6652,866.8682,357.5,185.9674,609.2273
-Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall4,Survey Area 5,66,0,NA,66,0,NA,132,0,0,0.0303,0.1061,0.0152,0.2121,0.0758,0.0152,0.1439
-Bangladesh,BGD,Households with adequate water services only,overall3,Survey Area 5,66,0,NA,66,0,NA,132,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households with adequate sanitation services only,overall2,Survey Area 5,66,0,NA,66,0,NA,132,0.8485,0.7273,0.9545,0.7424,0.5902,0.8788,0.7879,0.6894,0.8712
-Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall1,Survey Area 5,66,0,NA,66,0,NA,132,0.1515,0.0606,0.2576,0.1515,0.0303,0.303,0.1439,0.0682,0.2197
+Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall1,Survey Area 5,66,0,NA,66,0,NA,132,0,0,0.0303,0.1061,0.0152,0.2121,0.0758,0.0152,0.1439
+Bangladesh,BGD,Households with adequate water services only,overall2,Survey Area 5,66,0,NA,66,0,NA,132,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households with adequate sanitation services only,overall3,Survey Area 5,66,0,NA,66,0,NA,132,0.8485,0.7273,0.9545,0.7424,0.5902,0.8788,0.7879,0.6894,0.8712
+Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall4,Survey Area 5,66,0,NA,66,0,NA,132,0.1515,0.0606,0.2576,0.1515,0.0303,0.303,0.1439,0.0682,0.2197
 Bangladesh,BGD,Mean household expenditure in water and sanitation services,overallSpend,Survey Area 5,66,0,NA,66,0,NA,132,16.1212,7.7576,31.8174,191.8939,140.2364,257.5947,124.697,91.6348,168.0564
-Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall4,Survey Area 6,66,0,NA,66,0,NA,132,0,0,0,0.1818,0.075,0.3038,0.1515,0.0833,0.2424
-Bangladesh,BGD,Households with adequate water services only,overall3,Survey Area 6,66,0,NA,66,0,NA,132,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households with adequate sanitation services only,overall2,Survey Area 6,66,0,NA,66,0,NA,132,0.9697,0.8939,1,0.7576,0.6212,0.8788,0.7879,0.697,0.8712
-Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall1,Survey Area 6,66,0,NA,66,0,NA,132,0.0303,0,0.1068,0.0606,0,0.1364,0.0606,0.0152,0.1064
+Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall1,Survey Area 6,66,0,NA,66,0,NA,132,0,0,0,0.1818,0.075,0.3038,0.1515,0.0833,0.2424
+Bangladesh,BGD,Households with adequate water services only,overall2,Survey Area 6,66,0,NA,66,0,NA,132,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households with adequate sanitation services only,overall3,Survey Area 6,66,0,NA,66,0,NA,132,0.9697,0.8939,1,0.7576,0.6212,0.8788,0.7879,0.697,0.8712
+Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall4,Survey Area 6,66,0,NA,66,0,NA,132,0.0303,0,0.1068,0.0606,0,0.1364,0.0606,0.0152,0.1064
 Bangladesh,BGD,Mean household expenditure in water and sanitation services,overallSpend,Survey Area 6,66,0,NA,66,0,NA,132,19.0455,11.0341,28.4258,229.5152,157.3068,304.7462,197.6515,142.9121,248.3311
-Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall4,Survey Area 7,66,0,NA,66,0,NA,132,0.0303,0,0.0909,0.1667,0.0606,0.3182,0.1591,0.0905,0.2504
-Bangladesh,BGD,Households with adequate water services only,overall3,Survey Area 7,66,0,NA,66,0,NA,132,0,0,0,0.0152,0,0.0606,0.0152,0,0.0379
-Bangladesh,BGD,Households with adequate sanitation services only,overall2,Survey Area 7,66,0,NA,66,0,NA,132,0.9394,0.8636,1,0.803,0.6811,0.9242,0.8106,0.7193,0.8939
-Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall1,Survey Area 7,66,0,NA,66,0,NA,132,0.0303,0,0.0917,0,0,0,0,0,0.0152
+Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall1,Survey Area 7,66,0,NA,66,0,NA,132,0.0303,0,0.0909,0.1667,0.0606,0.3182,0.1591,0.0905,0.2504
+Bangladesh,BGD,Households with adequate water services only,overall2,Survey Area 7,66,0,NA,66,0,NA,132,0,0,0,0.0152,0,0.0606,0.0152,0,0.0379
+Bangladesh,BGD,Households with adequate sanitation services only,overall3,Survey Area 7,66,0,NA,66,0,NA,132,0.9394,0.8636,1,0.803,0.6811,0.9242,0.8106,0.7193,0.8939
+Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall4,Survey Area 7,66,0,NA,66,0,NA,132,0.0303,0,0.0917,0,0,0,0,0,0.0152
 Bangladesh,BGD,Mean household expenditure in water and sanitation services,overallSpend,Survey Area 7,66,0,NA,66,0,NA,132,7.7576,4.6924,11.9871,57.7879,36.125,140.6356,60.25,36.2902,118.9777
-Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall4,Survey Area 8,58,0,NA,68,0,NA,126,0.0345,0,0.1034,0.1471,0.0588,0.2941,0.1429,0.0635,0.246
-Bangladesh,BGD,Households with adequate water services only,overall3,Survey Area 8,58,0,NA,68,0,NA,126,0,0,0,0,0,0.0441,0,0,0.0317
-Bangladesh,BGD,Households with adequate sanitation services only,overall2,Survey Area 8,58,0,NA,68,0,NA,126,0.7759,0.6379,0.9138,0.7941,0.6324,0.9118,0.7778,0.6746,0.873
-Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall1,Survey Area 8,58,0,NA,68,0,NA,126,0.1897,0.069,0.3276,0.0588,0,0.1471,0.0635,0.0159,0.127
+Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall1,Survey Area 8,58,0,NA,68,0,NA,126,0.0345,0,0.1034,0.1471,0.0588,0.2941,0.1429,0.0635,0.246
+Bangladesh,BGD,Households with adequate water services only,overall2,Survey Area 8,58,0,NA,68,0,NA,126,0,0,0,0,0,0.0441,0,0,0.0317
+Bangladesh,BGD,Households with adequate sanitation services only,overall3,Survey Area 8,58,0,NA,68,0,NA,126,0.7759,0.6379,0.9138,0.7941,0.6324,0.9118,0.7778,0.6746,0.873
+Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall4,Survey Area 8,58,0,NA,68,0,NA,126,0.1897,0.069,0.3276,0.0588,0,0.1471,0.0635,0.0159,0.127
 Bangladesh,BGD,Mean household expenditure in water and sanitation services,overallSpend,Survey Area 8,58,0,NA,68,0,NA,126,18.7586,11.6353,28.0379,171.5147,104.5985,270.6368,166.5317,115.1548,238.1008
-Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall4,Survey Area 9,74,0,NA,64,0,NA,138,0.0405,0,0.1088,0.0156,0,0.0781,0.0362,0.0072,0.087
-Bangladesh,BGD,Households with adequate water services only,overall3,Survey Area 9,74,0,NA,64,0,NA,138,0,0,0,0,0,0,0,0,0
-Bangladesh,BGD,Households with adequate sanitation services only,overall2,Survey Area 9,74,0,NA,64,0,NA,138,0.8514,0.7426,0.9459,0.8438,0.718,0.9531,0.8551,0.775,0.9275
-Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall1,Survey Area 9,74,0,NA,64,0,NA,138,0.0946,0.0135,0.1892,0.125,0.0312,0.2344,0.1159,0.0507,0.2029
+Bangladesh,BGD,Households with no adequate water services and no adequate sanitation services,overall1,Survey Area 9,74,0,NA,64,0,NA,138,0.0405,0,0.1088,0.0156,0,0.0781,0.0362,0.0072,0.087
+Bangladesh,BGD,Households with adequate water services only,overall2,Survey Area 9,74,0,NA,64,0,NA,138,0,0,0,0,0,0,0,0,0
+Bangladesh,BGD,Households with adequate sanitation services only,overall3,Survey Area 9,74,0,NA,64,0,NA,138,0.8514,0.7426,0.9459,0.8438,0.718,0.9531,0.8551,0.775,0.9275
+Bangladesh,BGD,Households with adequate water services and adequate sanitation services,overall4,Survey Area 9,74,0,NA,64,0,NA,138,0.0946,0.0135,0.1892,0.125,0.0312,0.2344,0.1159,0.0507,0.2029
 Bangladesh,BGD,Mean household expenditure in water and sanitation services,overallSpend,Survey Area 9,74,0,NA,64,0,NA,138,9.8649,8.3622,13.7196,99.7656,55.2344,202.2734,60.413,35.2174,107.4801
 Bangladesh,BGD,Households with adequate physical access to sanitation facilities,san13a,Survey Area 1,68,68,High,66,66,High,134,1,1,1,1,1,1,1,1,1
 Bangladesh,BGD,Households with adequate physical access to sanitation facilities,san13a,Survey Area 2,160,152,High,66,66,High,226,0.9938,0.9625,1,1,1,1,0.9912,0.9735,1
