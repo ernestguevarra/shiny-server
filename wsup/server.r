@@ -699,9 +699,50 @@ function(input, output, session) {
       #
       #
       #
-      if(input$z.ladder == "waterSet1",
-
-
+      if(input$z.ladder == "waterSet1")
+        #
+        #
+        #
+        updateSelectInput(session = session,
+                          inputId = "indicator.ladder",
+                          label = "Select indicator",
+                          choices = list("Surface water" = "jmpWater5",
+                                         "Unimproved" = "jmpWater4",
+                                         "Limited" = "jmpWater3",
+                                         "Basic" = "jmpWater2",
+                                         "Safely-managed" = "jmpWater1"),
+                          selected = "jmpWater5")
+    #
+    #
+    #
+    if(input$z.ladder == "sanSet1")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "indicator.ladder",
+                        label = "Select indicator", 
+                        choices = list("Open defecation" = "sanSet5",
+                                       "Unimproved" = "sanSet4",
+                                       "Limited" = "sanSet3",
+                                       "Basic" = "sanSet2",
+                                       "Safely-managed" = "sanSet1"),
+                        selected = "sanSet5")
+    #
+    #
+    #
+    if(input$z.ladder == "handSet1")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "indicator.ladder",
+                        label = "Select indicator",
+                        choices = list("No facility" = "handSet3",
+                                       "Limited" = "handSet2",
+                                       "Basic" = "handSet1"),
+                        selected = "handSet3")
+  })
   #
   #
   #
@@ -792,6 +833,129 @@ function(input, output, session) {
                   label = "Number of quantiles",
                   min = 3, max = 7, value = 5, step = 1)      
   })
+  #
+  #
+  #
+  output$map.bins.water.control <- renderUI({
+    #
+    # UI if map.colour.water == "interval"
+    #
+    if(input$map.colour.water == "interval")
+      #
+      # Create slider input control
+      #
+      sliderInput(inputId = "map.bins.water",
+                  label = "Number of classes",
+                  min = 3, max = 7, value = 5, step = 1)
+  })
+  #
+  #
+  #
+  output$map.quantile.water.control <- renderUI({
+    #
+    # UI if map.colour.water == "quantile" 
+    #
+    if(input$map.colour.water == "quantile")
+      #
+      # Create slider input control
+      #
+      sliderInput(inputId = "map.n.water",
+                  label = "Number of quantiles",
+                  min = 3, max = 7, value = 5, step = 1)      
+  })
+  #
+  #
+  #
+  output$map.bins.sanitation.control <- renderUI({
+    #
+    # UI if map.colour.sanitation == "interval"
+    #
+    if(input$map.colour.sanitation == "interval")
+      #
+      # Create slider input control
+      #
+      sliderInput(inputId = "map.bins.sanitation",
+                  label = "Number of classes",
+                  min = 3, max = 7, value = 5, step = 1)
+  })
+  #
+  #
+  #
+  output$map.quantile.sanitation.control <- renderUI({
+    #
+    # UI if map.colour.sanitation == "quantile" 
+    #
+    if(input$map.colour.sanitation == "quantile")
+      #
+      # Create slider input control
+      #
+      sliderInput(inputId = "map.n.sanitation",
+                  label = "Number of quantiles",
+                  min = 3, max = 7, value = 5, step = 1)      
+  })
+  #
+  #
+  #
+  output$map.bins.hygiene.control <- renderUI({
+    #
+    # UI if map.colour.hygiene == "interval"
+    #
+    if(input$map.colour.hygiene == "interval")
+      #
+      # Create slider input control
+      #
+      sliderInput(inputId = "map.bins.hygiene",
+                  label = "Number of classes",
+                  min = 3, max = 7, value = 5, step = 1)
+  })
+  #
+  #
+  #
+  output$map.quantile.hygiene.control <- renderUI({
+    #
+    # UI if map.colour.hygiene == "quantile" 
+    #
+    if(input$map.colour.hygiene == "quantile")
+      #
+      # Create slider input control
+      #
+      sliderInput(inputId = "map.n.hygiene",
+                  label = "Number of quantiles",
+                  min = 3, max = 7, value = 5, step = 1)      
+  })
+  #
+  #
+  #
+  output$map.bins.overall.control <- renderUI({
+    #
+    # UI if map.colour.overall == "interval"
+    #
+    if(input$map.colour.overall == "interval")
+      #
+      # Create slider input control
+      #
+      sliderInput(inputId = "map.bins.overall",
+                  label = "Number of classes",
+                  min = 3, max = 7, value = 5, step = 1)
+  })
+  #
+  #
+  #
+  output$map.quantile.overall.control <- renderUI({
+    #
+    # UI if map.colour.overall == "quantile" 
+    #
+    if(input$map.colour.overall == "quantile")
+      #
+      # Create slider input control
+      #
+      sliderInput(inputId = "map.n.overall",
+                  label = "Number of quantiles",
+                  min = 3, max = 7, value = 5, step = 1)      
+  })
+
+
+
 
 
 ################################################################################
@@ -2042,20 +2206,595 @@ function(input, output, session) {
         }
       ")
   })
+
+
+################################################################################
+#
+# Ladder maps
+#
+################################################################################  
+  #
+  # Ladder
+  #
+  output$map.ladder <- renderLeaflet({
+    #
+    # Domains
+    #
+    domain <- c(0, 100)
+    #
+    # Linear interpolation
+    #
+    if(input$map.colour.ladder == "linear")
+      {
+      #
+      #
+      #
+      pal <- colorNumeric(palette = input$palette.ladder,
+                          domain = domain)
+      #
+      #
+      #
+      values <- domain
+      }
+    #
+    # Equal interval
+    #
+    if(input$map.colour.ladder == "interval")
+      {
+      #
+      #
+      #
+      pal <- colorBin(palette = input$palette.ladder,
+                      domain = domain, 
+                      pretty = FALSE,
+                      bins = ifelse(is.null(input$map.bins.ladder), 5, input$map.bins.ladder))
+      #
+      #
+      #
+      values <- domain
+      }
+    #
+    # Quantile
+    #
+    if(input$map.colour.ladder == "quantile")
+      {
+      #
+      #
+      #
+      pal <- colorQuantile(palette = input$palette.ladder,
+                           domain = c(slum.results.sp[[input$indicator.ladder]], city.results.sp[[input$indicator.ladder]]),
+                           n = ifelse(is.null(input$map.n.ladder), 5, input$map.n.ladder))
+      #
+      #
+      #
+      values <- c(slum.results.sp[[input$indicator.ladder]], city.results.sp[[input$indicator.ladder]])
+      }
+    #
+    #
+    #  
+    slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$indicator.ladder]], sep = "")
+    city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$indicator.ladder]], sep = "")
+    #
+    #
+    #      
+    upazila.labels <- paste("Upazila: ", upazila$Upazila, sep = "") 
+    ward.labels <- paste("Ward: ", wards$Union, sep = "") 
+    #
+    #
+    # 
+    leaflet(outline) %>%
+      #
+      #
+      #
+      setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 12) %>%
+      #
+      #
+      #
+      addTiles(urlTemplate = mapbox.satellite, group = "Satellite") %>%
+      #
+      # Slum polygon
+      #
+      addPolygons(
+        data = slum.results.sp,
+	    fillColor = pal(slum.results.sp[[input$indicator.ladder]]), 
+	    weight = 2,
+	    opacity = 1,
+	    color = "white",
+	    dashArray = "",
+	    fillOpacity = 0.7,
+	    highlight = highlightOptions(
+	      weight = 5,
+	      color = "#666",
+	      dashArray = "",
+	      fillOpacity = 0.7,
+	       bringToFront = TRUE),
+	    label = slum.labels,
+	    labelOptions = labelOptions(
+	      style = list("font-weight" = "normal", padding = "3px 8px"),
+	      textsize = "12px",
+	      direction = "auto"),
+	    group = "Slum") %>%
+      #
+      # City polygon
+      #
+      addPolygons(
+        data = city.results.sp,
+	    fillColor = pal(city.results.sp[[input$indicator.ladder]]),
+	    weight = 2,
+	    opacity = 1,
+	    color = "white",
+	    dashArray = "",
+	    fillOpacity = 0.7,
+	    highlight = highlightOptions(
+	      weight = 5,
+	      color = "#666",
+	      dashArray = "",
+	      fillOpacity = 0.7,
+	      bringToFront = TRUE),
+	    label = city.labels,
+	    labelOptions = labelOptions(
+	      style = list("font-weight" = "normal", padding = "3px 8px"),
+	      textsize = "12px",
+	      direction = "auto"),
+	    group = "Citywide") %>%
+      #
+      # Add Upazila polygons
+      #
+      addPolygons(
+        data = upazila,
+	    weight = 1,
+	    opacity = 1,
+	    color = "white",
+	    dashArray = "3",
+	    fillOpacity = 0,
+	    highlight = highlightOptions(
+	      weight = 4,
+	      color = "#666",
+	      dashArray = "",
+	      fillOpacity = 0,
+	      bringToFront = TRUE),
+	    label = upazila.labels,
+	    labelOptions = labelOptions(
+	      style = list("font-weight" = "normal", padding = "3px 8px"),
+	      textsize = "12px",
+	      direction = "auto"),
+	    group = "Upazila") %>%
+      #
+      # Add Wards polygons
+      #
+      addPolygons(
+        data = wards,
+	    weight = 0.5,
+	    opacity = 1,
+	    color = "white",
+	    dashArray = "2",
+	    fillOpacity = 0,
+	    highlight = highlightOptions(
+	      weight = 3,
+	      color = "#666",
+	      dashArray = "",
+	      fillOpacity = 0,
+	      bringToFront = TRUE),
+	    label = ward.labels,
+	    labelOptions = labelOptions(
+	      style = list("font-weight" = "normal", padding = "3px 8px"),
+	      textsize = "12px",
+	      direction = "auto"),
+	    group = "Wards") %>%
+      #
+      # Add legend
+      #
+      addLegend(
+        pal = pal, 
+        values = values,
+        opacity = 0.7,
+	    position = "bottomleft", 
+	    labFormat = labelFormat(between = " to ", suffix = "%"),
+	    title = steerIndicators$varShort[steerIndicators$varList == input$indicator.ladder],
+	    layerId = "legend") %>%
+      #
+      # Add layer control
+      #
+      addLayersControl(
+        baseGroups = c("Slum", "Citywide"),
+        overlayGroups = c("Upazila", "Wards"),
+        options = layersControlOptions(collapsed = FALSE)) %>%
+      #
+      # Hide overlays
+      #
+      hideGroup(c("Upazila", "Wards")) %>%
+      #
+      # Keep baselayers at base of map
+      #
+      htmlwidgets::onRender("
+        function(el, x) {
+          this.on('baselayerchange', function(e) {
+            e.layer.bringToBack();
+          })
+        }
+      ")
+  })
+
+
+################################################################################
+#
+# Water
+#
+################################################################################
+  #
+  # Water
+  #
+  output$map.water <- renderLeaflet({
+    #
+    # Domains
+    #
+    if(input$z.water != "water12") domain <- c(0, 100)
+    if(input$z.water == "water12") domain <- c(slum.results.sp[[input$z.water]], city.results.sp[[input$z.water]])
+    #
+    # Linear interpolation
+    #
+    if(input$map.colour.water == "linear")
+      {
+      #
+      #
+      #
+      pal <- colorNumeric(palette = input$palette.water,
+                          domain = domain)
+      #
+      #
+      #
+      values <- domain
+      }
+    #
+    # Equal interval
+    #
+    if(input$map.colour.water == "interval")
+      {
+      #
+      #
+      #
+      pal <- colorBin(palette = input$palette.water,
+                      domain = domain, 
+                      pretty = FALSE,
+                      bins = ifelse(is.null(input$map.bins.water), 5, input$map.bins.water))
+      #
+      #
+      #
+      values <- domain
+      }
+    #
+    # Quantile
+    #
+    if(input$map.colour.water == "quantile")
+      {
+      #
+      #
+      #
+      pal <- colorQuantile(palette = input$palette.water,
+                           domain = domain,
+                           n = ifelse(is.null(input$map.n.water), 5, input$map.n.water))
+      #
+      #
+      #
+      values <- domain
+      }
+    #
+    #
+    #  
+    slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$z.water]] * 100, "%", sep = "")
+    city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.water]] * 100, "%", sep = "")
+    #
+    #
+    #
+    if(input$z.water != "water12")
+      #
+      #
+      #
+      slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$z.water]], sep = "")
+      city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.water]], sep = "")      
+    #
+    #
+    #      
+    upazila.labels <- paste("Upazila: ", upazila$Upazila, sep = "") 
+    ward.labels <- paste("Ward: ", wards$Union, sep = "") 
+    #
+    #
+    #
+    leaflet(outline) %>%
+    #
+    #
+    #
+    setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 12) %>%
+    #  
+    #
+    #
+    addTiles(urlTemplate = mapbox.satellite, group = "Satellite") %>%
+    #
+    # Slum Map
+    #
+    addPolygons(
+      data = slum.results.sp,
+	  fillColor = ifelse(input$z.water != "water12", pal(slum.results.sp[[input$z.water]] * 100), pal(slum.results.sp[[input$z.water]])),
+	  weight = 2,
+	  opacity = 1,
+	  color = "white",
+	  dashArray = "3",
+	  fillOpacity = 0.7,
+	  highlight = highlightOptions(
+	    weight = 5,
+	    color = "#666",
+	    dashArray = "",
+	    fillOpacity = 0.7,
+	    bringToFront = TRUE),
+	  label = slum.labels,
+	  labelOptions = labelOptions(
+	    style = list("font-weight" = "normal", padding = "3px 8px"),
+	    textsize = "12px",
+	    direction = "auto"),
+	  group = "Slum") %>%
+    #
+    # Citywide map
+    #
+    addPolygons(
+      data = city.results.sp,
+	  fillColor = ifelse(input$z.water != "water12", pal(city.results.sp[[input$z.water]] * 100), pal(city.results.sp[[input$z.water]])),
+	  weight = 2,
+	  opacity = 1,
+	  color = "white",
+	  dashArray = "3",
+	  fillOpacity = 0.7,
+	  highlight = highlightOptions(
+	    weight = 5,
+	    color = "#666",
+	    dashArray = "",
+	    fillOpacity = 0.7,
+	    bringToFront = TRUE),
+	  label = city.labels,
+	  labelOptions = labelOptions(
+	    style = list("font-weight" = "normal", padding = "3px 8px"),
+	    textsize = "15px",
+	    direction = "auto"),
+	  group = "Citywide") %>%
+    #
+    # Legend
+    #
+    addLegend(pal = pal, 
+      values = values, 
+      opacity = 0.7,
+	  position = "bottomleft",
+	  labFormat = ifelse(input$map.colour.water == "quantile" | input$z.water == "water12", labelFormat(between = " to ", suffix = ""), labelFormat(between = " to ", suffix = "%")),
+	    title = steerIndicators$varShort[steerIndicators$varList == input$z.water],
+	    layerId = "Slum") %>%
+    #
+    #
+    #
+    addLayersControl(
+      baseGroups = c("Slum", "Citywide"),
+      overlayGroups = c(),
+      options = layersControlOptions(collapsed = FALSE))
+  })
+
+
+################################################################################
+#
+# Sanitation
+#
+################################################################################
+  #
+  # Sanitation
+  #
+  output$map.sanitation <- renderLeaflet({
+    #
+    # Domains
+    #
+    domain <- c(0, 100)
+    if(input$z.sanitation %in% c("san13", "san14")) domain <- c(slum.results.sp[[input$z.sanitation]], city.results.sp[[input$z.sanitation]])
+    #
+    # Linear interpolation
+    #
+    if(input$map.colour.sanitation == "linear")
+      {
+      #
+      #
+      #
+      pal <- colorNumeric(palette = input$palette.sanitation,
+                          domain = domain)
+      #
+      #
+      #
+      values <- domain
+      }
+    #
+    # Equal interval
+    #
+    if(input$map.colour.sanitation == "interval")
+      {
+      #
+      #
+      #
+      pal <- colorBin(palette = input$palette.sanitation,
+                      domain = domain, 
+                      pretty = FALSE,
+                      bins = ifelse(is.null(input$map.bins.sanitation), 5, input$map.bins.sanitation))
+      #
+      #
+      #
+      values <- domain
+      }
+    #
+    # Quantile
+    #
+    if(input$map.colour.sanitation == "quantile")
+      {
+      #
+      #
+      #
+      pal <- colorQuantile(palette = input$palette.sanitation,
+                           domain = domain,
+                           n = ifelse(is.null(input$map.n.sanitation), 5, input$map.n.sanitation))
+      #
+      #
+      #
+      values <- domain
+      }
+    #
+    #
+    #  
+    slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$z.sanitation]] * 100, "%", sep = "")
+    city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.sanitation]] * 100, "%", sep = "")
+    #
+    #
+    #
+    if(input$z.sanitation %in% c("san13", "san14"))
+      #
+      #
+      #
+      slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$z.sanitation]], sep = "")
+      city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.sanitation]], sep = "")      
+    #
+    #
+    #      
+    upazila.labels <- paste("Upazila: ", upazila$Upazila, sep = "") 
+    ward.labels <- paste("Ward: ", wards$Union, sep = "") 
+    #
+    #
+    #
+    leaflet(outline) %>%
+    #
+    #
+    #
+    setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 12) %>%
+    #  
+    #
+    #
+    addTiles(urlTemplate = mapbox.satellite, group = "Satellite") %>%
+    #
+    # Slum Map
+    #
+    addPolygons(
+      data = slum.results.sp,
+	  fillColor = ifelse(!input$z.sanitation %in% c("san13", "san14"), pal(slum.results.sp[[input$z.sanitation]] * 100), pal(slum.results.sp[[input$z.sanitation]])),
+	  weight = 2,
+	  opacity = 1,
+	  color = "white",
+	  dashArray = "3",
+	  fillOpacity = 0.7,
+	  highlight = highlightOptions(
+	    weight = 5,
+	    color = "#666",
+	    dashArray = "",
+	    fillOpacity = 0.7,
+	    bringToFront = TRUE),
+	  label = slum.labels,
+	  labelOptions = labelOptions(
+	    style = list("font-weight" = "normal", padding = "3px 8px"),
+	    textsize = "12px",
+	    direction = "auto"),
+	  group = "Slum") %>%
+    #
+    # Citywide map
+    #
+    addPolygons(
+      data = city.results.sp,
+	  fillColor = ifelse(!input$z.sanitation %in% c("san13", "san14"), pal(city.results.sp[[input$z.sanitation]] * 100), pal(city.results.sp[[input$z.sanitation]])),
+	  weight = 2,
+	  opacity = 1,
+	  color = "white",
+	  dashArray = "3",
+	  fillOpacity = 0.7,
+	  highlight = highlightOptions(
+	    weight = 5,
+	    color = "#666",
+	    dashArray = "",
+	    fillOpacity = 0.7,
+	    bringToFront = TRUE),
+	  label = city.labels,
+	  labelOptions = labelOptions(
+	    style = list("font-weight" = "normal", padding = "3px 8px"),
+	    textsize = "15px",
+	    direction = "auto"),
+	  group = "Citywide") %>%
+    #
+    # Legend
+    #
+    addLegend(pal = pal, 
+      values = values, 
+      opacity = 0.7,
+	  position = "bottomleft",
+	  labFormat = ifelse(input$map.colour.sanitation == "quantile" | input$z.sanitation %in% c("san13", "san14"), labelFormat(between = " to ", suffix = ""), labelFormat(between = " to ", suffix = "%")),
+	    title = steerIndicators$varShort[steerIndicators$varList == input$z.sanitation],
+	    layerId = "Slum") %>%
+    #
+    #
+    #
+    addLayersControl(
+      baseGroups = c("Slum", "Citywide"),
+      overlayGroups = c(),
+      options = layersControlOptions(collapsed = FALSE))
+  })
+
+
+################################################################################
+#
+# Hygiene
+#
+################################################################################
   #
   # hygiene
   #
   output$map.hygiene <- renderLeaflet({
     #
+    # Domains
     #
+    domain <- c(0, 100)
     #
-    bins <- c(0, 20, 40, 60, 80, 100)
+    # Linear interpolation
     #
+    if(input$map.colour.hygiene == "linear")
+      {
+      #
+      #
+      #
+      pal <- colorNumeric(palette = input$palette.hygiene,
+                          domain = domain)
+      #
+      #
+      #
+      values <- domain
+      }
     #
+    # Equal interval
     #
-    pal <- colorBin(palette = "RdYlGn", 
-                    domain = c(slum.results.sp[[input$z.hygiene]] * 100, city.results.sp[[input$z.hygiene]]) * 100, 
-                    bins = bins)
+    if(input$map.colour.hygiene == "interval")
+      {
+      #
+      #
+      #
+      pal <- colorBin(palette = input$palette.hygiene,
+                      domain = domain, 
+                      pretty = FALSE,
+                      bins = ifelse(is.null(input$map.bins.hygiene), 5, input$map.bins.hygiene))
+      #
+      #
+      #
+      values <- domain
+      }
+    #
+    # Quantile
+    #
+    if(input$map.colour.hygiene == "quantile")
+      {
+      #
+      #
+      #
+      pal <- colorQuantile(palette = input$palette.hygiene,
+                           domain = c(slum.results.sp[[input$z.hygiene]], city.results.sp[[input$z.hygiene]]),
+                           n = ifelse(is.null(input$map.n.hygiene), 5, input$map.n.hygiene))
+      #
+      #
+      #
+      values <- c(slum.results.sp[[input$z.hygiene]], city.results.sp[[input$z.hygiene]])
+      }
     #
     #
     #
@@ -2065,11 +2804,14 @@ function(input, output, session) {
     #
     #
     leaflet(outline) %>%
+    #
+    #
+    #    
     setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 12) %>%
+    #
+    #
+    #
     addTiles(urlTemplate = mapbox.satellite, group = "Satellite") %>%
-    #addTiles(urlTemplate = mapbox.street, group = "Street") %>%
-    #addTiles(urlTemplate = mapbox.dark, group = "Dark") %>%
-    #addTiles(urlTemplate = mapbox.light, group = "Light") %>%
     #
     # Slum Map
     #
@@ -2120,18 +2862,226 @@ function(input, output, session) {
     # Legend
     #
     addLegend(pal = pal, 
-      values = ~input$z.hygiene, 
+      values = values, 
       opacity = 0.7,
 	  position = "bottomleft",
 	  labFormat = labelFormat(between = " to ", 
 	                          digits = 2,
 	                          suffix = "%"),
-	    title = "", #steerIndicators$varName[steerIndicators$varList == input$z.hygiene],
+	    title = steerIndicators$varShort[steerIndicators$varList == input$z.hygiene],
 	    layerId = "Slum") %>%
     addLayersControl(
       baseGroups = c("Slum", "Citywide"),
       overlayGroups = c(),
       options = layersControlOptions(collapsed = FALSE))
+  })
+
+
+################################################################################
+#
+# Overall maps
+#
+################################################################################  
+  #
+  # Overall
+  #
+  output$map.overall <- renderLeaflet({
+    #
+    # Domains
+    #
+    domain <- c(0, 100)
+    #
+    # Linear interpolation
+    #
+    if(input$map.colour.overall == "linear")
+      {
+      #
+      #
+      #
+      pal <- colorNumeric(palette = input$palette.overall,
+                          domain = domain)
+      #
+      #
+      #
+      values <- domain
+      }
+    #
+    # Equal interval
+    #
+    if(input$map.colour.overall == "interval")
+      {
+      #
+      #
+      #
+      pal <- colorBin(palette = input$palette.overall,
+                      domain = domain, 
+                      pretty = FALSE,
+                      bins = ifelse(is.null(input$map.bins.overall), 5, input$map.bins.overall))
+      #
+      #
+      #
+      values <- domain
+      }
+    #
+    # Quantile
+    #
+    if(input$map.colour.overall == "quantile")
+      {
+      #
+      #
+      #
+      pal <- colorQuantile(palette = input$palette.overall,
+                           domain = c(slum.results.sp[[input$indicator.overall]], city.results.sp[[input$indicator.overall]]),
+                           n = ifelse(is.null(input$map.n.overall), 5, input$map.n.overall))
+      #
+      #
+      #
+      values <- c(slum.results.sp[[input$indicator.overall]], city.results.sp[[input$indicator.overall]])
+      }
+    #
+    #
+    #  
+    slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$indicator.overall]], sep = "")
+    city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$indicator.overall]], sep = "")
+    #
+    #
+    #      
+    upazila.labels <- paste("Upazila: ", upazila$Upazila, sep = "") 
+    ward.labels <- paste("Ward: ", wards$Union, sep = "") 
+    #
+    #
+    # 
+    leaflet(outline) %>%
+      #
+      #
+      #
+      setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 12) %>%
+      #
+      #
+      #
+      addTiles(urlTemplate = mapbox.satellite, group = "Satellite") %>%
+      #
+      # Slum polygon
+      #
+      addPolygons(
+        data = slum.results.sp,
+	    fillColor = pal(slum.results.sp[[input$indicator.overall]]), 
+	    weight = 2,
+	    opacity = 1,
+	    color = "white",
+	    dashArray = "",
+	    fillOpacity = 0.7,
+	    highlight = highlightOptions(
+	      weight = 5,
+	      color = "#666",
+	      dashArray = "",
+	      fillOpacity = 0.7,
+	       bringToFront = TRUE),
+	    label = slum.labels,
+	    labelOptions = labelOptions(
+	      style = list("font-weight" = "normal", padding = "3px 8px"),
+	      textsize = "12px",
+	      direction = "auto"),
+	    group = "Slum") %>%
+      #
+      # City polygon
+      #
+      addPolygons(
+        data = city.results.sp,
+	    fillColor = pal(city.results.sp[[input$indicator.overall]]),
+	    weight = 2,
+	    opacity = 1,
+	    color = "white",
+	    dashArray = "",
+	    fillOpacity = 0.7,
+	    highlight = highlightOptions(
+	      weight = 5,
+	      color = "#666",
+	      dashArray = "",
+	      fillOpacity = 0.7,
+	      bringToFront = TRUE),
+	    label = city.labels,
+	    labelOptions = labelOptions(
+	      style = list("font-weight" = "normal", padding = "3px 8px"),
+	      textsize = "12px",
+	      direction = "auto"),
+	    group = "Citywide") %>%
+      #
+      # Add Upazila polygons
+      #
+      addPolygons(
+        data = upazila,
+	    weight = 1,
+	    opacity = 1,
+	    color = "white",
+	    dashArray = "3",
+	    fillOpacity = 0,
+	    highlight = highlightOptions(
+	      weight = 4,
+	      color = "#666",
+	      dashArray = "",
+	      fillOpacity = 0,
+	      bringToFront = TRUE),
+	    label = upazila.labels,
+	    labelOptions = labelOptions(
+	      style = list("font-weight" = "normal", padding = "3px 8px"),
+	      textsize = "12px",
+	      direction = "auto"),
+	    group = "Upazila") %>%
+      #
+      # Add Wards polygons
+      #
+      addPolygons(
+        data = wards,
+	    weight = 0.5,
+	    opacity = 1,
+	    color = "white",
+	    dashArray = "2",
+	    fillOpacity = 0,
+	    highlight = highlightOptions(
+	      weight = 3,
+	      color = "#666",
+	      dashArray = "",
+	      fillOpacity = 0,
+	      bringToFront = TRUE),
+	    label = ward.labels,
+	    labelOptions = labelOptions(
+	      style = list("font-weight" = "normal", padding = "3px 8px"),
+	      textsize = "12px",
+	      direction = "auto"),
+	    group = "Wards") %>%
+      #
+      # Add legend
+      #
+      addLegend(
+        pal = pal, 
+        values = values,
+        opacity = 0.7,
+	    position = "bottomleft", 
+	    labFormat = labelFormat(between = " to ", suffix = "%"),
+	    title = steerIndicators$varShort[steerIndicators$varList == input$indicator.overall],
+	    layerId = "legend") %>%
+      #
+      # Add layer control
+      #
+      addLayersControl(
+        baseGroups = c("Slum", "Citywide"),
+        overlayGroups = c("Upazila", "Wards"),
+        options = layersControlOptions(collapsed = FALSE)) %>%
+      #
+      # Hide overlays
+      #
+      hideGroup(c("Upazila", "Wards")) %>%
+      #
+      # Keep baselayers at base of map
+      #
+      htmlwidgets::onRender("
+        function(el, x) {
+          this.on('baselayerchange', function(e) {
+            e.layer.bringToBack();
+          })
+        }
+      ")
   })
 }
 
