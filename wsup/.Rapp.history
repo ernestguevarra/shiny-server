@@ -758,3 +758,116 @@ xxx(slum.results.sp[["jmpWomenHygiene"]])
 runApp()
 library(shiny)
 runApp()
+library(shiny)
+runApp()
+library(shiny)
+runApp()
+library(shiny)
+runApp()
+colorQuantile("YlGnBu", domain = slum.results.sp[["jmpWomanHygiene"]], n = 5)
+xx <- colorQuantile("YlGnBu", domain = slum.results.sp[["jmpWomanHygiene"]], n = 5)
+xx(slum.results.sp[[jmpWomanHygiene]])
+xx(slum.results.sp[["jmpWomanHygiene"]])
+slum.results.sp[["jmpWomanHygiene"]]
+names(slum.results.sp)
+slum.results.sp[["jmpWomenHygiene"]]
+xx <- colorQuantile("YlGnBu", domain = slum.results.sp[["jmpWomenHygiene"]], n = 5)
+xx(slum.results.sp[["jmpWomenHygiene"]])
+?cut
+cut(slum.results.sp[["jmpWomenHygiene"]]))
+cut(slum.results.sp[["jmpWomenHygiene"]])
+cut(slum.results.sp[["jmpWomenHygiene"]], n = 3)
+?cut
+cut(slum.results.sp[["jmpWomenHygiene"]], breaks = 3)
+cut(slum.results.sp[["jmpWomenHygiene"]], breaks = 5)
+?colorQuantile
+library(classIntervals)
+library(classInt)
+colorQuantile("YlGnBu", domain = slum.results.sp[["jmpWomenHygiene"]], n = 5)
+xx <- colorQuantile("YlGnBu", domain = slum.results.sp[["jmpWomenHygiene"]], n = 5)
+xx(slum.results.sp[["jmpWomenHygiene"]])
+xx
+?getBins
+getBins
+classIntervals(slum.results.sp[[jmpWomenHygiene]], n = 5, style = "quantile")
+classIntervals(slum.results.sp[["jmpWomenHygiene"]], n = 5, style = "quantile")
+?classIntervals
+classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile")
+RColorBrewer
+??RColorBrewer
+library("RColorBrewer")
+brewer.pal(n = 5, YlGnBu)
+brewer.pal(n = 5, name = "YlGnBu")
+library(classInt)
+?colorQuantile
+colorQuantile
+?classIntervals
+classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile")
+?classIntervals
+classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile", cutlabels = FALSE)
+classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile")
+classIntervals2shingles(classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile"))
+classIntervals2shingle(classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile"))
+classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile")
+xxx <- classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile")
+str(xxx)
+xxx$var
+xxx$brks
+xxx <- classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile", unique = TRUE)
+xxx$brks
+xxx <- classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile")
+xxx
+print(xxx, unique = TRUE)
+xxx$brks
+print(xxx, unique = TRUE, cutlabels = FALSE)
+xxx$brks
+cut(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), breaks = xxx$brks)
+?cut
+cut(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), breaks = unique(xxx$brks))
+xx <- colorQuantile("YlGnBu", domain = slum.results.sp[["jmpWomenHygiene"]], n = 5)
+xx
+str(xx)
+xx(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]))
+xx(unique(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]])))
+colorQuantile
+quantileColour <- function (palette, #
+                            domain, #
+                            n = 4, #
+                            probs = seq(0, 1, length.out = n + 1), #
+                            na.color = "#808080", #
+                            alpha = FALSE, #
+                            reverse = FALSE) #
+  {#
+  if (!is.null(domain)) #
+    {#
+    bins = quantile(domain, probs, na.rm = TRUE, names = FALSE)#
+    return(withColorAttr("quantile", #
+                         list(probs = probs, #
+                         na.color = na.color), #
+           colorBin(palette, domain = NULL, #
+                    bins = bins, na.color = na.color, alpha = alpha, #
+                    reverse = reverse)))#
+    }#
+    colorFunc = colorFactor(palette, #
+                            domain = 1:(length(probs) - 1), #
+                            na.color = na.color, #
+                            alpha = alpha, #
+                            reverse = reverse)#
+    withColorAttr("quantile", list(probs = probs, na.color = na.color), #
+        function(x) {#
+            binsToUse = unique(quantile(x, probs, na.rm = TRUE, names = FALSE))#
+            ints = cut(x, binsToUse, labels = FALSE, include.lowest = TRUE, #
+                right = FALSE)#
+            if (any(is.na(x) != is.na(ints))) #
+                warning("Some values were outside the color scale and will be treated as NA")#
+            colorFunc(ints)#
+        })#
+  }
+xx <- quantileColour("YlGnBu", domain = slum.results.sp[["jmpWomenHygiene"]], n = 5)
+library(leaflet)
+xx <- quantileColour("YlGnBu", domain = slum.results.sp[["jmpWomenHygiene"]], n = 5)
+?withColorAttr
+??withColorAttr
+library(shiny)
+runApp()
+runApp()

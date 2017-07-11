@@ -689,7 +689,7 @@ function(input, output, session) {
         updateSliderInput(session = session,
                           inputId = "bins.poverty",
                           label = "Number of bins:",
-                          value = 1, step = 0.25,
+                          value = 1, step = 1,
                           min = 1, max = 5)
       })
   #
@@ -722,26 +722,26 @@ function(input, output, session) {
       updateSelectInput(session = session,
                         inputId = "indicator.ladder",
                         label = "Select indicator", 
-                        choices = list("Open defecation" = "sanSet5",
-                                       "Unimproved" = "sanSet4",
-                                       "Limited" = "sanSet3",
-                                       "Basic" = "sanSet2",
-                                       "Safely-managed" = "sanSet1"),
-                        selected = "sanSet5")
+                        choices = list("Open defecation" = "jmpSan5",
+                                       "Unimproved" = "jmpSan4",
+                                       "Limited" = "jmpSan3",
+                                       "Basic" = "jmpSan2",
+                                       "Safely-managed" = "jmpSan1"),
+                        selected = "jmpSan5")
     #
     #
     #
-    if(input$z.ladder == "handSet1")
+    if(input$z.ladder == "handSet")
       #
       #
       #
       updateSelectInput(session = session,
                         inputId = "indicator.ladder",
                         label = "Select indicator",
-                        choices = list("No facility" = "handSet3",
-                                       "Limited" = "handSet2",
-                                       "Basic" = "handSet1"),
-                        selected = "handSet3")
+                        choices = list("No facility" = "jmpSan3",
+                                       "Limited" = "jmpSan2",
+                                       "Basic" = "jmpSan1"),
+                        selected = "jmpSan3")
   })
   #
   #
@@ -2262,18 +2262,18 @@ function(input, output, session) {
       #
       #
       pal <- colorQuantile(palette = input$palette.ladder,
-                           domain = c(slum.results.sp[[input$indicator.ladder]], city.results.sp[[input$indicator.ladder]]),
+                           domain = c(slum.results.sp[[input$indicator.ladder]] * 100, city.results.sp[[input$indicator.ladder]] * 100),
                            n = ifelse(is.null(input$map.n.ladder), 5, input$map.n.ladder))
       #
       #
       #
-      values <- c(slum.results.sp[[input$indicator.ladder]], city.results.sp[[input$indicator.ladder]])
+      values <- c(slum.results.sp[[input$indicator.ladder]] * 100, city.results.sp[[input$indicator.ladder]] * 100)
       }
     #
     #
     #  
-    slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$indicator.ladder]], sep = "")
-    city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$indicator.ladder]], sep = "")
+    slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$indicator.ladder]] * 100, "%", sep = "")
+    city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$indicator.ladder]] * 100, "%", sep = "")
     #
     #
     #      
@@ -2296,7 +2296,7 @@ function(input, output, session) {
       #
       addPolygons(
         data = slum.results.sp,
-	    fillColor = pal(slum.results.sp[[input$indicator.ladder]]), 
+	    fillColor = pal(slum.results.sp[[input$indicator.ladder]] * 100), 
 	    weight = 2,
 	    opacity = 1,
 	    color = "white",
@@ -2319,7 +2319,7 @@ function(input, output, session) {
       #
       addPolygons(
         data = city.results.sp,
-	    fillColor = pal(city.results.sp[[input$indicator.ladder]]),
+	    fillColor = pal(city.results.sp[[input$indicator.ladder]] * 100),
 	    weight = 2,
 	    opacity = 1,
 	    color = "white",
@@ -2389,7 +2389,7 @@ function(input, output, session) {
         values = values,
         opacity = 0.7,
 	    position = "bottomleft", 
-	    labFormat = labelFormat(between = " to ", suffix = "%"),
+	    labFormat = ifelse(input$map.colour.ladder == "quantile", labelFormat(between = " to ", suffix = ""), labelFormat(between = " to ", suffix = "%")),
 	    title = steerIndicators$varShort[steerIndicators$varList == input$indicator.ladder],
 	    layerId = "legend") %>%
       #
@@ -2426,15 +2426,20 @@ function(input, output, session) {
   #
   output$map.water <- renderLeaflet({
     #
-    # Domains
-    #
-    if(input$z.water != "water12") domain <- c(0, 100)
-    if(input$z.water == "water12") domain <- c(slum.results.sp[[input$z.water]], city.results.sp[[input$z.water]])
-    #
     # Linear interpolation
     #
     if(input$map.colour.water == "linear")
       {
+      #
+      # Domains
+      #
+      if(input$z.water != "water12") 
+        domain <- c(0, 100)
+      #
+      #
+      #
+      if(input$z.water == "water12") 
+        domain <- c(0, max(c(slum.results.sp[[input$z.water]], city.results.sp[[input$z.water]])))   
       #
       #
       #
@@ -2450,6 +2455,16 @@ function(input, output, session) {
     #
     if(input$map.colour.water == "interval")
       {
+      #
+      # Domains
+      #
+      if(input$z.water != "water12")
+        domain <- c(0, 100)
+      #
+      #
+      #
+      if(input$z.water == "water12")
+        domain <- c(0, max(c(slum.results.sp[[input$z.water]], city.results.sp[[input$z.water]])))   
       #
       #
       #
@@ -2467,6 +2482,16 @@ function(input, output, session) {
     #
     if(input$map.colour.water == "quantile")
       {
+      #
+      # Domains
+      #
+      if(input$z.water != "water12") 
+        domain <- c(slum.results.sp[[input$z.water]] * 100, city.results.sp[[input$z.water]] * 100)
+      #
+      #
+      #
+      if(input$z.water == "water12") 
+        domain <- c(slum.results.sp[[input$z.water]], city.results.sp[[input$z.water]])   
       #
       #
       #
@@ -2486,12 +2511,14 @@ function(input, output, session) {
     #
     #
     #
-    if(input$z.water != "water12")
+    if(input$z.water == "water12")
+      {
       #
       #
       #
       slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$z.water]], sep = "")
-      city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.water]], sep = "")      
+      city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.water]], sep = "")
+      }      
     #
     #
     #      
@@ -2552,9 +2579,53 @@ function(input, output, session) {
 	  label = city.labels,
 	  labelOptions = labelOptions(
 	    style = list("font-weight" = "normal", padding = "3px 8px"),
-	    textsize = "15px",
+	    textsize = "12px",
 	    direction = "auto"),
 	  group = "Citywide") %>%
+      #
+      # Add Upazila polygons
+      #
+      addPolygons(
+        data = upazila,
+	    weight = 1,
+	    opacity = 1,
+	    color = "white",
+	    dashArray = "3",
+	    fillOpacity = 0,
+	    highlight = highlightOptions(
+	      weight = 4,
+	      color = "#666",
+	      dashArray = "",
+	      fillOpacity = 0,
+	      bringToFront = TRUE),
+	    label = upazila.labels,
+	    labelOptions = labelOptions(
+	      style = list("font-weight" = "normal", padding = "3px 8px"),
+	      textsize = "12px",
+	      direction = "auto"),
+	    group = "Upazila") %>%
+      #
+      # Add Wards polygons
+      #
+      addPolygons(
+        data = wards,
+	    weight = 0.5,
+	    opacity = 1,
+	    color = "white",
+	    dashArray = "2",
+	    fillOpacity = 0,
+	    highlight = highlightOptions(
+	      weight = 3,
+	      color = "#666",
+	      dashArray = "",
+	      fillOpacity = 0,
+	      bringToFront = TRUE),
+	    label = ward.labels,
+	    labelOptions = labelOptions(
+	      style = list("font-weight" = "normal", padding = "3px 8px"),
+	      textsize = "12px",
+	      direction = "auto"),
+	    group = "Wards") %>%
     #
     # Legend
     #
@@ -2570,8 +2641,22 @@ function(input, output, session) {
     #
     addLayersControl(
       baseGroups = c("Slum", "Citywide"),
-      overlayGroups = c(),
-      options = layersControlOptions(collapsed = FALSE))
+      overlayGroups = c("Upazila", "Wards"),
+      options = layersControlOptions(collapsed = FALSE)) %>%
+    #
+    # Hide overlays
+    #
+    hideGroup(c("Upazila", "Wards")) %>%
+    #
+    # Keep baselayers at base of map
+    #
+    htmlwidgets::onRender("
+      function(el, x) {
+        this.on('baselayerchange', function(e) {
+          e.layer.bringToBack();
+        })
+      }
+    ")
   })
 
 
@@ -2585,15 +2670,19 @@ function(input, output, session) {
   #
   output$map.sanitation <- renderLeaflet({
     #
-    # Domains
-    #
-    domain <- c(0, 100)
-    if(input$z.sanitation %in% c("san13", "san14")) domain <- c(slum.results.sp[[input$z.sanitation]], city.results.sp[[input$z.sanitation]])
-    #
     # Linear interpolation
     #
     if(input$map.colour.sanitation == "linear")
       {
+      #
+      # Domains
+      #
+      domain <- c(0, 100)
+      #
+      #
+      #
+      if(input$z.sanitation %in% c("san13", "san14")) 
+        domain <- c(0, max(c(slum.results.sp[[input$z.sanitation]], city.results.sp[[input$z.sanitation]])))
       #
       #
       #
@@ -2609,6 +2698,15 @@ function(input, output, session) {
     #
     if(input$map.colour.sanitation == "interval")
       {
+      #
+      # Domains
+      #
+      domain <- c(0, 100)
+      #
+      #
+      #
+      if(input$z.sanitation %in% c("san13", "san14")) 
+        domain <- c(0, max(c(slum.results.sp[[input$z.sanitation]], city.results.sp[[input$z.sanitation]])))
       #
       #
       #
@@ -2626,6 +2724,15 @@ function(input, output, session) {
     #
     if(input$map.colour.sanitation == "quantile")
       {
+      #
+      # Domains
+      #
+      domain <- c(slum.results.sp[[input$z.sanitation]] * 100, city.results.sp[[input$z.sanitation]] * 100)
+      #
+      #
+      #
+      if(input$z.sanitation %in% c("san13", "san14")) 
+        domain <- c(slum.results.sp[[input$z.sanitation]] * 100, city.results.sp[[input$z.sanitation]] * 100)
       #
       #
       #
@@ -2646,11 +2753,10 @@ function(input, output, session) {
     #
     #
     if(input$z.sanitation %in% c("san13", "san14"))
-      #
-      #
-      #
+      {
       slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$z.sanitation]], sep = "")
-      city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.sanitation]], sep = "")      
+      city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.sanitation]], sep = "")
+      }      
     #
     #
     #      
@@ -2711,9 +2817,53 @@ function(input, output, session) {
 	  label = city.labels,
 	  labelOptions = labelOptions(
 	    style = list("font-weight" = "normal", padding = "3px 8px"),
-	    textsize = "15px",
+	    textsize = "12px",
 	    direction = "auto"),
 	  group = "Citywide") %>%
+      #
+      # Add Upazila polygons
+      #
+      addPolygons(
+        data = upazila,
+	    weight = 1,
+	    opacity = 1,
+	    color = "white",
+	    dashArray = "3",
+	    fillOpacity = 0,
+	    highlight = highlightOptions(
+	      weight = 4,
+	      color = "#666",
+	      dashArray = "",
+	      fillOpacity = 0,
+	      bringToFront = TRUE),
+	    label = upazila.labels,
+	    labelOptions = labelOptions(
+	      style = list("font-weight" = "normal", padding = "3px 8px"),
+	      textsize = "12px",
+	      direction = "auto"),
+	    group = "Upazila") %>%
+      #
+      # Add Wards polygons
+      #
+      addPolygons(
+        data = wards,
+	    weight = 0.5,
+	    opacity = 1,
+	    color = "white",
+	    dashArray = "2",
+	    fillOpacity = 0,
+	    highlight = highlightOptions(
+	      weight = 3,
+	      color = "#666",
+	      dashArray = "",
+	      fillOpacity = 0,
+	      bringToFront = TRUE),
+	    label = ward.labels,
+	    labelOptions = labelOptions(
+	      style = list("font-weight" = "normal", padding = "3px 8px"),
+	      textsize = "12px",
+	      direction = "auto"),
+	    group = "Wards") %>%
     #
     # Legend
     #
@@ -2729,8 +2879,22 @@ function(input, output, session) {
     #
     addLayersControl(
       baseGroups = c("Slum", "Citywide"),
-      overlayGroups = c(),
-      options = layersControlOptions(collapsed = FALSE))
+      overlayGroups = c("Upazila", "Wards"),
+      options = layersControlOptions(collapsed = FALSE)) %>%
+    #
+    # Hide overlays
+    #
+    hideGroup(c("Upazila", "Wards")) %>%
+    #
+    # Keep baselayers at base of map
+    #
+    htmlwidgets::onRender("
+	  function(el, x) {
+	    this.on('baselayerchange', function(e) {
+		  e.layer.bringToBack();
+	    })
+	  }
+    ")
   })
 
 
@@ -2744,14 +2908,14 @@ function(input, output, session) {
   #
   output$map.hygiene <- renderLeaflet({
     #
-    # Domains
-    #
-    domain <- c(0, 100)
-    #
     # Linear interpolation
     #
     if(input$map.colour.hygiene == "linear")
       {
+      #
+      # Domains
+      #
+      domain <- c(0, 100)
       #
       #
       #
@@ -2767,6 +2931,10 @@ function(input, output, session) {
     #
     if(input$map.colour.hygiene == "interval")
       {
+      #
+      # Domains
+      #
+      domain <- c(0, 100)
       #
       #
       #
@@ -2785,21 +2953,30 @@ function(input, output, session) {
     if(input$map.colour.hygiene == "quantile")
       {
       #
+      # Domains
+      #
+      domain <- c(slum.results.sp[[input$z.hygiene]] * 100, city.results.sp[[input$z.hygiene]] * 100)
+      #
       #
       #
       pal <- colorQuantile(palette = input$palette.hygiene,
-                           domain = c(slum.results.sp[[input$z.hygiene]], city.results.sp[[input$z.hygiene]]),
-                           n = ifelse(is.null(input$map.n.hygiene), 5, input$map.n.hygiene))
+                            domain = domain,
+                            n = ifelse(is.null(input$map.n.hygiene), 5, input$map.n.hygiene))
       #
       #
       #
-      values <- c(slum.results.sp[[input$z.hygiene]], city.results.sp[[input$z.hygiene]])
+      values <- domain
       }
     #
     #
     #
     slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$z.hygiene]] * 100, "%", sep = "")
     city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.hygiene]] * 100, "%", sep = "")
+    #
+    #
+    #      
+    upazila.labels <- paste("Upazila: ", upazila$Upazila, sep = "") 
+    ward.labels <- paste("Ward: ", wards$Union, sep = "") 
     #
     #
     #
@@ -2855,9 +3032,53 @@ function(input, output, session) {
 	  label = city.labels,
 	  labelOptions = labelOptions(
 	    style = list("font-weight" = "normal", padding = "3px 8px"),
-	    textsize = "15px",
+	    textsize = "12px",
 	    direction = "auto"),
 	  group = "Citywide") %>%
+      #
+      # Add Upazila polygons
+      #
+      addPolygons(
+        data = upazila,
+	    weight = 1,
+	    opacity = 1,
+	    color = "white",
+	    dashArray = "3",
+	    fillOpacity = 0,
+	    highlight = highlightOptions(
+	      weight = 4,
+	      color = "#666",
+	      dashArray = "",
+	      fillOpacity = 0,
+	      bringToFront = TRUE),
+	    label = upazila.labels,
+	    labelOptions = labelOptions(
+	      style = list("font-weight" = "normal", padding = "3px 8px"),
+	      textsize = "12px",
+	      direction = "auto"),
+	    group = "Upazila") %>%
+      #
+      # Add Wards polygons
+      #
+      addPolygons(
+        data = wards,
+	    weight = 0.5,
+	    opacity = 1,
+	    color = "white",
+	    dashArray = "2",
+	    fillOpacity = 0,
+	    highlight = highlightOptions(
+	      weight = 3,
+	      color = "#666",
+	      dashArray = "",
+	      fillOpacity = 0,
+	      bringToFront = TRUE),
+	    label = ward.labels,
+	    labelOptions = labelOptions(
+	      style = list("font-weight" = "normal", padding = "3px 8px"),
+	      textsize = "12px",
+	      direction = "auto"),
+	    group = "Wards") %>%
     #
     # Legend
     #
@@ -2865,15 +3086,27 @@ function(input, output, session) {
       values = values, 
       opacity = 0.7,
 	  position = "bottomleft",
-	  labFormat = labelFormat(between = " to ", 
-	                          digits = 2,
-	                          suffix = "%"),
-	    title = steerIndicators$varShort[steerIndicators$varList == input$z.hygiene],
-	    layerId = "Slum") %>%
+	  labFormat = ifelse(input$map.colour.hygiene == "quantile", labelFormat(between = " to ", suffix = ""), labelFormat(between = " to ", suffix = "%")),
+	  title = steerIndicators$varShort[steerIndicators$varList == input$z.hygiene],
+	  layerId = "Slum") %>%
     addLayersControl(
       baseGroups = c("Slum", "Citywide"),
-      overlayGroups = c(),
-      options = layersControlOptions(collapsed = FALSE))
+      overlayGroups = c("Upazila", "Wards"),
+      options = layersControlOptions(collapsed = FALSE)) %>%
+    #
+    # Hide overlays
+    #
+    hideGroup(c("Upazila", "Wards")) %>%
+    #
+    # Keep baselayers at base of map
+    #
+    htmlwidgets::onRender("
+	  function(el, x) {
+	    this.on('baselayerchange', function(e) {
+		  e.layer.bringToBack();
+	    })
+	  }
+    ")
   })
 
 
@@ -2941,8 +3174,8 @@ function(input, output, session) {
     #
     #
     #  
-    slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$indicator.overall]], sep = "")
-    city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$indicator.overall]], sep = "")
+    slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$indicator.overall]] * 100, sep = "")
+    city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$indicator.overall]] * 100, sep = "")
     #
     #
     #      

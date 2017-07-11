@@ -16,6 +16,8 @@ library(rgdal)
 library(rgeos)
 library(raster)
 library(maps)
+library(RColorBrewer)
+library(classInt)
 
 
 ################################################################################
