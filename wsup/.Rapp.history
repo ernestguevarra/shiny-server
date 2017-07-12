@@ -3528,12 +3528,8 @@ library(DT)
 install.packages("DT")
 ?dataTableOutput
 runApp()
-runApp()
 head(indicatorsDF)
 indicatorsDF[["nMembers"]]
-runApp()
-runApp()
-runApp()
 runApp()
 ?renderTable
 library(xtable)
@@ -3541,11 +3537,6 @@ runApp()
 ?renderDataTable
 runApp()
 ?dataTableOutput
-runApp()
-runApp()
-runApp()
-runApp()
-runApp()
 runApp()
 indicatorsDF$type
 as.character(indicatorsDF$type)
@@ -4402,12 +4393,9 @@ ls()
 head(areaResultsLong)
 names(steerIndicators)
 runApp()
-runApp()
 steerIndicators$varSet
 runApp()
-runApp()
 steerIndicators$varSet
-runApp()
 runApp()
 slum.results.sp
 slum.results.sp$surveyArea
@@ -4539,3 +4527,8 @@ shpPoly <- function(input, output, session, r=NULL){#
 }
 runApp()
 ?navbarMenu
+library(shiny)
+runApp()
+runApp()
+?suppressPackageStartupMessages()
+runApp()
