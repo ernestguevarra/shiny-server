@@ -3851,6 +3851,10 @@ function(input, output, session) {
                                              indicatorName, indicatorCode, indicatorCategory, 
                                              strata, estimate, lcl, ucl, type))
     #
+    #
+    #                                         
+    df[ , c("estimate", "lcl", "ucl")] <- df[ , c("estimate", "lcl", "ucl")] * 100
+    #
     # Subset to ladder indicator set
     #
     df <- df[df$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == input$z.ladder], ]
@@ -3903,6 +3907,10 @@ function(input, output, session) {
     df <- subset(areaResultsLong, select = c(country, countryCode, 
                                              indicatorName, indicatorCode, indicatorCategory, 
                                              strata, estimate, lcl, ucl, type))
+    #
+    #
+    #                                         
+    df[df$indicatorCode != "water12" , c("estimate", "lcl", "ucl")] <- df[df$indicatorCode != "water12" , c("estimate", "lcl", "ucl")] * 100
     #
     # Subset to water indicator set
     #
@@ -3957,6 +3965,10 @@ function(input, output, session) {
                                              indicatorName, indicatorCode, indicatorCategory, 
                                              strata, estimate, lcl, ucl, type))
     #
+    #
+    #                                         
+    df[df$indicatorCode %in% c("san13", "san14") , c("estimate", "lcl", "ucl")] <- df[df$indicatorCode %in% c("san13", "san14"), c("estimate", "lcl", "ucl")] * 100
+    #
     # Subset to sanitation indicator set
     #
     df <- df[df$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet != "sanSet1"], ]
@@ -4010,6 +4022,10 @@ function(input, output, session) {
                                              indicatorName, indicatorCode, indicatorCategory, 
                                              strata, estimate, lcl, ucl, type))
     #
+    #
+    #                                         
+    df[ , c("estimate", "lcl", "ucl")] <- df[ , c("estimate", "lcl", "ucl")] * 100
+    #
     # Subset to hygiene indicator set
     #
     df <- df[df$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "hygieneSet"], ]
@@ -4062,6 +4078,10 @@ function(input, output, session) {
     df <- subset(areaResultsLong, select = c(country, countryCode, 
                                              indicatorName, indicatorCode, indicatorCategory, 
                                              strata, estimate, lcl, ucl, type))
+    #
+    #
+    #                                         
+    df[ , c("estimate", "lcl", "ucl")] <- df[ , c("estimate", "lcl", "ucl")] * 100
     #
     # Subset to overall indicator set
     #
