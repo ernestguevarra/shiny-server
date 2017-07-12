@@ -3967,7 +3967,7 @@ function(input, output, session) {
     #
     #
     #                                         
-    df[df$indicatorCode %in% c("san13", "san14") , c("estimate", "lcl", "ucl")] <- df[df$indicatorCode %in% c("san13", "san14"), c("estimate", "lcl", "ucl")] * 100
+    df[!df$indicatorCode %in% c("san13", "san14") , c("estimate", "lcl", "ucl")] <- df[!df$indicatorCode %in% c("san13", "san14"), c("estimate", "lcl", "ucl")] * 100
     #
     # Subset to sanitation indicator set
     #
