@@ -4124,6 +4124,87 @@ function(input, output, session) {
   #
   options = list(pageLength = 10)))
 
+
+################################################################################
+#
+# Sample size function
+#
+################################################################################
+
+  #
+  #
+  #
+  sample.df <- reactive({
+    #
+    #
+    #
+    inputFile <- input$file1
+    #
+    #
+    #
+    if (is.null(inputFile)) {return(NULL)}
+    #
+    #
+    #
+    sample.df <- read.csv(file = inputFile$datapath, header = TRUE, sep = ",")
+  })    
+
+  #
+  #
+  #
+  observe({
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "variable",
+                        label = "Select variable name of indicator to test",
+                        choices = names(sample.df()))
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "cluster",
+                        label = "Select variable name of survey cluster",
+                        choices = names(sample.df()))
+  })
+  #
+  #
+  #
+  observeEvent(input$calculate, {
+	  #
+	  # Calculate deff
+	  #
+	  deff <- deff(y = sample.df()[[input$variable]], cluster = sample.df()[[input$cluster]])[["deff"]]
+	  #
+	  #
+	  #
+	  z.ci <- ifelse(input$z.ci == "1.96", 1.96,
+				ifelse(input$z.ci == "1.75", 1.75,
+				  ifelse(input$z.ci == "1.645", 1.645, 2.05)))
+	  #
+	  # Calculate sample size
+	  #
+	  sample.size <- (z.ci ^ 2) * (((input$proportion / 100) * (1 - (input$proportion / 100))) / ((input$precision / 100) ^ 2))
+	  #    
+	  # Compose data frame
+	  #
+	  sample.parameters <- data.frame(Parameters = c("Confidence Interval", 
+													 "Expected proportion/prevalence",
+													 "Precision",
+													 "Design effect",
+													 "Sample size"),
+									  Value = as.character(c(input$z.ci, 
+															 input$proportion,
+															 input$precision,
+															 deff,
+															 sample.size)), 
+									  stringsAsFactors=FALSE)
+
+	  output$sample <- renderTable({
+		sample.parameters
+	  })
+  })
 }
 
 

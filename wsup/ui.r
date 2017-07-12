@@ -1181,7 +1181,88 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       # Set width of main panel
       #
       width = 9)
+    )
+  ),
+  #
+  # Create Functions tab
+  #
+  navbarMenu(title = "Functions",
+    #
+    #
+    #
+    tabPanel(title = "Sample size", value = "tabs8",
+      #
+      # Sidebar layout
+      #
+      sidebarLayout(
+        #
+        # Create sidebar panel
+        #
+        sidebarPanel(
+          #
+          # Select z-value for CI
+          #
+          selectInput(inputId = "z.ci",
+                      label = "Select confidence interval",
+                      choices = list("96% CI" = "2.05",
+                                     "95% CI" = "1.96",
+                                     "92% CI" = "1.75",
+                                     "90% CI" = "1.645"),
+                      selected = "1.96"),
+          #
+          # Select expected proportion/prevalence
+          #
+          numericInput(inputId = "proportion",
+                       label = "Expected indicator proportion/prevalence",
+                       min = 1, max = 100, value = 50, step = 1),
+          #
+          # Select level of precision
+          # 
+          numericInput(inputId = "precision",
+                       label = "Select level of precision",
+                       min = 3, max = 10, value = 5),
+          #
+          # Upload dataset for DEFF calculation
+          #
+          fileInput(inputId = "file1",
+                    label = "Upload dataset CSV file for DEFF calculation",
+                    accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
+          #
+          # Select variable name for indicator to test 
+          #
+          selectInput(inputId = "variable",
+                      label = "Select variable name of indicator to test",
+                      choices = c("Select variable name" = "")),
+          #
+          # Select variable name for survey cluster 
+          #
+          selectInput(inputId = "cluster",
+                      label = "Select variable name of survey cluster",
+                      choices = c("Select variable name" = "")),
+          #
+          # Action button
+          #
+          actionButton(inputId = "calculate",
+                       label = "Calculate"),
+        #
+        # Set width of sidebar panel
+        #
+        width = 3
+        ),
+        #
+        #
+        #
+        mainPanel(
+          #
+          #
+          #
+          tableOutput("sample"),
+        #
+        # Set width of main panel
+        #
+        width = 9) 
       )
     )
-  )
+  )                   
+)
   

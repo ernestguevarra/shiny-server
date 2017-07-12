@@ -1,183 +1,2682 @@
-runApp()
-?colorBin
-runApp()
-?colorBins
-?colorBin
-runApp()
-areaResults
-areaResults$ppi
-head(areaResults)
-area.results.sp
-slum.results.sp
-slum.results.sp$ppi
-runApp()
-?colorBin
-runApp()
-?colorBin
-?addLegend
-runApp()
-slum.results.sp[["ppi"]]
-slum.results.sp[["ppp125"]]
-slum.results.sp[["pQuintle"]]
-slum.results.sp[["pQuintile"]]
-runApp()
-?equal
-runApp()
-?getBins
-runApp()
-slum.results.sp[["nMembers"]]
-max(c(slum.results.sp[["nMembers"]], city.results.sp[["nMembers"]])
-)
-runApp()
-?colorQuantile
-runApp()
-?observeEvent
-?showGroup
-runApp()
-?observerEvent
-?observeEvent
-runApp()
-runApp(
-)
-runApp()
-library(shiny)
-runApp()
-library(shiny)
-runApp()
-slum.results.sp[["womenHygiene"]]
-names(slum.results.sp)
-slum.results.sp[["jmpWomenHygiene"]]
-colorQuantile(slum.results.sp[["jmpWomenHygiene"]], domain = c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5)
-colorQuantile("YlGnBu", domain = c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5)
-xxx <- colorQuantile("YlGnBu", domain = c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5)
-xxx(slum.results.sp[["jmpWomenHygiene"]])
-runApp()
-library(shiny)
-runApp()
-library(shiny)
-runApp()
-library(shiny)
-runApp()
-library(shiny)
-runApp()
-colorQuantile("YlGnBu", domain = slum.results.sp[["jmpWomanHygiene"]], n = 5)
-xx <- colorQuantile("YlGnBu", domain = slum.results.sp[["jmpWomanHygiene"]], n = 5)
-xx(slum.results.sp[[jmpWomanHygiene]])
-xx(slum.results.sp[["jmpWomanHygiene"]])
-slum.results.sp[["jmpWomanHygiene"]]
-names(slum.results.sp)
-slum.results.sp[["jmpWomenHygiene"]]
-xx <- colorQuantile("YlGnBu", domain = slum.results.sp[["jmpWomenHygiene"]], n = 5)
-xx(slum.results.sp[["jmpWomenHygiene"]])
-?cut
-cut(slum.results.sp[["jmpWomenHygiene"]]))
-cut(slum.results.sp[["jmpWomenHygiene"]])
-cut(slum.results.sp[["jmpWomenHygiene"]], n = 3)
-?cut
-cut(slum.results.sp[["jmpWomenHygiene"]], breaks = 3)
-cut(slum.results.sp[["jmpWomenHygiene"]], breaks = 5)
-?colorQuantile
-library(classIntervals)
-library(classInt)
-colorQuantile("YlGnBu", domain = slum.results.sp[["jmpWomenHygiene"]], n = 5)
-xx <- colorQuantile("YlGnBu", domain = slum.results.sp[["jmpWomenHygiene"]], n = 5)
-xx(slum.results.sp[["jmpWomenHygiene"]])
-xx
-?getBins
-getBins
-classIntervals(slum.results.sp[[jmpWomenHygiene]], n = 5, style = "quantile")
-classIntervals(slum.results.sp[["jmpWomenHygiene"]], n = 5, style = "quantile")
-?classIntervals
-classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile")
-RColorBrewer
-??RColorBrewer
-library("RColorBrewer")
-brewer.pal(n = 5, YlGnBu)
-brewer.pal(n = 5, name = "YlGnBu")
-library(classInt)
-?colorQuantile
-colorQuantile
-?classIntervals
-classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile")
-?classIntervals
-classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile", cutlabels = FALSE)
-classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile")
-classIntervals2shingles(classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile"))
-classIntervals2shingle(classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile"))
-classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile")
-xxx <- classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile")
-str(xxx)
-xxx$var
-xxx$brks
-xxx <- classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile", unique = TRUE)
-xxx$brks
-xxx <- classIntervals(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), n = 5, style = "quantile")
-xxx
-print(xxx, unique = TRUE)
-xxx$brks
-print(xxx, unique = TRUE, cutlabels = FALSE)
-xxx$brks
-cut(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), breaks = xxx$brks)
-?cut
-cut(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), breaks = unique(xxx$brks))
-xx <- colorQuantile("YlGnBu", domain = slum.results.sp[["jmpWomenHygiene"]], n = 5)
-xx
-str(xx)
-xx(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]))
-xx(unique(c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]])))
-colorQuantile
-quantileColour <- function (palette, #
-                            domain, #
-                            n = 4, #
-                            probs = seq(0, 1, length.out = n + 1), #
-                            na.color = "#808080", #
-                            alpha = FALSE, #
-                            reverse = FALSE) #
+?nchar
+messsageBox <- tkmessageBox(title = "Load data",#
+    	                    message = "Select survey data to process", #
+	                        icon = "info", #
+	                        type = "ok")#
+#
+repeat#
   {#
-  if (!is.null(domain)) #
+  filename <- try(tclvalue(tkgetOpenFile()))#
+  if(class(filename) == "try-error") #
     {#
-    bins = quantile(domain, probs, na.rm = TRUE, names = FALSE)#
-    return(withColorAttr("quantile", #
-                         list(probs = probs, #
-                         na.color = na.color), #
-           colorBin(palette, domain = NULL, #
-                    bins = bins, na.color = na.color, alpha = alpha, #
-                    reverse = reverse)))#
+    tkmessageBox(message = "No file was selected!")#
+    } #
+#
+  if(exists("surveyDataX") && class(surveyDataX) == "try-error")#
+    {#
+    tkmessageBox(message = paste("Problem reading file '", basename(filename), "'.", sep = ",")#
+#
+  if(class(filename) != "try-error") break#
+  }#
+#
+tkmessageBox(message = paste("The file selected was", basename(filename)))
+filename <- try(tclvalue(tkgetOpenFile()), silent = TRUE)
+class(filename)
+filename
+?tkgetOpenFile
+tkgetOpenFile()
+tclvalue(tkgetOpenFile())
+try(tclvalue(tkgetOpenFile()))
+tclvalue(tkgetOpenFile())
+nchar(filename)
+!nchar(filename)
+tclvalue(tkgetOpenFile())
+!nchar(filename)
+tclvalue(tkgetOpenFile())
+!nchar(filename)
+tclvalue(tkgetOpenFile())
+filename <- tclvalue(tkgetOpenFile())
+!nchar(filename)
+filename
+filename <- tclvalue(tkgetOpenFile())
+!nchar(filename)
+nchar(filename)
+?if
+?read.csv
+messsageBox <- tkmessageBox(title = "Load data",#
+    	                    message = "Select survey data to process", #
+	                        icon = "info", #
+	                        type = "ok")#
+#
+repeat#
+  {#
+  filename <- tclvalue(tkgetOpenFile())#
+  if(!nchar(filename)) #
+    {#
+    tkmessageBox(message = "No file was selected!")#
+    } #
+  surveyDataX <- try(read.csv(file = filename, header = TRUE, sep = ","), silent = TRUE)#
+  if(exists("surveyDataX") && class(surveyDataX) == "try-error")#
+    {#
+    tkmessageBox(message = paste("Problem reading file '", basename(filename), "'.", sep = ","))#
     }#
-    colorFunc = colorFactor(palette, #
-                            domain = 1:(length(probs) - 1), #
-                            na.color = na.color, #
-                            alpha = alpha, #
-                            reverse = reverse)#
-    withColorAttr("quantile", list(probs = probs, na.color = na.color), #
-        function(x) {#
-            binsToUse = unique(quantile(x, probs, na.rm = TRUE, names = FALSE))#
-            ints = cut(x, binsToUse, labels = FALSE, include.lowest = TRUE, #
-                right = FALSE)#
-            if (any(is.na(x) != is.na(ints))) #
-                warning("Some values were outside the color scale and will be treated as NA")#
-            colorFunc(ints)#
-        })#
+  if(exists("surveyDataX") && class(surveyDataX) != "try-error") break#
   }
-xx <- quantileColour("YlGnBu", domain = slum.results.sp[["jmpWomenHygiene"]], n = 5)
-library(leaflet)
-xx <- quantileColour("YlGnBu", domain = slum.results.sp[["jmpWomenHygiene"]], n = 5)
-?withColorAttr
-??withColorAttr
+filename
+class(filename)
+read.csv(file = filename)
+messsageBox <- tkmessageBox(title = "Load data",#
+    	                    message = "Select survey data to process", #
+	                        icon = "info", #
+	                        type = "ok")#
+#
+repeat#
+  {#
+  repeat#
+    {#
+    filename <- tclvalue(tkgetOpenFile())#
+    if(!nchar(filename)) #
+      {#
+      tkmessageBox(message = "No file was selected!")#
+      }#
+    if(nchar(filename) > 0) break#
+    } #
+  surveyDataX <- try(read.csv(file = filename, header = TRUE, sep = ","), silent = TRUE)#
+  if(exists("surveyDataX") && class(surveyDataX) == "try-error")#
+    {#
+    tkmessageBox(message = paste("Problem reading file '", basename(filename), "'.", sep = ","))#
+    }#
+  if(exists("surveyDataX") && class(surveyDataX) != "try-error") break#
+  }
+head(surveyData)
+head(surveyDataX)
+repeat#
+  {#
+  repeat#
+    {#
+    filename <- tclvalue(tkgetOpenFile())#
+    if(!nchar(filename)) #
+      {#
+      tkmessageBox(message = "No file was selected!")#
+      }#
+    if(nchar(filename) > 0) break#
+    } #
+  surveyDataX <- try(read.csv(file = filename, header = TRUE, sep = ","), silent = TRUE)#
+  if(exists("surveyDataX") && class(surveyDataX) == "try-error")#
+    {#
+    tkmessageBox(message = paste("Problem reading file '", basename(filename), "'.", sep = ","))#
+    }#
+  if(exists("surveyDataX") && class(surveyDataX) != "try-error") break#
+  }
+head(surveyDataX)
+messsageBox <- tkmessageBox(title = "Load data",#
+    	                    message = "Select survey data to process", #
+	                        icon = "info", #
+	                        type = "ok")#
+#
+repeat#
+  {#
+  repeat#
+    {#
+    filename <- tclvalue(tkgetOpenFile())#
+    if(!nchar(filename)) #
+      {#
+      tkmessageBox(message = "No file was selected!")#
+      }#
+    if(nchar(filename) > 0) break#
+    } #
+  surveyDataX <- try(read.csv(file = filename, header = TRUE, sep = ","), silent = TRUE)#
+  if(exists("surveyDataX") && class(surveyDataX) == "try-error")#
+    {#
+    tkmessageBox(message = paste("Problem reading file '", basename(filename), "'.", sep = ","))#
+    }#
+  if(exists("surveyDataX") && class(surveyDataX) != "try-error") break#
+  }#
+#
+tkmessageBox(message = paste("The file selected was", basename(filename)))
+surveyDataX[1,]
+read.csv(filename)
+tkmessageBox(message = "Do you want to save before quitting?",#
+    icon = "question", type = "yesnocancel", default = "yes")
+xx <- tkmessageBox(message = "Do you want to save before quitting?",#
+    icon = "question", type = "yesnocancel", default = "yes")
+xx
+xx[1]
+class(xx)
+tclValue(xx)
+tclvalue(xx)
+xx <- tkmessageBox(message = "Do you want to save before quitting?",#
+    icon = "question", type = "yesnocancel", default = "yes")
+tclvalue(xx)
+modalDialog <- function(parent, #
+                        title, #
+                        question, #
+                        entryInit, #
+                        entryWidth = 20,#
+                        returnValOnCancel = "ID_CANCEL")#
+  {#
+  dlg <- tktoplevel()#
+  tkwm.deiconify(dlg)#
+  tkgrab.set(dlg)#
+  tkfocus(dlg)#
+  tkwm.title(dlg, title)#
+  textEntryVarTcl <- tclVar(paste(entryInit))#
+  textEntryWidget <- tk2entry(dlg, width = paste(entryWidth), textvariable = textEntryVarTcl)#
+  tkgrid(tklabel(dlg, text = question), textEntryWidget, padx = 10, pady = 15)#
+  returnVal <- returnValOnCancel#
+  onOK <- function() #
+    {#
+    returnVal <<- tclvalue(textEntryVarTcl)#
+    tkgrab.release(dlg)#
+    tkdestroy(dlg)#
+    tkfocus(parent)#
+    }#
+  onCancel <- function()#
+    {#
+    returnVal <<- returnValOnCancel#
+    tkgrab.release(dlg)#
+    tkdestroy(dlg)#
+    tkfocus(parent)#
+    }#
+  butOK <- tk2button(dlg, text = "OK", width = -6, command = onOK)#
+  butCancel <- tk2button(dlg, text = "Cancel", width = -6, command = onCancel)#
+  tkgrid(butCancel, butOK, padx = 10, pady = c(0, 15))#
+  tkfocus(dlg)#
+  tkbind(dlg, "<Destroy>", function() {tkgrab.release(dlg); tkfocus(parent)})#
+  tkbind(textEntryWidget, "<Return>", onOK)#
+  tkwait.window(dlg)#
+  returnVal#
+  }#
+##
+# Create a "main" window with a button which activates our dialog#
+##
+win1 <- tktoplevel()#
+#
+tktitle(win1) <- "Main window"#
+#
+win1$env$launchDialog <- function() #
+  {#
+  returnVal <- modalDialog(win1, "First Name Entry", "Enter Your First Name:", "")#
+  if (returnVal == "ID_CANCEL") return()#
+  tkmessageBox(title = "Greeting", message = paste0("Hello, ", returnVal, "."))#
+  }#
+win1$env$butDlg <- tk2button(win1, text = "Launch Dialog", command = win1$env$launchDialog)#
+tkpack(win1$env$butDlg, padx = 60, pady = 50)
+library(tcltk2)
+modalDialog <- function(parent, #
+                        title, #
+                        question, #
+                        entryInit, #
+                        entryWidth = 20,#
+                        returnValOnCancel = "ID_CANCEL")#
+  {#
+  dlg <- tktoplevel()#
+  tkwm.deiconify(dlg)#
+  tkgrab.set(dlg)#
+  tkfocus(dlg)#
+  tkwm.title(dlg, title)#
+  textEntryVarTcl <- tclVar(paste(entryInit))#
+  textEntryWidget <- tk2entry(dlg, width = paste(entryWidth), textvariable = textEntryVarTcl)#
+  tkgrid(tklabel(dlg, text = question), textEntryWidget, padx = 10, pady = 15)#
+  returnVal <- returnValOnCancel#
+  onOK <- function() #
+    {#
+    returnVal <<- tclvalue(textEntryVarTcl)#
+    tkgrab.release(dlg)#
+    tkdestroy(dlg)#
+    tkfocus(parent)#
+    }#
+  onCancel <- function()#
+    {#
+    returnVal <<- returnValOnCancel#
+    tkgrab.release(dlg)#
+    tkdestroy(dlg)#
+    tkfocus(parent)#
+    }#
+  butOK <- tk2button(dlg, text = "OK", width = -6, command = onOK)#
+  butCancel <- tk2button(dlg, text = "Cancel", width = -6, command = onCancel)#
+  tkgrid(butCancel, butOK, padx = 10, pady = c(0, 15))#
+  tkfocus(dlg)#
+  tkbind(dlg, "<Destroy>", function() {tkgrab.release(dlg); tkfocus(parent)})#
+  tkbind(textEntryWidget, "<Return>", onOK)#
+  tkwait.window(dlg)#
+  returnVal#
+  }#
+##
+# Create a "main" window with a button which activates our dialog#
+##
+win1 <- tktoplevel()#
+#
+tktitle(win1) <- "Main window"#
+#
+win1$env$launchDialog <- function() #
+  {#
+  returnVal <- modalDialog(win1, "First Name Entry", "Enter Your First Name:", "")#
+  if (returnVal == "ID_CANCEL") return()#
+  tkmessageBox(title = "Greeting", message = paste0("Hello, ", returnVal, "."))#
+  }#
+win1$env$butDlg <- tk2button(win1, text = "Launch Dialog", command = win1$env$launchDialog)#
+tkpack(win1$env$butDlg, padx = 60, pady = 50)
+xx <- tkdialog()
+xx <- tkdialog(title = "test")
+lqas.params <- function()#
+  {#
+  ##
+  ##
+  ##
+  upper.value <- tclVar("0.8")#
+  lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+     }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     q(save = "no")#
+                                     tkdestroy(tt)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 3, pady = 10)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 10, padx = 10)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 10, padx = 10)#
+  tkgrid(submit.button, reset.button, quit.button, pady = 10, padx = 10)#
+  }#
+lqas.params
+lqas.params()
+library(tcltk2)
+lqas.params <- function()#
+  {#
+  ##
+  ##
+  ##
+  upper.value <- tclVar("0.8")#
+  lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+     }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     q(save = "no")#
+                                     tkdestroy(tt)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 3, pady = 10)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 10, padx = 10)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 10, padx = 10)#
+  tkgrid(submit.button, reset.button, quit.button, pady = 10, padx = 10)#
+  }#
+lqas.params()
+library(tcltk2)
+lqas.params <- function()#
+  {#
+  ##
+  ##
+  ##
+  upper.value <- tclVar("0.8")#
+  lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+     }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(tt)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 3, pady = 10)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 10, padx = 10)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 10, padx = 10)#
+  tkgrid(submit.button, reset.button, quit.button, pady = 10, padx = 10)#
+  }#
+lqas.params()
+lqas.params <- function()#
+  {#
+  ##
+  ##
+  ##
+  upper.value <- tclVar("0.8")#
+  lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+     }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(choice)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 3, pady = 10)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 10, padx = 10)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 10, padx = 10)#
+  tkgrid(submit.button, reset.button, quit.button, pady = 10, padx = 10)#
+  }#
+lqas.params()
+lqas.params <- function()#
+  {#
+  ##
+  ##
+  ##
+  upper.value <- tclVar("0.8")#
+  lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+     }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(choice)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 3, pady = 5)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 10, padx = 5)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 10, padx = 5)#
+  tkgrid(submit.button, reset.button, quit.button, pady = 10, padx = 10)#
+  }#
+lqas.params()
+lqas.params <- function()#
+  {#
+  ##
+  ##
+  ##
+  upper.value <- tclVar("0.8")#
+  lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+     }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(choice)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 3, pady = 5)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 10, padx = 5)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 10, padx = 5)#
+  tkgrid(submit.button, reset.button, quit.button, pady = 10, padx = 5)#
+  }#
+lqas.params()
+ls
+ls()
+lqas.params <- function()#
+  {#
+  ##
+  ##
+  ##
+  upper.value <- tclVar("0.8")#
+  lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+     }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(choice)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 3, pady = 5)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 10, padx = 5)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 10, padx = 5)#
+  tkgrid(submit.button, reset.button, quit.button, pady = 10, padx = 5)#
+  ##
+  ##
+  ##
+  return(upper.value, lower.value)#
+  }#
+lqas.params()
+lqas.params <- function()#
+  {#
+  ##
+  ##
+  ##
+  upper.value <- tclVar("0.8")#
+  lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+     }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(choice)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 3, pady = 5)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 10, padx = 5)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 10, padx = 5)#
+  tkgrid(submit.button, reset.button, quit.button, pady = 10, padx = 5)#
+  ##
+  ##
+  ##
+  return(upper.value); return(lower.value)#
+  }#
+lqas.params()
+ls()
+lqas.params <- function()#
+  {#
+  ##
+  ##
+  ##
+  upper.value <- tclVar("0.8")#
+  lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+     }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    ##
+    ##
+    ##
+    return(upper.value); return(lower.value)#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(choice)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 3, pady = 5)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 10, padx = 5)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 10, padx = 5)#
+  tkgrid(submit.button, reset.button, quit.button, pady = 10, padx = 5)#
+  }#
+lqas.params()
+ls()
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    ##
+    ##
+    ##
+    return(upper.value); return(lower.value)#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(choice)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 3, pady = 5)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 10, padx = 5)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 10, padx = 5)#
+  tkgrid(submit.button, reset.button, quit.button, pady = 10, padx = 5)
+ls()
+upper.value
+x
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    ##
+    ##
+    ##
+    return(x); return(y)#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(choice)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 3, pady = 5)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 10, padx = 5)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 10, padx = 5)#
+  tkgrid(submit.button, reset.button, quit.button, pady = 10, padx = 5)
+ls()
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(choice)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 10, padx = 5)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 10, padx = 5)#
+  tkgrid(submit.button, reset.button, quit.button, pady = 10, padx = 5)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(choice)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 1)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 10, padx = 1)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 10, padx = 1)#
+  tkgrid(submit.button, reset.button, quit.button, pady = 10, padx = 1)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(choice)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+  tkgrid(submit.button, reset.button, quit.button, pady = 5, padx = 5)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%", sep = ""),#
+                 icon = "info",#
+                 type = "ok")#
+    ##
+    ##
+    ##
+    tkdestroy(choice)#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(choice)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+  tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+?tkmessageBox
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to continue?", sep = ""),#
+                 icon = "info",#
+                 type = "yesno")#
+    ##
+    ##
+    ##
+    tkdestroy(choice)#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(choice)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+  tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+  ##
+  ##
+  ##
+  choice <- tktoplevel()#
+  ##
+  ##
+  ##
+  tkwm.title(choice, "LQAS standards")#
+  ##
+  ##
+  ##
+  upper.entry <- tkentry(choice, textvariable = upper.value)#
+  lower.entry <- tkentry(choice, textvariable = lower.value)#
+  ##
+  ##
+  ##
+  reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+  ##
+  ##
+  ##
+  reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+  ##
+  ##
+  ##
+  submit <- function() #
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    proceed <- tkmessageBox(title = "LQAS standards",#
+                            message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                            icon = "question",#
+                            type = "yesno")#
+    ##
+    ##
+    ##
+    tkdestroy(choice)#
+    }#
+  ##
+  ##
+  ##
+  submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+  ##
+  ##
+  #      #
+  quit.button <- tkbutton(choice, #
+                          text = "Close Session", #
+                          command = function() #
+                                     {#
+                                     tkdestroy(choice)#
+                                     })#
+  ##
+  ##
+  # #
+  tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+  tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+  tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+  tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+upper.value
+tclvalue(upper.value)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+##
+##
+##
+choice <- tktoplevel()#
+##
+##
+##
+tkwm.title(choice, "LQAS standards")#
+##
+##
+##
+upper.entry <- tkentry(choice, textvariable = upper.value)#
+lower.entry <- tkentry(choice, textvariable = lower.value)#
+##
+##
+##
+reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+##
+##
+##
+reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+##
+##
+##
+submit <- function() #
+  {#
+  ##
+  ##
+  ##
+  repeat#
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    proceed <- tkmessageBox(title = "LQAS standards",#
+                            message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                            icon = "question",#
+                            type = "yesno")#
+    ##
+    ##
+    ##
+    if(tclvalue(proceed) == "yes")#
+      {#
+      ##
+      ##
+      ##
+      tkdestroy(choice)#
+      ##
+      ##
+      ##
+      break#
+      }#
+    }#
+  }#
+##
+##
+##
+submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+##
+##
+# #
+tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+##
+##
+##
+choice <- tktoplevel()#
+##
+##
+##
+tkwm.title(choice, "LQAS standards")#
+##
+##
+##
+upper.entry <- tkentry(choice, textvariable = upper.value)#
+lower.entry <- tkentry(choice, textvariable = lower.value)#
+##
+##
+##
+reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+##
+##
+##
+reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+##
+##
+##
+submit <- function() #
+  {#
+  ##
+  ##
+  ##
+  repeat#
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    proceed <- tkmessageBox(title = "LQAS standards",#
+                            message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                            icon = "question",#
+                            type = "yesno")#
+    ##
+    ##
+    ##
+    if(tclvalue(proceed) == "yes")#
+      {#
+      ##
+      ##
+      ##
+      tkdestroy(choice)#
+      ##
+      ##
+      ##
+      break#
+      }#
+    ##
+    ##
+    ##
+    if(tclvalue(proceed) == "no")#
+      {#
+      ##
+      ##
+      ##
+      reset#
+      ##
+      ##
+      ##
+      tkdestroy(proceed)#
+      }#
+    }#
+  }#
+##
+##
+##
+submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+##
+##
+# #
+tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+proceed
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+##
+##
+##
+choice <- tktoplevel()#
+##
+##
+##
+tkwm.title(choice, "LQAS standards")#
+##
+##
+##
+upper.entry <- tkentry(choice, textvariable = upper.value)#
+lower.entry <- tkentry(choice, textvariable = lower.value)#
+##
+##
+##
+reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+##
+##
+##
+reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+##
+##
+##
+submit <- function() #
+  {#
+  ##
+  ##
+  ##
+  repeat#
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    proceed <- tkmessageBox(title = "LQAS standards",#
+                            message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                            icon = "question",#
+                            type = "yesno")#
+    ##
+    ##
+    ##
+    if(tclvalue(proceed) == "yes")#
+      {#
+      ##
+      ##
+      ##
+      tkdestroy(choice)#
+      ##
+      ##
+      ##
+      break#
+      }#
+    ##
+    ##
+    ##
+    if(tclvalue(proceed) == "no")#
+      {#
+      ##
+      ##
+      ##
+      tkdestroy(proceed)#
+      }#
+    }#
+  }#
+##
+##
+##
+submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+##
+##
+# #
+tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+##
+##
+##
+choice <- tktoplevel()#
+##
+##
+##
+tkwm.title(choice, "LQAS standards")#
+##
+##
+##
+upper.entry <- tkentry(choice, textvariable = upper.value)#
+lower.entry <- tkentry(choice, textvariable = lower.value)#
+##
+##
+##
+reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+##
+##
+##
+reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+##
+##
+##
+submit <- function() #
+  {#
+  ##
+  ##
+  ##
+  repeat#
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    proceed <- tkmessageBox(title = "LQAS standards",#
+                            message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                            icon = "question",#
+                            type = "yesno")#
+    ##
+    ##
+    ##
+    if(tclvalue(proceed) == "yes")#
+      {#
+      ##
+      ##
+      ##
+      tkdestroy(choice)#
+      ##
+      ##
+      ##
+      break#
+      } #
+    else #
+      {#
+      ##
+      ##
+      ##
+      tkdestroy(proceed)#
+      ##
+      ##
+      ##
+      tkmessageBox(title = "LQAS standards",#
+                   message = "Select upper and lower standards",#
+                   icon = "info",#
+                   type = "ok")#
+      }#
+    }#
+  }#
+##
+##
+##
+submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+##
+##
+# #
+tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+##
+##
+##
+choice <- tktoplevel()#
+##
+##
+##
+tkwm.title(choice, "LQAS standards")#
+##
+##
+##
+upper.entry <- tkentry(choice, textvariable = upper.value)#
+lower.entry <- tkentry(choice, textvariable = lower.value)#
+##
+##
+##
+reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+##
+##
+##
+reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+##
+##
+##
+submit <- function() #
+  {#
+  ##
+  ##
+  ##
+  repeat#
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    proceed <- tkmessageBox(title = "LQAS standards",#
+                            message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                            icon = "question",#
+                            type = "yesno")#
+    ##
+    ##
+    ##
+    if(tclvalue(proceed) == "yes")#
+      {#
+      ##
+      ##
+      ##
+      tkdestroy(choice)#
+      ##
+      ##
+      ##
+      break#
+      } #
+    ##
+    ##
+    ##
+    tkdestroy(proceed)#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = "Select upper and lower standards",#
+                 icon = "info",#
+                 type = "ok")#
+    }#
+  }#
+#
+##
+##
+##
+submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+##
+##
+# #
+tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+tkmessageBox(title = "LQAS standards",#
+                            message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                            icon = "question",#
+                            type = "yesno")
+##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    proceed <- tkmessageBox(title = "LQAS standards",#
+                            message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                            icon = "question",#
+                            type = "yesno")
+proceed
+tclvalue(proceed)
+##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    proceed <- tkmessageBox(title = "LQAS standards",#
+                            message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                            icon = "question",#
+                            type = "yesno")
+##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    proceed <- tkmessageBox(title = "LQAS standards",#
+                            message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                            icon = "question",#
+                            type = "yesno")#
+    ##
+    ##
+    ##
+    if(tclvalue(proceed) == "no")#
+      {#
+      ##
+      ##
+      ##
+      tkdestroy(proceed)#
+      ##
+      ##
+      ##
+      tkmessageBox(title = "LQAS standards",#
+                   message = "Select upper and lower standards",#
+                   icon = "info",#
+                   type = "ok")
+}
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+##
+##
+##
+choice <- tktoplevel()#
+##
+##
+##
+tkwm.title(choice, "LQAS standards")#
+##
+##
+##
+upper.entry <- tkentry(choice, textvariable = upper.value)#
+lower.entry <- tkentry(choice, textvariable = lower.value)#
+##
+##
+##
+reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+##
+##
+##
+reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+##
+##
+##
+submit <- function() #
+  {#
+  ##
+  ##
+  ##
+  repeat#
+    {#
+    ##
+    ##
+    ##
+    x <- as.numeric(tclvalue(upper.value))#
+    y <- as.numeric(tclvalue(lower.value))#
+    ##
+    ##
+    ##
+    proceed <- tkmessageBox(title = "LQAS standards",#
+                            message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                            icon = "question",#
+                            type = "yesno")#
+    ##
+    ##
+    ##
+    if(tclvalue(proceed) == "no")#
+      {#
+      ##
+      ##
+      ##
+      tkdestroy(proceed)#
+      ##
+      ##
+      ##
+      tkmessageBox(title = "LQAS standards",#
+                   message = "Select upper and lower standards",#
+                   icon = "info",#
+                   type = "ok")#
+      } #
+    }#
+  }#
+#
+##
+##
+##
+submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+##
+##
+# #
+tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+##
+##
+##
+choice <- tktoplevel()#
+##
+##
+##
+tkwm.title(choice, "LQAS standards")#
+##
+##
+##
+upper.entry <- tkentry(choice, textvariable = upper.value)#
+lower.entry <- tkentry(choice, textvariable = lower.value)#
+##
+##
+##
+reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+##
+##
+##
+reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+##
+##
+##
+submit <- function() #
+  {#
+  ##
+  ##
+  ##
+  x <- as.numeric(tclvalue(upper.value))#
+  y <- as.numeric(tclvalue(lower.value))#
+  ##
+  ##
+  ##
+  proceed <- tkmessageBox(title = "LQAS standards",#
+                          message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                          icon = "question",#
+                          type = "yesno")#
+  ##
+  ##
+  ##
+  if(tclvalue(proceed) == "no")#
+    {#
+    ##
+    ##
+    ##
+    tkdestroy(proceed)#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = "No standards selected. Select upper and lower standards",#
+                 icon = "info",#
+                 type = "ok")#
+    ##
+    ##
+    ##
+    reset#
+    } #
+  }#
+##
+##
+##
+submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+##
+##
+# #
+tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+##
+##
+##
+choice <- tktoplevel()#
+##
+##
+##
+tkwm.title(choice, "LQAS standards")#
+##
+##
+##
+upper.entry <- tkentry(choice, textvariable = upper.value)#
+lower.entry <- tkentry(choice, textvariable = lower.value)#
+##
+##
+##
+reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+##
+##
+##
+reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+##
+##
+##
+submit <- function() #
+  {#
+  ##
+  ##
+  ##
+  x <- as.numeric(tclvalue(upper.value))#
+  y <- as.numeric(tclvalue(lower.value))#
+  ##
+  ##
+  ##
+  proceed <- tkmessageBox(title = "LQAS standards",#
+                          message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                          icon = "question",#
+                          type = "yesno")#
+  ##
+  ##
+  ##
+  if(tclvalue(proceed) == "no")#
+    {#
+    ##
+    ##
+    ##
+    tkdestroy(proceed)#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = "No standards selected. Select upper and lower standards",#
+                 icon = "info",#
+                 type = "ok")#
+     } #
+  }#
+##
+##
+##
+submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+##
+##
+# #
+tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+##
+##
+##
+choice <- tktoplevel()#
+##
+##
+##
+tkwm.title(choice, "LQAS standards")#
+##
+##
+##
+upper.entry <- tkentry(choice, textvariable = upper.value)#
+lower.entry <- tkentry(choice, textvariable = lower.value)#
+##
+##
+##
+reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+##
+##
+##
+reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+##
+##
+##
+submit <- function() #
+  {#
+  ##
+  ##
+  ##
+  x <- as.numeric(tclvalue(upper.value))#
+  y <- as.numeric(tclvalue(lower.value))#
+  ##
+  ##
+  ##
+  proceed <- tkmessageBox(title = "LQAS standards",#
+                          message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                          icon = "question",#
+                          type = "yesno")#
+ }#
+##
+##
+##
+submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+##
+##
+# #
+tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+##
+##
+##
+choice <- tktoplevel()#
+##
+##
+##
+tkwm.title(choice, "LQAS standards")#
+##
+##
+##
+upper.entry <- tkentry(choice, textvariable = upper.value)#
+lower.entry <- tkentry(choice, textvariable = lower.value)#
+##
+##
+##
+reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+##
+##
+##
+reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+##
+##
+##
+submit <- function() #
+  {#
+  ##
+  ##
+  ##
+  x <- as.numeric(tclvalue(upper.value))#
+  y <- as.numeric(tclvalue(lower.value))#
+  ##
+  ##
+  ##
+  proceed <- tkmessageBox(title = "LQAS standards",#
+                          message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                          icon = "question",#
+                          type = "yesno")#
+  ##
+  ##
+  ##
+  tkmessageBox(title = "LQAS standards",#
+               message = "No standards selected. Select upper and lower standards",#
+               icon = "warning",#
+               type = "ok")#
+  }#
+##
+##
+##
+submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+##
+##
+# #
+tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+##
+##
+##
+choice <- tktoplevel()#
+##
+##
+##
+tkwm.title(choice, "LQAS standards")#
+##
+##
+##
+upper.entry <- tkentry(choice, textvariable = upper.value)#
+lower.entry <- tkentry(choice, textvariable = lower.value)#
+##
+##
+##
+reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+##
+##
+##
+reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+##
+##
+##
+submit <- function() #
+  {#
+  ##
+  ##
+  ##
+  x <- as.numeric(tclvalue(upper.value))#
+  y <- as.numeric(tclvalue(lower.value))#
+  ##
+  ##
+  ##
+  proceed <- tkmessageBox(title = "LQAS standards",#
+                          message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                          icon = "question",#
+                          type = "yesno")#
+  if(tclvalue(proceed) == "no")#
+    {#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = "No standards selected. Select upper and lower standards",#
+                 icon = "warning",#
+                 type = "ok")#
+    }#
+  }#
+##
+##
+##
+submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+##
+##
+# #
+tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+##
+##
+##
+choice <- tktoplevel()#
+##
+##
+##
+tkwm.title(choice, "LQAS standards")#
+##
+##
+##
+upper.entry <- tkentry(choice, textvariable = upper.value)#
+lower.entry <- tkentry(choice, textvariable = lower.value)#
+##
+##
+##
+reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+##
+##
+##
+reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+##
+##
+##
+submit <- function() #
+  {#
+  ##
+  ##
+  ##
+  x <- as.numeric(tclvalue(upper.value))#
+  y <- as.numeric(tclvalue(lower.value))#
+  ##
+  ##
+  ##
+  proceed <- tkmessageBox(title = "LQAS standards",#
+                          message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                          icon = "question",#
+                          type = "yesno")#
+  ##
+  ##
+  ##
+  if(tclvalue(proceed) == "no")#
+    {#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = "No standards selected. Select upper and lower standards",#
+                 icon = "warning",#
+                 type = "ok")#
+    }#
+  ##
+  ##
+  ##
+  tkdestroy(choice)#
+  }#
+##
+##
+##
+submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+##
+##
+# #
+tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+##
+##
+##
+upper.value <- tclVar("0.8")#
+lower.value <- tclVar("0.5")#
+##
+##
+##
+choice <- tktoplevel()#
+##
+##
+##
+tkwm.title(choice, "LQAS standards")#
+##
+##
+##
+upper.entry <- tkentry(choice, textvariable = upper.value)#
+lower.entry <- tkentry(choice, textvariable = lower.value)#
+##
+##
+##
+reset <- function()#
+    {#
+    tclvalue(upper.value) <- "0.8"#
+    tclvalue(lower.value) <- "0.5"#
+    }#
+##
+##
+##
+reset.button <- tkbutton(choice, text = "Reset", command = reset)#
+##
+##
+##
+submit <- function() #
+  {#
+  ##
+  ##
+  ##
+  x <- as.numeric(tclvalue(upper.value))#
+  y <- as.numeric(tclvalue(lower.value))#
+  ##
+  ##
+  ##
+  proceed <- tkmessageBox(title = "LQAS standards",#
+                          message = paste("Upper standard: ", x * 100, "%; Lower standard: ", y * 100, "%. Do you wish to use these standards?", sep = ""),#
+                          icon = "question",#
+                          type = "yesno")#
+  ##
+  ##
+  ##
+  if(tclvalue(proceed) == "no")#
+    {#
+    ##
+    ##
+    ##
+    tkmessageBox(title = "LQAS standards",#
+                 message = "No standards selected. Select upper and lower standards",#
+                 icon = "warning",#
+                 type = "ok")#
+    }#
+  if(tclvalue(proceed) == "yes")#
+    {#
+    tkdestroy(choice)#
+    }#
+  }#
+##
+##
+##
+submit.button <- tkbutton(choice, text = "Submit", command = submit)#
+##
+##
+# #
+tkgrid(tklabel(choice, text = "Select upper and lower standards"), columnspan = 2, pady = 5)#
+tkgrid(tklabel(choice, text = "Upper Standard:"), upper.entry, pady = 5, padx = 5)#
+tkgrid(tklabel(choice, text = "Lower Standard:"), lower.entry, pady = 5, padx = 5)#
+tkgrid(submit.button, reset.button, pady = 5, padx = 5)
+tk_chooseDirectory()
+tk_choose.dir
+tk_choose.dir()
+tk_choose.dir
+tk_choose.dir()
+tkgetOpenFile()
+?readOGR
+??readOGR
+xx <- tk_choose.dir()
+xx
+class(xx)
+?str_split
+??str_split
+str_split(xx, pattern = "/")
+library(stringr)
+str_split(xx, pattern = "/")
+str_split(xx, pattern = "/")[[1]]
+str_split(xx, pattern = "/")[[1]][1]
+length(str_split(xx, pattern = "/"))
+length(str_split(xx, pattern = "/")[[1]])
+yy <- str_split(xx, pattern = "/")
+yy[[1]][length(y[[1]])]
+yy[[1]]
+yy[[1]][length(y[[1]])]
+length(y[[1]])
+length(y[1])
+yy[[1]][length(yy[[1]])]
+head(xx)
+head(yy)
+head(yy[[1]])
+tail(yy[[1]])
+last(yy[[1]])
+?tail
+tail(yy)
+tail(yy, n = length(yy))
+tail(yy, n = length(yy[[1]]))
+tail(yy, n = 1)
+tail(yy[[1]], n = 1)
+basename(xx)
+?filename
+??filename
+library(tcltk2)
+xx <- tk_choose.dir()
+library(rgdal)
+dhaka <- readOGR(dsn = filename, layer = basename(filename), verbose = FALSE)
+dhaka <- readOGR(dsn = xx, layer = basename(xx), verbose = FALSE)
+plot(dhaka)
+class(xx)
+library(classInt)
+?classIntervals
+library(colorspace)
+choose_palette
+choose_palette()
+install.packages("rsconnect")
+rsconnect::setAccountInfo(name='validmeasures',#
+			  token='423E2203F2A828ECCA534ECE5183F471',#
+			  secret='<SECRET>')
+rsconnect::setAccountInfo(name='validmeasures',#
+			  token='423E2203F2A828ECCA534ECE5183F471',#
+			  secret='Rn8cZN/zHptiiFg0tR0azQe5gH/frjthSfifPOJX')
+library(googleCharts)
+install.packages("googleCharts")
+install.packages("googleVis")
+df=data.frame(country=c("US", "GB", "BR"), #
+              val1=c(10,13,14), #
+              val2=c(23,12,32))
+Line <- gvisLineChart(df)#
+plot(Line)
+library(googleVis)
+Line <- gvisLineChart(df)#
+plot(Line)
+?gvisLineChart
+?fluidPage
+?fluidpage
 library(shiny)
-runApp()
+?fluidPage
 library(shiny)
-runApp()
+rsconnect::deployApp(paste(getwd(), "Dropbox/shiny", sep = ""))
+rsconnect::deployApp(paste(getwd(), "/Dropbox/shiny", sep = ""))
 library(shiny)
-packages
-packages <- c("shiny", "rgeos", "rgdal")
-packages <- c("shiny", "rgeos", "rgdal", "maps", "maptools", "ggplot2", "ggmap", "gstat", "survival", "stringr", "leaflet", "shinycssloaders", "shinythemes", "geojsonio")
-packages <- c("shiny", "rgeos", "rgdal", "maps", "maptools", "ggplot2", "ggmap", "gstat", "survival", "stringr", "leaflet", "shinycssloaders", "shinythemes", "geojsonio", "raster", "classInt", "RColorBrewer")
-install.packages(packages)
-library(shiny)
-runApp()
-?colorBin
-colorBin
+?deployApp
+?rsconnect
+library(rsconnect)
+?rsconnect
+connectUser(server = 178.62.16.143)
+connectUser(server = http://178.62.16.143)
+connectUser(server = "http://178.62.16.143")
+connectUser(server = "http://shiny.validmeasures.org")
 #################################################################################
 ##
 # Load libraries#
@@ -436,172 +2935,16 @@ wealthResultsLong$type <- factor(wealthResultsLong$type, levels = c("Slum", "Cit
 wealthResultsLong$strata <- str_split(string = wealthResultsLong$strata, #
                                       pattern = " ",#
                                       simplify = TRUE)[ , 3]#
+##
+# Clean-up#
+##
+rm(indicatorCategory, temp1, temp2, temp3)#
 #################################################################################
 #                                                                              ##
 #                ASSEMBLE COLOUR VECTORS FOR CHARTS AND MAPS                   ##
 #                                                                              ##
 #################################################################################
 #
-#################################################################################
-##
-# Qualitative colour scheme#
-##
-#################################################################################
-##
-# Two colours#
-##
-area2  <- c("#fbb4ae", "#b3cde3")#
-##
-# Three colours#
-##
-area3  <- c("#fbb4ae", "#b3cde3", "#ccebc5")#
-##
-# Five colours#
-##
-area5  <- c("#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6")#
-##
-# Seven colours#
-##
-area7  <- c("#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6",#
-	       "#ffffcc", "#e5d8bd")#
-##
-# Nine colours#
-##
-area9  <- c("#8dd3c7", "#ffffb3", "#bebada", "#fb8072", "#80b1d3",#
-	       "#fdb462", "#b3de69", "#fccde5", "#d9d9d9")#
-##
-# Ten colours#
-##
-area10 <- c("#8dd3c7", "#ffffb3", "#bebada", "#fb8072", "#80b1d3",#
-	       "#fdb462", "#b3de69", "#fccde5", "#ccebc5", "#bc80bd") #
-#
-#################################################################################
-##
-# Divergent colour scheme#
-##
-#################################################################################
-##
-# Seven colour red-yellow-blue scheme#
-##
-RdYlBl7 <- c("#d73027", "#fc8d59", "#fee090", "#ffffbf", #
-	        "#e0f3f8", "#91bfdb", "#4575b4")#
-##
-# Seven colour red-yellow-green colour scheme#
-##
-RdYlGn7 <- c("#d73027", "#fc8d59", "#fee08b", "#ffffbf", #
-      	   "#d9ef8b", "#91cf60", "#1a9850")#
-##
-# Five colour red-yellow-green colour scheme#
-#             #
-RdYlGn5 <- c("#d7191c", "#fdae61", "#ffffbf", "#a6d96a", "#1a9641")#
-##
-# Three colour red-yellow-green colour scheme#
-##
-RdYlGn3 <- c("#d73027", "#ffffbf", "#1a9850")#
-#
-#################################################################################
-##
-# Sequential colour scheme#
-##
-#################################################################################
-##
-# Seven colour multi-hue yellow-blue colour scheme #
-##
-YlBl7 <- c("#ffffcc", "#c7e9b4", "#7fcdbb", "#41b6c4",#
-	      "#1d91c0", "#225ea8", "#0c2c84")#
-##
-# Five colour multi-hue yellow-blue colour scheme#
-##
-YlBl5 <- c("#ffffcc", "#a1dab4", "#41b6c4", "#2c7fb8", "#253494")#
-##
-# Seven colour multi-hue yellow-red colour scheme#
-##
-YlRd7 <- c("#ffffb2", "#fed976", "#feb24c", "#fd8d3c", #
-	      "#fc4e2a", "#e31a1c", "#b10026")#
-##
-# Five colour multi-hue yellow-red colour scheme#
-##
-YlRd5 <- c("#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026")#
-##
-# Seven colour multi-hue yellow-brown colour scheme#
-##
-YlBn7 <- c("#ffffd4", "#fee391", "#fec44f", "#fe9929",#
-           "#ec7014", "#cc4c02", "#8c2d04")#
-##
-# Five colour multi-hue yellow-brown colour scheme#
-##
-YlBn5 <- c("#ffffd4", "#fed98e", "#fe9929", "#d95f0e", "#993404")#
-##
-# Nine colour multi-hue yellow-brown colour scheme#
-##
-YlBn9 <- c("#ffffe5", "#fff7bc", "#fee391", "#fec44f", "#fe9929",#
-            "#ec7014", "#cc4c02", "#993404", "#662506")#
-##
-# Seven colour single-hue gray colour scheme#
-##
-Gy7 <- c("#f7f7f7", "#d9d9d9", "#bdbdbd", "#969696", "#737373",#
-	     "#525252", "#252525")#
-##
-# Five colour single-hue gray colour scheme#
-##
-Gy5 <- c("#f7f7f7", "#cccccc", "#969696", "#636363", "#252525")#
-#
-#################################################################################
-##
-# Create colour ramps and other colour objects for mapping#
-##
-#################################################################################
-##
-# Create 101 colours from RdYlBl7 colour vector for population maps#
-##
-createMapPalette <- colorRampPalette(colors = RdYlBl7, space = "Lab")#
-popPalette <- createMapPalette(101)#
-##
-# Create 101 colours from RdYlGn7 colour vector for general indicators mapping#
-##
-createMapPalette <- colorRampPalette(colors = RdYlGn7, space = "Lab")#
-mapPalette <- createMapPalette(101)#
-mapFill <- addAlpha(col = mapPalette, alpha = 0.6)#
-##
-# Create 101 colours from Gy7 colour vector for poverty mapping#
-##
-createMapPalette <- colorRampPalette(colors = Gy7, space = "Lab")#
-povPalette <- createMapPalette(101)#
-povFill <- addAlpha(col = povPalette, alpha = 0.6)#
-##
-# Create 101 colours from YlRd7 colour vector for prevalence indicators mapping#
-##
-createMapPalette <- colorRampPalette(colors = YlRd7, space = "Lab")#
-prevPalette <- createMapPalette(101)#
-prevFill <- addAlpha(col = prevPalette, alpha = 0.6)#
-##
-# Create 101 colours from YlBl7 colour vector for mean indicator mapping#
-##
-createMapPalette <- colorRampPalette(colors = YlBl7, space = "Lab")#
-meanPalette <- createMapPalette(101)#
-meanFill <- addAlpha(col = meanPalette, alpha = 0.6)#
-##
-# Create 101 colours from Gy7 colour vector for monochrome colour scheme#
-##
-createMapPalette <- colorRampPalette(colors = Gy7, space = "Lab")#
-monoPalette <- createMapPalette(101)#
-monoFill <- addAlpha(col = monoPalette, alpha = 0.6)#
-##
-# Change alpha of RdYlGn5 colour vector - alpha = 0.6#
-##
-aRdYlGn5 <- addAlpha(col = RdYlGn5, alpha = 0.6)#
-##
-# Change alpha of RdYlGn3 colour vector - alpha = 0.6#
-##
-aRdYlGn3 <- addAlpha(col = RdYlGn3, alpha = 0.6)#
-##
-# Change alpha of RdYlGn5 colour vector - alpha = 0.6#
-##
-aYlBl5 <- addAlpha(col = YlBl5, alpha = 0.6)#
-##
-# Change alpha of YlRd5 colour vector - alpha = 0.6#
-##
-aYlRd5 <- addAlpha(col = YlRd5, alpha = 0.6)#
 #################################################################################
 ##
 # Create WSUP-specific and WASH-specific colour schemes#
@@ -637,38 +2980,6 @@ formalColour <- c("#a6cee3", "#1f78b4")#
 # Overall indicators colour schemes#
 ##
 overallColour <- c("#fdbf6f", "#b2df8a", "#a6cee3", "#80cdc1")#
-##
-# Seven colour water palette scheme#
-##
-water7 <- c("#eff3ff", "#c6dbef", "#9ecae1", "#6baed6", #
-            "#4292c6", "#2171b5", "#084594")#
-##
-# Create 101 colours from water7 colour vector for water indiators#
-#            #
-createMapPalette <- colorRampPalette(colors = water7, space = "Lab")#
-waterPalette <- createMapPalette(101)#
-waterFill <- addAlpha(col = waterPalette, alpha = 0.6)#
-##
-# Seven colour sanitation palette scheme#
-##
-sanitation7 <- c("#edf8e9", "#c7e9c0", "#a1d99b", "#74c476",#
-                 "#41ab5d", "#238b45", "#005a32")#
-##
-# Create 101 colours from sanitation7 colour vector for sanitation indicators#
-##
-createMapPalette <- colorRampPalette(colors = sanitation7, space = "Lab")#
-sanitationPalette <- createMapPalette(101)#
-sanitationFill <- addAlpha(col = sanitationPalette, alpha = 0.6)#
-##
-# Five colour handwashing palette scheme#
-##
-handwashing5 <- c("#f7fcf0", "#e0f3db", "#ccebc5", "#a8ddb5", "#7bccc4")#
-##
-# Create 101 colours from handwashing5 colour vector for handwashing indicators#
-##
-createMapPalette <- colorRampPalette(colors = handwashing5, space = "Lab")#
-handwashingPalette <- createMapPalette(101)#
-handwashingFill <- addAlpha(col = handwashingPalette, alpha = 0.6)#
 #################################################################################
 ##
 # Create WSUP theme for shiny#
@@ -691,7 +3002,7 @@ theme_wsup <- theme_bw() + #
 ##
 #################################################################################
 ##
-##
+# Create GPS long/lat CRS object#
 ##
 long.lat.crs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"#
 ##
@@ -701,7 +3012,7 @@ outline <- readOGR(dsn = "surveyArea3",#
                    layer = "surveyArea3",#
                    verbose = FALSE)#
 ##
-##
+# Transform outline CRS to long/lat#
 ##
 outline <- spTransform(outline, CRSobj = CRS(long.lat.crs))#
 ##
@@ -717,167 +3028,1514 @@ upazila <- readOGR(dsn = "dhaka3",#
                    layer = "dhaka3",#
                    verbose = FALSE)#
 ##
-##
+# Transform wards CRS to long/lat#
 ##
 wards <- spTransform(wards, CRSobj = CRS(long.lat.crs))#
 ##
-##
+# Merge shapfile with results data by survey area#
 #                 #
 map.results <- merge(areaResults, outline, by.x = "strata", by.y = "surveyArea")#
 ##
-##
+# Create container data.frame from slum results#
 ##
 slum.results.df <- data.frame(matrix(nrow = 9, ncol = 50))#
 ##
-##
+# Rename container slum data.frame based on steerIndicators#
 ##
 names(slum.results.df) <- steerIndicators$varList#
 ##
-##
+# Create container data.frame from city results#
 ##
 city.results.df <- data.frame(matrix(nrow = 9, ncol = 50))#
 ##
-##
+# Rename container city data.frame based on steerIndicators#
 ##
 names(city.results.df) <- steerIndicators$varList#
 ##
-##
+# Cycle through variable names#
 ##
 for(i in steerIndicators$varList)#
   {#
   ##
-  ##
+  # Subset results data.frame to current indicator results for slum#
   ##
   slum.results <- subset(x = map.results, #
                          subset = indicatorCode == i, #
                          select = slumEst)#
   ##
-  ##
+  # Subset results data.frame to current indicator results for city#
   ##
   city.results <- subset(x = map.results, #
                          subset = indicatorCode == i, #
                          select = totalEst)#
   ##
-  ##
+  # Insert slum and city indicator results to respective container data.frame#
   ##
   slum.results.df[ , i] <- slum.results#
   city.results.df[ , i] <- city.results#
   }#
 ##
-##
+# Create results data.frame for slum and city#
 #         #
-slum.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:9, sep = " "), slum.results.df)#
-city.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:9, sep = " "), city.results.df)#
+slum.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:nrow(slum.results.df), sep = " "), slum.results.df)#
+city.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:nrow(city.results.df), sep = " "), city.results.df)#
 ##
-##
+# Merge results data.frame with corresponding shapefile#
 ##
 slum.results.sp <- merge(outline, slum.results.df, by = "surveyArea")#
 city.results.sp <- merge(outline, city.results.df, by = "surveyArea")#
 ##
-##
+# Create Mapbox base layer objects for leaflet mapping#
 ##
 mapbox.satellite <- "https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
 mapbox.street <- "https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
 mapbox.dark <- "https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
-mapbox.light <- "https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
-xxx <- colorBin("YlGnBu", domain = c(slum.results.sp[["jmpWomenHygiene"]], city.results.sp[["jmpWomenHygiene"]]), bins = 5)
-xxx
-runApp()
-classIntervals(c(slum.results.sp[["accessWater"]], city.results.sp[["accessWater"]]), n = 5, style = "quantile")
-xxx <- classIntervals(c(slum.results.sp[["accessWater"]], city.results.sp[["accessWater"]]), n = 5, style = "quantile")
-xxx$brks
-cut(slum.results.sp[["accessWater"]], xxx$brks)
-yyy <- cut(slum.results.sp[["accessWater"]], xxx$brks)
-class(yy)
-class(yyy)
-brewer.pal(n = 5, "YlGnBu")
-xxx
-str(xxx)
-xxx$var
-xxx$brks
-quantile(xxx$var)
-?quantile
-quantile(xxx$var, probs = c(0, 0.20, 0.4, 0.6, 0.8, 1))
-runApp()
-slum.results.sp[["jmpHand2"]]
-cut(slum.results.sp[["jmpHand2"]], n = 5)
-cut(slum.results.sp[["jmpHand2"]], breaks = 5)
-cut(c(slum.results.sp[["jmpHand2"]], city.results.sp[["jmpHand2"]]), breaks = 5)
-cut(c(slum.results.sp[["jmpHand2"]] * 100, city.results.sp[["jmpHand2"]] * 100), breaks = 5)
-runApp()
-xx <- c(slum.results.sp[["jmpWater3"]], city.results.sp[["jmpWater3"]])
-cut(xx, breaks = 5)
-xx <- c(slum.results.sp[["jmpWater3"]] * 100, city.results.sp[["jmpWater3"]] * 100)
-cut(xx, breaks = 5)
-slum.results.sp[["jmpWater3"]]
-city.results.sp[["jmpWater3"]]
-yy <- colorQuantile("YlGnBu", domain = xx, n = 5)
-yy(xx)
-quantile(xx, probs = c(0, 0.2, 0.4, 0.6, 0.8, 1))
-classIntervals(xx, n = 5, style = "quantile")
-runApp()
-slum.results.sp[["jmpWater3"]]
-city.results.sp[["jmpWater3"]]
-xx
-quantile(xx, probs = c(0,0.2,0.4,0.6,0.8,1))
-quantile(xx, probs = c(0.2,0.4,0.6,0.8,1))
-classIntervals(xx, n = 5, style = "quantile")
-classIntervals(xx, n = 5, style = "quantile")$brks
-xx
-quantile(xx, probs = c(0.2,0.4,0.6,0.8,1))
-str(quantile(xx, probs = c(0.2,0.4,0.6,0.8,1)))
-quantile(xx, probs = c(0.2,0.4,0.6,0.8,1))[1]
-runApp()
-quantile(xx, probs = c(0.2,0.4,0.6,0.8,1))
-str(quantile(xx, probs = c(0.2,0.4,0.6,0.8,1)))
-quantile(xx, probs = c(0.2,0.4,0.6,0.8,1))[1:5]
-cut(xx, breaks = quantile(xx, probs = c(0.2,0.4,0.6,0.8,1)))
-try(cut(xx, breaks = quantile(xx, probs = c(0.2,0.4,0.6,0.8,1))))
-?try
-tryCatch(cut(xx, breaks = quantile(xx, probs = c(0.2,0.4,0.6,0.8,1)))))
-tryCatch(cut(xx, breaks = quantile(xx, probs = c(0.2,0.4,0.6,0.8,1))))
-yy <- try(cut(xx, breaks = quantile(xx, probs = c(0.2,0.4,0.6,0.8,1))))
-yy
-str(yy)
-class(yy)
-?observe
-runApp()
-quantile(slum.results.sp[["nMembers"]], probs = c(0.2,0.4,0.6,0.8,1))
-quantile(city[["nMembers"]], probs = c(0.2,0.4,0.6,0.8,1))
-quantile(city.results.sp[["nMembers"]], probs = c(0.2,0.4,0.6,0.8,1))
-quantile(c(city.results.sp[["nMembers"]], slum.results.sp[["nMembers"]], probs = c(0.2,0.4,0.6,0.8,1))
-)
-quantile(c(city.results.sp[["nMembers"]], slum.results.sp[["nMembers"]]), probs = c(0.2,0.4,0.6,0.8,1))
-runApp()
-names(slum.results.sp)
-slum.results.sp[["accessWater"]]
-quantile(slum.results.sp[["accessWater"]], probs = c(0.2,0.4,0.6,0.8,1))
-quantile(city.results.sp[["accessWater"]], probs = c(0.2,0.4,0.6,0.8,1))
-quantile(c(city.results.sp[["accessWater"]], slum.results.sp[["accessWater"]]), probs = c(0.2,0.4,0.6,0.8,1))
-pal <- colorQuantile("YlGnBu", domain = c(city.results.sp[["accessWater"]], slum.results.sp[["accessWater"]]), n = 5)
-pal
-pal(slum.results.sp[["accessWater"]])
-pal(city.results.sp[["accessWater"]])
-runApp()
-?try
-runApp()
-slum.results.sp[["water12"]]
-colorBin("YlGnBu", domain = c(slum.results.sp[["water12"]], city.results.sp[["water12"]]), bins = 5)
-bb <- colorBin("YlGnBu", domain = c(slum.results.sp[["water12"]], city.results.sp[["water12"]]), bins = 5)
-bb(c(slum.results.sp[["water12"]], city.results.sp[["water12"]]))
-bb(slum.results.sp[["water12"]])
-bb <- colorBin("YlGnBu", domain = c(0, max(c(slum.results.sp[["water12"]], city.results.sp[["water12"]]))), bins = 5)
-bb
-bb(slum.results.sp[["water12"]])
-bb(city.results.sp[["water12"]])
-runApp
-runApp()
-runApp
-runApp()
-library(shiny)
-runApp()
-library(shiny)
-runApp()
-?switch
-?helpText
+mapbox.light <- "https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+##
+# Clean-up#
+# #
+rm(map.results, slum.results.df, city.results.df, slum.results. city.results)
+##
+# Clean-up#
+# #
+rm(map.results, slum.results.df, city.results.df, slum.results, city.results)
 ls()
+areaResults
+head(areaResults)
+#################################################################################
+##
+# Load libraries#
+##
+#################################################################################
+#
+library(shiny)#
+library(ggplot2)#
+library(ggmap)#
+library(stringr)#
+library(leaflet)#
+library(shinycssloaders)#
+library(shinythemes)#
+library(geojsonio)#
+library(rgdal)#
+library(rgeos)#
+library(raster)#
+library(maps)#
+library(RColorBrewer)#
+library(classInt)#
+#################################################################################
+##
+# Function to add alpha parameter to colours#
+##
+#################################################################################
+#
+addAlpha <- function(col, alpha)#
+  {#
+  apply(X = sapply(col, col2rgb)/255, #
+        MARGIN = 2,#
+        FUN = function(x) { rgb(x[1], x[2], x[3], alpha = alpha) })#
+  }#
+#################################################################################
+##
+# Function to add alpha parameter to colours#
+##
+#################################################################################
+#
+addArea <- function(string, prefix = "Survey Area") paste(prefix, string, sep = " ")#
+addWealth <- function(string, prefix = "Wealth Quintile") paste(prefix, string, sep = " ")#
+#################################################################################
+##
+# Read indicators steering file and indicators data.frame#
+##
+#################################################################################
+##
+# Steer indicators#
+##
+steerIndicators <- read.csv("steerIndicatorsV7.csv", header = TRUE, sep = ",")#
+##
+##
+##
+indicatorsDF <- read.csv("indicatorsDataBGD.csv", header = TRUE, sep = ",")#
+##
+##
+##
+indicatorsDF$type <- ifelse(indicatorsDF$type == 1, "Slum", "Other")#
+##
+##
+##
+indicatorsDF$type <- factor(indicatorsDF$type, levels = c("Slum", "Other"))#
+#################################################################################
+##
+# Read survey results datasets and concatenate into single data.frame#
+##
+#################################################################################
+##
+# Read dataset - survey areas#
+##
+areaResults <- read.csv("surveyResultsBGD.csv", header = TRUE, sep = ",")#
+##
+# Rename surveyArea#
+##
+names(areaResults)[5]  <- "strata"#
+##
+# Read dataset - wealth quintiles#
+##
+wealthResults <- read.csv("surveyResultsWealthBGD.csv", header = TRUE, sep = ",")#
+##
+# wealthQuintile#
+##
+names(wealthResults)[5]  <- "strata"#
+#################################################################################
+##
+# Transform areaResults to long format for ggplot#
+##
+#################################################################################
+##
+# Subset survey results to columns needed for plotting#
+##
+temp1 <- subset(areaResults, select = c(country:strata, slumTotal, slumEst))#
+temp2 <- subset(areaResults, select = c(country:strata, otherTotal, otherEst))#
+temp3 <- subset(areaResults, select = c(country:strata, total, totalEst))#
+##
+# Add area type variable#
+##
+temp1$type <- rep("Slum", nrow(temp1))#
+temp2$type <- rep("Other", nrow(temp2))#
+temp3$type <- rep("Citywide", nrow(temp3))#
+##
+# Rename variables#
+##
+names(temp1) <- c("country", "countryCode", "indicatorName", #
+                  "indicatorCode", "strata", "n", "estimate", "type")#
+names(temp3) <- names(temp2) <- names(temp1)#
+##
+# Create single long data.frame#
+##
+areaResultsLong <- data.frame(rbind(temp1, temp2, temp3))#
+##
+# Add indicatorCategory variable#
+##
+indicatorCategory <- vector(mode = "character", length = nrow(areaResultsLong))#
+##
+# Water Indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet1"]] <- "waterSet1"#
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet2"]] <- "waterSet2"                           #
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet3"]] <- "waterSet3"#
+##
+# Sanitation Indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet1"]] <- "sanSet1"#
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet2"]] <- "sanSet2"                           #
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet3"]] <- "sanSet3"#
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet4"]] <- "sanSet4"#
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet5"]] <- "sanSet5"#
+##
+# Handwashing Indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "handSet"]] <- "handSet"#
+##
+# Demographics#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "demographics"]] <- "demographics"#
+##
+# Hygiene indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "hygieneSet"]] <- "hygieneSet"#
+##
+# Poverty#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "poverty"]] <- "poverty"#
+##
+# Overall indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "overallSet1"]] <- "overallSet1"#
+##
+# Other indicators#
+##
+indicatorCategory[!areaResultsLong$indicatorCode %in% steerIndicators$varList] <- "other"#
+##
+# Add indicatorCategory to areaResultsLong data.frame#
+##
+areaResultsLong <- data.frame(areaResultsLong[ , c("country", "countryCode", "indicatorName", "indicatorCode")], indicatorCategory,#
+                              areaResultsLong[ , c("strata", "n", "estimate", "type")])#
+##
+# Remove other area type#
+##
+areaResultsLong <- subset(areaResultsLong, type != "Other")#
+##
+# Sort order of area type factors#
+##
+areaResultsLong$type <- factor(areaResultsLong$type, levels = c("Slum", "Citywide"))#
+##
+# Change strata names#
+##
+areaResultsLong$strata <- str_split(string = areaResultsLong$strata, #
+                                    pattern = " ",#
+                                    simplify = TRUE)[ , 3]#
+#################################################################################
+##
+# Transform wealthResults to long format for ggplot#
+##
+#################################################################################
+##
+# Subset survey results to columns needed for plotting#
+##
+temp1 <- subset(wealthResults, select = c(country:strata, slumTotal, slumEst))#
+temp2 <- subset(wealthResults, select = c(country:strata, otherTotal, otherEst))#
+temp3 <- subset(wealthResults, select = c(country:strata, total, totalEst))#
+##
+# Add area type variable#
+##
+temp1$type <- rep("Slum", nrow(temp1))#
+temp2$type <- rep("Other", nrow(temp2))#
+temp3$type <- rep("Citywide", nrow(temp3))#
+##
+# Rename variables#
+##
+names(temp1) <- c("country", "countryCode", "indicatorName", #
+                  "indicatorCode", "strata", "n", "estimate", "type")#
+names(temp3) <- names(temp2) <- names(temp1)#
+##
+# Create single long data.frame#
+##
+wealthResultsLong <- data.frame(rbind(temp1, temp2, temp3))#
+##
+# Add indicatorCategory variable#
+##
+indicatorCategory <- vector(mode = "character", length = nrow(wealthResultsLong))#
+##
+# Water Indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet1"]] <- "waterSet1"#
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet2"]] <- "waterSet2"                           #
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet3"]] <- "waterSet3"#
+##
+# Sanitation Indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet1"]] <- "sanSet1"#
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet2"]] <- "sanSet2"                           #
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet3"]] <- "sanSet3"#
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet4"]] <- "sanSet4"#
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet5"]] <- "sanSet5"#
+##
+# Handwashing Indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "handSet"]] <- "handSet"#
+##
+# Demographics#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "demographics"]] <- "demographics"#
+##
+# Hygiene indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "hygieneSet"]] <- "hygieneSet"#
+##
+# Poverty#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "poverty"]] <- "poverty"#
+##
+# Overall indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "overallSet1"]] <- "overallSet1"#
+##
+# Other indicators#
+##
+indicatorCategory[!wealthResultsLong$indicatorCode %in% steerIndicators$varList] <- "other"#
+##
+# Add indicatorCategory to wealthResultsLong data.frame#
+##
+wealthResultsLong <- data.frame(wealthResultsLong[ , c("country", "countryCode", "indicatorName", "indicatorCode")], indicatorCategory,#
+                                wealthResultsLong[ , c("strata", "n", "estimate", "type")])#
+##
+# Remove other area type#
+##
+wealthResultsLong <- subset(wealthResultsLong, type != "Other")#
+##
+# Sort order of area type factors#
+##
+wealthResultsLong$type <- factor(wealthResultsLong$type, levels = c("Slum", "Citywide"))#
+##
+# Change strata names#
+##
+wealthResultsLong$strata <- str_split(string = wealthResultsLong$strata, #
+                                      pattern = " ",#
+                                      simplify = TRUE)[ , 3]#
+##
+# Clean-up#
+##
+rm(indicatorCategory, temp1, temp2, temp3)#
+#################################################################################
+#                                                                              ##
+#                ASSEMBLE COLOUR VECTORS FOR CHARTS AND MAPS                   ##
+#                                                                              ##
+#################################################################################
+#
+#################################################################################
+##
+# Create WSUP-specific and WASH-specific colour schemes#
+##
+#################################################################################
+##
+# WSUP blue colour fill#
+##
+wsupFill   <- "#c6dbef"#
+##
+# WSUP blue colour border#
+##
+wsupColour <- "#3182bd"#
+##
+# Spinner colour#
+##
+options(spinner.color = wsupColour)#
+##
+# WASH ladder indicators colour schemes#
+##
+waterLadder <- c("#4575b4", "#74add1", "#ffffbf", "#feb24c", "#ec7014")#
+sanitationLadder <- c("#1a9850", "#a6d96a", "#ffffbf", "#feb24c", "#ec7014")#
+handwashLadder <- c("#cab2d6", "#feb24c", "#ec7014")#
+##
+# Colour for water collector plots#
+##
+collectColour <- c("#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6")#
+##
+# Colour for formal/informal plots#
+##
+formalColour <- c("#a6cee3", "#1f78b4")#
+##
+# Overall indicators colour schemes#
+##
+overallColour <- c("#fdbf6f", "#b2df8a", "#a6cee3", "#80cdc1")#
+#################################################################################
+##
+# Create WSUP theme for shiny#
+##
+#################################################################################
+#
+theme_wsup <- theme_bw() + #
+              theme(strip.text = element_text(size = 16), #
+                    strip.background = element_rect(colour = "black", size = 0.5),#
+                    axis.title = element_text(size = 16),#
+                    axis.text = element_text(size = 14),#
+                    panel.border = element_rect(colour = "gray90", fill = NA),#
+                    legend.key = element_rect(colour = NA, fill = NA),#
+                    legend.key.size = unit(25, "pt"),#
+                    legend.title = element_text(size = 16),#
+                    legend.text = element_text(size = 14))#
+#################################################################################
+##
+# Mapping#
+##
+#################################################################################
+##
+# Create GPS long/lat CRS object#
+##
+long.lat.crs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"#
+##
+# Read shapefiles - outline of survey areas#
+##
+outline <- readOGR(dsn = "surveyArea3",#
+                   layer = "surveyArea3",#
+                   verbose = FALSE)#
+##
+# Transform outline CRS to long/lat#
+##
+outline <- spTransform(outline, CRSobj = CRS(long.lat.crs))#
+##
+# Read shapefiles - wards#
+##
+wards <- readOGR(dsn = "surveyArea",#
+                 layer = "surveyArea",#
+                 verbose = FALSE)#
+##
+# Read shapefiles - upazila#
+##
+upazila <- readOGR(dsn = "dhaka3",#
+                   layer = "dhaka3",#
+                   verbose = FALSE)#
+##
+# Transform wards CRS to long/lat#
+##
+wards <- spTransform(wards, CRSobj = CRS(long.lat.crs))#
+##
+# Merge shapfile with results data by survey area#
+#                 #
+map.results <- merge(areaResults, outline, by.x = "strata", by.y = "surveyArea")#
+##
+# Create container data.frame from slum results#
+##
+slum.results.df <- data.frame(matrix(nrow = 9, ncol = 50))#
+##
+# Rename container slum data.frame based on steerIndicators#
+##
+names(slum.results.df) <- steerIndicators$varList#
+##
+# Create container data.frame from city results#
+##
+city.results.df <- data.frame(matrix(nrow = 9, ncol = 50))#
+##
+# Rename container city data.frame based on steerIndicators#
+##
+names(city.results.df) <- steerIndicators$varList#
+##
+# Cycle through variable names#
+##
+for(i in steerIndicators$varList)#
+  {#
+  ##
+  # Subset results data.frame to current indicator results for slum#
+  ##
+  slum.results <- subset(x = map.results, #
+                         subset = indicatorCode == i, #
+                         select = slumEst)#
+  ##
+  # Subset results data.frame to current indicator results for city#
+  ##
+  city.results <- subset(x = map.results, #
+                         subset = indicatorCode == i, #
+                         select = totalEst)#
+  ##
+  # Insert slum and city indicator results to respective container data.frame#
+  ##
+  slum.results.df[ , i] <- slum.results#
+  city.results.df[ , i] <- city.results#
+  }#
+##
+# Create results data.frame for slum and city#
+#         #
+slum.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:nrow(slum.results.df), sep = " "), slum.results.df)#
+city.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:nrow(city.results.df), sep = " "), city.results.df)#
+##
+# Merge results data.frame with corresponding shapefile#
+##
+slum.results.sp <- merge(outline, slum.results.df, by = "surveyArea")#
+city.results.sp <- merge(outline, city.results.df, by = "surveyArea")#
+##
+# Create Mapbox base layer objects for leaflet mapping#
+##
+mapbox.satellite <- "https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.street <- "https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.dark <- "https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.light <- "https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+##
+# Clean-up#
+# #
+rm(i, map.results, slum.results.df, city.results.df, slum.results, city.results)
+ls()
+?DT
+??DT
+?dataTableOutput
+library(DT)
+install.packages("DT")
+?dataTableOutput
+runApp()
+runApp()
+head(indicatorsDF)
+indicatorsDF[["nMembers"]]
+runApp()
+runApp()
+runApp()
+runApp()
+?renderTable
+library(xtable)
+runApp()
+?renderDataTable
+runApp()
+?dataTableOutput
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+indicatorsDF$type
+as.character(indicatorsDF$type)
+runApp()
+indicatorsDF$zone
+runApp()
+areaResults
+head(areaResults)
+areaResultsLong
+head(areaResultsLong)
+steerIndicators
+head(areaResults)
+#################################################################################
+##
+# Load libraries#
+##
+#################################################################################
+#
+library(shiny)#
+library(ggplot2)#
+library(ggmap)#
+library(stringr)#
+library(leaflet)#
+library(shinycssloaders)#
+library(shinythemes)#
+library(geojsonio)#
+library(rgdal)#
+library(rgeos)#
+library(raster)#
+library(maps)#
+library(RColorBrewer)#
+library(classInt)#
+library(DT)#
+#################################################################################
+##
+# Function to add alpha parameter to colours#
+##
+#################################################################################
+#
+addAlpha <- function(col, alpha)#
+  {#
+  apply(X = sapply(col, col2rgb)/255, #
+        MARGIN = 2,#
+        FUN = function(x) { rgb(x[1], x[2], x[3], alpha = alpha) })#
+  }#
+#################################################################################
+##
+# Function to add alpha parameter to colours#
+##
+#################################################################################
+#
+addArea <- function(string, prefix = "Survey Area") paste(prefix, string, sep = " ")#
+addWealth <- function(string, prefix = "Wealth Quintile") paste(prefix, string, sep = " ")#
+#################################################################################
+##
+# Read indicators steering file and indicators data.frame#
+##
+#################################################################################
+##
+# Steer indicators#
+##
+steerIndicators <- read.csv("steerIndicatorsV7.csv", header = TRUE, sep = ",")#
+##
+##
+##
+indicatorsDF <- read.csv("indicatorsDataBGD.csv", header = TRUE, sep = ",")#
+##
+##
+##
+indicatorsDF$type <- ifelse(indicatorsDF$type == 1, "Slum", "Other")#
+##
+##
+##
+indicatorsDF$type <- factor(indicatorsDF$type, levels = c("Slum", "Other"))#
+#################################################################################
+##
+# Read survey results datasets and concatenate into single data.frame#
+##
+#################################################################################
+##
+# Read dataset - survey areas#
+##
+areaResults <- read.csv("surveyResultsBGD.csv", header = TRUE, sep = ",")#
+##
+# Rename surveyArea#
+##
+names(areaResults)[5]  <- "strata"#
+##
+# Read dataset - wealth quintiles#
+##
+wealthResults <- read.csv("surveyResultsWealthBGD.csv", header = TRUE, sep = ",")#
+##
+# wealthQuintile#
+##
+names(wealthResults)[5]  <- "strata"#
+#################################################################################
+##
+# Transform areaResults to long format for ggplot#
+##
+#################################################################################
+##
+# Subset survey results to columns needed for plotting#
+##
+temp1 <- subset(areaResults, select = c(country:strata, slumTotal, slumEst))#
+temp2 <- subset(areaResults, select = c(country:strata, otherTotal, otherEst))#
+temp3 <- subset(areaResults, select = c(country:strata, total, totalEst))#
+##
+# Add area type variable#
+##
+temp1$type <- rep("Slum", nrow(temp1))#
+temp2$type <- rep("Other", nrow(temp2))#
+temp3$type <- rep("Citywide", nrow(temp3))#
+##
+# Rename variables#
+##
+names(temp1) <- c("country", "countryCode", "indicatorName", #
+                  "indicatorCode", "strata", "n", "estimate", "type")#
+names(temp3) <- names(temp2) <- names(temp1)#
+##
+# Create single long data.frame#
+##
+areaResultsLong <- data.frame(rbind(temp1, temp2, temp3))#
+##
+# Add indicatorCategory variable#
+##
+indicatorCategory <- vector(mode = "character", length = nrow(areaResultsLong))#
+##
+# Water Indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet1"]] <- "waterSet1"#
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet2"]] <- "waterSet2"                           #
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet3"]] <- "waterSet3"#
+##
+# Sanitation Indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet1"]] <- "sanSet1"#
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet2"]] <- "sanSet2"                           #
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet3"]] <- "sanSet3"#
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet4"]] <- "sanSet4"#
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet5"]] <- "sanSet5"#
+##
+# Handwashing Indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "handSet"]] <- "handSet"#
+##
+# Demographics#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "demographics"]] <- "demographics"#
+##
+# Hygiene indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "hygieneSet"]] <- "hygieneSet"#
+##
+# Poverty#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "poverty"]] <- "poverty"#
+##
+# Overall indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "overallSet1"]] <- "overallSet1"#
+##
+# Other indicators#
+##
+indicatorCategory[!areaResultsLong$indicatorCode %in% steerIndicators$varList] <- "other"#
+##
+# Add indicatorCategory to areaResultsLong data.frame#
+##
+areaResultsLong <- data.frame(areaResultsLong[ , c("country", "countryCode", "indicatorName", "indicatorCode")], indicatorCategory,#
+                              areaResultsLong[ , c("strata", "n", "estimate", "type")])#
+##
+# Remove other area type#
+##
+areaResultsLong <- subset(areaResultsLong, type != "Other")#
+##
+# Sort order of area type factors#
+##
+areaResultsLong$type <- factor(areaResultsLong$type, levels = c("Slum", "Citywide"))#
+##
+# Change strata names#
+##
+areaResultsLong$strata <- str_split(string = areaResultsLong$strata, #
+                                    pattern = " ",#
+                                    simplify = TRUE)[ , 3]#
+#################################################################################
+##
+# Transform wealthResults to long format for ggplot#
+##
+#################################################################################
+##
+# Subset survey results to columns needed for plotting#
+##
+temp1 <- subset(wealthResults, select = c(country:strata, slumTotal, slumEst, slumLCL, slumUCL))#
+temp2 <- subset(wealthResults, select = c(country:strata, otherTotal, otherEst, otherLCL, otherUCL))#
+temp3 <- subset(wealthResults, select = c(country:strata, total, totalEst, totalLCL, totalUCL))#
+##
+# Add area type variable#
+##
+temp1$type <- rep("Slum", nrow(temp1))#
+temp2$type <- rep("Other", nrow(temp2))#
+temp3$type <- rep("Citywide", nrow(temp3))#
+##
+# Rename variables#
+##
+names(temp1) <- c("country", "countryCode", "indicatorName", #
+                  "indicatorCode", "strata", "n", "estimate", "lcl", "ucl", "type")#
+names(temp3) <- names(temp2) <- names(temp1)#
+##
+# Create single long data.frame#
+##
+wealthResultsLong <- data.frame(rbind(temp1, temp2, temp3))#
+##
+# Add indicatorCategory variable#
+##
+indicatorCategory <- vector(mode = "character", length = nrow(wealthResultsLong))#
+##
+# Water Indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet1"]] <- "waterSet1"#
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet2"]] <- "waterSet2"                           #
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet3"]] <- "waterSet3"#
+##
+# Sanitation Indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet1"]] <- "sanSet1"#
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet2"]] <- "sanSet2"                           #
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet3"]] <- "sanSet3"#
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet4"]] <- "sanSet4"#
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet5"]] <- "sanSet5"#
+##
+# Handwashing Indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "handSet"]] <- "handSet"#
+##
+# Demographics#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "demographics"]] <- "demographics"#
+##
+# Hygiene indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "hygieneSet"]] <- "hygieneSet"#
+##
+# Poverty#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "poverty"]] <- "poverty"#
+##
+# Overall indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "overallSet1"]] <- "overallSet1"#
+##
+# Other indicators#
+##
+indicatorCategory[!wealthResultsLong$indicatorCode %in% steerIndicators$varList] <- "other"#
+##
+# Add indicatorCategory to wealthResultsLong data.frame#
+##
+wealthResultsLong <- data.frame(wealthResultsLong[ , c("country", "countryCode", "indicatorName", "indicatorCode")], indicatorCategory,#
+                                wealthResultsLong[ , c("strata", "n", "estimate", "type")])#
+##
+# Remove other area type#
+##
+wealthResultsLong <- subset(wealthResultsLong, type != "Other")#
+##
+# Sort order of area type factors#
+##
+wealthResultsLong$type <- factor(wealthResultsLong$type, levels = c("Slum", "Citywide"))#
+##
+# Change strata names#
+##
+wealthResultsLong$strata <- str_split(string = wealthResultsLong$strata, #
+                                      pattern = " ",#
+                                      simplify = TRUE)[ , 3]#
+##
+# Clean-up#
+##
+rm(indicatorCategory, temp1, temp2, temp3)#
+#################################################################################
+#                                                                              ##
+#                ASSEMBLE COLOUR VECTORS FOR CHARTS AND MAPS                   ##
+#                                                                              ##
+#################################################################################
+#
+#################################################################################
+##
+# Create WSUP-specific and WASH-specific colour schemes#
+##
+#################################################################################
+##
+# WSUP blue colour fill#
+##
+wsupFill   <- "#c6dbef"#
+##
+# WSUP blue colour border#
+##
+wsupColour <- "#3182bd"#
+##
+# Spinner colour#
+##
+options(spinner.color = wsupColour)#
+##
+# WASH ladder indicators colour schemes#
+##
+waterLadder <- c("#4575b4", "#74add1", "#ffffbf", "#feb24c", "#ec7014")#
+sanitationLadder <- c("#1a9850", "#a6d96a", "#ffffbf", "#feb24c", "#ec7014")#
+handwashLadder <- c("#cab2d6", "#feb24c", "#ec7014")#
+##
+# Colour for water collector plots#
+##
+collectColour <- c("#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6")#
+##
+# Colour for formal/informal plots#
+##
+formalColour <- c("#a6cee3", "#1f78b4")#
+##
+# Overall indicators colour schemes#
+##
+overallColour <- c("#fdbf6f", "#b2df8a", "#a6cee3", "#80cdc1")#
+#################################################################################
+##
+# Create WSUP theme for shiny#
+##
+#################################################################################
+#
+theme_wsup <- theme_bw() + #
+              theme(strip.text = element_text(size = 16), #
+                    strip.background = element_rect(colour = "black", size = 0.5),#
+                    axis.title = element_text(size = 16),#
+                    axis.text = element_text(size = 14),#
+                    panel.border = element_rect(colour = "gray90", fill = NA),#
+                    legend.key = element_rect(colour = NA, fill = NA),#
+                    legend.key.size = unit(25, "pt"),#
+                    legend.title = element_text(size = 16),#
+                    legend.text = element_text(size = 14))#
+#################################################################################
+##
+# Mapping#
+##
+#################################################################################
+##
+# Create GPS long/lat CRS object#
+##
+long.lat.crs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"#
+##
+# Read shapefiles - outline of survey areas#
+##
+outline <- readOGR(dsn = "surveyArea3",#
+                   layer = "surveyArea3",#
+                   verbose = FALSE)#
+##
+# Transform outline CRS to long/lat#
+##
+outline <- spTransform(outline, CRSobj = CRS(long.lat.crs))#
+##
+# Read shapefiles - wards#
+##
+wards <- readOGR(dsn = "surveyArea",#
+                 layer = "surveyArea",#
+                 verbose = FALSE)#
+##
+# Read shapefiles - upazila#
+##
+upazila <- readOGR(dsn = "dhaka3",#
+                   layer = "dhaka3",#
+                   verbose = FALSE)#
+##
+# Transform wards CRS to long/lat#
+##
+wards <- spTransform(wards, CRSobj = CRS(long.lat.crs))#
+##
+# Merge shapfile with results data by survey area#
+#                 #
+map.results <- merge(areaResults, outline, by.x = "strata", by.y = "surveyArea")#
+##
+# Create container data.frame from slum results#
+##
+slum.results.df <- data.frame(matrix(nrow = 9, ncol = 50))#
+##
+# Rename container slum data.frame based on steerIndicators#
+##
+names(slum.results.df) <- steerIndicators$varList#
+##
+# Create container data.frame from city results#
+##
+city.results.df <- data.frame(matrix(nrow = 9, ncol = 50))#
+##
+# Rename container city data.frame based on steerIndicators#
+##
+names(city.results.df) <- steerIndicators$varList#
+##
+# Cycle through variable names#
+##
+for(i in steerIndicators$varList)#
+  {#
+  ##
+  # Subset results data.frame to current indicator results for slum#
+  ##
+  slum.results <- subset(x = map.results, #
+                         subset = indicatorCode == i, #
+                         select = slumEst)#
+  ##
+  # Subset results data.frame to current indicator results for city#
+  ##
+  city.results <- subset(x = map.results, #
+                         subset = indicatorCode == i, #
+                         select = totalEst)#
+  ##
+  # Insert slum and city indicator results to respective container data.frame#
+  ##
+  slum.results.df[ , i] <- slum.results#
+  city.results.df[ , i] <- city.results#
+  }#
+##
+# Create results data.frame for slum and city#
+#         #
+slum.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:nrow(slum.results.df), sep = " "), slum.results.df)#
+city.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:nrow(city.results.df), sep = " "), city.results.df)#
+##
+# Merge results data.frame with corresponding shapefile#
+##
+slum.results.sp <- merge(outline, slum.results.df, by = "surveyArea")#
+city.results.sp <- merge(outline, city.results.df, by = "surveyArea")#
+##
+# Create Mapbox base layer objects for leaflet mapping#
+##
+mapbox.satellite <- "https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.street <- "https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.dark <- "https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.light <- "https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+##
+# Clean-up#
+# #
+rm(i, map.results, slum.results.df, city.results.df, slum.results, city.results)
+areaResultsLong
+head(areaResultsLong)
+#################################################################################
+##
+# Load libraries#
+##
+#################################################################################
+#
+library(shiny)#
+library(ggplot2)#
+library(ggmap)#
+library(stringr)#
+library(leaflet)#
+library(shinycssloaders)#
+library(shinythemes)#
+library(geojsonio)#
+library(rgdal)#
+library(rgeos)#
+library(raster)#
+library(maps)#
+library(RColorBrewer)#
+library(classInt)#
+library(DT)#
+#################################################################################
+##
+# Function to add alpha parameter to colours#
+##
+#################################################################################
+#
+addAlpha <- function(col, alpha)#
+  {#
+  apply(X = sapply(col, col2rgb)/255, #
+        MARGIN = 2,#
+        FUN = function(x) { rgb(x[1], x[2], x[3], alpha = alpha) })#
+  }#
+#################################################################################
+##
+# Function to add alpha parameter to colours#
+##
+#################################################################################
+#
+addArea <- function(string, prefix = "Survey Area") paste(prefix, string, sep = " ")#
+addWealth <- function(string, prefix = "Wealth Quintile") paste(prefix, string, sep = " ")#
+#################################################################################
+##
+# Read indicators steering file and indicators data.frame#
+##
+#################################################################################
+##
+# Steer indicators#
+##
+steerIndicators <- read.csv("steerIndicatorsV7.csv", header = TRUE, sep = ",")#
+##
+##
+##
+indicatorsDF <- read.csv("indicatorsDataBGD.csv", header = TRUE, sep = ",")#
+##
+##
+##
+indicatorsDF$type <- ifelse(indicatorsDF$type == 1, "Slum", "Other")#
+##
+##
+##
+indicatorsDF$type <- factor(indicatorsDF$type, levels = c("Slum", "Other"))#
+#################################################################################
+##
+# Read survey results datasets and concatenate into single data.frame#
+##
+#################################################################################
+##
+# Read dataset - survey areas#
+##
+areaResults <- read.csv("surveyResultsBGD.csv", header = TRUE, sep = ",")#
+##
+# Rename surveyArea#
+##
+names(areaResults)[5]  <- "strata"#
+##
+# Read dataset - wealth quintiles#
+##
+wealthResults <- read.csv("surveyResultsWealthBGD.csv", header = TRUE, sep = ",")#
+##
+# wealthQuintile#
+##
+names(wealthResults)[5]  <- "strata"#
+#################################################################################
+##
+# Transform areaResults to long format for ggplot#
+##
+#################################################################################
+##
+# Subset survey results to columns needed for plotting#
+##
+temp1 <- subset(areaResults, select = c(country:strata, slumTotal, slumEst, slumLCL, slumUCL))#
+temp2 <- subset(areaResults, select = c(country:strata, otherTotal, otherEst, otherLCL, otherUCL))#
+temp3 <- subset(areaResults, select = c(country:strata, total, totalEst, totalLCL, totalUCL))#
+##
+# Add area type variable#
+##
+temp1$type <- rep("Slum", nrow(temp1))#
+temp2$type <- rep("Other", nrow(temp2))#
+temp3$type <- rep("Citywide", nrow(temp3))#
+##
+# Rename variables#
+##
+names(temp1) <- c("country", "countryCode", "indicatorName", #
+                  "indicatorCode", "strata", "n", "estimate", "lcl", "ucl", "type")#
+names(temp3) <- names(temp2) <- names(temp1)#
+##
+# Create single long data.frame#
+##
+areaResultsLong <- data.frame(rbind(temp1, temp2, temp3))#
+##
+# Add indicatorCategory variable#
+##
+indicatorCategory <- vector(mode = "character", length = nrow(areaResultsLong))#
+##
+# Water Indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet1"]] <- "waterSet1"#
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet2"]] <- "waterSet2"                           #
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet3"]] <- "waterSet3"#
+##
+# Sanitation Indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet1"]] <- "sanSet1"#
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet2"]] <- "sanSet2"                           #
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet3"]] <- "sanSet3"#
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet4"]] <- "sanSet4"#
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet5"]] <- "sanSet5"#
+##
+# Handwashing Indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "handSet"]] <- "handSet"#
+##
+# Demographics#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "demographics"]] <- "demographics"#
+##
+# Hygiene indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "hygieneSet"]] <- "hygieneSet"#
+##
+# Poverty#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "poverty"]] <- "poverty"#
+##
+# Overall indicators#
+##
+indicatorCategory[areaResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "overallSet1"]] <- "overallSet1"#
+##
+# Other indicators#
+##
+indicatorCategory[!areaResultsLong$indicatorCode %in% steerIndicators$varList] <- "other"#
+##
+# Add indicatorCategory to areaResultsLong data.frame#
+##
+areaResultsLong <- data.frame(areaResultsLong[ , c("country", "countryCode", "indicatorName", "indicatorCode")], indicatorCategory,#
+                              areaResultsLong[ , c("strata", "n", "estimate", "lcl", "ucl", "type")])#
+##
+# Remove other area type#
+##
+areaResultsLong <- subset(areaResultsLong, type != "Other")#
+##
+# Sort order of area type factors#
+##
+areaResultsLong$type <- factor(areaResultsLong$type, levels = c("Slum", "Citywide"))#
+##
+# Change strata names#
+##
+areaResultsLong$strata <- str_split(string = areaResultsLong$strata, #
+                                    pattern = " ",#
+                                    simplify = TRUE)[ , 3]#
+#################################################################################
+##
+# Transform wealthResults to long format for ggplot#
+##
+#################################################################################
+##
+# Subset survey results to columns needed for plotting#
+##
+temp1 <- subset(wealthResults, select = c(country:strata, slumTotal, slumEst, slumLCL, slumUCL))#
+temp2 <- subset(wealthResults, select = c(country:strata, otherTotal, otherEst, otherLCL, otherUCL))#
+temp3 <- subset(wealthResults, select = c(country:strata, total, totalEst, totalLCL, totalUCL))#
+##
+# Add area type variable#
+##
+temp1$type <- rep("Slum", nrow(temp1))#
+temp2$type <- rep("Other", nrow(temp2))#
+temp3$type <- rep("Citywide", nrow(temp3))#
+##
+# Rename variables#
+##
+names(temp1) <- c("country", "countryCode", "indicatorName", #
+                  "indicatorCode", "strata", "n", "estimate", "lcl", "ucl", "type")#
+names(temp3) <- names(temp2) <- names(temp1)#
+##
+# Create single long data.frame#
+##
+wealthResultsLong <- data.frame(rbind(temp1, temp2, temp3))#
+##
+# Add indicatorCategory variable#
+##
+indicatorCategory <- vector(mode = "character", length = nrow(wealthResultsLong))#
+##
+# Water Indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet1"]] <- "waterSet1"#
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet2"]] <- "waterSet2"                           #
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet3"]] <- "waterSet3"#
+##
+# Sanitation Indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet1"]] <- "sanSet1"#
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet2"]] <- "sanSet2"                           #
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet3"]] <- "sanSet3"#
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet4"]] <- "sanSet4"#
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet5"]] <- "sanSet5"#
+##
+# Handwashing Indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "handSet"]] <- "handSet"#
+##
+# Demographics#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "demographics"]] <- "demographics"#
+##
+# Hygiene indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "hygieneSet"]] <- "hygieneSet"#
+##
+# Poverty#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "poverty"]] <- "poverty"#
+##
+# Overall indicators#
+##
+indicatorCategory[wealthResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "overallSet1"]] <- "overallSet1"#
+##
+# Other indicators#
+##
+indicatorCategory[!wealthResultsLong$indicatorCode %in% steerIndicators$varList] <- "other"#
+##
+# Add indicatorCategory to wealthResultsLong data.frame#
+##
+wealthResultsLong <- data.frame(wealthResultsLong[ , c("country", "countryCode", "indicatorName", "indicatorCode")], indicatorCategory,#
+                                wealthResultsLong[ , c("strata", "n", "estimate", "lcl", "ucl", "type")])#
+##
+# Remove other area type#
+##
+wealthResultsLong <- subset(wealthResultsLong, type != "Other")#
+##
+# Sort order of area type factors#
+##
+wealthResultsLong$type <- factor(wealthResultsLong$type, levels = c("Slum", "Citywide"))#
+##
+# Change strata names#
+##
+wealthResultsLong$strata <- str_split(string = wealthResultsLong$strata, #
+                                      pattern = " ",#
+                                      simplify = TRUE)[ , 3]#
+##
+# Clean-up#
+##
+rm(indicatorCategory, temp1, temp2, temp3)#
+#################################################################################
+#                                                                              ##
+#                ASSEMBLE COLOUR VECTORS FOR CHARTS AND MAPS                   ##
+#                                                                              ##
+#################################################################################
+#
+#################################################################################
+##
+# Create WSUP-specific and WASH-specific colour schemes#
+##
+#################################################################################
+##
+# WSUP blue colour fill#
+##
+wsupFill   <- "#c6dbef"#
+##
+# WSUP blue colour border#
+##
+wsupColour <- "#3182bd"#
+##
+# Spinner colour#
+##
+options(spinner.color = wsupColour)#
+##
+# WASH ladder indicators colour schemes#
+##
+waterLadder <- c("#4575b4", "#74add1", "#ffffbf", "#feb24c", "#ec7014")#
+sanitationLadder <- c("#1a9850", "#a6d96a", "#ffffbf", "#feb24c", "#ec7014")#
+handwashLadder <- c("#cab2d6", "#feb24c", "#ec7014")#
+##
+# Colour for water collector plots#
+##
+collectColour <- c("#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6")#
+##
+# Colour for formal/informal plots#
+##
+formalColour <- c("#a6cee3", "#1f78b4")#
+##
+# Overall indicators colour schemes#
+##
+overallColour <- c("#fdbf6f", "#b2df8a", "#a6cee3", "#80cdc1")#
+#################################################################################
+##
+# Create WSUP theme for shiny#
+##
+#################################################################################
+#
+theme_wsup <- theme_bw() + #
+              theme(strip.text = element_text(size = 16), #
+                    strip.background = element_rect(colour = "black", size = 0.5),#
+                    axis.title = element_text(size = 16),#
+                    axis.text = element_text(size = 14),#
+                    panel.border = element_rect(colour = "gray90", fill = NA),#
+                    legend.key = element_rect(colour = NA, fill = NA),#
+                    legend.key.size = unit(25, "pt"),#
+                    legend.title = element_text(size = 16),#
+                    legend.text = element_text(size = 14))#
+#################################################################################
+##
+# Mapping#
+##
+#################################################################################
+##
+# Create GPS long/lat CRS object#
+##
+long.lat.crs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"#
+##
+# Read shapefiles - outline of survey areas#
+##
+outline <- readOGR(dsn = "surveyArea3",#
+                   layer = "surveyArea3",#
+                   verbose = FALSE)#
+##
+# Transform outline CRS to long/lat#
+##
+outline <- spTransform(outline, CRSobj = CRS(long.lat.crs))#
+##
+# Read shapefiles - wards#
+##
+wards <- readOGR(dsn = "surveyArea",#
+                 layer = "surveyArea",#
+                 verbose = FALSE)#
+##
+# Read shapefiles - upazila#
+##
+upazila <- readOGR(dsn = "dhaka3",#
+                   layer = "dhaka3",#
+                   verbose = FALSE)#
+##
+# Transform wards CRS to long/lat#
+##
+wards <- spTransform(wards, CRSobj = CRS(long.lat.crs))#
+##
+# Merge shapfile with results data by survey area#
+#                 #
+map.results <- merge(areaResults, outline, by.x = "strata", by.y = "surveyArea")#
+##
+# Create container data.frame from slum results#
+##
+slum.results.df <- data.frame(matrix(nrow = 9, ncol = 50))#
+##
+# Rename container slum data.frame based on steerIndicators#
+##
+names(slum.results.df) <- steerIndicators$varList#
+##
+# Create container data.frame from city results#
+##
+city.results.df <- data.frame(matrix(nrow = 9, ncol = 50))#
+##
+# Rename container city data.frame based on steerIndicators#
+##
+names(city.results.df) <- steerIndicators$varList#
+##
+# Cycle through variable names#
+##
+for(i in steerIndicators$varList)#
+  {#
+  ##
+  # Subset results data.frame to current indicator results for slum#
+  ##
+  slum.results <- subset(x = map.results, #
+                         subset = indicatorCode == i, #
+                         select = slumEst)#
+  ##
+  # Subset results data.frame to current indicator results for city#
+  ##
+  city.results <- subset(x = map.results, #
+                         subset = indicatorCode == i, #
+                         select = totalEst)#
+  ##
+  # Insert slum and city indicator results to respective container data.frame#
+  ##
+  slum.results.df[ , i] <- slum.results#
+  city.results.df[ , i] <- city.results#
+  }#
+##
+# Create results data.frame for slum and city#
+#         #
+slum.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:nrow(slum.results.df), sep = " "), slum.results.df)#
+city.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:nrow(city.results.df), sep = " "), city.results.df)#
+##
+# Merge results data.frame with corresponding shapefile#
+##
+slum.results.sp <- merge(outline, slum.results.df, by = "surveyArea")#
+city.results.sp <- merge(outline, city.results.df, by = "surveyArea")#
+##
+# Create Mapbox base layer objects for leaflet mapping#
+##
+mapbox.satellite <- "https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.street <- "https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.dark <- "https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.light <- "https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+##
+# Clean-up#
+# #
+rm(i, map.results, slum.results.df, city.results.df, slum.results, city.results)
+ls()
+head(areaResultsLong)
+names(steerIndicators)
+runApp()
+runApp()
+steerIndicators$varSet
+runApp()
+runApp()
+steerIndicators$varSet
+runApp()
+runApp()
+slum.results.sp
+slum.results.sp$surveyArea
+?fileInput
+?shpPolyInput
+?suppressMessages
+shpPolyInput <- function(id, label, btn){#
+  ns <- NS(id)#
+  tagList(#
+    bsModal(ns("modal_shp"), "Mask climate map overlays to a shapefile", btn, size="large",#
+      fluidRow(#
+        column(12,#
+          fileInput(ns("shp_file"), label=label, accept=c(".shp",".dbf",".sbn",".sbx",".shx",".prj"), multiple=TRUE, width="100%")#
+        )#
+      ),#
+      tabsetPanel(#
+        tabPanel("Original shapefile", plotOutput(ns("Shp_Plot"), height="auto"), value="original"),#
+        tabPanel("Final overlay", leafletOutput(ns("Map")), value="final"),#
+        tabPanel("Summary", verbatimTextOutput(ns("Map_Summary")), value="final_summary"),#
+        tabPanel("Data", dataTableOutput(ns("Map_Table")), value="final_table"),#
+        id=ns("tp_shp")#
+      ),#
+      br(),#
+      uiOutput(ns("Mask_Btn")),#
+      uiOutput(ns("Mask_Complete"))#
+    )#
+  )#
+}#
+#
+shpPoly <- function(input, output, session, r=NULL){#
+  ns <- session$ns#
+  userFile <- reactive({#
+    validate(need(input$shp_file, message=FALSE))#
+    input$shp_file#
+  })#
+  tp <- reactive({#
+    validate(need(input$tp_shp, message=FALSE))#
+    input$tp_shp#
+  })#
+#
+  shp <- reactive({#
+    req(input$shp_file)#
+    if(!is.data.frame(userFile())) return()#
+    infiles <- userFile()$datapath#
+    dir <- unique(dirname(infiles))#
+    outfiles <- file.path(dir, userFile()$name)#
+    purrr::walk2(infiles, outfiles, ~file.rename(.x, .y))#
+    x <- try(readOGR(dir, strsplit(userFile()$name[1], "\\.")[[1]][1]), TRUE)#
+    if(class(x)=="try-error") NULL else x#
+  })#
+#
+  valid_proj <- reactive({ req(shp()); if(is.na(proj4string(shp()))) FALSE else TRUE })#
+#
+  shp_wgs84 <- reactive({#
+    req(shp(), valid_proj())#
+    if(valid_proj()) spTransform(shp(), CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")) else NULL#
+  })#
+#
+  valid_domain <- reactive({#
+    req(shp_wgs84())#
+    if(is.null(r)) return(TRUE)#
+    if(!is.null(raster::intersect(extent(r), extent(shp_wgs84())))){#
+      r.masked <- try(crop(r, shp_wgs84()) %>% mask(shp_wgs84()), TRUE)#
+      if(!(class(r.masked)=="try-error") && length(which(!is.na(r.masked[]))) > 2) return(TRUE)#
+    }#
+    FALSE#
+  })#
+#
+  lon <- reactive({ if(valid_proj()) (xmin(shp_wgs84()) + xmax(shp_wgs84()))/2 else 0 })#
+  lat <- reactive({ if(valid_proj()) (ymin(shp_wgs84()) + ymax(shp_wgs84()))/2 else 0 })#
+  plot_ht <- reactive({ if(is.null(shp())) 0 else 400 })#
+  eb <- element_blank()#
+  theme_blank <- theme(axis.line=eb, axis.text.x=eb, axis.text.y=eb, axis.ticks=eb, axis.title.x=eb, axis.title.y=eb,#
+    legend.position="none", panel.background=eb, panel.border=eb, panel.grid.major=eb, panel.grid.minor=eb, plot.background=eb)#
+#
+  output$Shp_Plot <- renderPlot({#
+    if(!is.null(shp())){#
+      cl <- class(shp())#
+      if(cl=="SpatialPointsDataFrame"){#
+        d <- data.frame(shp()@coords, group=1)#
+        names(d) <- c("long", "lat", "group")#
+      } else d <- fortify(shp())#
+      g <- ggplot(d, aes(x=long, y=lat, group=group)) + coord_equal() + theme_blank#
+      if(cl=="SpatialPolygonsDataFrame"){#
+        g <- g + geom_polygon(fill="steelblue4") + geom_path(colour="gray20")#
+        if("hole" %in% names(d)) g <- g + geom_polygon(data=filter(d, hole==TRUE), fill="white")#
+      } else if(cl=="SpatialLinesDataFrame"){#
+        g <- g + geom_path(colour="steelblue4", size=2)#
+      } else {#
+        g <- g + geom_point(colour="steelblue4", size=2)#
+      }#
+    }#
+    g#
+  }, height=function() plot_ht())#
+  output$Map <- renderLeaflet({ leaflet() %>% setView(0, 0, zoom=2) %>% addTiles() })#
+  output$Map_Summary <- renderPrint({ req(shp_wgs84()); summary(shp_wgs84()) })#
+  output$Map_Table <- renderDataTable({ shp_wgs84()@data }, options=list(orderClasses=TRUE, lengthMenu=c(5, 10, 25, 50), pageLength=5), rownames=F, selection="none", filter="none")#
+  output$Mask_Btn <- renderUI({#
+    #if(!is.null(input$mask_btn) && input$mask_btn==1) return()#
+    if(valid_domain()) actionButton(ns("mask_btn"), "Mask to Shapefile", class="btn-block") else NULL#
+  })#
+#
+  output$Mask_Complete <- renderUI({#
+    if(!length(input$shp_file)) return(h4("No shapefile uploaded."))#
+    if(is.null(shp())) return(HTML(#
+      "<h4>Invalid file(s).</h4><h5>Upload any necessary shapefile components, e.g.:</h5>#
+      <p><em>.dbf, .prj, .sbn, .sbx, .shp</em> and <em>.shx</em></p>"))#
+    if(!valid_proj()) return(h4("Shapefile is missing projection."))#
+    if(!valid_domain()) return(h4("Shapefile does not overlap map data."))#
+    if(!is.null(input$mask_btn) && input$mask_btn==0) return(h4("Shapefile loaded. Click to apply mask."))#
+    if(!is.null(out())) return(h4("Mask complete. You may close this window."))#
+    #if(!is.null(input$mask_btn) && input$mask_btn > 0)#
+  })#
+#
+  observe({#
+    if(!is.null(shp()) && tp()=="final"){#
+      cl <- class(shp_wgs84())#
+      x <- leafletProxy(ns("Map")) %>% clearShapes() %>% clearMarkers() %>% setView(lon(), lat(), zoom=2)#
+      if(cl=="SpatialPolygonsDataFrame") x %>% addPolygons(data=shp_wgs84(), weight=2)#
+      if(cl=="SpatialLinesDataFrame") x %>% addPolylines(data=shp_wgs84(), weight=2)#
+      if(cl=="SpatialPointsDataFrame") x %>% addCircleMarkers(data=shp_wgs84(), weight=2, radius=6)#
+    }#
+  })#
+#
+  out <- reactive({#
+    if(is.null(input$mask_btn) || input$mask_btn==0 || !valid_domain()) NULL else list(shp=shp_wgs84(), shp_original=shp())#
+  })#
+  out#
+}
+runApp()
+?navbarMenu
