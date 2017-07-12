@@ -738,10 +738,10 @@ function(input, output, session) {
       updateSelectInput(session = session,
                         inputId = "indicator.ladder",
                         label = "Select indicator",
-                        choices = list("No facility" = "jmpSan3",
-                                       "Limited" = "jmpSan2",
-                                       "Basic" = "jmpSan1"),
-                        selected = "jmpSan3")
+                        choices = list("No facility" = "jmpHand3",
+                                       "Limited" = "jmpHand2",
+                                       "Basic" = "jmpHand1"),
+                        selected = "jmpHand3")
   })
   #
   #
@@ -953,9 +953,265 @@ function(input, output, session) {
                   label = "Number of quantiles",
                   min = 3, max = 7, value = 5, step = 1)      
   })
-
-
-
+  #
+  #
+  #
+  observe({   
+    #
+    #
+    #
+    yy <- c(slum.results.sp[[input$z.demographics]], city.results.sp[[input$z.demographics]])
+    xx <- try(cut(yy, breaks = quantile(yy, probs = c(0.2, 0.4, 0.6, 0.8, 1))), silent = TRUE)
+    #
+    #
+    #
+    if(class(xx) == "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour.demographics",
+                        label = "Select colour mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval"),
+                        selected = "interval")
+    #
+    #
+    #
+    if(class(xx) != "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour.demographics",
+                        label = "Select colour mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval",
+                                       "Quantile" = "quantile"),
+                        selected = "interval")
+  })                                       
+  #
+  #
+  #
+  observe({   
+    #
+    #
+    #
+    yy <- c(slum.results.sp[[input$z.poverty]], city.results.sp[[input$z.poverty]])
+    xx <- try(cut(yy, breaks = quantile(yy, probs = c(0.2, 0.4, 0.6, 0.8, 1))), silent = TRUE)
+    #
+    #
+    #
+    if(class(xx) == "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour.poverty",
+                        label = "Select colour mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval"),
+                        selected = "interval")
+    #
+    #
+    #
+    if(class(xx) != "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour.poverty",
+                        label = "Select colour mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval",
+                                       "Quantile" = "quantile"),
+                        selected = "interval")
+  })                                       
+  #
+  #
+  #
+  observe({   
+    #
+    #
+    #
+    yy <- c(slum.results.sp[[input$z.water]], city.results.sp[[input$z.water]])
+    xx <- try(cut(yy, breaks = quantile(yy, probs = c(0.2, 0.4, 0.6, 0.8, 1))), silent = TRUE)
+    #
+    #
+    #
+    if(class(xx) == "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour.water",
+                        label = "Select colour mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval"),
+                        selected = "interval")
+    #
+    #
+    #
+    if(class(xx) != "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour.water",
+                        label = "Select colour mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval",
+                                       "Quantile" = "quantile"),
+                        selected = "interval")
+  })                                       
+  #
+  #
+  #
+  observe({   
+    #
+    #
+    #
+    yy <- c(slum.results.sp[[input$indicator.ladder]], city.results.sp[[input$indicator.ladder]])
+    xx <- try(cut(yy, breaks = quantile(yy, probs = c(0.2, 0.4, 0.6, 0.8, 1))), silent = TRUE)
+    #
+    #
+    #
+    if(class(xx) == "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour.ladder",
+                        label = "Select colour mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval"),
+                        selected = "interval")
+    #
+    #
+    #
+    if(class(xx) != "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour.ladder",
+                        label = "Select colour mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval",
+                                       "Quantile" = "quantile"),
+                        selected = "interval")
+  })
+  #
+  #
+  #
+  observe({   
+    #
+    #
+    #
+    yy <- c(slum.results.sp[[input$z.sanitation]], city.results.sp[[input$z.sanitation]])
+    xx <- try(cut(yy, breaks = quantile(yy, probs = c(0.2, 0.4, 0.6, 0.8, 1))), silent = TRUE)
+    #
+    #
+    #
+    if(class(xx) == "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour.sanitation",
+                        label = "Select colour mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval"),
+                        selected = "interval")
+    #
+    #
+    #
+    if(class(xx) != "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour.sanitation",
+                        label = "Select colour mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval",
+                                       "Quantile" = "quantile"),
+                        selected = "interval")
+  })
+  #
+  #
+  #
+  observe({   
+    #
+    #
+    #
+    yy <- c(slum.results.sp[[input$z.hygiene]], city.results.sp[[input$z.hygiene]])
+    xx <- try(cut(yy, breaks = quantile(yy, probs = c(0.2, 0.4, 0.6, 0.8, 1))), silent = TRUE)
+    #
+    #
+    #
+    if(class(xx) == "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour.hygiene",
+                        label = "Select colour mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval"),
+                        selected = "interval")
+    #
+    #
+    #
+    if(class(xx) != "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour.hygiene",
+                        label = "Select colour mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval",
+                                       "Quantile" = "quantile"),
+                        selected = "interval")
+  })
+  #
+  #
+  #
+  observe({   
+    #
+    #
+    #
+    yy <- c(slum.results.sp[[input$indicator.overall]], city.results.sp[[input$indicator.overall]])
+    xx <- try(cut(yy, breaks = quantile(yy, probs = c(0.2, 0.4, 0.6, 0.8, 1))), silent = TRUE)
+    #
+    #
+    #
+    if(class(xx) == "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour.overall",
+                        label = "Select colour mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval"),
+                        selected = "interval")
+    #
+    #
+    #
+    if(class(xx) != "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour.overall",
+                        label = "Select colour mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval",
+                                       "Quantile" = "quantile"),
+                        selected = "interval")
+  })                 
 
 
 ################################################################################
@@ -1801,12 +2057,18 @@ function(input, output, session) {
 
 ################################################################################
 #
+#
 # Create leaflet maps
 #
+#
 ################################################################################
-  #
-  #
-  #
+ 
+################################################################################
+#
+# Demographics Map
+#
+################################################################################ 
+
   output$map.demographics <- renderLeaflet({
     #
     # 
@@ -2426,99 +2688,171 @@ function(input, output, session) {
   #
   output$map.water <- renderLeaflet({
     #
-    # Linear interpolation
     #
-    if(input$map.colour.water == "linear")
+    #
+    if(input$z.water != "water12")
       {
       #
-      # Domains
+      # Linear interpolation
       #
-      if(input$z.water != "water12") 
+      if(input$map.colour.water == "linear")
+        {
         domain <- c(0, 100)
+        #
+        #
+        #
+        pal <- colorNumeric(palette = input$palette.water,
+                            domain = domain)
+        #
+        #
+        #
+        values <- domain
+        #
+        #
+        #
+        slum.fill <- pal(slum.results.sp[[input$z.water]] * 100)
+        city.fill <- pal(city.results.sp[[input$z.water]] * 100)        
+        }
       #
+      # Equal interval
       #
-      #
-      if(input$z.water == "water12") 
-        domain <- c(0, max(c(slum.results.sp[[input$z.water]], city.results.sp[[input$z.water]])))   
-      #
-      #
-      #
-      pal <- colorNumeric(palette = input$palette.water,
-                          domain = domain)
-      #
-      #
-      #
-      values <- domain
-      }
-    #
-    # Equal interval
-    #
-    if(input$map.colour.water == "interval")
-      {
-      #
-      # Domains
-      #
-      if(input$z.water != "water12")
+      if(input$map.colour.water == "interval")
+        {
+        #
+        # Domains
+        #
         domain <- c(0, 100)
+        #
+        #
+        #
+        pal <- colorBin(palette = input$palette.water,
+                        domain = domain, 
+                        pretty = FALSE,
+                        bins = ifelse(is.null(input$map.bins.water), 5, input$map.bins.water))
+        #
+        #
+        #
+        values <- domain
+        #
+        #
+        #
+        slum.fill <- pal(slum.results.sp[[input$z.water]] * 100)
+        city.fill <- pal(city.results.sp[[input$z.water]] * 100)        
+        }
       #
+      # Quantile
       #
-      #
-      if(input$z.water == "water12")
-        domain <- c(0, max(c(slum.results.sp[[input$z.water]], city.results.sp[[input$z.water]])))   
-      #
-      #
-      #
-      pal <- colorBin(palette = input$palette.water,
-                      domain = domain, 
-                      pretty = FALSE,
-                      bins = ifelse(is.null(input$map.bins.water), 5, input$map.bins.water))
-      #
-      #
-      #
-      values <- domain
-      }
-    #
-    # Quantile
-    #
-    if(input$map.colour.water == "quantile")
-      {
-      #
-      # Domains
-      #
-      if(input$z.water != "water12") 
+      if(input$map.colour.water == "quantile")
+        {
+        #
+        # Domains
+        #
         domain <- c(slum.results.sp[[input$z.water]] * 100, city.results.sp[[input$z.water]] * 100)
+        #
+        #
+        #
+        pal <- colorQuantile(palette = input$palette.water,
+                             domain = domain,
+                             n = ifelse(is.null(input$map.n.water), 5, input$map.n.water))
+        #
+        #
+        #
+        values <- domain
+        #
+        #
+        #
+        slum.fill <- pal(slum.results.sp[[input$z.water]] * 100)
+        city.fill <- pal(city.results.sp[[input$z.water]] * 100)
+        }
       #
       #
-      #
-      if(input$z.water == "water12") 
-        domain <- c(slum.results.sp[[input$z.water]], city.results.sp[[input$z.water]])   
-      #
-      #
-      #
-      pal <- colorQuantile(palette = input$palette.water,
-                           domain = domain,
-                           n = ifelse(is.null(input$map.n.water), 5, input$map.n.water))
-      #
-      #
-      #
-      values <- domain
+      #  
+      slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$z.water]] * 100, "%", sep = "")
+      city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.water]] * 100, "%", sep = "")
       }
     #
     #
     #  
-    slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$z.water]] * 100, "%", sep = "")
-    city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.water]] * 100, "%", sep = "")
-    #
-    #
-    #
     if(input$z.water == "water12")
       {
       #
+      # Linear interpolation
+      #
+      if(input$map.colour.water == "linear")
+        {
+        domain <- c(0, max(c(slum.results.sp[[input$z.water]], city.results.sp[[input$z.water]])))
+        #
+        #
+        #
+        pal <- colorNumeric(palette = input$palette.water,
+                            domain = domain)
+        #
+        #
+        #
+        values <- domain
+        #
+        #
+        #
+        slum.fill <- pal(slum.results.sp[[input$z.water]])
+        city.fill <- pal(city.results.sp[[input$z.water]])                
+        }
+      #
+      # Equal interval
+      #
+      if(input$map.colour.water == "interval")
+        {
+        #
+        # Domains
+        #
+        domain <- c(0, max(c(slum.results.sp[[input$z.water]], city.results.sp[[input$z.water]])))
+        #
+        #
+        #
+        pal <- colorBin(palette = input$palette.water,
+                        domain = domain, 
+                        pretty = FALSE,
+                        bins = ifelse(is.null(input$map.bins.water), 5, input$map.bins.water))
+        #
+        #
+        #
+        values <- domain
+        #
+        #
+        #
+        slum.fill <- pal(slum.results.sp[[input$z.water]])
+        city.fill <- pal(city.results.sp[[input$z.water]])        
+        }
+      #
+      # Quantile
+      #
+      if(input$map.colour.water == "quantile")
+        {
+        #
+        # Domains
+        #
+        domain <- c(slum.results.sp[[input$z.water]], city.results.sp[[input$z.water]])
+        #
+        #
+        #
+        pal <- colorQuantile(palette = input$palette.water,
+                             domain = domain,
+                             n = ifelse(is.null(input$map.n.water), 5, input$map.n.water))
+        #
+        #
+        #
+        values <- domain
+        #
+        #
+        #
+        slum.fill <- pal(slum.results.sp[[input$z.water]])
+        city.fill <- pal(city.results.sp[[input$z.water]])        
+        }
       #
       #
+      #  
       slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$z.water]], sep = "")
       city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.water]], sep = "")
-      }      
+      }
     #
     #
     #      
@@ -2541,11 +2875,11 @@ function(input, output, session) {
     #
     addPolygons(
       data = slum.results.sp,
-	  fillColor = ifelse(input$z.water != "water12", pal(slum.results.sp[[input$z.water]] * 100), pal(slum.results.sp[[input$z.water]])),
+	  fillColor = slum.fill,
 	  weight = 2,
 	  opacity = 1,
 	  color = "white",
-	  dashArray = "3",
+	  dashArray = "",
 	  fillOpacity = 0.7,
 	  highlight = highlightOptions(
 	    weight = 5,
@@ -2564,11 +2898,11 @@ function(input, output, session) {
     #
     addPolygons(
       data = city.results.sp,
-	  fillColor = ifelse(input$z.water != "water12", pal(city.results.sp[[input$z.water]] * 100), pal(city.results.sp[[input$z.water]])),
+	  fillColor = city.fill,
 	  weight = 2,
 	  opacity = 1,
 	  color = "white",
-	  dashArray = "3",
+	  dashArray = "",
 	  fillOpacity = 0.7,
 	  highlight = highlightOptions(
 	    weight = 5,
@@ -2670,93 +3004,177 @@ function(input, output, session) {
   #
   output$map.sanitation <- renderLeaflet({
     #
-    # Linear interpolation
     #
-    if(input$map.colour.sanitation == "linear")
+    #
+    if(!input$z.sanitation %in% c("san13", "san14"))
       {
       #
-      # Domains
+      # Linear interpolation
       #
-      domain <- c(0, 100)
+      if(input$map.colour.sanitation == "linear")
+        {
+        #
+        # Domains
+        #
+        domain <- c(0, 100)
+        #
+        #
+        #
+        pal <- colorNumeric(palette = input$palette.sanitation,
+                            domain = domain)
+        #
+        #
+        #
+        values <- domain
+        #
+        #
+        #
+        slum.fill <- pal(slum.results.sp[[input$z.sanitation]] * 100)
+        city.fill <- pal(slum.results.sp[[input$z.sanitation]] * 100)
+        }
       #
+      # Equal interval
       #
+      if(input$map.colour.sanitation == "interval")
+        {
+        #
+        # Domains
+        #
+        domain <- c(0, 100)
+        #
+        #
+        #
+        pal <- colorBin(palette = input$palette.sanitation,
+                        domain = domain, 
+                        pretty = FALSE,
+                        bins = ifelse(is.null(input$map.bins.sanitation), 5, input$map.bins.sanitation))
+        #
+        #
+        #
+        values <- domain
+        #
+        #
+        #
+        slum.fill <- pal(slum.results.sp[[input$z.sanitation]] * 100)
+        city.fill <- pal(city.results.sp[[input$z.sanitation]] * 100)
+        }
       #
-      if(input$z.sanitation %in% c("san13", "san14")) 
-        domain <- c(0, max(c(slum.results.sp[[input$z.sanitation]], city.results.sp[[input$z.sanitation]])))
+      # Quantile
       #
-      #
-      #
-      pal <- colorNumeric(palette = input$palette.sanitation,
-                          domain = domain)
-      #
-      #
-      #
-      values <- domain
-      }
-    #
-    # Equal interval
-    #
-    if(input$map.colour.sanitation == "interval")
-      {
-      #
-      # Domains
-      #
-      domain <- c(0, 100)
-      #
-      #
-      #
-      if(input$z.sanitation %in% c("san13", "san14")) 
-        domain <- c(0, max(c(slum.results.sp[[input$z.sanitation]], city.results.sp[[input$z.sanitation]])))
-      #
-      #
-      #
-      pal <- colorBin(palette = input$palette.sanitation,
-                      domain = domain, 
-                      pretty = FALSE,
-                      bins = ifelse(is.null(input$map.bins.sanitation), 5, input$map.bins.sanitation))
-      #
-      #
-      #
-      values <- domain
-      }
-    #
-    # Quantile
-    #
-    if(input$map.colour.sanitation == "quantile")
-      {
-      #
-      # Domains
-      #
-      domain <- c(slum.results.sp[[input$z.sanitation]] * 100, city.results.sp[[input$z.sanitation]] * 100)
-      #
-      #
-      #
-      if(input$z.sanitation %in% c("san13", "san14")) 
+      if(input$map.colour.sanitation == "quantile")
+        {
+        #
+        # Domains
+        #
         domain <- c(slum.results.sp[[input$z.sanitation]] * 100, city.results.sp[[input$z.sanitation]] * 100)
+        #
+        #
+        #
+        pal <- colorQuantile(palette = input$palette.sanitation,
+                             domain = domain,
+                             n = ifelse(is.null(input$map.n.sanitation), 5, input$map.n.sanitation))
+        #
+        #
+        #
+        values <- domain
+        #
+        #
+        #
+        slum.fill <- pal(slum.results.sp[[input$z.sanitation]] * 100)
+        city.fill <- pal(slum.results.sp[[input$z.sanitation]] * 100)
+        }
       #
       #
-      #
-      pal <- colorQuantile(palette = input$palette.sanitation,
-                           domain = domain,
-                           n = ifelse(is.null(input$map.n.sanitation), 5, input$map.n.sanitation))
-      #
-      #
-      #
-      values <- domain
+      #  
+      slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$z.sanitation]] * 100, "%", sep = "")
+      city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.sanitation]] * 100, "%", sep = "")
       }
-    #
-    #
-    #  
-    slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$z.sanitation]] * 100, "%", sep = "")
-    city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.sanitation]] * 100, "%", sep = "")
     #
     #
     #
     if(input$z.sanitation %in% c("san13", "san14"))
       {
+      #
+      # Linear interpolation
+      #
+      if(input$map.colour.sanitation == "linear")
+        {
+        #
+        # Domains
+        #
+        domain <- c(0, max(c(slum.results.sp[[input$z.sanitation]], city.results.sp[[input$z.sanitation]])))
+        #
+        #
+        #
+        pal <- colorNumeric(palette = input$palette.sanitation,
+                            domain = domain)
+        #
+        #
+        #
+        values <- domain
+        #
+        #
+        #
+        slum.fill <- pal(slum.results.sp[[input$z.sanitation]])
+        city.fill <- pal(slum.results.sp[[input$z.sanitation]])
+        }
+      #
+      # Equal interval
+      #
+      if(input$map.colour.sanitation == "interval")
+        {
+        #
+        # Domains
+        #
+        domain <- c(0, max(c(slum.results.sp[[input$z.sanitation]], city.results.sp[[input$z.sanitation]])))
+        #
+        #
+        #
+        pal <- colorBin(palette = input$palette.sanitation,
+                        domain = domain, 
+                        pretty = FALSE,
+                        bins = ifelse(is.null(input$map.bins.sanitation), 5, input$map.bins.sanitation))
+        #
+        #
+        #
+        values <- domain
+        #
+        #
+        #
+        slum.fill <- pal(slum.results.sp[[input$z.sanitation]])
+        city.fill <- pal(city.results.sp[[input$z.sanitation]])
+        }
+      #
+      # Quantile
+      #
+      if(input$map.colour.sanitation == "quantile")
+        {
+        #
+        # Domains
+        #
+        domain <- c(slum.results.sp[[input$z.sanitation]], city.results.sp[[input$z.sanitation]])
+        #
+        #
+        #
+        pal <- colorQuantile(palette = input$palette.sanitation,
+                             domain = domain,
+                             n = ifelse(is.null(input$map.n.sanitation), 5, input$map.n.sanitation))
+        #
+        #
+        #
+        values <- domain
+        #
+        #
+        #
+        slum.fill <- pal(slum.results.sp[[input$z.sanitation]])
+        city.fill <- pal(slum.results.sp[[input$z.sanitation]])
+        }    
+      #
+      #
+      #  
       slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$z.sanitation]], sep = "")
       city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.sanitation]], sep = "")
-      }      
+      }
     #
     #
     #      
@@ -2779,11 +3197,11 @@ function(input, output, session) {
     #
     addPolygons(
       data = slum.results.sp,
-	  fillColor = ifelse(!input$z.sanitation %in% c("san13", "san14"), pal(slum.results.sp[[input$z.sanitation]] * 100), pal(slum.results.sp[[input$z.sanitation]])),
+	  fillColor = slum.fill,
 	  weight = 2,
 	  opacity = 1,
 	  color = "white",
-	  dashArray = "3",
+	  dashArray = "",
 	  fillOpacity = 0.7,
 	  highlight = highlightOptions(
 	    weight = 5,
@@ -2802,11 +3220,11 @@ function(input, output, session) {
     #
     addPolygons(
       data = city.results.sp,
-	  fillColor = ifelse(!input$z.sanitation %in% c("san13", "san14"), pal(city.results.sp[[input$z.sanitation]] * 100), pal(city.results.sp[[input$z.sanitation]])),
+	  fillColor = city.fill,
 	  weight = 2,
 	  opacity = 1,
 	  color = "white",
-	  dashArray = "3",
+	  dashArray = "",
 	  fillOpacity = 0.7,
 	  highlight = highlightOptions(
 	    weight = 5,
@@ -2998,7 +3416,7 @@ function(input, output, session) {
 	  weight = 2,
 	  opacity = 1,
 	  color = "white",
-	  dashArray = "3",
+	  dashArray = "",
 	  fillOpacity = 0.7,
 	  highlight = highlightOptions(
 	    weight = 5,
@@ -3021,7 +3439,7 @@ function(input, output, session) {
 	  weight = 2,
 	  opacity = 1,
 	  color = "white",
-	  dashArray = "3",
+	  dashArray = "",
 	  fillOpacity = 0.7,
 	  highlight = highlightOptions(
 	    weight = 5,
@@ -3164,18 +3582,18 @@ function(input, output, session) {
       #
       #
       pal <- colorQuantile(palette = input$palette.overall,
-                           domain = c(slum.results.sp[[input$indicator.overall]], city.results.sp[[input$indicator.overall]]),
+                           domain = c(slum.results.sp[[input$indicator.overall]] * 100, city.results.sp[[input$indicator.overall]] * 100),
                            n = ifelse(is.null(input$map.n.overall), 5, input$map.n.overall))
       #
       #
       #
-      values <- c(slum.results.sp[[input$indicator.overall]], city.results.sp[[input$indicator.overall]])
+      values <- c(slum.results.sp[[input$indicator.overall]] * 100, city.results.sp[[input$indicator.overall]] * 100)
       }
     #
     #
     #  
-    slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$indicator.overall]] * 100, sep = "")
-    city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$indicator.overall]] * 100, sep = "")
+    slum.labels <- paste(slum.results.sp$surveyArea, ": ", slum.results.sp[[input$indicator.overall]] * 100, "%", sep = "")
+    city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$indicator.overall]] * 100, "%", sep = "")
     #
     #
     #      
@@ -3198,7 +3616,7 @@ function(input, output, session) {
       #
       addPolygons(
         data = slum.results.sp,
-	    fillColor = pal(slum.results.sp[[input$indicator.overall]]), 
+	    fillColor = pal(slum.results.sp[[input$indicator.overall]] * 100), 
 	    weight = 2,
 	    opacity = 1,
 	    color = "white",
@@ -3221,7 +3639,7 @@ function(input, output, session) {
       #
       addPolygons(
         data = city.results.sp,
-	    fillColor = pal(city.results.sp[[input$indicator.overall]]),
+	    fillColor = pal(city.results.sp[[input$indicator.overall]] * 100),
 	    weight = 2,
 	    opacity = 1,
 	    color = "white",
@@ -3316,6 +3734,376 @@ function(input, output, session) {
         }
       ")
   })
+
+################################################################################
+#
+#
+# Data Tables
+#
+#
+################################################################################
+  
+################################################################################
+  #
+  # Create data table output for demographics indicator set
+  #
+  output$table.demographics <- DT::renderDataTable(DT::datatable({
+    #
+    # Subset to selected indicator/indicator set
+    #
+    df <- subset(indicatorsDF, select = c(country, ccode, zone, type, nMembers))
+    #
+    # Subset to specific country based on country selection
+    #
+    df <- subset(df, country == input$country1)
+    #
+    # Filter data by survey area
+    #
+    if(input$table.demographics.area != "All")
+      {
+      #
+      #
+      #
+      df <- df[df$zone == input$table.demographics.area, ]
+      }
+    #
+    # Filter data by area type
+    #
+    if(input$table.demographics.type != "All")
+      {
+      #
+      #
+      #
+      df <- df[df$type == input$table.demographics.type, ]
+      }
+    #
+    # return data table
+    #
+    df
+  }, 
+  #
+  # Table options
+  #
+  options = list(pageLength = 10)))
+
+################################################################################
+  #
+  # Create data table output for poverty indicator set
+  #
+  output$table.poverty <- DT::renderDataTable(DT::datatable({
+    #
+    # Subset to selected indicator/indicator set
+    #
+    df <- subset(areaResultsLong, select = c(country, countryCode, 
+                                             indicatorName, indicatorCode, indicatorCategory, 
+                                             strata, estimate, lcl, ucl, type))
+    #
+    # Subset to poverty indicator set
+    #
+    df <- df[df$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "poverty"], ]
+    #
+    # Subset to specific country based on country selection
+    #
+    df <- subset(df, country == input$country2)
+    #
+    # Subset to specific indicator based on indicator selection
+    #
+    df <- subset(df, indicatorCode == input$z.poverty)
+    #
+    # Filter data by survey area
+    #
+    if(input$table.poverty.area != "All")
+      {
+      #
+      #
+      #
+      df <- df[df$strata == input$table.poverty.area, ]
+      }
+    #
+    # Filter data by area type
+    #
+    if(input$table.poverty.type != "All")
+      {
+      #
+      #
+      #
+      df <- df[df$type == input$table.poverty.type, ]
+      }
+    #
+    # return data table
+    #
+    df
+  }, 
+  #
+  # Table options
+  #
+  options = list(pageLength = 10)))
+
+################################################################################
+  #
+  # Create data table output for service ladder indicator set
+  #
+  output$table.ladder <- DT::renderDataTable(DT::datatable({
+    #
+    # Subset to selected indicator/indicator set
+    #
+    df <- subset(areaResultsLong, select = c(country, countryCode, 
+                                             indicatorName, indicatorCode, indicatorCategory, 
+                                             strata, estimate, lcl, ucl, type))
+    #
+    # Subset to ladder indicator set
+    #
+    df <- df[df$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == input$z.ladder], ]
+    #
+    # Subset to specific country based on country selection
+    #
+    df <- subset(df, country == input$country3)
+    #
+    # Subset to specific indicator based on indicator selection
+    #
+    df <- subset(df, indicatorCode == input$indicator.ladder)
+    #
+    # Filter data by survey area
+    #
+    if(input$table.ladder.area != "All")
+      {
+      #
+      #
+      #
+      df <- df[df$strata == input$table.ladder.area, ]
+      }
+    #
+    # Filter data by area type
+    #
+    if(input$table.ladder.type != "All")
+      {
+      #
+      #
+      #
+      df <- df[df$type == input$table.ladder.type, ]
+      }
+    #
+    # return data table
+    #
+    df
+  }, 
+  #
+  # Table options
+  #
+  options = list(pageLength = 10)))
+
+################################################################################
+  #
+  # Create data table output for other water indicator set
+  #
+  output$table.water <- DT::renderDataTable(DT::datatable({
+    #
+    # Subset to selected indicator/indicator set
+    #
+    df <- subset(areaResultsLong, select = c(country, countryCode, 
+                                             indicatorName, indicatorCode, indicatorCategory, 
+                                             strata, estimate, lcl, ucl, type))
+    #
+    # Subset to water indicator set
+    #
+    df <- df[df$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet != "waterSet1"], ]
+    #
+    # Subset to specific country based on country selection
+    #
+    df <- subset(df, country == input$country4)
+    #
+    # Subset to specific indicator based on indicator selection
+    #
+    df <- subset(df, indicatorCode == input$z.water)
+    #
+    # Filter data by survey area
+    #
+    if(input$table.water.area != "All")
+      {
+      #
+      #
+      #
+      df <- df[df$strata == input$table.water.area, ]
+      }
+    #
+    # Filter data by area type
+    #
+    if(input$table.water.type != "All")
+      {
+      #
+      #
+      #
+      df <- df[df$type == input$table.water.type, ]
+      }
+    #
+    # return data table
+    #
+    df
+  }, 
+  #
+  # Table options
+  #
+  options = list(pageLength = 10)))
+
+################################################################################
+  #
+  # Create data table output for other sanitation indicator set
+  #
+  output$table.sanitation <- DT::renderDataTable(DT::datatable({
+    #
+    # Subset to selected indicator/indicator set
+    #
+    df <- subset(areaResultsLong, select = c(country, countryCode, 
+                                             indicatorName, indicatorCode, indicatorCategory, 
+                                             strata, estimate, lcl, ucl, type))
+    #
+    # Subset to sanitation indicator set
+    #
+    df <- df[df$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet != "sanSet1"], ]
+    #
+    # Subset to specific country based on country selection
+    #
+    df <- subset(df, country == input$country5)
+    #
+    # Subset to specific indicator based on indicator selection
+    #
+    df <- subset(df, indicatorCode == input$z.sanitation)
+    #
+    # Filter data by survey area
+    #
+    if(input$table.sanitation.area != "All")
+      {
+      #
+      #
+      #
+      df <- df[df$strata == input$table.sanitation.area, ]
+      }
+    #
+    # Filter data by area type
+    #
+    if(input$table.sanitation.type != "All")
+      {
+      #
+      #
+      #
+      df <- df[df$type == input$table.sanitation.type, ]
+      }
+    #
+    # return data table
+    #
+    df
+  }, 
+  #
+  # Table options
+  #
+  options = list(pageLength = 10)))
+
+################################################################################
+  #
+  # Create data table output for other hygiene indicator set
+  #
+  output$table.hygiene <- DT::renderDataTable(DT::datatable({
+    #
+    # Subset to selected indicator/indicator set
+    #
+    df <- subset(areaResultsLong, select = c(country, countryCode, 
+                                             indicatorName, indicatorCode, indicatorCategory, 
+                                             strata, estimate, lcl, ucl, type))
+    #
+    # Subset to hygiene indicator set
+    #
+    df <- df[df$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "hygieneSet"], ]
+    #
+    # Subset to specific country based on country selection
+    #
+    df <- subset(df, country == input$country6)
+    #
+    # Subset to specific indicator based on indicator selection
+    #
+    df <- subset(df, indicatorCode == input$z.hygiene)
+    #
+    # Filter data by survey area
+    #
+    if(input$table.hygiene.area != "All")
+      {
+      #
+      #
+      #
+      df <- df[df$strata == input$table.hygiene.area, ]
+      }
+    #
+    # Filter data by area type
+    #
+    if(input$table.hygiene.type != "All")
+      {
+      #
+      #
+      #
+      df <- df[df$type == input$table.hygiene.type, ]
+      }
+    #
+    # return data table
+    #
+    df
+  }, 
+  #
+  # Table options
+  #
+  options = list(pageLength = 10)))
+
+################################################################################
+  #
+  # Create data table output for other overall indicator set
+  #
+  output$table.overall <- DT::renderDataTable(DT::datatable({
+    #
+    # Subset to selected indicator/indicator set
+    #
+    df <- subset(areaResultsLong, select = c(country, countryCode, 
+                                             indicatorName, indicatorCode, indicatorCategory, 
+                                             strata, estimate, lcl, ucl, type))
+    #
+    # Subset to overall indicator set
+    #
+    df <- df[df$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == input$z.overall], ]
+    #
+    # Subset to specific country based on country selection
+    #
+    df <- subset(df, country == input$country7)
+    #
+    # Subset to specific indicator based on indicator selection
+    #
+    df <- subset(df, indicatorCode == input$indicator.overall)
+    #
+    # Filter data by survey area
+    #
+    if(input$table.overall.area != "All")
+      {
+      #
+      #
+      #
+      df <- df[df$strata == input$table.overall.area, ]
+      }
+    #
+    # Filter data by area type
+    #
+    if(input$table.overall.type != "All")
+      {
+      #
+      #
+      #
+      df <- df[df$type == input$table.overall.type, ]
+      }
+    #
+    # return data table
+    #
+    df
+  }, 
+  #
+  # Table options
+  #
+  options = list(pageLength = 10)))
+
 }
 
 

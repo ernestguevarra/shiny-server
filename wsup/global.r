@@ -18,6 +18,7 @@ library(raster)
 library(maps)
 library(RColorBrewer)
 library(classInt)
+library(DT)
 
 
 ################################################################################
@@ -98,9 +99,9 @@ names(wealthResults)[5]  <- "strata"
 #
 # Subset survey results to columns needed for plotting
 #
-temp1 <- subset(areaResults, select = c(country:strata, slumTotal, slumEst))
-temp2 <- subset(areaResults, select = c(country:strata, otherTotal, otherEst))
-temp3 <- subset(areaResults, select = c(country:strata, total, totalEst))
+temp1 <- subset(areaResults, select = c(country:strata, slumTotal, slumEst, slumLCL, slumUCL))
+temp2 <- subset(areaResults, select = c(country:strata, otherTotal, otherEst, otherLCL, otherUCL))
+temp3 <- subset(areaResults, select = c(country:strata, total, totalEst, totalLCL, totalUCL))
 #
 # Add area type variable
 #
@@ -111,7 +112,7 @@ temp3$type <- rep("Citywide", nrow(temp3))
 # Rename variables
 #
 names(temp1) <- c("country", "countryCode", "indicatorName", 
-                  "indicatorCode", "strata", "n", "estimate", "type")
+                  "indicatorCode", "strata", "n", "estimate", "lcl", "ucl", "type")
 names(temp3) <- names(temp2) <- names(temp1)
 #
 # Create single long data.frame
@@ -163,7 +164,7 @@ indicatorCategory[!areaResultsLong$indicatorCode %in% steerIndicators$varList] <
 # Add indicatorCategory to areaResultsLong data.frame
 #
 areaResultsLong <- data.frame(areaResultsLong[ , c("country", "countryCode", "indicatorName", "indicatorCode")], indicatorCategory,
-                              areaResultsLong[ , c("strata", "n", "estimate", "type")])
+                              areaResultsLong[ , c("strata", "n", "estimate", "lcl", "ucl", "type")])
 #
 # Remove other area type
 #
@@ -188,9 +189,9 @@ areaResultsLong$strata <- str_split(string = areaResultsLong$strata,
 #
 # Subset survey results to columns needed for plotting
 #
-temp1 <- subset(wealthResults, select = c(country:strata, slumTotal, slumEst))
-temp2 <- subset(wealthResults, select = c(country:strata, otherTotal, otherEst))
-temp3 <- subset(wealthResults, select = c(country:strata, total, totalEst))
+temp1 <- subset(wealthResults, select = c(country:strata, slumTotal, slumEst, slumLCL, slumUCL))
+temp2 <- subset(wealthResults, select = c(country:strata, otherTotal, otherEst, otherLCL, otherUCL))
+temp3 <- subset(wealthResults, select = c(country:strata, total, totalEst, totalLCL, totalUCL))
 #
 # Add area type variable
 #
@@ -201,7 +202,7 @@ temp3$type <- rep("Citywide", nrow(temp3))
 # Rename variables
 #
 names(temp1) <- c("country", "countryCode", "indicatorName", 
-                  "indicatorCode", "strata", "n", "estimate", "type")
+                  "indicatorCode", "strata", "n", "estimate", "lcl", "ucl", "type")
 names(temp3) <- names(temp2) <- names(temp1)
 #
 # Create single long data.frame
@@ -253,7 +254,7 @@ indicatorCategory[!wealthResultsLong$indicatorCode %in% steerIndicators$varList]
 # Add indicatorCategory to wealthResultsLong data.frame
 #
 wealthResultsLong <- data.frame(wealthResultsLong[ , c("country", "countryCode", "indicatorName", "indicatorCode")], indicatorCategory,
-                                wealthResultsLong[ , c("strata", "n", "estimate", "type")])
+                                wealthResultsLong[ , c("strata", "n", "estimate", "lcl", "ucl", "type")])
 #
 # Remove other area type
 #
@@ -268,6 +269,10 @@ wealthResultsLong$type <- factor(wealthResultsLong$type, levels = c("Slum", "Cit
 wealthResultsLong$strata <- str_split(string = wealthResultsLong$strata, 
                                       pattern = " ",
                                       simplify = TRUE)[ , 3]
+#
+# Clean-up
+#
+rm(indicatorCategory, temp1, temp2, temp3)
 
 
 ################################################################################
@@ -275,168 +280,6 @@ wealthResultsLong$strata <- str_split(string = wealthResultsLong$strata,
 #                ASSEMBLE COLOUR VECTORS FOR CHARTS AND MAPS                   #
 #                                                                              #
 ################################################################################
-
-################################################################################
-#
-# Qualitative colour scheme
-#
-################################################################################
-#
-# Two colours
-#
-area2  <- c("#fbb4ae", "#b3cde3")
-#
-# Three colours
-#
-area3  <- c("#fbb4ae", "#b3cde3", "#ccebc5")
-#
-# Five colours
-#
-area5  <- c("#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6")
-#
-# Seven colours
-#
-area7  <- c("#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6",
-	       "#ffffcc", "#e5d8bd")
-#
-# Nine colours
-#
-area9  <- c("#8dd3c7", "#ffffb3", "#bebada", "#fb8072", "#80b1d3",
-	       "#fdb462", "#b3de69", "#fccde5", "#d9d9d9")
-#
-# Ten colours
-#
-area10 <- c("#8dd3c7", "#ffffb3", "#bebada", "#fb8072", "#80b1d3",
-	       "#fdb462", "#b3de69", "#fccde5", "#ccebc5", "#bc80bd") 
-
-################################################################################
-#
-# Divergent colour scheme
-#
-################################################################################
-#
-# Seven colour red-yellow-blue scheme
-#
-RdYlBl7 <- c("#d73027", "#fc8d59", "#fee090", "#ffffbf", 
-	        "#e0f3f8", "#91bfdb", "#4575b4")
-#
-# Seven colour red-yellow-green colour scheme
-#
-RdYlGn7 <- c("#d73027", "#fc8d59", "#fee08b", "#ffffbf", 
-      	   "#d9ef8b", "#91cf60", "#1a9850")
-#
-# Five colour red-yellow-green colour scheme
-#             
-RdYlGn5 <- c("#d7191c", "#fdae61", "#ffffbf", "#a6d96a", "#1a9641")
-#
-# Three colour red-yellow-green colour scheme
-#
-RdYlGn3 <- c("#d73027", "#ffffbf", "#1a9850")
-
-################################################################################
-#
-# Sequential colour scheme
-#
-################################################################################
-#
-# Seven colour multi-hue yellow-blue colour scheme 
-#
-YlBl7 <- c("#ffffcc", "#c7e9b4", "#7fcdbb", "#41b6c4",
-	      "#1d91c0", "#225ea8", "#0c2c84")
-#
-# Five colour multi-hue yellow-blue colour scheme
-#
-YlBl5 <- c("#ffffcc", "#a1dab4", "#41b6c4", "#2c7fb8", "#253494")
-#
-# Seven colour multi-hue yellow-red colour scheme
-#
-YlRd7 <- c("#ffffb2", "#fed976", "#feb24c", "#fd8d3c", 
-	      "#fc4e2a", "#e31a1c", "#b10026")
-#
-# Five colour multi-hue yellow-red colour scheme
-#
-YlRd5 <- c("#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026")
-#
-# Seven colour multi-hue yellow-brown colour scheme
-#
-YlBn7 <- c("#ffffd4", "#fee391", "#fec44f", "#fe9929",
-           "#ec7014", "#cc4c02", "#8c2d04")
-#
-# Five colour multi-hue yellow-brown colour scheme
-#
-YlBn5 <- c("#ffffd4", "#fed98e", "#fe9929", "#d95f0e", "#993404")
-#
-# Nine colour multi-hue yellow-brown colour scheme
-#
-YlBn9 <- c("#ffffe5", "#fff7bc", "#fee391", "#fec44f", "#fe9929",
-            "#ec7014", "#cc4c02", "#993404", "#662506")
-#
-# Seven colour single-hue gray colour scheme
-#
-Gy7 <- c("#f7f7f7", "#d9d9d9", "#bdbdbd", "#969696", "#737373",
-	     "#525252", "#252525")
-#
-# Five colour single-hue gray colour scheme
-#
-Gy5 <- c("#f7f7f7", "#cccccc", "#969696", "#636363", "#252525")
-
-################################################################################
-#
-# Create colour ramps and other colour objects for mapping
-#
-################################################################################
-#
-# Create 101 colours from RdYlBl7 colour vector for population maps
-#
-createMapPalette <- colorRampPalette(colors = RdYlBl7, space = "Lab")
-popPalette <- createMapPalette(101)
-#
-# Create 101 colours from RdYlGn7 colour vector for general indicators mapping
-#
-createMapPalette <- colorRampPalette(colors = RdYlGn7, space = "Lab")
-mapPalette <- createMapPalette(101)
-mapFill <- addAlpha(col = mapPalette, alpha = 0.6)
-#
-# Create 101 colours from Gy7 colour vector for poverty mapping
-#
-createMapPalette <- colorRampPalette(colors = Gy7, space = "Lab")
-povPalette <- createMapPalette(101)
-povFill <- addAlpha(col = povPalette, alpha = 0.6)
-#
-# Create 101 colours from YlRd7 colour vector for prevalence indicators mapping
-#
-createMapPalette <- colorRampPalette(colors = YlRd7, space = "Lab")
-prevPalette <- createMapPalette(101)
-prevFill <- addAlpha(col = prevPalette, alpha = 0.6)
-#
-# Create 101 colours from YlBl7 colour vector for mean indicator mapping
-#
-createMapPalette <- colorRampPalette(colors = YlBl7, space = "Lab")
-meanPalette <- createMapPalette(101)
-meanFill <- addAlpha(col = meanPalette, alpha = 0.6)
-#
-# Create 101 colours from Gy7 colour vector for monochrome colour scheme
-#
-createMapPalette <- colorRampPalette(colors = Gy7, space = "Lab")
-monoPalette <- createMapPalette(101)
-monoFill <- addAlpha(col = monoPalette, alpha = 0.6)
-#
-# Change alpha of RdYlGn5 colour vector - alpha = 0.6
-#
-aRdYlGn5 <- addAlpha(col = RdYlGn5, alpha = 0.6)
-#
-# Change alpha of RdYlGn3 colour vector - alpha = 0.6
-#
-aRdYlGn3 <- addAlpha(col = RdYlGn3, alpha = 0.6)
-#
-# Change alpha of RdYlGn5 colour vector - alpha = 0.6
-#
-aYlBl5 <- addAlpha(col = YlBl5, alpha = 0.6)
-#
-# Change alpha of YlRd5 colour vector - alpha = 0.6
-#
-aYlRd5 <- addAlpha(col = YlRd5, alpha = 0.6)
-
 
 ################################################################################
 #
@@ -473,38 +316,6 @@ formalColour <- c("#a6cee3", "#1f78b4")
 # Overall indicators colour schemes
 #
 overallColour <- c("#fdbf6f", "#b2df8a", "#a6cee3", "#80cdc1")
-#
-# Seven colour water palette scheme
-#
-water7 <- c("#eff3ff", "#c6dbef", "#9ecae1", "#6baed6", 
-            "#4292c6", "#2171b5", "#084594")
-#
-# Create 101 colours from water7 colour vector for water indiators
-#            
-createMapPalette <- colorRampPalette(colors = water7, space = "Lab")
-waterPalette <- createMapPalette(101)
-waterFill <- addAlpha(col = waterPalette, alpha = 0.6)
-#
-# Seven colour sanitation palette scheme
-#
-sanitation7 <- c("#edf8e9", "#c7e9c0", "#a1d99b", "#74c476",
-                 "#41ab5d", "#238b45", "#005a32")
-#
-# Create 101 colours from sanitation7 colour vector for sanitation indicators
-#
-createMapPalette <- colorRampPalette(colors = sanitation7, space = "Lab")
-sanitationPalette <- createMapPalette(101)
-sanitationFill <- addAlpha(col = sanitationPalette, alpha = 0.6)
-#
-# Five colour handwashing palette scheme
-#
-handwashing5 <- c("#f7fcf0", "#e0f3db", "#ccebc5", "#a8ddb5", "#7bccc4")
-#
-# Create 101 colours from handwashing5 colour vector for handwashing indicators
-#
-createMapPalette <- colorRampPalette(colors = handwashing5, space = "Lab")
-handwashingPalette <- createMapPalette(101)
-handwashingFill <- addAlpha(col = handwashingPalette, alpha = 0.6)
 
 
 ################################################################################
@@ -531,7 +342,7 @@ theme_wsup <- theme_bw() +
 #
 ################################################################################
 #
-#
+# Create GPS long/lat CRS object
 #
 long.lat.crs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
 #
@@ -541,7 +352,7 @@ outline <- readOGR(dsn = "surveyArea3",
                    layer = "surveyArea3",
                    verbose = FALSE)
 #
-#
+# Transform outline CRS to long/lat
 #
 outline <- spTransform(outline, CRSobj = CRS(long.lat.crs))
 #
@@ -557,67 +368,71 @@ upazila <- readOGR(dsn = "dhaka3",
                    layer = "dhaka3",
                    verbose = FALSE)
 #
-#
+# Transform wards CRS to long/lat
 #
 wards <- spTransform(wards, CRSobj = CRS(long.lat.crs))
 #
-#
+# Merge shapfile with results data by survey area
 #                 
 map.results <- merge(areaResults, outline, by.x = "strata", by.y = "surveyArea")
 #
-#
+# Create container data.frame from slum results
 #
 slum.results.df <- data.frame(matrix(nrow = 9, ncol = 50))
 #
-#
+# Rename container slum data.frame based on steerIndicators
 #
 names(slum.results.df) <- steerIndicators$varList
 #
-#
+# Create container data.frame from city results
 #
 city.results.df <- data.frame(matrix(nrow = 9, ncol = 50))
 #
-#
+# Rename container city data.frame based on steerIndicators
 #
 names(city.results.df) <- steerIndicators$varList
 #
-#
+# Cycle through variable names
 #
 for(i in steerIndicators$varList)
   {
   #
-  #
+  # Subset results data.frame to current indicator results for slum
   #
   slum.results <- subset(x = map.results, 
                          subset = indicatorCode == i, 
                          select = slumEst)
   #
-  #
+  # Subset results data.frame to current indicator results for city
   #
   city.results <- subset(x = map.results, 
                          subset = indicatorCode == i, 
                          select = totalEst)
   #
-  #
+  # Insert slum and city indicator results to respective container data.frame
   #
   slum.results.df[ , i] <- slum.results
   city.results.df[ , i] <- city.results
   }
 #
-#
+# Create results data.frame for slum and city
 #         
-slum.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:9, sep = " "), slum.results.df)
-city.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:9, sep = " "), city.results.df)
+slum.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:nrow(slum.results.df), sep = " "), slum.results.df)
+city.results.df <- data.frame("surveyArea" = paste("Survey Area", 1:nrow(city.results.df), sep = " "), city.results.df)
 #
-#
+# Merge results data.frame with corresponding shapefile
 #
 slum.results.sp <- merge(outline, slum.results.df, by = "surveyArea")
 city.results.sp <- merge(outline, city.results.df, by = "surveyArea")
 #
-#
+# Create Mapbox base layer objects for leaflet mapping
 #
 mapbox.satellite <- "https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
 mapbox.street <- "https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
 mapbox.dark <- "https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
 mapbox.light <- "https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
+#
+# Clean-up
+# 
+rm(i, map.results, slum.results.df, city.results.df, slum.results, city.results)
 
