@@ -4175,7 +4175,7 @@ function(input, output, session) {
 	  #
 	  # Calculate deff
 	  #
-	  deff <- deff(y = sample.df()[[input$variable]], cluster = sample.df()[[input$cluster]])[["deff"]]
+	  design.effect <- deff(y = sample.df()[[input$variable]], cluster = sample.df()[[input$cluster]])[["deff"]]
 	  #
 	  #
 	  #
@@ -4197,7 +4197,7 @@ function(input, output, session) {
 									  Value = as.character(c(input$z.ci, 
 															 input$proportion,
 															 input$precision,
-															 deff,
+															 design.effect,
 															 sample.size)), 
 									  stringsAsFactors=FALSE)
 
