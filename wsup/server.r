@@ -2136,7 +2136,13 @@ function(input, output, session) {
       #
       #
       #
-      addTiles(urlTemplate = mapbox.satellite, group = "Satellite") %>%
+      addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
+               attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
+      #
+      #
+      #
+      addMiniMap(tiles = mapbox.street,
+                 toggleDisplay = TRUE) %>%
       #
       # Slum polygon
       #
@@ -2344,7 +2350,13 @@ function(input, output, session) {
       #
       #
       #
-      addTiles(urlTemplate = mapbox.satellite, group = "Satellite") %>%
+      addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
+               attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
+      #
+      #
+      #
+      addMiniMap(tiles = mapbox.street,
+                 toggleDisplay = TRUE) %>%
       #
       # Slum polygon
       #
@@ -2552,7 +2564,13 @@ function(input, output, session) {
       #
       #
       #
-      addTiles(urlTemplate = mapbox.satellite, group = "Satellite") %>%
+      addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
+               attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
+      #
+      #
+      #
+      addMiniMap(tiles = mapbox.street,
+                 toggleDisplay = TRUE) %>%
       #
       # Slum polygon
       #
@@ -2869,7 +2887,13 @@ function(input, output, session) {
     #  
     #
     #
-    addTiles(urlTemplate = mapbox.satellite, group = "Satellite") %>%
+    addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
+             attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
+    #
+    #
+    #
+    addMiniMap(tiles = mapbox.street,
+               toggleDisplay = TRUE) %>%
     #
     # Slum Map
     #
@@ -3191,7 +3215,13 @@ function(input, output, session) {
     #  
     #
     #
-    addTiles(urlTemplate = mapbox.satellite, group = "Satellite") %>%
+    addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
+             attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
+    #
+    #
+    #
+    addMiniMap(tiles = mapbox.street,
+               toggleDisplay = TRUE) %>%
     #
     # Slum Map
     #
@@ -3406,7 +3436,13 @@ function(input, output, session) {
     #
     #
     #
-    addTiles(urlTemplate = mapbox.satellite, group = "Satellite") %>%
+    addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
+             attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
+    #
+    #
+    #
+    addMiniMap(tiles = mapbox.street,
+               toggleDisplay = TRUE) %>%
     #
     # Slum Map
     #
@@ -3610,7 +3646,13 @@ function(input, output, session) {
       #
       #
       #
-      addTiles(urlTemplate = mapbox.satellite, group = "Satellite") %>%
+      addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
+               attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
+      #
+      #
+      #
+      addMiniMap(tiles = mapbox.street,
+                 toggleDisplay = TRUE) %>%
       #
       # Slum polygon
       #
