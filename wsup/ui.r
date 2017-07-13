@@ -1200,6 +1200,10 @@ navbarPage(title = "Urban Water and Sanitation Survey",
         #
         sidebarPanel(
           #
+          #
+          #
+          h4("Sample size calculator"),
+          #
           # Select z-value for CI
           #
           selectInput(inputId = "z.ci",
@@ -1244,6 +1248,18 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           actionButton(inputId = "calculate",
                        label = "Calculate"),
+          #
+          #
+          #
+          br(), br(),
+          #
+          #
+          #
+          h4(textOutput("sample.header")),
+          #
+          #
+          #
+          tableOutput("sample"),
         #
         # Set width of sidebar panel
         #
@@ -1257,7 +1273,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           #
           HTML("
-            <h3>Sample size calculator</h3>
+            <h3>Sample size</h3>
             <p>Sample size is estimated using the following formula:</p>          
             $$ n \\ = \\ z ^ 2 \\times \\frac{p \\ (1 \\ - \\ p)}{c ^ 2} \\ \\times \\ DEFF $$
             $$ \\begin{align}
@@ -1274,20 +1290,12 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             $$ \\begin{align}
             \\text{where} \\\\
             c \\ &= \\ \\text{cluster size} \\\\
-            \\rho \\ &= \\text{intracluster correlation coefficient}
+            \\rho \\ &= \\text{intracluster correlation coefficient (ICC)}
             \\end{align} $$
             <br/>
             <p>This calculator allows the user to provide appropriate cluster survey data <em>(see sidebar panel)</em> that can be used to perform this calculation. If no cluster survey data is provided, a conservative assumption is made and<code><em>DEFF</em></code> of <strong>2</strong> is used.</p>
             <br/>
             "),
-          #
-          #
-          #
-          h3(textOutput("sample.header")),
-          #
-          #
-          #
-          tableOutput("sample"),
         #
         # Set width of main panel
         #

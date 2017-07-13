@@ -3058,7 +3058,7 @@ function(input, output, session) {
         #
         #
         slum.fill <- pal(slum.results.sp[[input$z.sanitation]] * 100)
-        city.fill <- pal(slum.results.sp[[input$z.sanitation]] * 100)
+        city.fill <- pal(city.results.sp[[input$z.sanitation]] * 100)
         }
       #
       # Equal interval
@@ -3109,7 +3109,7 @@ function(input, output, session) {
         #
         #
         slum.fill <- pal(slum.results.sp[[input$z.sanitation]] * 100)
-        city.fill <- pal(slum.results.sp[[input$z.sanitation]] * 100)
+        city.fill <- pal(city.results.sp[[input$z.sanitation]] * 100)
         }
       #
       #
@@ -3144,7 +3144,7 @@ function(input, output, session) {
         #
         #
         slum.fill <- pal(slum.results.sp[[input$z.sanitation]])
-        city.fill <- pal(slum.results.sp[[input$z.sanitation]])
+        city.fill <- pal(city.results.sp[[input$z.sanitation]])
         }
       #
       # Equal interval
@@ -3195,7 +3195,7 @@ function(input, output, session) {
         #
         #
         slum.fill <- pal(slum.results.sp[[input$z.sanitation]])
-        city.fill <- pal(slum.results.sp[[input$z.sanitation]])
+        city.fill <- pal(city.results.sp[[input$z.sanitation]])
         }    
       #
       #
@@ -4242,9 +4242,13 @@ function(input, output, session) {
 	  if(!is.null(input$file1))
 	    {
 	    #
-        #
+        # Design effect
         #
 	    design.effect <- deff(y = sample.df()[[input$variable]], cluster = sample.df()[[input$cluster]])[["deff"]]
+	    #
+	    #
+	    #
+	    icc <- deff(y = sample.df()[[input$variable]], cluster = sample.df()[[input$cluster]])[["rho"]]
 	    }
 	  #
 	  #
@@ -4263,15 +4267,17 @@ function(input, output, session) {
 	  #    
 	  # Compose data frame
 	  #
-	  sample.parameters <- data.frame(Parameters = c("Confidence Interval (z-value)", 
-													 "Expected proportion/prevalence",
+	  sample.parameters <- data.frame(Parameters = c("z-value", 
+													 "Prevalence",
 													 "Precision",
 													 "Design effect",
+													 "ICC",
 													 "Sample size"),
 									  Value = as.character(c(paste(input$z.ci, " (", z.value, ")", sep = "") , 
 															 paste(input$proportion, "%", sep = ""),
 															 paste(input$precision, "%", sep = ""),
 															 round(design.effect, digits = 4),
+															 ifelse(is.null(input$file1), "No data", round(icc, digits = 4)),
 															 ceiling(sample.size))), 
 									  stringsAsFactors = FALSE)
       #
