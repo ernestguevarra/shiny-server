@@ -47,6 +47,7 @@ legend.format <- function(type, cuts, p)
   paste0(formatNum(cuts[-n]), " &ndash; ", formatNum(cuts[-1]))
   }
 
+
 legend.format <- function (prefix = "", suffix = "", between = " &ndash; ", digits = 3, 
     big.mark = ",", transform = identity) 
 {
