@@ -1203,24 +1203,24 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           # Select z-value for CI
           #
           selectInput(inputId = "z.ci",
-                      label = "Select confidence interval",
-                      choices = list("96% CI" = "2.05",
-                                     "95% CI" = "1.96",
-                                     "92% CI" = "1.75",
-                                     "90% CI" = "1.645"),
+                      label = "Select z-value ( z )",
+                      choices = list("96% CI ( z-value: 2.05 )" = "2.05",
+                                     "95% CI ( z-value: 1.96 )" = "1.96",
+                                     "92% CI ( z-value: 1.75 )" = "1.75",
+                                     "90% CI ( z-value: 1.645 )" = "1.645"),
                       selected = "1.96"),
           #
           # Select expected proportion/prevalence
           #
-          numericInput(inputId = "proportion",
-                       label = "Expected indicator proportion/prevalence",
-                       min = 1, max = 100, value = 50, step = 1),
+          sliderInput(inputId = "proportion",
+                      label = "Indicator proportion/prevalence ( p )",
+                      min = 0, max = 100, value = 50, step = 1),
           #
           # Select level of precision
           # 
-          numericInput(inputId = "precision",
-                       label = "Select level of precision",
-                       min = 3, max = 10, value = 5),
+          sliderInput(inputId = "precision",
+                      label = "Select level of precision ( c )",
+                      min = 3, max = 10, value = 5),
           #
           # Upload dataset for DEFF calculation
           #
@@ -1252,7 +1252,38 @@ navbarPage(title = "Urban Water and Sanitation Survey",
         #
         #
         #
-        mainPanel(
+        mainPanel(withMathJax(),
+          #
+          #
+          #
+          HTML("
+            <h3>Sample size calculator</h3>
+            <p>Sample size is estimated using the following formula:</p>          
+            $$ n \\ = \\ z ^ 2 \\times \\frac{p \\ (1 \\ - \\ p)}{c ^ 2} \\ \\times \\ DEFF $$
+            $$ \\begin{align}
+            \\text{where} \\\\
+            n \\ &= \\ \\text{sample size} \\\\
+            z \\ &= \\ \\text{z-value for preferred confidence interval} \\\\
+            p \\ &= \\ \\text{expected indicator proportion / prevalence} \\\\
+            c \\ &= \\ \\text{level of precision} \\\\
+            DEFF \\ &= \\ \\text{design effect}
+            \\end{align} $$
+            <p>The appropriate values for the <code><em>z</em></code>, <code><em>p</em></code>, and <code><em>c</em></code> parameters can be set on the sidebar panel.<p>
+            <p><code><em>DEFF</em></code>, on the other hand, can be estimated using data from previous cluster surveys through the following formula:</p>
+            $$ DEFF \\ = \\ 1 \\ + \\ (c \\ - \\ 1) \\ \\times \\ \\rho $$
+            $$ \\begin{align}
+            \\text{where} \\\\
+            c \\ &= \\ \\text{cluster size} \\\\
+            \\rho \\ &= \\text{intracluster correlation coefficient}
+            \\end{align} $$
+            <br/>
+            <p>This calculator allows the user to provide appropriate cluster survey data <em>(see sidebar panel)</em> that can be used to perform this calculation. If no cluster survey data is provided, a conservative assumption is made and<code><em>DEFF</em></code> of <strong>2</strong> is used.</p>
+            <br/>
+            "),
+          #
+          #
+          #
+          h3(textOutput("sample.header")),
           #
           #
           #

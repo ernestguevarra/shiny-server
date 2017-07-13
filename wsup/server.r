@@ -4130,7 +4130,6 @@ function(input, output, session) {
 # Sample size function
 #
 ################################################################################
-
   #
   #
   #
@@ -4142,7 +4141,13 @@ function(input, output, session) {
     #
     #
     #
-    if (is.null(inputFile)) {return(NULL)}
+    if(is.null(inputFile))
+      {
+      #
+      #
+      #
+      return(NULL)
+      }
     #
     #
     #
@@ -4172,36 +4177,64 @@ function(input, output, session) {
   #
   #
   observeEvent(input$calculate, {
+      #
+      # Assign deff
+      #
+      design.effect <- 2
 	  #
 	  # Calculate deff
 	  #
-	  design.effect <- deff(y = sample.df()[[input$variable]], cluster = sample.df()[[input$cluster]])[["deff"]]
+	  if(!is.null(input$file1))
+	    {
+	    #
+        #
+        #
+	    design.effect <- deff(y = sample.df()[[input$variable]], cluster = sample.df()[[input$cluster]])[["deff"]]
+	    }
 	  #
 	  #
 	  #
-	  z.ci <- ifelse(input$z.ci == "1.96", 1.96,
-				ifelse(input$z.ci == "1.75", 1.75,
-				  ifelse(input$z.ci == "1.645", 1.645, 2.05)))
+	  z.value <- ifelse(input$z.ci == "1.96", "95% CI",
+			   	   ifelse(input$z.ci == "1.75", "92% CI",
+				     ifelse(input$z.ci == "1.645", "90% CI", "96% CI")))
 	  #
 	  # Calculate sample size
 	  #
-	  sample.size <- (z.ci ^ 2) * (((input$proportion / 100) * (1 - (input$proportion / 100))) / ((input$precision / 100) ^ 2))
+	  sample.size <- design.effect * (as.numeric(input$z.ci) ^ 2) * (((input$proportion / 100) * (1 - (input$proportion / 100))) / ((input$precision / 100) ^ 2))
+	  #
+	  #
+	  #
+	  
 	  #    
 	  # Compose data frame
 	  #
-	  sample.parameters <- data.frame(Parameters = c("Confidence Interval", 
+	  sample.parameters <- data.frame(Parameters = c("Confidence Interval (z-value)", 
 													 "Expected proportion/prevalence",
 													 "Precision",
 													 "Design effect",
 													 "Sample size"),
-									  Value = as.character(c(input$z.ci, 
-															 input$proportion,
-															 input$precision,
-															 design.effect,
-															 sample.size)), 
-									  stringsAsFactors=FALSE)
-
+									  Value = as.character(c(paste(input$z.ci, " (", z.value, ")", sep = "") , 
+															 paste(input$proportion, "%", sep = ""),
+															 paste(input$precision, "%", sep = ""),
+															 round(design.effect, digits = 4),
+															 ceiling(sample.size))), 
+									  stringsAsFactors = FALSE)
+      #
+      #
+      #
+      output$sample.header <- renderText({
+        #
+        #
+        #
+        "Sample size results"
+      })
+	  #
+	  #
+	  #
 	  output$sample <- renderTable({
+	    #
+	    #
+        #
 		sample.parameters
 	  })
   })
