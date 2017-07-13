@@ -35,17 +35,17 @@ addAlpha <- function(col, alpha)
         FUN = function(x) { rgb(x[1], x[2], x[3], alpha = alpha) })
   }
 
-legend.format <- function(type, cuts, p)
-  {
+#legend.format <- function(type, cuts, p)
+#  {
+#  
+#  formatNum <- function(x) {
+#        format(round(transform(x), digits), trim = TRUE, scientific = FALSE, 
+#            big.mark = big.mark)
+#    }
   
-  formatNum <- function(x) {
-        format(round(transform(x), digits), trim = TRUE, scientific = FALSE, 
-            big.mark = big.mark)
-    }
-  
-  n = length(cuts)
-  paste0(formatNum(cuts[-n]), " &ndash; ", formatNum(cuts[-1]))
-  }
+#  n = length(cuts)
+#  paste0(formatNum(cuts[-n]), " &ndash; ", formatNum(cuts[-1]))
+#  }
 
 
 legend.format <- function (prefix = "", suffix = "", between = " &ndash; ", digits = 3, 
