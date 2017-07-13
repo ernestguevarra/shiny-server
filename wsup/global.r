@@ -35,6 +35,42 @@ addAlpha <- function(col, alpha)
         FUN = function(x) { rgb(x[1], x[2], x[3], alpha = alpha) })
   }
 
+legend.format <- function(type, cuts, p)
+  {
+  
+  formatNum <- function(x) {
+        format(round(transform(x), digits), trim = TRUE, scientific = FALSE, 
+            big.mark = big.mark)
+    }
+  
+  n = length(cuts)
+  paste0(formatNum(cuts[-n]), " &ndash; ", formatNum(cuts[-1]))
+  }
+
+legend.format <- function (prefix = "", suffix = "", between = " &ndash; ", digits = 3, 
+    big.mark = ",", transform = identity) 
+{
+    formatNum <- function(x) {
+        format(round(transform(x), digits), trim = TRUE, scientific = FALSE, 
+            big.mark = big.mark)
+    }
+    function(type, ...) {
+        switch(type, numeric = (function(cuts) {
+            paste0(prefix, formatNum(cuts), suffix)
+        })(...), bin = (function(cuts) {
+            n = length(cuts)
+            paste0(prefix, formatNum(cuts[-n]), between, formatNum(cuts[-1]), 
+                suffix)
+        })(...), quantile = (function(cuts, p) {
+            n = length(cuts)
+            p = paste0(round(p * 100), "%")
+            cuts = paste0(formatNum(cuts[-n]), between, formatNum(cuts[-1]), suffix)
+        })(...), factor = (function(cuts) {
+            paste0(prefix, as.character(transform(cuts)), suffix)
+        })(...))
+    }
+}
+
 
 ################################################################################
 #

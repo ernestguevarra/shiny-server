@@ -1426,12 +1426,6 @@ function(input, output, session) {
     #
     basePoverty <- ggplot(data = indicatorsDF, mapping = aes(x = get(input$z.poverty)))
     #
-    #
-    #
-    #binwidth <- ifelse(input$z.poverty != "ppp125", input$bins.ppi, input$bins.ppp125)
-    #if(input$z.poverty != "ppp125") binwidth <- input$bins.ppi
-    #if(input$z.poverty == "ppp125") binwidth <- input$bins.ppp125     
-    #
     # Layers
     #
     povertyPlot <- geom_histogram(binwidth = input$bins.poverty, 
@@ -2142,7 +2136,9 @@ function(input, output, session) {
       #
       #
       addMiniMap(tiles = mapbox.street,
-                 toggleDisplay = TRUE) %>%
+                 toggleDisplay = TRUE,
+                 position = "topright",
+                 width = 150, height = 150) %>%
       #
       # Slum polygon
       #
@@ -2237,8 +2233,8 @@ function(input, output, session) {
       #
       #
       addLegend(pal = pal, values = values, opacity = 0.7,
-	    position = "bottomleft", 
-	    labFormat = labelFormat(between = " to "),
+	    position = "bottomright", 
+	    labFormat = ifelse(input$map.colour.demographics == "quantile", legend.format(digits = 2, between = " to "), labelFormat(digits = 2, between = " to ")),
 	    title = steerIndicators$varShort[steerIndicators$varList == input$z.demographics],
 	    layerId = "legend") %>%
       #
@@ -2247,6 +2243,7 @@ function(input, output, session) {
       addLayersControl(
         baseGroups = c("Slum", "Citywide"),
         overlayGroups = c("Upazila", "Wards"),
+        position = "topleft",
         options = layersControlOptions(collapsed = FALSE, autoZIndex = TRUE)) %>%
       #
       #
@@ -2306,7 +2303,7 @@ function(input, output, session) {
       #
       pal <- colorBin(palette = input$palette.poverty,
                       domain = domain, 
-                      pretty = FALSE,
+                      pretty = TRUE,
                       bins = ifelse(is.null(input$map.bins.poverty), 5, input$map.bins.poverty))
       #
       #
@@ -2356,7 +2353,8 @@ function(input, output, session) {
       #
       #
       addMiniMap(tiles = mapbox.street,
-                 toggleDisplay = TRUE) %>%
+                 toggleDisplay = TRUE,
+                 position = "topright") %>%
       #
       # Slum polygon
       #
@@ -2454,8 +2452,8 @@ function(input, output, session) {
         pal = pal, 
         values = values,
         opacity = 0.7,
-	    position = "bottomleft", 
-	    labFormat = labelFormat(between = " to ", suffix = ""),
+	    position = "bottomright", 
+	    labFormat = ifelse(input$map.colour.poverty == "quantile", legend.format(digits = 2, between = " to ", suffix = ""), labelFormat(between = " to ", suffix = "")),
 	    title = steerIndicators$varShort[steerIndicators$varList == input$z.poverty],
 	    layerId = "legend") %>%
       #
@@ -2464,6 +2462,7 @@ function(input, output, session) {
       addLayersControl(
         baseGroups = c("Slum", "Citywide"),
         overlayGroups = c("Upazila", "Wards"),
+        position = "topleft",
         options = layersControlOptions(collapsed = FALSE)) %>%
       #
       # Hide overlays
@@ -2520,7 +2519,7 @@ function(input, output, session) {
       #
       pal <- colorBin(palette = input$palette.ladder,
                       domain = domain, 
-                      pretty = FALSE,
+                      pretty = TRUE,
                       bins = ifelse(is.null(input$map.bins.ladder), 5, input$map.bins.ladder))
       #
       #
@@ -2570,7 +2569,8 @@ function(input, output, session) {
       #
       #
       addMiniMap(tiles = mapbox.street,
-                 toggleDisplay = TRUE) %>%
+                 toggleDisplay = TRUE,
+                 position = "topright") %>%
       #
       # Slum polygon
       #
@@ -2668,8 +2668,8 @@ function(input, output, session) {
         pal = pal, 
         values = values,
         opacity = 0.7,
-	    position = "bottomleft", 
-	    labFormat = ifelse(input$map.colour.ladder == "quantile", labelFormat(between = " to ", suffix = ""), labelFormat(between = " to ", suffix = "%")),
+	    position = "bottomright", 
+	    labFormat = ifelse(input$map.colour.ladder == "quantile", legend.format(digits = 2, between = " to ", suffix = "%"), labelFormat(digits = 2, between = " to ", suffix = "%")),
 	    title = steerIndicators$varShort[steerIndicators$varList == input$indicator.ladder],
 	    layerId = "legend") %>%
       #
@@ -2678,6 +2678,7 @@ function(input, output, session) {
       addLayersControl(
         baseGroups = c("Slum", "Citywide"),
         overlayGroups = c("Upazila", "Wards"),
+        position = "topleft",
         options = layersControlOptions(collapsed = FALSE)) %>%
       #
       # Hide overlays
@@ -2745,7 +2746,7 @@ function(input, output, session) {
         #
         pal <- colorBin(palette = input$palette.water,
                         domain = domain, 
-                        pretty = FALSE,
+                        pretty = TRUE,
                         bins = ifelse(is.null(input$map.bins.water), 5, input$map.bins.water))
         #
         #
@@ -2893,7 +2894,8 @@ function(input, output, session) {
     #
     #
     addMiniMap(tiles = mapbox.street,
-               toggleDisplay = TRUE) %>%
+               toggleDisplay = TRUE,
+               position = "topright") %>%
     #
     # Slum Map
     #
@@ -2990,8 +2992,9 @@ function(input, output, session) {
     addLegend(pal = pal, 
       values = values, 
       opacity = 0.7,
-	  position = "bottomleft",
-	  labFormat = ifelse(input$map.colour.water == "quantile" | input$z.water == "water12", labelFormat(between = " to ", suffix = ""), labelFormat(between = " to ", suffix = "%")),
+	  position = "bottomright",
+	  labFormat = ifelse(input$map.colour.water == "quantile" & input$z.water == "water12", legend.format(digits = 2, between = " to ", suffix = ""), 
+	                ifelse(input$map.colour.water == "quantile" & input$z.water != "water12", legend.format(digits = 2, between = " to ", suffix = "%"), labelFormat(between = " to ", suffix = "%"))),
 	    title = steerIndicators$varShort[steerIndicators$varList == input$z.water],
 	    layerId = "Slum") %>%
     #
@@ -3000,6 +3003,7 @@ function(input, output, session) {
     addLayersControl(
       baseGroups = c("Slum", "Citywide"),
       overlayGroups = c("Upazila", "Wards"),
+      position = "topleft",
       options = layersControlOptions(collapsed = FALSE)) %>%
     #
     # Hide overlays
@@ -3070,7 +3074,7 @@ function(input, output, session) {
         #
         pal <- colorBin(palette = input$palette.sanitation,
                         domain = domain, 
-                        pretty = FALSE,
+                        pretty = TRUE,
                         bins = ifelse(is.null(input$map.bins.sanitation), 5, input$map.bins.sanitation))
         #
         #
@@ -3156,7 +3160,7 @@ function(input, output, session) {
         #
         pal <- colorBin(palette = input$palette.sanitation,
                         domain = domain, 
-                        pretty = FALSE,
+                        pretty = TRUE,
                         bins = ifelse(is.null(input$map.bins.sanitation), 5, input$map.bins.sanitation))
         #
         #
@@ -3221,7 +3225,8 @@ function(input, output, session) {
     #
     #
     addMiniMap(tiles = mapbox.street,
-               toggleDisplay = TRUE) %>%
+               toggleDisplay = TRUE,
+               position = "topright") %>%
     #
     # Slum Map
     #
@@ -3318,8 +3323,9 @@ function(input, output, session) {
     addLegend(pal = pal, 
       values = values, 
       opacity = 0.7,
-	  position = "bottomleft",
-	  labFormat = ifelse(input$map.colour.sanitation == "quantile" | input$z.sanitation %in% c("san13", "san14"), labelFormat(between = " to ", suffix = ""), labelFormat(between = " to ", suffix = "%")),
+	  position = "bottomright",
+	  labFormat = ifelse(input$map.colour.sanitation == "quantile" & input$z.sanitation %in% c("san13", "san14"), legend.format(digits = 2, between = " to ", suffix = ""), 
+	                ifelse(input$map.colour.sanitation == "quantile" & !input$z.sanitation %in% c("san13", "san14"), legend.format(digits = 2, between = " to ", suffix = "%"), labelFormat(between = " to ", suffix = "%"))),
 	    title = steerIndicators$varShort[steerIndicators$varList == input$z.sanitation],
 	    layerId = "Slum") %>%
     #
@@ -3328,6 +3334,7 @@ function(input, output, session) {
     addLayersControl(
       baseGroups = c("Slum", "Citywide"),
       overlayGroups = c("Upazila", "Wards"),
+      position = "topleft",
       options = layersControlOptions(collapsed = FALSE)) %>%
     #
     # Hide overlays
@@ -3388,7 +3395,7 @@ function(input, output, session) {
       #
       pal <- colorBin(palette = input$palette.hygiene,
                       domain = domain, 
-                      pretty = FALSE,
+                      pretty = TRUE,
                       bins = ifelse(is.null(input$map.bins.hygiene), 5, input$map.bins.hygiene))
       #
       #
@@ -3442,7 +3449,8 @@ function(input, output, session) {
     #
     #
     addMiniMap(tiles = mapbox.street,
-               toggleDisplay = TRUE) %>%
+               toggleDisplay = TRUE,
+               position = "topright") %>%
     #
     # Slum Map
     #
@@ -3539,13 +3547,17 @@ function(input, output, session) {
     addLegend(pal = pal, 
       values = values, 
       opacity = 0.7,
-	  position = "bottomleft",
-	  labFormat = ifelse(input$map.colour.hygiene == "quantile", labelFormat(between = " to ", suffix = ""), labelFormat(between = " to ", suffix = "%")),
+	  position = "bottomright",
+	  labFormat = ifelse(input$map.colour.hygiene != "quantile", labelFormat(between = " to ", suffix = "%"), legend.format(digits = 2, between = " to ", suffix = "%")),
 	  title = steerIndicators$varShort[steerIndicators$varList == input$z.hygiene],
 	  layerId = "Slum") %>%
+    #
+    #
+    #
     addLayersControl(
       baseGroups = c("Slum", "Citywide"),
       overlayGroups = c("Upazila", "Wards"),
+      position = "topleft",
       options = layersControlOptions(collapsed = FALSE)) %>%
     #
     # Hide overlays
@@ -3576,7 +3588,7 @@ function(input, output, session) {
     #
     # Domains
     #
-    domain <- c(0, 100)
+    domain <- 0:100
     #
     # Linear interpolation
     #
@@ -3591,6 +3603,7 @@ function(input, output, session) {
       #
       #
       values <- domain
+
       }
     #
     # Equal interval
@@ -3602,7 +3615,7 @@ function(input, output, session) {
       #
       pal <- colorBin(palette = input$palette.overall,
                       domain = domain, 
-                      pretty = FALSE,
+                      pretty = TRUE,
                       bins = ifelse(is.null(input$map.bins.overall), 5, input$map.bins.overall))
       #
       #
@@ -3635,14 +3648,14 @@ function(input, output, session) {
     #      
     upazila.labels <- paste("Upazila: ", upazila$Upazila, sep = "") 
     ward.labels <- paste("Ward: ", wards$Union, sep = "") 
-    #
-    #
-    # 
+
     leaflet(outline) %>%
       #
       #
       #
-      setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 11) %>%
+      setView(lng = mean(coordinates(outline)[,1]), 
+              lat = mean(coordinates(outline)[,2]) + 0.02, 
+              zoom = 11) %>%
       #
       #
       #
@@ -3652,12 +3665,12 @@ function(input, output, session) {
       #
       #
       addMiniMap(tiles = mapbox.street,
-                 toggleDisplay = TRUE) %>%
+                 toggleDisplay = TRUE,
+                 position = "topright") %>%
       #
       # Slum polygon
       #
-      addPolygons(
-        data = slum.results.sp,
+      addPolygons(data = slum.results.sp,
 	    fillColor = pal(slum.results.sp[[input$indicator.overall]] * 100), 
 	    weight = 2,
 	    opacity = 1,
@@ -3742,16 +3755,15 @@ function(input, output, session) {
 	      style = list("font-weight" = "normal", padding = "3px 8px"),
 	      textsize = "12px",
 	      direction = "auto"),
-	    group = "Wards") %>%
+	    group = "Wards") %>%                 
       #
       # Add legend
       #
-      addLegend(
-        pal = pal, 
+      addLegend(pal = pal,
         values = values,
         opacity = 0.7,
-	    position = "bottomleft", 
-	    labFormat = labelFormat(between = " to ", suffix = "%"),
+	    position = "bottomright",
+	    labFormat = ifelse(input$map.colour.overall != "quantile", labelFormat(between = " to ", suffix = "%"), legend.format(digits = 2, between = " to ", suffix = "%")),
 	    title = steerIndicators$varShort[steerIndicators$varList == input$indicator.overall],
 	    layerId = "legend") %>%
       #
@@ -3760,6 +3772,7 @@ function(input, output, session) {
       addLayersControl(
         baseGroups = c("Slum", "Citywide"),
         overlayGroups = c("Upazila", "Wards"),
+        position = "topleft",
         options = layersControlOptions(collapsed = FALSE)) %>%
       #
       # Hide overlays
