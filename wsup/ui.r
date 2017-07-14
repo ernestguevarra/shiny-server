@@ -1202,7 +1202,15 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           #
           #
-          h4("Sample size calculator"),
+          h2("Sample size calculator"),
+          #
+          #
+          #
+          br(),
+          #
+          #
+          #
+          h4("Calculate sample size"),          
           #
           # Select z-value for CI
           #
@@ -1226,44 +1234,108 @@ navbarPage(title = "Urban Water and Sanitation Survey",
                       label = "Select level of precision ( c )",
                       min = 3, max = 10, value = 5),
           #
-          # Upload dataset for DEFF calculation
+          # Select survey sample type
           #
-          fileInput(inputId = "file1",
-                    label = "Upload dataset CSV file for DEFF calculation",
-                    accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
+          radioButtons(inputId = "surveyType",
+                       label = "Survey design",
+                       choices = list("Simple random sample" = "srs",
+                                      "Cluster sample" = "cluster"),
+                       inline = TRUE,
+                       selected = "srs"),
           #
-          # Select variable name for indicator to test 
+          # Action buttons available when surveyType == 'srs'
           #
-          selectInput(inputId = "variable",
-                      label = "Select variable name of indicator to test",
-                      choices = c("Select variable name" = "")),
+          conditionalPanel(condition = "input.surveyType == 'srs'",
+            #
+            # Action button
+            #
+            actionButton(inputId = "calculate1",
+                         label = "Calculate",
+                         class = "btn-primary"),
+            #
+            # Action button - Reset
+            #
+            actionButton(inputId = "reset1",
+                         label = "Reset",
+                         class = "btn-primary")
+          ),
           #
-          # Select variable name for survey cluster 
+          # Add whitespace
           #
-          selectInput(inputId = "cluster",
-                      label = "Select variable name of survey cluster",
-                      choices = c("Select variable name" = "")),
+          br(),
           #
-          # Action button
-          #
-          actionButton(inputId = "calculate",
-                       label = "Calculate"),
-          #
-          #
-          #
-          br(), br(),
-          #
-          #
+          # Header for sample size calculation results
           #
           h4(textOutput("sample.header")),
           #
-          #
+          # Add table of sample size calculation results
           #
           tableOutput("sample"),
+          #
+          # Add whitespace
+          #
+          hr(),
+          #
+          # Show if survey design is cluster
+          #
+          conditionalPanel(condition = "input.surveyType == 'cluster'",
+            #
+            # Header for design effect and ICC calculator
+            #
+            h4("Calculate design effect and ICC"),
+            #
+            # Upload dataset for DEFF calculation
+            #
+            fileInput(inputId = "file1",
+                      label = "Upload dataset CSV file for DEFF calculation",
+                      accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
+            #
+            # Select variable name for indicator to test 
+            #
+            selectInput(inputId = "variable",
+                        label = "Select variable name of indicator to test",
+                        choices = c("Select variable name" = "")),
+            #
+            # Select variable name for survey cluster 
+            #
+            selectInput(inputId = "cluster",
+                        label = "Select variable name of survey cluster",
+                        choices = c("Select variable name" = "")),
+            #
+            #
+            #
+            sliderInput(inputId = "cluster.size",
+                        label = "Number of samples per cluster planned for survey",
+                        min = 0, max = 30, step = 1, value = 10), 
+            #
+            # Action button - Calculate
+            #
+            actionButton(inputId = "calculate2",
+                         label = "Calculate",
+                         class = "btn-primary"),
+            #
+            # Action button - Reset
+            #
+            actionButton(inputId = "reset2",
+                         label = "Reset",
+                         class = "btn-primary"),
+            #
+            # Add whitespace
+            #
+            hr(), br(),
+            #
+            # Header for DEFF and ICC calculation results
+            #
+            h4(textOutput("deff.header")),
+            #
+            # Add table of DEFF and ICC calculation results
+            #
+            tableOutput("deff")         
+          ),  
         #
         # Set width of sidebar panel
         #
-        width = 3
+        width = 5
         ),
         #
         #
@@ -1273,33 +1345,41 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           #
           HTML("
-            <h3>Sample size</h3>
+            <h4>Sample size for estimating proportions</h4>
             <p>Sample size is estimated using the following formula:</p>          
-            $$ n \\ = \\ z ^ 2 \\times \\frac{p \\ (1 \\ - \\ p)}{c ^ 2} \\ \\times \\ DEFF $$
+            $$ n \\ = \\ z ^ 2 \\times \\frac{p \\ (1 \\ - \\ p)}{c ^ 2} $$
             $$ \\begin{align}
             \\text{where} \\\\
             n \\ &= \\ \\text{sample size} \\\\
             z \\ &= \\ \\text{z-value for preferred confidence interval} \\\\
             p \\ &= \\ \\text{expected indicator proportion / prevalence} \\\\
-            c \\ &= \\ \\text{level of precision} \\\\
-            DEFF \\ &= \\ \\text{design effect}
+            c \\ &= \\ \\text{level of precision}
             \\end{align} $$
-            <p>The appropriate values for the <code><em>z</em></code>, <code><em>p</em></code>, and <code><em>c</em></code> parameters can be set on the sidebar panel.<p>
-            <p><code><em>DEFF</em></code>, on the other hand, can be estimated using data from previous cluster surveys through the following formula:</p>
+            <p>The appropriate or desired values for the <code><strong>z</strong></code>, <code><strong>p</strong></code>, and <code><strong>c</strong></code> parameters can be set on the right sidebar panel.<p>
+            <ul>
+              <li><code><strong><em>z</em></strong></code> - a <code>95% CI</code> is the default choice which has a corresponding <code>z-value</code> of <code>1.96</code>.
+              <li><code><strong><em>p</em></strong></code> - proportion or prevalence estimate of the indicator of interest based on previous survey data. The default value is set at <code>50%</code> as this is the indicator proportion or prevalence that will require the most sample size.
+              <li><code><strong><em>c</em></strong></code> - a precision of <code>±5%</code> is set as default as most prevalence surveys, specifically those for diseases, require this level of precision. Coverage surveys on the other hand would need at least <code>±10%</code>.
+            </ul>
+            <p>This formula is used to estimate sample size for a <code>simple random sample (SRS)</code> survey.</p>
+            <br>
+            <h4>Sample size for cluster sample surveys</h4>
+            <p>A <code>SRS</code> survey design is often not the most practical and cost-efficient sampling design to use for a survey. Most surveys, instead, use a <code>cluster sample</code> design wherein the primary sampling unit is a cluster (i.e., a village or a community) from where the individual or household samples are to be drawn. The sample size estimation for this type of surveys takes into account the loss of variance due to the clustered nature of the sample (i.e., samples drawn from the same cluster would tend to be similar to each other) as shown in the following formula:</p>
+            $$ n \\ = \\ z ^ 2 \\times \\frac{p \\ (1 \\ - \\ p)}{c ^ 2} \\ \\times \\ DEFF $$            
+            <p>where a factor called <code>DEFF</code> or <code>design effect</code> is used to inflate the sample size of a <code>SRS</code> to mitigate loss of variance due to the <code>cluster sample</code> design. <code>DEFF</code> is estimated using the following formula:</p>
             $$ DEFF \\ = \\ 1 \\ + \\ (c \\ - \\ 1) \\ \\times \\ \\rho $$
             $$ \\begin{align}
             \\text{where} \\\\
             c \\ &= \\ \\text{cluster size} \\\\
             \\rho \\ &= \\text{intracluster correlation coefficient (ICC)}
             \\end{align} $$
-            <br/>
-            <p>This calculator allows the user to provide appropriate cluster survey data <em>(see sidebar panel)</em> that can be used to perform this calculation. If no cluster survey data is provided, a conservative assumption is made and<code><em>DEFF</em></code> of <strong>2</strong> is used.</p>
+            <p>As can be noted from the formula, <code><em>DEFF</em></code> is dependent on two factors: <code>cluster size</code> and <code>ICC</code> or \\(\\rho\\). <code>Cluster size</code> will be the number of clusters planned for the survey. <code>ICC</code> or \\(\\rho\\), on the other hand, can be estimated using data from previous cluster surveys using the calculator on right sidebar panel. This calculator allows the user to provide appropriate cluster survey data <em>(see sidebar panel)</em> that can be used to perform this calculation. It should be noted that <code>DEFF</code> and <code>ICC</code> or \\(\\rho\\) estimation is indicator-specific. Therefore, the cluster survey data provided for <code>DEFF</code> and <code>ICC</code> or \\(\\rho\\) calculations should contain data for the indicator of interest and data identifying the clusters of the survey.  If no cluster survey data is provided, a conservative assumption is made and a \\(DEFF = 5\\) is used.</p>
             <br/>
             "),
         #
         # Set width of main panel
         #
-        width = 9) 
+        width = 7) 
       )
     )
   )                   

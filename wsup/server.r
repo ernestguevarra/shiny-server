@@ -3324,8 +3324,9 @@ function(input, output, session) {
       values = values, 
       opacity = 0.7,
 	  position = "bottomright",
-	  labFormat = ifelse(input$map.colour.sanitation == "quantile" & input$z.sanitation %in% c("san13", "san14"), legend.format(digits = 2, between = " to ", suffix = ""), 
-	                ifelse(input$map.colour.sanitation == "quantile" & !input$z.sanitation %in% c("san13", "san14"), legend.format(digits = 2, between = " to ", suffix = "%"), labelFormat(between = " to ", suffix = "%"))),
+	  labFormat = ifelse(input$map.colour.sanitation == "quantile" & (input$z.sanitation == "san13" | input$z.sanitation == "san14"), legend.format(digits = 2, between = " to ", suffix = ""), 
+	                ifelse(input$map.colour.sanitation == "quantile" & input$z.sanitation != "san13" & input$z.sanitation != "san14", legend.format(digits = 2, between = " to ", suffix = "%"), 
+	                  ifelse(input$map.colour.sanitation != "quantile" & (input$z.sanitation == "san13" | input$z.sanitation == "san14"), labelFormat(between = " to ", suffix = ""), labelFormat(between = " to ", suffix = "%")))),
 	    title = steerIndicators$varShort[steerIndicators$varList == input$z.sanitation],
 	    layerId = "Slum") %>%
     #
@@ -4206,7 +4207,7 @@ function(input, output, session) {
     #
     #
     #
-    sample.df <- read.csv(file = inputFile$datapath, header = TRUE, sep = ",")
+    read.csv(file = inputFile$datapath, header = TRUE, sep = ",")
   })    
 
   #
@@ -4231,25 +4232,7 @@ function(input, output, session) {
   #
   #
   #
-  observeEvent(input$calculate, {
-      #
-      # Assign deff
-      #
-      design.effect <- 2
-	  #
-	  # Calculate deff
-	  #
-	  if(!is.null(input$file1))
-	    {
-	    #
-        # Design effect
-        #
-	    design.effect <- deff(y = sample.df()[[input$variable]], cluster = sample.df()[[input$cluster]])[["deff"]]
-	    #
-	    #
-	    #
-	    icc <- deff(y = sample.df()[[input$variable]], cluster = sample.df()[[input$cluster]])[["rho"]]
-	    }
+  observeEvent(input$calculate1, {
 	  #
 	  #
 	  #
@@ -4259,26 +4242,18 @@ function(input, output, session) {
 	  #
 	  # Calculate sample size
 	  #
-	  sample.size <- design.effect * (as.numeric(input$z.ci) ^ 2) * (((input$proportion / 100) * (1 - (input$proportion / 100))) / ((input$precision / 100) ^ 2))
-	  #
-	  #
-	  #
-	  
+	  sample.size1 <- (as.numeric(input$z.ci) ^ 2) * (((input$proportion / 100) * (1 - (input$proportion / 100))) / ((input$precision / 100) ^ 2))
 	  #    
 	  # Compose data frame
 	  #
 	  sample.parameters <- data.frame(Parameters = c("z-value", 
 													 "Prevalence",
 													 "Precision",
-													 "Design effect",
-													 "ICC",
 													 "Sample size"),
 									  Value = as.character(c(paste(input$z.ci, " (", z.value, ")", sep = "") , 
-															 paste(input$proportion, "%", sep = ""),
+										 					 paste(input$proportion, "%", sep = ""),
 															 paste(input$precision, "%", sep = ""),
-															 round(design.effect, digits = 4),
-															 ifelse(is.null(input$file1), "No data", round(icc, digits = 4)),
-															 ceiling(sample.size))), 
+															 ceiling(sample.size1))), 
 									  stringsAsFactors = FALSE)
       #
       #
@@ -4287,7 +4262,7 @@ function(input, output, session) {
         #
         #
         #
-        "Sample size results"
+        "Sample size parameters and estimate (SRS)"
       })
 	  #
 	  #
@@ -4298,6 +4273,118 @@ function(input, output, session) {
         #
 		sample.parameters
 	  })
+  })
+  #
+  #
+  #
+  observeEvent(input$reset1, {
+      #
+      #
+      #
+      output$sample.header <- renderText({NULL})
+      #
+      #
+      #
+      output$sample <- renderTable({NULL})
+  })
+  #
+  #
+  #
+  observeEvent(input$surveyType == "cluster", {
+      #
+      #
+      #
+      output$sample.header <- renderText({NULL})
+      #
+      #
+      #
+      output$sample <- renderTable({NULL})
+  })
+  #
+  #
+  #
+  observeEvent(input$calculate2, {
+      #
+      # Assign deff
+      #
+      design.effect <- 5
+	  #
+	  # Calculate deff
+	  #
+	  if(!is.null(input$file1))
+	    {
+	    #
+        # Design effect
+        #
+	    #design.effect <- deff(y = sample.df()[[input$variable]], cluster = sample.df()[[input$cluster]])[["deff"]]
+	    #
+	    #
+	    #
+	    icc <- deff(y = sample.df()[[input$variable]], cluster = sample.df()[[input$cluster]])[["rho"]]
+	    #
+	    #
+	    #
+	    design.effect <- 1 + (input$cluster.size - 1) * icc
+	    }
+	  #
+	  #
+	  #
+	  z.value <- ifelse(input$z.ci == "1.96", "95% CI",
+			   	   ifelse(input$z.ci == "1.75", "92% CI",
+				     ifelse(input$z.ci == "1.645", "90% CI", "96% CI")))
+	  #
+	  # Calculate sample size
+	  #
+	  sample.size2 <- design.effect * (as.numeric(input$z.ci) ^ 2) * (((input$proportion / 100) * (1 - (input$proportion / 100))) / ((input$precision / 100) ^ 2))
+	  #    
+	  # Compose data frame
+	  #
+	  deff.parameters <- data.frame(Parameters = c("z-value", 
+												   "Prevalence",
+												   "Precision",
+												   "Cluster size",
+												   "ICC",
+												   "Design effect of planned survey",
+												   "Sample size"),
+									Value = as.character(c(paste(input$z.ci, " (", z.value, ")", sep = "") , 
+										 				   paste(input$proportion, "%", sep = ""),
+														   paste(input$precision, "%", sep = ""),
+									                       paste(input$cluster.size, "samples per cluster", sep = " "),
+									                       ifelse(is.null(input$file1), "No data", round(icc, digits = 4)), 
+								                           ifelse(is.null(input$file1), paste(design.effect, "(assumed)", sep = " "), paste(round(design.effect, digits = 4), "(based on data)", sep = " ")),
+								                           ceiling(sample.size2))),
+                                    stringsAsFactors = FALSE)      
+      #
+      #
+      #
+      output$deff.header <- renderText({
+        #
+        #
+        #
+        "Sample size parameters and estimate (Cluster Sample)"
+      })
+	  #
+	  #
+	  #
+	  output$deff <- renderTable({
+	    #
+	    #
+        #
+		deff.parameters
+	  })
+  })
+  #
+  #
+  #
+  observeEvent(input$reset2, {
+      #
+      #
+      #
+      output$deff.header <- renderText({NULL})
+      #
+      #
+      #
+      output$deff <- renderTable({NULL})
   })
 }
 

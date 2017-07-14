@@ -21,6 +21,8 @@ library(classInt)
 library(DT)
 library(Hmisc)
 
+source("inputSHP.r")
+
 
 ################################################################################
 #
