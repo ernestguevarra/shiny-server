@@ -49,7 +49,11 @@ navbarPage(title = "Urban Water and Sanitation Survey",
                           choices = c(None = "."),
                           width = "140px")),
           #
+          # Add whitespace
           #
+          br(),
+          #
+          # Sub-heading
           #
           div(style="display: inline-block;vertical-align:middle;", h4("Indicators")),
           #
@@ -295,7 +299,11 @@ navbarPage(title = "Urban Water and Sanitation Survey",
                           choices = c(None = "."),
                           width = "140px")),
           #
+          # Add whitespace
           #
+          br(),
+          #
+          # Add sub-header
           #
           div(style="display: inline-block;vertical-align:middle;", h4("Indicators")),
           #
@@ -519,6 +527,10 @@ navbarPage(title = "Urban Water and Sanitation Survey",
                           choices = c(None = "."),
                           width = "140px")),
           #
+          # Add whitespace
+          #
+          br(),
+          #
           # Sub-heading
           #
           div(style="display: inline-block;vertical-align:middle;", h4("Indicators")),
@@ -696,7 +708,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       #
       mainPanel(
         #
-        #
+        # Check which tab is selected
         #
         conditionalPanel(condition = "input.tabs3 == 31",
           #
@@ -705,7 +717,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           h3("Service ladders")
         ),
         #
-        #
+        # Check which tab is selected
         #
         conditionalPanel(condition = "input.tabs3 != 31",
           #
@@ -779,6 +791,10 @@ navbarPage(title = "Urban Water and Sanitation Survey",
                           label = "City",
                           choices = c(None = "."),
                           width = "140px")),
+          #
+          # Add whitespace
+          #
+          br(),
           #
           # Sub-header
           #
@@ -1007,6 +1023,10 @@ navbarPage(title = "Urban Water and Sanitation Survey",
                           label = "City",
                           choices = c(None = "."),
                           width = "140px")),
+          #
+          # Add whitespace
+          #
+          br(),
           #
           # Sub-header
           #
@@ -1238,7 +1258,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
                           choices = c(None = "."),
                           width = "140px")),
           #
-          #
+          # Add whitespace
           #
           br(),
           #
@@ -1465,6 +1485,10 @@ navbarPage(title = "Urban Water and Sanitation Survey",
                           label = "City",
                           choices = c(None = "."),
                           width = "140px")),
+          #
+          # Add whitespace
+          #
+          br(),
           #
           # Sub-header
           #
