@@ -20,8 +20,8 @@ library(RColorBrewer)
 library(classInt)
 library(DT)
 library(Hmisc)
-
-source("inputSHP.r")
+library(purrr)
+library(gstat)
 
 
 ################################################################################
@@ -36,18 +36,6 @@ addAlpha <- function(col, alpha)
         MARGIN = 2,
         FUN = function(x) { rgb(x[1], x[2], x[3], alpha = alpha) })
   }
-
-#legend.format <- function(type, cuts, p)
-#  {
-#  
-#  formatNum <- function(x) {
-#        format(round(transform(x), digits), trim = TRUE, scientific = FALSE, 
-#            big.mark = big.mark)
-#    }
-  
-#  n = length(cuts)
-#  paste0(formatNum(cuts[-n]), " &ndash; ", formatNum(cuts[-1]))
-#  }
 
 
 legend.format <- function (prefix = "", suffix = "", between = " &ndash; ", digits = 3, 
@@ -120,7 +108,7 @@ areaResults <- read.csv("surveyResultsBGD.csv", header = TRUE, sep = ",")
 #
 # Rename surveyArea
 #
-names(areaResults)[5]  <- "strata"
+names(areaResults)[5] <- "strata"
 #
 # Read dataset - wealth quintiles
 #
@@ -128,7 +116,11 @@ wealthResults <- read.csv("surveyResultsWealthBGD.csv", header = TRUE, sep = ","
 #
 # wealthQuintile
 #
-names(wealthResults)[5]  <- "strata"
+names(wealthResults)[5] <- "strata"
+#
+# Read dataset - overall
+#
+overallResults <- read.csv("surveyResultsOverallBGD.csv", header = TRUE, sep = ",")
 
 
 ################################################################################
@@ -219,7 +211,10 @@ areaResultsLong$type <- factor(areaResultsLong$type, levels = c("Slum", "Citywid
 areaResultsLong$strata <- str_split(string = areaResultsLong$strata, 
                                     pattern = " ",
                                     simplify = TRUE)[ , 3]
-
+#
+# Re-order indicatorCode
+#
+areaResultsLong$indicatorCode <- factor(areaResultsLong$indicatorCode, levels = rev(levels(areaResultsLong$indicatorCode)))
 
 ################################################################################
 #
@@ -309,6 +304,98 @@ wealthResultsLong$type <- factor(wealthResultsLong$type, levels = c("Slum", "Cit
 wealthResultsLong$strata <- str_split(string = wealthResultsLong$strata, 
                                       pattern = " ",
                                       simplify = TRUE)[ , 3]
+#
+#
+#
+wealthResultsLong$indicatorCode <- factor(wealthResultsLong$indicatorCode, levels = rev(levels(wealthResultsLong$indicatorCode)))
+
+
+################################################################################
+#
+# Transform overallResults to long format for ggplot
+#
+################################################################################
+#
+# Subset survey results to columns needed for plotting
+#
+temp1 <- subset(overallResults, select = c(country:indicatorCode, slumTotal, slumEst, slumLCL, slumUCL))
+temp2 <- subset(overallResults, select = c(country:indicatorCode, otherTotal, otherEst, otherLCL, otherUCL))
+temp3 <- subset(overallResults, select = c(country:indicatorCode, total, totalEst, totalLCL, totalUCL))
+#
+# Add area type variable
+#
+temp1$type <- rep("Slum", nrow(temp1))
+temp2$type <- rep("Other", nrow(temp2))
+temp3$type <- rep("Citywide", nrow(temp3))
+#
+# Rename variables
+#
+names(temp1) <- c("country", "countryCode", "indicatorName", 
+                  "indicatorCode", "n", "estimate", "lcl", "ucl", "type")
+names(temp3) <- names(temp2) <- names(temp1)
+#
+# Create single long data.frame
+#
+overallResultsLong <- data.frame(rbind(temp1, temp2, temp3))
+#
+# Add indicatorCategory variable
+#
+indicatorCategory <- vector(mode = "character", length = nrow(overallResultsLong))
+#
+# Water Indicators
+#
+indicatorCategory[overallResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet1"]] <- "waterSet1"
+indicatorCategory[overallResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet2"]] <- "waterSet2"                           
+indicatorCategory[overallResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet3"]] <- "waterSet3"
+#
+# Sanitation Indicators
+#
+indicatorCategory[overallResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet1"]] <- "sanSet1"
+indicatorCategory[overallResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet2"]] <- "sanSet2"                           
+indicatorCategory[overallResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet3"]] <- "sanSet3"
+indicatorCategory[overallResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet4"]] <- "sanSet4"
+indicatorCategory[overallResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "sanSet5"]] <- "sanSet5"
+#
+# Handwashing Indicators
+#
+indicatorCategory[overallResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "handSet"]] <- "handSet"
+#
+# Demographics
+#
+indicatorCategory[overallResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "demographics"]] <- "demographics"
+#
+# Hygiene indicators
+#
+indicatorCategory[overallResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "hygieneSet"]] <- "hygieneSet"
+#
+# Poverty
+#
+indicatorCategory[overallResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "poverty"]] <- "poverty"
+#
+# Overall indicators
+#
+indicatorCategory[overallResultsLong$indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "overallSet1"]] <- "overallSet1"
+#
+# Other indicators
+#
+indicatorCategory[!overallResultsLong$indicatorCode %in% steerIndicators$varList] <- "other"
+#
+# Add indicatorCategory to overallResultsLong data.frame
+#
+overallResultsLong <- data.frame(overallResultsLong[ , c("country", "countryCode", "indicatorName", "indicatorCode")], indicatorCategory,
+                                overallResultsLong[ , c("n", "estimate", "lcl", "ucl", "type")])
+#
+# Remove other area type
+#
+overallResultsLong <- subset(overallResultsLong, type != "Other")
+#
+# Sort order of area type factors
+#
+overallResultsLong$type <- factor(overallResultsLong$type, levels = c("Slum", "Citywide"))
+#
+#
+#
+overallResultsLong$indicatorCode <- factor(overallResultsLong$indicatorCode, levels = rev(levels(overallResultsLong$indicatorCode)))
 #
 # Clean-up
 #
@@ -468,9 +555,11 @@ city.results.sp <- merge(outline, city.results.df, by = "surveyArea")
 # Create Mapbox base layer objects for leaflet mapping
 #
 mapbox.satellite <- "https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
-mapbox.street <- "https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
-mapbox.dark <- "https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
-mapbox.light <- "https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
+mapbox.street    <- "https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
+mapbox.dark      <- "https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
+mapbox.light     <- "https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
+mapbox.moonlight <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj3nban30001z2rpahc10c9ef/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
+mapbox.northstar <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj4ke832y4sng2spe2ds4fs55/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
 #
 # Clean-up
 # 

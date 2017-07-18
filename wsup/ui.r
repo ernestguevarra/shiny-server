@@ -11,7 +11,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
   #
   # Create demographics tab
   #
-  tabPanel(title = "Demographics", value = 1,
+  tabPanel(title = "Demographics", value = 1, icon = icon("group", class = "fa-lg"),
     #
     # Sidebar layout
     #
@@ -21,27 +21,98 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       #
       sidebarPanel(
         #
+        # Name of city and country
+        #
+        h3(textOutput("sideHeader1")),
+        #
+        # Add horizontal divider
+        #
+        hr(),
+        #
         # Add menu when 'Demographics' menu tab selected
         #
         conditionalPanel(condition = "input.chosenTab == 1",
           #
           # Select country
           #
-          selectInput(inputId = "country1", 
-                      label = "Select Country Survey",
-                      choices = unique(areaResultsLong$country)), 
+          div(style="display: inline-block;vertical-align:top;",
+              selectInput(inputId = "country1", 
+                          label = "Country ",
+                          choices = unique(areaResultsLong$country),
+                          width = "140px")), 
           #
           # Select city
           #
-          selectInput(inputId = "city1",
-                      label = "Select City Survey",
-                      choices = c(None = ".")),
+          div(style="display: inline-block;vertical-align:top;",
+              selectInput(inputId = "city1",
+                          label = "City",
+                          choices = c(None = "."),
+                          width = "140px")),
+          #
+          #
+          #
+          div(style="display: inline-block;vertical-align:middle;", h4("Indicators")),
+          #
+          # Add 'Help' action link
+          #
+          div(style="display: inline-block;vertical-align:middle;",
+              actionLink(inputId = "info1", 
+                         label = "",
+                         icon = icon(name = "info-sign", lib = "glyphicon"))),
           #
           # Select indicator
           #
           selectInput(inputId = "z.demographics", 
-                      label = "Select Indicator Set", 
-                      choices = list("Mean number of household members" = "nMembers")),
+                      label = "Select indicator",
+                      choices = list("Number of household members" = "nMembers")),
+          #
+          # Add menu when 'Charts' sub-tab selected
+          #
+          conditionalPanel(condition = "input.tabs1 == 11",
+            #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Chart specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;", 
+                actionLink(inputId = "info11", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon")))            
+          ),
+          #
+          # Add menu when 'Maps' sub-tab selected
+          #
+          conditionalPanel(condition = "input.tabs1 == 12",
+            #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Map specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;", 
+                actionLink(inputId = "info12", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon")))            
+          ),
+          #
+          # Add menu when 'Tables' sub-tab selected
+          #
+          conditionalPanel(condition = "input.tabs1 == 13",
+            #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Table specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;", 
+                actionLink(inputId = "info13", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon")))            
+          ),
           #
           # Add menu when 'Charts' sub-tab selected
           #
@@ -51,7 +122,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             selectInput(inputId = "x.demographics", 
                         label = "Stratify by", 
-                        choices = list(None = ".",
+                        choices = list("All Data (No Stratification)" = ".",
                                        "Survey Area" = "zone", 
                                        "Area Type" = "type", 
                                        "Wealth Quintile" = "pQuintile")),
@@ -59,9 +130,10 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             # Select number of bins for histogram
             #
             sliderInput(inputId = "bins.demographics", 
-                        label = "Number of bins:",
+                        label = "Select bin width",
                         min = 1, max = 5, 
-                        value = 1, step = 1)),
+                        value = 1, step = 1)
+          ),
           #
           # Add menu when 'Maps' sub-tab selected
           #
@@ -97,7 +169,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
                                                         "Red to Yellow to Blue" = "RdYlBu",
                                                         "Red to Yellow to Green" = "RdYlGn",
                                                         "Spectral" = "Spectral")),
-                        selected = "YlGnBu"),
+                        selected = "YlOrBr"),
             #
             # Select mapping colour method
             #
@@ -108,13 +180,23 @@ navbarPage(title = "Urban Water and Sanitation Survey",
                                        "Quantile" = "quantile"),
                         selected = "interval"),
             #
+            #
+            #
+            h6(textOutput(outputId = "map.colour.demographics.help1")),
+            h6(textOutput(outputId = "map.colour.demographics.help2")),
+            h6(textOutput(outputId = "map.colour.demographics.help3")),
+            #
             # Bins slider if 'interval' chosen
             #
             uiOutput("map.bins.demographics.control"),
             #
+            #
+            #
+            h6(textOutput(outputId = "map.bins.demographics.help")),
+            #
             # Quantiles slider if 'quantile' chosen
             #
-            uiOutput("map.quantile.demographics.control")            
+            uiOutput("map.quantile.demographics.control")                        
           ),
           #
           # Add menu when 'Tables' sub-tab selected
@@ -131,7 +213,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             selectInput(inputId = "table.demographics.type",
                         label = "Slum/Citywide",
-                        choices = c("All", as.character(unique(indicatorsDF$type))))                        
+                        choices = c("All", as.character(unique(indicatorsDF$type))))                      
           )
         ),
         #
@@ -142,6 +224,10 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       # Set main panel contents
       #
       mainPanel(
+        #
+        # Name of indicator on header
+        #
+        h3(textOutput("mainHeader1")),
         #
         # Create sub-tabs panel
         #
@@ -154,7 +240,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           # Create 'Maps' sub-tab
           #
-          tabPanel(title = "Maps", value = 12, 
+          tabPanel(title = "Maps", value = 12,
                    withSpinner(leafletOutput("map.demographics", width = "100%", height = 500), type = 5)),
           #
           # Create 'Tables' sub-tab
@@ -171,7 +257,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
   #
   # Create poverty menu tab
   #
-  tabPanel(title = "Poverty", value = 2,
+  tabPanel(title = "Poverty", value = 2, icon = icon(name = "money", class = "fa-lg"),
     #
     # Sidebar layout
     #
@@ -181,21 +267,44 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       #
       sidebarPanel(
         #
+        # Name of city and country
+        #
+        h3(textOutput("sideHeader2")),
+        #
+        # Add horizontal divider
+        #
+        hr(),
+        #
         # Add menu when 'Poverty' tab menu selected
         #
         conditionalPanel(condition = "input.chosenTab == 2",
           #
           # Select country
           #
-          selectInput(inputId = "country2", 
-                      label = "Select Country Survey",
-                      choices = unique(areaResultsLong$country)), 
+          div(style="display: inline-block;vertical-align:top;",
+              selectInput(inputId = "country2", 
+                          label = "Country",
+                          choices = unique(areaResultsLong$country),
+                          width = "140px")), 
           #
           # Select city
           #
-          selectInput(inputId = "city2",
-                      label = "Select City Survey",
-                      choices = c(None = ".")),
+          div(style="display: inline-block;vertical-align:top;",
+              selectInput(inputId = "city2",
+                          label = "City",
+                          choices = c(None = "."),
+                          width = "140px")),
+          #
+          #
+          #
+          div(style="display: inline-block;vertical-align:middle;", h4("Indicators")),
+          #
+          # Add 'Help' action link
+          #
+          div(style="display: inline-block;vertical-align:middle;", 
+              actionLink(inputId = "info2", 
+                         label = "",
+                         icon = icon(name = "info-sign", lib = "glyphicon"))),
           #
           # Select indicator
           #
@@ -210,10 +319,21 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           conditionalPanel(condition = "input.tabs2 == 21",
             #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Chart specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info21", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
+            #
             # Select primary stratification
             #
             selectInput(inputId = "x.poverty", 
-                        label = "Select primary stratification", 
+                        label = "Stratify by", 
                         choices = list(None = ".",
                                        "Survey Area" = "zone", 
                                        "Area Type" = "type", 
@@ -222,13 +342,25 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             # Select number of bins
             #
             sliderInput(inputId = "bins.poverty", 
-                        label = "Number of bins:",
+                        label = "Select bin width",
                         min = 1, max = 5, 
-                        value = 3, step = 1)),
+                        value = 3, step = 1)
+          ),                        
           #
           # Add menu when 'Maps' sub-tab selected
           #
           conditionalPanel(condition = "input.tabs2 == 22",
+            #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Map specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info22", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),            
             #
             # Select map colour scheme
             #
@@ -277,12 +409,23 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             # Quantiles slider when 'quantile' method chosen
             #
-            uiOutput("map.quantile.poverty.control")
-          ),
+            uiOutput("map.quantile.poverty.control")            
+      ),
           #
           # Add menu when 'Tables' sub-tab selected
           #
           conditionalPanel(condition = "input.tabs2 == 23",
+            #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Table specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info23", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),                                                                                       
             #
             # Select survey area filter
             #
@@ -294,7 +437,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             selectInput(inputId = "table.poverty.type",
                         label = "Slum/Citywide",
-                        choices = c("All", as.character(unique(areaResultsLong$type))))                                                
+                        choices = c("All", as.character(unique(areaResultsLong$type))))
           )
         ),
         #
@@ -305,6 +448,10 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       # Set main panel contents
       #
       mainPanel(
+        #
+        # Name of indicator on header
+        #
+        h3(textOutput("mainHeader2")),
         #
         # Create sub-tabs panel
         #
@@ -334,7 +481,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
   #
   # Create Service Ladders tab
   #
-  tabPanel(title = "Service Ladders", value = 3,
+  tabPanel(title = "Service Ladders", value = 3, icon = icon(name = "bars", class = "fa-lg"),
     #
     # Sidebar layout
     #
@@ -344,21 +491,44 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       #
       sidebarPanel(
         #
+        # Name of city and country
+        #
+        h3(textOutput("sideHeader3")),
+        #
+        # Add horizontal divider
+        #
+        hr(),        
+        #
         # Menu when 'Service Ladders' tab selected
         #
         conditionalPanel(condition = "input.chosenTab == 3",
           #
           # Select Country
           #
-          selectInput(inputId = "country3", 
-                      label = "Select Country Survey",
-                      choices = unique(areaResultsLong$country)), 
+          div(style="display: inline-block;vertical-align:middle;",
+              selectInput(inputId = "country3", 
+                          label = "Country",
+                          choices = unique(areaResultsLong$country),
+                          width = "140px")), 
           #
           # Select City
           #
-          selectInput(inputId = "city3",
-                      label = "Select City Survey",
-                      choices = c(None = ".")),
+          div(style="display: inline-block;vertical-align:middle;",          
+              selectInput(inputId = "city3",
+                          label = "City",
+                          choices = c(None = "."),
+                          width = "140px")),
+          #
+          # Sub-heading
+          #
+          div(style="display: inline-block;vertical-align:middle;", h4("Indicators")),
+          #
+          # Add 'info' link
+          #
+          div(style="display: inline-block;vertical-align:middle;",
+              actionLink(inputId = "info3",
+                         label = "",
+                         icon = icon(name = "info-sign", lib = "glyphicon"))),          
           #
           # Select indicator set
           #
@@ -371,7 +541,22 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           # Menu when 'Charts' sub-tab selected
           #
-          conditionalPanel(condition = "input.tabs3 == 31",            
+          conditionalPanel(condition = "input.tabs3 == 31",
+            #
+            # Add whitespace
+            #
+            br(),
+            #
+            # Sub-header
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Chart specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info31",
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
             #
             # Select primary stratification
             #
@@ -404,6 +589,21 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           # Menu when 'Maps' sub-tab selected
           #
           conditionalPanel(condition = "input.tabs3 == 32",
+            #
+            # Add whitespace
+            #
+            br(),
+            #
+            # Sub-header
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Map specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info32",
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
             #
             # Select map colour scheme
             #
@@ -459,6 +659,21 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           conditionalPanel(condition = "input.tabs3 == 33",
             #
+            # Add whitespace
+            #
+            br(),
+            #
+            # Sub-header
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Table specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info33",
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
+            #
             # Select survey area filter
             #
             selectInput(inputId = "table.ladder.area",
@@ -480,6 +695,24 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       # Set main panel contents
       #
       mainPanel(
+        #
+        #
+        #
+        conditionalPanel(condition = "input.tabs3 == 31",
+          #
+          #
+          #
+          h3("Service ladders")
+        ),
+        #
+        #
+        #
+        conditionalPanel(condition = "input.tabs3 != 31",
+          #
+          # Name of indicator on header
+          #
+          h3(textOutput("mainHeader3"))
+        ),
         #
         # Create sub-tabs panel
         #
@@ -509,7 +742,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
   #
   # Other water indicators
   #
-  tabPanel(title = "Water", value = 4,
+  tabPanel(title = "Water", value = 4, icon = icon(name = "tint", class = "fa-lg"),
     #
     # Sidebar layout
     #
@@ -519,21 +752,44 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       #
       sidebarPanel(
         #
+        # Name of city and country
+        #
+        h3(textOutput("sideHeader4")),
+        #
+        # Add horizontal divider
+        #
+        hr(),
+        #
         # Menu when 'Water' menu tab selected
         #
         conditionalPanel(condition = "input.chosenTab == 4",
           #
-          # Select country
+          # Select Country
           #
-          selectInput(inputId = "country4", 
-                      label = "Select Country Survey",
-                      choices = unique(areaResultsLong$country)), 
+          div(style="display: inline-block;vertical-align:middle;",
+              selectInput(inputId = "country4", 
+                          label = "Country",
+                          choices = unique(areaResultsLong$country),
+                          width = "140px")), 
           #
-          #  Select city
+          # Select City
           #
-          selectInput(inputId = "city4",
-                      label = "Select City Survey",
-                      choices = c(None = ".")),
+          div(style="display: inline-block;vertical-align:middle;",          
+              selectInput(inputId = "city4",
+                          label = "City",
+                          choices = c(None = "."),
+                          width = "140px")),
+          #
+          # Sub-header
+          #
+          div(style="display: inline-block;vertical-align:middle;", h4("Indicators")),
+          #
+          # Add 'Help' action link
+          #
+          div(style="display: inline-block;vertical-align:middle;", 
+              actionLink(inputId = "info4", 
+                         label = "",
+                         icon = icon(name = "info-sign", lib = "glyphicon"))),
           #
           # Select indicator
           #
@@ -551,6 +807,17 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           # Menu when 'Charts' sub-tab selected
           #
           conditionalPanel(condition = "input.tabs4 == 41",
+            #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Chart specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info41", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
             #
             # Select primary stratification
             #
@@ -572,6 +839,17 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           # Menu when 'Maps' sub-tab selected
           #
           conditionalPanel(condition = "input.tabs4 == 42",
+            #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Map specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info42", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
             #
             # Select map colour scheme
             #
@@ -627,6 +905,17 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           conditionalPanel(condition = "input.tabs4 == 43",
             #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Table specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info43", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
+            #
             # Select survey area filter
             #
             selectInput(inputId = "table.water.area",
@@ -648,6 +937,10 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       # Set main panel contents
       #
       mainPanel(
+        #
+        # Name of indicator on header
+        #
+        h3(textOutput("mainHeader4")),
         #
         # Create sub-tabs panel
         #
@@ -677,7 +970,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
   #
   # Other sanitation indicators
   #
-  tabPanel(title = "Sanitation", value = 5,
+  tabPanel(title = "Sanitation", value = 5, icon = icon(name = "user", class = "fa-lg"),
     #
     # Sidebar layout
     #
@@ -687,21 +980,44 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       #
       sidebarPanel(
         #
+        # Name of city and country
+        #
+        h3(textOutput("sideHeader5")),
+        #
+        # Add horizontal divider
+        #
+        hr(),
+        #
         # Menu when 'Sanitation' menu tab selected
         #
         conditionalPanel(condition = "input.chosenTab == 5",
           #
-          # Select country
+          # Select Country
           #
-          selectInput(inputId = "country5", 
-                      label = "Select Country Survey",
-                      choices = unique(areaResultsLong$country)), 
+          div(style="display: inline-block;vertical-align:middle;",
+              selectInput(inputId = "country5", 
+                          label = "Country",
+                          choices = unique(areaResultsLong$country),
+                          width = "140px")), 
           #
-          # Select city
+          # Select City
           #
-          selectInput(inputId = "city5",
-                      label = "Select City Survey",
-                      choices = c(None = ".")),
+          div(style="display: inline-block;vertical-align:middle;",          
+              selectInput(inputId = "city5",
+                          label = "City",
+                          choices = c(None = "."),
+                          width = "140px")),
+          #
+          # Sub-header
+          #
+          div(style="display: inline-block;vertical-align:middle;", h4("Indicators")),
+          #
+          # Add 'Help' action link
+          #
+          div(style="display: inline-block;vertical-align:middle;", 
+              actionLink(inputId = "info5", 
+                         label = "",
+                         icon = icon(name = "info-sign", lib = "glyphicon"))),
           #
           # Select indicator
           #
@@ -721,6 +1037,17 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           # Menu when 'Charts' sub-tab selected
           #
           conditionalPanel(condition = "input.tabs5 == 51",
+            #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Chart specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info51", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
             #
             # Select primary stratification
             #
@@ -742,6 +1069,17 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           # Menu when 'Maps' sub-tab selected
           #
           conditionalPanel(condition = "input.tabs5 == 52",
+            #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Map specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info52", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
             #
             # Select map colour scheme
             #
@@ -797,6 +1135,17 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           conditionalPanel(condition = "input.tabs5 == 53",
             #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Table specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info53", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
+            #
             # Select survey area filter
             #
             selectInput(inputId = "table.sanitation.area",
@@ -818,6 +1167,10 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       # Set main panel contents
       #
       mainPanel(
+        #
+        # Name of indicator on header
+        #
+        h3(textOutput("mainHeader5")),
         #
         # Create sub-tabs panel
         #
@@ -847,7 +1200,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
   #
   # Hygiene indicators menu
   #
-  tabPanel(title = "Hygiene", value = 6,
+  tabPanel(title = "Hygiene", value = 6, icon = icon(name = "signing", class = "fa-lg"),
     #
     # Sidebar layout
     #
@@ -857,21 +1210,48 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       #
       sidebarPanel(
         #
+        # Name of city and country
+        #
+        h3(textOutput("sideHeader6")),
+        #
+        # Add horizontal divider
+        #
+        hr(),
+        #
         # Menu when 'Hygiene' menu tab selected
         #
         conditionalPanel(condition = "input.chosenTab == 6",
           #
-          # Select country
+          # Select Country
           #
-          selectInput(inputId = "country6", 
-                      label = "Select Country Survey",
-                      choices = unique(areaResultsLong$country)), 
+          div(style="display: inline-block;vertical-align:middle;",
+              selectInput(inputId = "country6", 
+                          label = "Country",
+                          choices = unique(areaResultsLong$country),
+                          width = "140px")), 
           #
-          # Select city
+          # Select City
           #
-          selectInput(inputId = "city6",
-                      label = "Select City Survey",
-                      choices = c(None = ".")),
+          div(style="display: inline-block;vertical-align:middle;",          
+              selectInput(inputId = "city6",
+                          label = "City",
+                          choices = c(None = "."),
+                          width = "140px")),
+          #
+          #
+          #
+          br(),
+          #
+          # Sub-header
+          #
+          div(style="display: inline-block;vertical-align:middle;", h4("Indicators")),
+          #
+          # Add 'Help' action link
+          #
+          div(style="display: inline-block;vertical-align:middle;", 
+              actionLink(inputId = "info6", 
+                         label = "",
+                         icon = icon(name = "info-sign", lib = "glyphicon"))),
           #
           # Select indicator
           #
@@ -885,6 +1265,17 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           # Menu when 'Charts' sub-tab selected
           #
           conditionalPanel(condition = "input.tabs6 == 61",
+            #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Chart specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info61", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
             #
             # Select primary stratification
             #
@@ -906,6 +1297,17 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           # Menu when 'Maps' sub-tab selected
           #
           conditionalPanel(condition = "input.tabs6 == 62",
+            #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Map specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info52", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
             #
             # Select map colour scheme
             #
@@ -961,6 +1363,17 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           conditionalPanel(condition = "input.tabs6 == 63",
             #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Table specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info63", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
+            #
             # Select survey area filter
             #
             selectInput(inputId = "table.hygiene.area",
@@ -982,6 +1395,10 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       # Set main panel contents
       #
       mainPanel(
+        #
+        # Name of indicator on header
+        #
+        h3(textOutput("mainHeader6")),
         #
         # Create sub-tabs panel
         #
@@ -1011,7 +1428,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
   #
   # Overall indicators menu
   #
-  tabPanel(title = "Overall", value = 7,
+  tabPanel(title = "Overall", value = 7, icon = icon(name = "globe", class = "fa-lg"),
     #
     # Sidebar layout
     #
@@ -1021,21 +1438,44 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       #
       sidebarPanel(
         #
+        # Name of city and country
+        #
+        h3(textOutput("sideHeader7")),
+        #
+        # Add horizontal divider
+        #
+        hr(),
+        #
         # Menu when 'Overall' menu tab selected
         #
         conditionalPanel(condition = "input.chosenTab == 7",
           #
-          # Select country
+          # Select Country
           #
-          selectInput(inputId = "country7", 
-                      label = "Select Country Survey",
-                      choices = unique(areaResultsLong$country)), 
+          div(style="display: inline-block;vertical-align:middle;",
+              selectInput(inputId = "country7", 
+                          label = "Country",
+                          choices = unique(areaResultsLong$country),
+                          width = "140px")), 
           #
-          # Select city
+          # Select City
           #
-          selectInput(inputId = "city7",
-                      label = "Select City Survey",
-                      choices = c(None = ".")),
+          div(style="display: inline-block;vertical-align:middle;",          
+              selectInput(inputId = "city7",
+                          label = "City",
+                          choices = c(None = "."),
+                          width = "140px")),
+          #
+          # Sub-header
+          #
+          div(style="display: inline-block;vertical-align:middle;", h4("Indicators")),
+          #
+          # Add 'Help' action link
+          #
+          div(style="display: inline-block;vertical-align:middle;", 
+              actionLink(inputId = "info7", 
+                         label = "",
+                         icon = icon(name = "info-sign", lib = "glyphicon"))),        
           #
           # Select indicator set
           #
@@ -1046,6 +1486,17 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           # Menu when 'Charts' sub-tab selected
           #
           conditionalPanel(condition = "input.tabs7 == 71",
+            #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Chart specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info71", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
             #
             # Select primary stratification
             #
@@ -1081,6 +1532,17 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           # Menu when 'Maps' sub-tab selected
           #
           conditionalPanel(condition = "input.tabs7 == 72",
+            #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Map specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info72", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
             #
             # Select map colour scheme
             #
@@ -1136,6 +1598,17 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           conditionalPanel(condition = "input.tabs7 == 73",
             #
+            # Sub-heading
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Chart specifications")),
+            #
+            # Add 'Help' action link
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info73", 
+                           label = "",
+                           icon = icon(name = "question-sign", lib = "glyphicon"))),
+            #
             # Select survey area filter
             #
             selectInput(inputId = "table.overall.area",
@@ -1157,6 +1630,24 @@ navbarPage(title = "Urban Water and Sanitation Survey",
       # Set main panel contents
       #
       mainPanel(
+        #
+        #
+        #
+        conditionalPanel(condition = "input.tabs7 == 71",
+          #
+          #
+          #
+          h3("Overall access to services")
+        ),
+        #
+        #
+        #
+        conditionalPanel(condition = "input.tabs7 != 71",
+          #
+          # Name of indicator on header
+          #
+          h3(textOutput("mainHeader7"))
+        ),
         #
         # Create sub-tabs panel
         #
@@ -1186,11 +1677,11 @@ navbarPage(title = "Urban Water and Sanitation Survey",
   #
   # Create Functions tab
   #
-  navbarMenu(title = "Functions",
+  navbarMenu(title = "Tools", icon = icon(name = "wrench", class = "fa-lg"),
     #
+    # Sample size calculator tab
     #
-    #
-    tabPanel(title = "Sample size", value = "tabs8",
+    tabPanel(title = "Sample Size Calculator", value = "tabs8", icon = icon(name = "calculator", class = "fa-lg"),
       #
       # Sidebar layout
       #
@@ -1200,15 +1691,15 @@ navbarPage(title = "Urban Water and Sanitation Survey",
         #
         sidebarPanel(
           #
-          #
+          # Sub-header
           #
           h2("Sample size calculator"),
           #
-          #
+          # Add whitespace
           #
           br(),
           #
-          #
+          # Add sub-sub-header
           #
           h4("Calculate sample size"),          
           #
@@ -1251,13 +1742,15 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             actionButton(inputId = "calculate1",
                          label = "Calculate",
-                         class = "btn-primary"),
+                         class = "btn-primary",
+                         icon = icon(name = "calculator", class = "fa-lg")),
             #
             # Action button - Reset
             #
             actionButton(inputId = "reset1",
                          label = "Reset",
-                         class = "btn-primary")
+                         class = "btn-primary",
+                         icon = icon(name = "refresh", class = "fa-lg"))
           ),
           #
           # Add whitespace
@@ -1312,13 +1805,15 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             actionButton(inputId = "calculate2",
                          label = "Calculate",
-                         class = "btn-primary"),
+                         class = "btn-primary",
+                         icon = icon(name = "calculator", class = "fa-lg")),
             #
             # Action button - Reset
             #
             actionButton(inputId = "reset2",
                          label = "Reset",
-                         class = "btn-primary"),
+                         class = "btn-primary",
+                         icon = icon(name = "refresh", class = "fa-lg")),
             #
             # Add whitespace
             #
@@ -1338,11 +1833,11 @@ navbarPage(title = "Urban Water and Sanitation Survey",
         width = 5
         ),
         #
-        #
+        # Add contents to main panel
         #
         mainPanel(withMathJax(),
           #
-          #
+          # Add text on sample size calculations
           #
           HTML("
             <h4>Sample size for estimating proportions</h4>
@@ -1381,7 +1876,235 @@ navbarPage(title = "Urban Water and Sanitation Survey",
         #
         width = 7) 
       )
+    ),
+    #
+    # Create spatial sampling tab
+    #
+    tabPanel(title = "Spatial Sampling", id = "tabs9", icon = icon(name = "map", class = "fa-lg"),
+      #
+      # Set sidebar layout
+      #
+      sidebarLayout(
+        #
+        # Add sidebar panel
+        #
+        sidebarPanel(
+          #
+          # Sub-header
+          #  
+          h2("Spatial Sampling"),
+          #
+          # Add whitespace
+          #
+          br(),
+          #
+          # Sub-sub-header
+          #
+          div(style="display: inline-block;vertical-align:middle;", h4("City map data input")),
+          #
+          # Action link 'Info' for uploading survey area map
+          #
+          div(style="display: inline-block;vertical-align:middle;",
+              actionLink(inputId = "info91",
+                          label = "",
+                          icon = icon(name = "info-sign", lib = "glyphicon"))),
+          #
+          # Upload shapefile
+          #
+          fileInput(inputId = "shp1",
+                    label = "Upload map of citywide survey area",
+                    accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+                    multiple = TRUE),
+          #
+          #
+          #
+          div(style="display: inline-block;vertical-align:top;", uiOutput("map.draw.control1")),
+          #
+          #
+          #
+          #div(style="display: inline-block;vertical-align:top;", uiOutput("map.draw.control2")),
+          #
+          #
+          #
+          conditionalPanel(condition = "input.mapDraw1",
+            #
+            # Add whitespace
+            #
+            br(),
+            #
+            #
+            #
+            selectInput(inputId = "var.city.area",
+                        label = "Select map data identifier for city survey areas",
+                        choices = list(None = ".")),
+            #
+            #
+            #
+            selectInput(inputId = "city.area.name",
+                        label = "Select city survey area to sample",
+                        choices = list(None = ".")),
+            #
+            #
+            #
+            numericInput(inputId = "n.psu.citywide",
+                         label = "Number of PSU/clusers to sample",
+                         min = 16, max = 60, step = 1, value = 30),
+            #
+            #
+            #
+            actionButton(inputId = "sample.city",
+                         label = "Sample",
+                         class = "btn-primary",
+                         icon = icon(name = "th", clas = "fa-lg"))
+            ),
+            #
+            #
+            #
+            br(), br(),
+            #
+            # Sub-sub-header
+            #
+            div(style="display: inline-block;vertical-align:middle;", h4("Slum map data input")),
+            #
+            # Action link 'Info' for uploading survey area map
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info92",
+                            label = "",
+                            icon = icon(name = "info-sign", lib = "glyphicon"))),          
+            #
+            #
+            #
+            radioButtons(inputId = "slumInfo",
+                         label = "Available slum area sampling information",
+                         choices = list("Slum maps" = "slum.map",
+                                        "Slum lists" = "slum.list"),
+                         inline = TRUE,
+                         selected = "."),
+          #
+          #
+          #
+          conditionalPanel(condition = "input.slumInfo == 'slum.map'",
+            #
+            #
+            #
+            fileInput(inputId = "shp2",
+                      label = "Upload map of slums in survey area",
+                      accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+                      multiple = TRUE),
+          #
+          #
+          #
+          div(style="display: inline-block;vertical-align:top;", uiOutput("map.draw.control2"))                     
+          ),
+          #
+          #
+          #
+          conditionalPanel(condition = "input.mapDraw2",
+            #
+            # Add whitespace
+            #
+            br(),
+            #
+            #
+            #
+            selectInput(inputId = "var.slum.area",
+                        label = "Select map data identifier for slum survey areas",
+                        choices = list(None = ".")),
+            #
+            #
+            #
+            selectInput(inputId = "slum.area.name",
+                        label = "Select slum survey area to sample",
+                        choices = list(None = ".")),
+            #
+            #
+            #
+            actionButton(inputId = "sample.slum",
+                         label = "Sample",
+                         class = "btn-primary",
+                         icon = icon(name = "th", clas = "fa-lg"))
+          ),            
+          #
+          #
+          #
+          conditionalPanel(condition = "input.slumInfo == 'slum.list'",
+            #
+            # 
+            #
+            fileInput(inputId = "list1",
+                      label = "Upload list of slum areas",
+                      accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
+            #
+            #
+            #
+            numericInput(inputId = "n.psu.slum",
+                         label = "Number of PSU/clusers to sample",
+                         min = 16, max = 60, step = 1, value = 30),         
+            #
+            #
+            #
+            actionButton(inputId = "sample.slum",
+                         label = "Sample",
+                         class = "btn-primary",
+                         icon = icon(name = "th", clas = "fa-lg"))
+        ),
+        #
+        #
+        #
+        width = 3
+        ),
+        #
+        #
+        #
+        mainPanel(
+          #
+          #
+          #
+          tabsetPanel(type = "tabs", id = "tabs9",
+            #
+            #
+            #
+            tabPanel(title = "Sampling Maps", value = 91,
+              #
+              # Render leaflet map
+              #
+              withSpinner(leafletOutput("map.sampling", width = "100%", height = 700), type = 5)
+            ),
+            #
+            #
+            #
+            tabPanel(title = "City Map Sampling Lists", value = 92,
+              #
+              # Render table
+              #
+              DT::dataTableOutput("city.grid.table")
+            ),
+            #
+            #
+            #
+            tabPanel(title = "Slum Map Sampling Lists", value = 93,
+              #
+              # Render table
+              #
+              DT::dataTableOutput("slum.grid.table")
+            ),
+            #
+            #
+            #
+            tabPanel(title = "Slum Lists", value = 93,
+              #
+              # Render table
+              #
+              DT::dataTableOutput("sample.slum.table")              
+            )
+          ), 
+          #
+          #
+          #
+          width = 9
+        )
+      )                   
     )
-  )                   
+  )
 )
-  

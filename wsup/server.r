@@ -9,11 +9,11 @@
 #
 function(input, output, session) {
   #
-  # Determine which country has been selected
+  # Determine which country has been selected - set 1
   # 
   observe({
     #
-    #
+    # Bangladesh
     #
     if(input$country1 == "Bangladesh")
       #
@@ -21,9 +21,9 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city1",
-                        choices = c("Dhaka" = "DAC"))
+                        choices = c("Dhaka" = "Dhaka"))
     #
-    #
+    # Ghana
     #
     if(input$country1 == "Ghana")
       #
@@ -31,9 +31,9 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city1",
-                        choices = c("Accra" = "ACC"))    
+                        choices = c("Accra" = "Accra"))    
     # 
-    #
+    # Kenya
     #
     if(input$country1 == "Kenya")
       #
@@ -41,9 +41,9 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city1",
-                        choices = c("Nakuru" = "NUU"))    
+                        choices = c("Nakuru" = "Nakuru"))    
     #
-    #
+    # Madagascar
     #
     if(input$country1 == "Madagascar")
       #
@@ -51,9 +51,9 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city1",
-                        choices = c("Antananarivo" = "TNR"))    
+                        choices = c("Antananarivo" = "Antananarivo"))    
     #
-    #
+    # Mozambique
     #
     if(input$country1 == "Mozambique")
       #
@@ -61,9 +61,9 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city1",
-                        choices = c("Maputo" = "MPM"))
+                        choices = c("Maputo" = "Maputo"))
     #
-    #
+    # Zambia
     #
     if(input$country1 == "Zambia")
       #
@@ -71,7 +71,25 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city1",
-                        choices = c("Lusaka" = "LUN"))
+                        choices = c("Lusaka" = "Lusaka"))
+  })
+  #
+  #
+  #
+  output$sideHeader1 <- reactive({
+    #
+    #
+    #
+    paste(input$city1, ", ", input$country1, sep = "")
+  })
+  #
+  #
+  #
+  output$mainHeader1 <- reactive({
+    #
+    #
+    #
+    paste(steerIndicators$varNames[steerIndicators$varList == input$z.demographics], sep = "")
   })
   #
   # Determine which country has been selected - set 2
@@ -86,7 +104,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city2",
-                        choices = c("Dhaka" = "DAC"))
+                        choices = c("Dhaka" = "Dhaka"))
     #
     #
     #
@@ -96,7 +114,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city2",
-                        choices = c("Accra" = "ACC"))    
+                        choices = c("Accra" = "Accra"))    
     # 
     #
     #
@@ -106,7 +124,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city2",
-                        choices = c("Nakuru" = "NUU"))    
+                        choices = c("Nakuru" = "Nakuru"))    
     #
     #
     #
@@ -116,7 +134,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city2",
-                        choices = c("Antananarivo" = "TNR"))    
+                        choices = c("Antananarivo" = "Antananarivo"))    
     #
     #
     #
@@ -126,7 +144,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city2",
-                        choices = c("Maputo" = "MPM"))
+                        choices = c("Maputo" = "Maputo"))
     #
     #
     #
@@ -136,8 +154,26 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city2",
-                        choices = c("Lusaka" = "LUN"))
+                        choices = c("Lusaka" = "Lusaka"))
   })  
+  #
+  #
+  #
+  output$sideHeader2 <- reactive({
+    #
+    #
+    #
+    paste(input$city2, ", ", input$country2, sep = "")
+  })
+  #
+  #
+  #
+  output$mainHeader2 <- reactive({
+    #
+    #
+    #
+    paste(steerIndicators$varNames[steerIndicators$varList == input$z.poverty], sep = "")
+  })
   #
   # Determine which country has been selected - set 3
   # 
@@ -151,7 +187,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city3",
-                        choices = c("Dhaka" = "DAC"))
+                        choices = c("Dhaka" = "Dhaka"))
     #
     #
     #
@@ -161,7 +197,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city3",
-                        choices = c("Accra" = "ACC"))    
+                        choices = c("Accra" = "Accra"))    
     # 
     #
     #
@@ -171,7 +207,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city3",
-                        choices = c("Nakuru" = "NUU"))    
+                        choices = c("Nakuru" = "Nakuru"))    
     #
     #
     #
@@ -181,7 +217,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city3",
-                        choices = c("Antananarivo" = "TNR"))    
+                        choices = c("Antananarivo" = "Antananarivo"))    
     #
     #
     #
@@ -191,7 +227,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city3",
-                        choices = c("Maputo" = "MPM"))
+                        choices = c("Maputo" = "Maputo"))
     #
     #
     #
@@ -201,7 +237,25 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city3",
-                        choices = c("Lusaka" = "LUN"))
+                        choices = c("Lusaka" = "Lusaka"))
+  })
+  #
+  #
+  #
+  output$sideHeader3 <- reactive({
+    #
+    #
+    #
+    paste(input$city3, ", ", input$country3, sep = "")
+  })
+  #
+  #
+  #
+  output$mainHeader3 <- reactive({
+    #
+    #
+    #
+    paste(steerIndicators$varNames[steerIndicators$varList == input$indicator.ladder], sep = "")
   })
   #
   # Determine which country has been selected - set 4
@@ -216,7 +270,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city4",
-                        choices = c("Dhaka" = "DAC"))
+                        choices = c("Dhaka" = "Dhaka"))
     #
     #
     #
@@ -226,7 +280,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city4",
-                        choices = c("Accra" = "ACC"))    
+                        choices = c("Accra" = "Accra"))    
     # 
     #
     #
@@ -236,7 +290,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city4",
-                        choices = c("Nakuru" = "NUU"))    
+                        choices = c("Nakuru" = "Nakuru"))    
     #
     #
     #
@@ -246,7 +300,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city4",
-                        choices = c("Antananarivo" = "TNR"))    
+                        choices = c("Antananarivo" = "Antananarivo"))    
     #
     #
     #
@@ -256,7 +310,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city4",
-                        choices = c("Maputo" = "MPM"))
+                        choices = c("Maputo" = "Maputo"))
     #
     #
     #
@@ -266,8 +320,26 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city4",
-                        choices = c("Lusaka" = "LUN"))
+                        choices = c("Lusaka" = "Lusaka"))
   })  
+  #
+  #
+  #
+  output$sideHeader4 <- reactive({
+    #
+    #
+    #
+    paste(input$city4, ", ", input$country4, sep = "")
+  })
+  #
+  #
+  #
+  output$mainHeader4 <- reactive({
+    #
+    #
+    #
+    paste(steerIndicators$varNames[steerIndicators$varList == input$z.water], sep = "")
+  })
   #
   # Determine which country has been selected - set 5
   # 
@@ -281,7 +353,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city5",
-                        choices = c("Dhaka" = "DAC"))
+                        choices = c("Dhaka" = "Dhaka"))
     #
     #
     #
@@ -291,7 +363,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city5",
-                        choices = c("Accra" = "ACC"))    
+                        choices = c("Accra" = "Accra"))    
     # 
     #
     #
@@ -301,7 +373,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city5",
-                        choices = c("Nakuru" = "NUU"))    
+                        choices = c("Nakuru" = "Nakuru"))    
     #
     #
     #
@@ -311,7 +383,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city5",
-                        choices = c("Antananarivo" = "TNR"))    
+                        choices = c("Antananarivo" = "Antananarivo"))    
     #
     #
     #
@@ -321,7 +393,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city5",
-                        choices = c("Maputo" = "MPM"))
+                        choices = c("Maputo" = "Maputo"))
     #
     #
     #
@@ -331,7 +403,25 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city5",
-                        choices = c("Lusaka" = "LUN"))
+                        choices = c("Lusaka" = "Lusaka"))
+  })
+  #
+  #
+  #
+  output$sideHeader5 <- reactive({
+    #
+    #
+    #
+    paste(input$city5, ", ", input$country5, sep = "")
+  })
+  #
+  #
+  #
+  output$mainHeader5 <- reactive({
+    #
+    #
+    #
+    paste(steerIndicators$varNames[steerIndicators$varList == input$z.sanitation], sep = "")
   })
   #
   # Determine which country has been selected - set 6
@@ -346,7 +436,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city6",
-                        choices = c("Dhaka" = "DAC"))
+                        choices = c("Dhaka" = "Dhaka"))
     #
     #
     #
@@ -356,7 +446,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city6",
-                        choices = c("Accra" = "ACC"))    
+                        choices = c("Accra" = "Accra"))    
     # 
     #
     #
@@ -366,7 +456,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city6",
-                        choices = c("Nakuru" = "NUU"))    
+                        choices = c("Nakuru" = "Nakuru"))    
     #
     #
     #
@@ -376,7 +466,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city6",
-                        choices = c("Antananarivo" = "TNR"))    
+                        choices = c("Antananarivo" = "Antananarivo"))    
     #
     #
     #
@@ -386,7 +476,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city6",
-                        choices = c("Maputo" = "MPM"))
+                        choices = c("Maputo" = "Maputo"))
     #
     #
     #
@@ -396,7 +486,25 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city6",
-                        choices = c("Lusaka" = "LUN"))
+                        choices = c("Lusaka" = "Lusaka"))
+  })
+  #
+  #
+  #
+  output$sideHeader6 <- reactive({
+    #
+    #
+    #
+    paste(input$city6, ", ", input$country6, sep = "")
+  })
+  #
+  #
+  #
+  output$mainHeader6 <- reactive({
+    #
+    #
+    #
+    paste(steerIndicators$varNames[steerIndicators$varList == input$z.hygiene], sep = "")
   })
   #
   # Determine which country has been selected - set 7
@@ -411,7 +519,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city7",
-                        choices = c("Dhaka" = "DAC"))
+                        choices = c("Dhaka" = "Dhaka"))
     #
     #
     #
@@ -421,7 +529,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city7",
-                        choices = c("Accra" = "ACC"))    
+                        choices = c("Accra" = "Accra"))    
     # 
     #
     #
@@ -431,7 +539,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city7",
-                        choices = c("Nakuru" = "NUU"))    
+                        choices = c("Nakuru" = "Nakuru"))    
     #
     #
     #
@@ -441,7 +549,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city7",
-                        choices = c("Antananarivo" = "TNR"))    
+                        choices = c("Antananarivo" = "Antananarivo"))    
     #
     #
     #
@@ -451,7 +559,7 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city7",
-                        choices = c("Maputo" = "MPM"))
+                        choices = c("Maputo" = "Maputo"))
     #
     #
     #
@@ -461,8 +569,867 @@ function(input, output, session) {
       #
       updateSelectInput(session,
                         inputId = "city7",
-                        choices = c("Lusaka" = "LUN"))
+                        choices = c("Lusaka" = "Lusaka"))
   })
+  #
+  #
+  #
+  output$sideHeader7 <- reactive({
+    #
+    #
+    #
+    paste(input$city7, ", ", input$country7, sep = "")
+  })
+  #
+  #
+  #
+  output$mainHeader7 <- reactive({
+    #
+    #
+    #
+    paste(steerIndicators$varNames[steerIndicators$varList == input$indicator.overall], sep = "")
+  })
+
+
+################################################################################
+#
+# Modal dialog
+#
+################################################################################
+  #
+  #
+  #
+  observeEvent(input$info1, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Guide to demographics indicators",
+                           size = "l",
+                           HTML("
+                             <h5>Mean number of household members</h5>
+                             <p>This indicator is based on the self-report of number of household members. This indicator was estimated using a blocked weighted bootstrap estimator implemented using <a href='https://cran.r-project.org' target='_blank'>R</a> language for statistical computing. The raw indicator data is used to draw a histogram to illustrate the distribution of the indicator value with the peak of the histogram representing the mean number of household members.   
+                           ")))
+                           
+  })
+  #
+  #
+  #
+  observeEvent(input$info11, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Demographihcs charts specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Stratify by</h5>
+                             <p>Select from choices of data variables to be used for grouping / disaggregating the data. When applied to charts, \\(n\\) unique values of the selected variables are used to create \\(n\\) facets or panels of the resulting chart.</p>
+                             <ul>
+                               <li><code>All Data (No Stratification)</code>: full dataset is used and resulting chart has no facets or panels.</li>
+                               <li><code>Survey Area</code>: dataset is grouped into \\(n\\) unique survey areas and resulting chart has \\(n\\) facets or panels corresponding to each survey area.</li>
+                               <li><code>Area Type</code>: dataset is grouped into <code>slum</code> and <code>citywide</code> area types and resulting chart has <code>slum</code> and <code>citywide</code> facets or panels.</li>
+                               <li><code>Wealth Quintile</code>: dataset is grouped into quintiles based on the <code>Progress out of Poverty Index (PPI)</code>.</li>
+                             </ul>
+                             <p><code>All Data (No Stratification)</code> is selected by default</p>
+                             <h5>Select bin width</h5>
+                             <p>Select indicator data value interval to divide the dataset with. For example, for a dataset of percentages with values ranging between 0 and 100, a <code>bin width</code> of <code>5</code> would mean equal interval grouping of data by 5 such as <code>[0,5)</code>, <code>[5, 10)</code>, <code>[10,15)</code>...<code>[95,100]</code>. <code>Bin width</code> of <code>1</code> is selected by default</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info12, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Demographihcs map specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Select colour palette</h5>
+                             <p>Select from choices of colour palettes to use for mapping. Two categories of colour palettes are available.</p>
+                             <ul>
+                               <li><code>Sequential</code> palettes are suited to ordered data that progress from low to high with light colours representing low data values and dark colours representing high data values.</li>
+                               <li><code>Diverging</code> palettes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The middle values are emphasised with light colours and low and high extremes are emphasised with dark colours that have contrasting hues.</li>
+                             </ul>
+                             <p>The choices of colour palettes are based on <a href='http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3' target='_blank'>ColorBrewer 2.0</a> and implemented in R using the <a href='https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf' target='_blank'>RColorBrewer</a> function.</p>
+                             <p>The default colour palette for the <code>Demographics</code> indicator set is <code>sequential yellow to orange to brown (YlOrBb)</code> scheme.</p>
+                             <h5>Select colour mapping method</h5>
+                             <p>Colour mapping methods determine how to match the indicator dataset to the selected colour palette appropriately. Three colour mapping methods are available.</p>
+                             <ul>
+                               <li><code>Linear interpolation</code> is a simple linear mapping from continuous numeric data to an interpolated colour palette. In this method, the selected colour palette is extended (via interpolation) to create a continuous set of colours consistent with the scheme that would be enough to match the range of values of the continuous numeric data being mapped.</li>
+                               <li><code>Equal interval</code> maps continuous numeric data to a fixed number of colours from the palette. The continous indicator values are divided into equal interval group sets determined by the <code>number of bins</code> specified (see below regarding bins). The number of colours correspond to the <code>number of bins</code> into which the indicator values have been divided into.</li>
+                               <li><code>Quantile</code> also maps continuous numeric data to a fixed number of colours from the palette. However, the continuous indicator values are divided into <code>quantiles</code> (group sets with equal number of observations). The number of colours correspond to the <code>number of quantiles</code> into which the indicator values have been divided into.</li> 
+                             </ul>
+                             <h5>Number of bins</h5>
+                             <p><em>For equal interval method.</em> Select number of equal interval groups to divide the dataset into. For example, for a dataset of percentages with values ranging between 0 and 100, specifying <code>number of bins</code> to 5 would mean creating 5 equal interval groupings - <code>[0,20)</code>, <code>[20, 40)</code>, <code>[40,60)</code>, <code>[60,80)</code>, <code>[80,100]</code></p>
+                             <h5>Number of classes</h5>
+                             <p><em>For quantile method.</em> Select number of quantiles to divide dataset into.</p>
+                           ")))
+  })                        
+  #
+  #
+  #
+  observeEvent(input$info13, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Demographihcs table specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Data variables</h5>
+                             <ul>
+                               <li><code>country</code> - name of country from which data has been collected from.</li>
+                               <li><code>ccode</code> - the corresponding <code>ISO3166-1</code> three letter country code.</li>
+                               <li><code>zone</code> - character values corresponding to the survey areas.</li>
+                               <li><code>type</code> - character values for type of area; two possible values - <code>slum</code> and <code>citywide</code>.</li>
+                               <li><code>nMembers</code> - numeric values for number of household members.</li>
+                             </ul>
+                             <h5>Survey area</h5>
+                             <p>Filter data by survey area. Select survey area/s to show in the data table. Default shows data for all survey areas.</p>
+                             <h5>Slum/Citywide</h5>
+                             <p>Filter data by area type. Select whether to show slum or citywide data. Default shows data for all area types.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info2, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Guide to poverty indicators",
+                           size = "l",
+                           HTML("
+                             <h5>Progress out of Poverty Index (PPI)</h5>
+                             <p>The <code>Progress out of Poverty Index (PPI)</code> is a measure of poverty developed by <a href='http://www.grameenfoundation.org' target='_blank'>Grameen Foundation</a> in collaboration with the <a href='https://www.fordfoundation.org' target='_blank'>Ford Foundation</a>, and managed by the <a href'http://www.poverty-action.org' target='_blank'>Innovations for Poverty Action</a>. The first <code>PPI</code> was released in 2006 and has since then been customised for 45 countries. The <code>PPI</code> is based on a country-specific 10-item questionnaire about a household’s characteristics and asset ownership which is scored to compute the likelihood that a household is living below country-specific and universal poverty line thresholds.</p>
+                             <h5>Poverty Likelihood ($1.25 a day)</h5>
+                             <p>This is the measure of the probability that a household is below the <code>$1.25 purchasing power parity (PPP)</code> poverty threshold of 2005. The likelihood is determined through pre-calculated and country-specific probabilites based on the household <code>PPI</code>. Other <code>PPI</code>-based poverty likelihoods using other country-specific and or global poverty thresholds are available.</p> 
+                             <h5>Wealth Quintile</h5>
+                             <p>This is the classification or grouping of each household into quintiles based on <code>PPI</code> with those in the lowest quintile (wealth quintile 1) having the lowest fifth <code>PPI</code> and those in the highest quintile (wealth quintile 5) having the highest fifth <code>PPI</code>.</p>
+                             </ul>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info21, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Poverty charts specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Stratify by</h5>
+                             <p>Select from choices of data variables to be used for grouping / disaggregating the data. When applied to charts, \\(n\\) unique values of the selected variables are used to create \\(n\\) facets or panels of the resulting chart.</p>
+                             <ul>
+                               <li><code>All Data (No Stratification)</code>: full dataset is used and resulting chart has no facets or panels.</li>
+                               <li><code>Survey Area</code>: dataset is grouped into \\(n\\) unique survey areas and resulting chart has \\(n\\) facets or panels corresponding to each survey area.</li>
+                               <li><code>Area Type</code>: dataset is grouped into <code>slum</code> and <code>citywide</code> area types and resulting chart has <code>slum</code> and <code>citywide</code> facets or panels.</li>
+                               <li><code>Wealth Quintile</code>: dataset is grouped into quintiles based on the <code>Progress out of Poverty Index (PPI)</code>.</li>
+                             </ul>
+                             <h5>Select bin width</h5>
+                             <p>Select indicator data value interval to divide the dataset with. For example, for a dataset of percentages with values ranging between 0 and 100, a <code>bin width</code> of 5 would mean equal interval grouping of data by 5 such as <code>[0,5)</code>, <code>[5, 10)</code>, <code>[10,15)</code>...<code>[95,100].</code></p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info22, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Poverty map specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Select colour palette</h5>
+                             <p>Select from choices of colour palettes to use for mapping. Two categories of colour palettes are available.</p>
+                             <ul>
+                               <li><code>Sequential</code> palettes are suited to ordered data that progress from low to high with light colours representing low data values and dark colours representing high data values.</li>
+                               <li><code>Diverging</code> palettes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The middle values are emphasised with light colours and low and high extremes are emphasised with dark colours that have contrasting hues.</li>
+                             </ul>
+                             <p>The choices of colour palettes are based on <a href='http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3' target='_blank'>ColorBrewer 2.0</a> and implemented in R using the <a href='https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf' target='_blank'>RColorBrewer</a> function.</p>
+                             <p>The default colour palette for the <code>Demographics</code> indicator set is <code>sequential yellow to orange to brown (YlOrBb)</code> scheme.</p>
+                             <h5>Select colour mapping method</h5>
+                             <p>Colour mapping methods determine how to match the indicator dataset to the selected colour palette appropriately. Three colour mapping methods are available.</p>
+                             <ul>
+                               <li><code>Linear interpolation</code> is a simple linear mapping from continuous numeric data to an interpolated colour palette. In this method, the selected colour palette is extended (via interpolation) to create a continuous set of colours consistent with the scheme that would be enough to match the range of values of the continuous numeric data being mapped.</li>
+                               <li><code>Equal interval</code> maps continuous numeric data to a fixed number of colours from the palette. The continous indicator values are divided into equal interval group sets determined by the <code>number of bins</code> specified (see below regarding bins). The number of colours correspond to the <code>number of bins</code> into which the indicator values have been divided into.</li>
+                               <li><code>Quantile</code> also maps continuous numeric data to a fixed number of colours from the palette. However, the continuous indicator values are divided into <code>quantiles</code> (group sets with equal number of observations). The number of colours correspond to the <code>number of quantiles</code> into which the indicator values have been divided into.</li> 
+                             </ul>
+                             <h5>Number of bins</h5>
+                             <p><em>For equal interval method.</em> Select number of equal interval groups to divide the dataset into. For example, for a dataset of percentages with values ranging between 0 and 100, specifying <code>number of bins</code> to 5 would mean creating 5 equal interval groupings - <code>[0,20)</code>, <code>[20, 40)</code>, <code>[40,60)</code>, <code>[60,80)</code>, <code>[80,100]</code></p>
+                             <h5>Number of classes</h5>
+                             <p><em>For quantile method.</em> Select number of quantiles to divide dataset into.</p>
+                           ")))
+  })                        
+  #
+  #
+  #
+  observeEvent(input$info23, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Poverty table specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Data variables</h5>
+                             <p>The following variables are shown in the data table.</p>
+                             <ul>
+                               <li><code>country</code> - name of country from which data has been collected from.</li>
+                               <li><code>countryCode</code> - the corresponding <code>ISO3166-1</code> three letter country code.</li>
+                               <li><code>indicatorName</code> - string variable describing the indicator.</li>
+                               <li><code>indicatorCode</code> - string variable for short code of indicators.</li>
+                               <li><code>indicatorCategory</code> - string variable for category of indicators or the indicator set to which the indicators belong to.</li>
+                               <li><code>strata</code> - variable containing various factors by which data can be stratified. These factors include <code>survey area</code> and <code>wealth quintile</code>.</li>
+                               <li><code>estimate</code> - numeric values for indicator estimates.</li>
+                               <li><code>lcl</code> - numeric values for the <code>lower 95% confidence interval</code> of the indicator estimates.</li>
+                               <li><code>ucl</code> - numeric values for the <code>upper 95% confidence interval</code> of the indicator estimates.</li>
+                               <li><code>type</code> - character values for survey area type (i.e., <code>slum</code> and <code>citywide</code>)</li> 
+                             </ul>
+                             <h5>Survey area</h5>
+                             <p>Filter data by survey area. Select survey area/s to show in the data table. Default shows data for all survey areas.</p>
+                             <h5>Slum/Citywide</h5>
+                             <p>Filter data by area type. Select whether to show slum or citywide data. Default shows data for all area types.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info3, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Guide to service ladder indicators",
+                           size = "l",
+                           HTML("
+                             <h5>Drinking Water Service Ladder</h5>
+                             
+                             <p><strong>Safely managed:</strong> Drinking water from an improved water source which is located on premises, available when needed and free of faecal and priority contamination. </p>
+                             <p><strong>Basic:</strong> Drinking water from an improved source provided collection time is not more than 30 minutes for a roundtrip including queuing.</p> 
+                             <p><strong>Limited:</strong> Drinking water from an improved source where collection time exceeds over 30 minutes for a roundtrip to collect water, including queuing.</p>
+                             <p><strong>Unimproved:</strong> Drinking water from an unimproved dug well or unprotected spring</p>
+                             <p><strong>Surface water:</strong> Drinking water directly from a river, dam, lake, pond, stream, canal or irrigation channel.</p>
+                             
+                             <br/>
+                             
+                             <h5>Sanitation Service Ladder</h4>
+                             
+                             <p><strong>Safely managed:</strong> Use of an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site.</p>
+                             <p><strong>Basic:</strong> Use of improved facilities which are not shared with other households.</p>
+                             <p><strong>Limited:</strong> Use of improved facilities shared between two or more households.</p>
+                             <p><strong>Unimproved:</strong> Use of pit latrines wihtout a slab or platform, hanging latrines and bucket latrines</p>
+                             <p><strong>Open defecation:</strong> Disposal of human faeces in fields, forest, bushes, open bodies of water, beaches or other open spaces or with solid waste.</p>
+                             
+                             <br/>
+                             
+                             <h5>Handwashing Service Ladder</h5>
+                             
+                             <p><strong>Basic:</strong> Hand washing facility with soap and water in the household.</p>
+                             <p><strong>Limited:</strong> Handwashing facility without soap or water</p>
+                             <p><strong>No facility:</strong> No handwashing facility</p>
+                             
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info31, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Service ladder charts specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Select primary stratification</h5>
+                             <p>Select from choices of data variables the primary factor to be used for grouping / disaggregating the data. When applied to charts, \\(n\\) unique values of the selected variables are used to create \\(n\\) facets or panels of the resulting chart.</p>
+                             <ul>
+                               <li><code>All Data (No Stratification)</code>: full dataset is used and resulting chart has no facets or panels.</li>
+                               <li><code>Survey Area</code>: dataset is grouped into \\(n\\) unique survey areas and resulting chart has \\(n\\) facets or panels corresponding to each survey area.</li>
+                               <li><code>Area Type</code>: dataset is grouped into <code>slum</code> and <code>citywide</code> area types and resulting chart has <code>slum</code> and <code>citywide</code> facets or panels.</li>
+                               <li><code>Wealth Quintile</code>: dataset is grouped into quintiles based on the <code>Progress out of Poverty Index (PPI)</code>.</li>
+                             </ul>
+                             <h5>Select secondary stratification</h5>
+                             <p>Select from choices of data variables the secondary factor to be used for grouping / disaggregating the data. When applied to charts, \\(m\\) unique values of the secondary stratifier variable are used to create \\(n \\times m\\) facets or panels of the resulting chart.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info32, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Service ladder map specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Select colour palette</h5>
+                             <p>Select from choices of colour palettes to use for mapping. Two categories of colour palettes are available.</p>
+                             <ul>
+                               <li><code>Sequential</code> palettes are suited to ordered data that progress from low to high with light colours representing low data values and dark colours representing high data values.</li>
+                               <li><code>Diverging</code> palettes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The middle values are emphasised with light colours and low and high extremes are emphasised with dark colours that have contrasting hues.</li>
+                             </ul>
+                             <p>The choices of colour palettes are based on <a href='http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3' target='_blank'>ColorBrewer 2.0</a> and implemented in R using the <a href='https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf' target='_blank'>RColorBrewer</a> function.</p>
+                             <p>The default colour palette for the <code>Demographics</code> indicator set is <code>sequential yellow to orange to brown (YlOrBb)</code> scheme.</p>
+                             <h5>Select colour mapping method</h5>
+                             <p>Colour mapping methods determine how to match the indicator dataset to the selected colour palette appropriately. Three colour mapping methods are available.</p>
+                             <ul>
+                               <li><code>Linear interpolation</code> is a simple linear mapping from continuous numeric data to an interpolated colour palette. In this method, the selected colour palette is extended (via interpolation) to create a continuous set of colours consistent with the scheme that would be enough to match the range of values of the continuous numeric data being mapped.</li>
+                               <li><code>Equal interval</code> maps continuous numeric data to a fixed number of colours from the palette. The continous indicator values are divided into equal interval group sets determined by the <code>number of bins</code> specified (see below regarding bins). The number of colours correspond to the <code>number of bins</code> into which the indicator values have been divided into.</li>
+                               <li><code>Quantile</code> also maps continuous numeric data to a fixed number of colours from the palette. However, the continuous indicator values are divided into <code>quantiles</code> (group sets with equal number of observations). The number of colours correspond to the <code>number of quantiles</code> into which the indicator values have been divided into.</li> 
+                             </ul>
+                             <h5>Number of bins</h5>
+                             <p><em>For equal interval method.</em> Select number of equal interval groups to divide the dataset into. For example, for a dataset of percentages with values ranging between 0 and 100, specifying <code>number of bins</code> to 5 would mean creating 5 equal interval groupings - <code>[0,20)</code>, <code>[20, 40)</code>, <code>[40,60)</code>, <code>[60,80)</code>, <code>[80,100]</code></p>
+                             <h5>Number of classes</h5>
+                             <p><em>For quantile method.</em> Select number of quantiles to divide dataset into.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info33, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Service ladder table specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Data variables</h5>
+                             <p>The following variables are shown in the data table.</p>
+                             <ul>
+                               <li><code>country</code> - name of country from which data has been collected from.</li>
+                               <li><code>countryCode</code> - the corresponding <code>ISO3166-1</code> three letter country code.</li>
+                               <li><code>indicatorName</code> - string variable describing the indicator.</li>
+                               <li><code>indicatorCode</code> - string variable for short code of indicators.</li>
+                               <li><code>indicatorCategory</code> - string variable for category of indicators or the indicator set to which the indicators belong to.</li>
+                               <li><code>strata</code> - variable containing various factors by which data can be stratified. These factors include <code>survey area</code> and <code>wealth quintile</code>.</li>
+                               <li><code>estimate</code> - numeric values for indicator estimates.</li>
+                               <li><code>lcl</code> - numeric values for the <code>lower 95% confidence interval</code> of the indicator estimates.</li>
+                               <li><code>ucl</code> - numeric values for the <code>upper 95% confidence interval</code> of the indicator estimates.</li>
+                               <li><code>type</code> - character values for survey area type (i.e., <code>slum</code> and <code>citywide</code>)</li> 
+                             </ul>
+                             <h5>Survey area</h5>
+                             <p>Filter data by survey area. Select survey area/s to show in the data table. Default shows data for all survey areas.</p>
+                             <h5>Slum/Citywide</h5>
+                             <p>Filter data by area type. Select whether to show slum or citywide data. Default shows data for all area types.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info4, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Guide to other water indicators",
+                           size = "l",
+                           HTML("
+                             <h5>Access to sufficient and sustained drinking water</h4>
+                             <p><strong>Percentage of households with access to sufficient and sustained drinking water</strong>: Sufficient is defined as <code>>50 litres per person per day</code>. Sustained is defined as drinking water available <code>24 hours per day</code>, <code>7 days a week</code> and <code>throughout the year</code>.</p>
+                             
+                             <br/>
+                             
+                             <h5>Access to safe and acceptable drinking water for all</h4>
+                             
+                             <p><strong>Percentage of households with good self-reported quality of drinking water:</strong> No objective water quality assessment was performed during the survey. This indicator, as stated, is based on self-reported perception of water quality.</p>
+                             <p><strong>Percentage of households that are safely storing drinking water:</strong> Safe storage is defined as drinking water stored in a clean container with lid only.</p>
+     
+                             <br/>
+                             
+                             <h5>Access to affordable drinking water</h5>
+                             <p><strong>Mean expenditure in drinking water by wealth quintile:</strong> mean expenditure in drinking water per household per year by wealth quintile. It should be noted that expenditure alone does not indicate affordable access to drinking water. The ideal and recommened indicator is yearly expenditure on water as a fraction of annual income i.e., \\(\\frac{\\mu_\\text{Household yearly expenditure on water}}{\\text{Household annual income}}\\). However, the surveys did not collect data on household income hence this recommended indicator cannot be calculated.</p>
+                             
+                             <br/>
+                             
+                             <h5>Physical access to drinking water</h5>                             
+                             <p><strong>Percentage of households with adequate physical access to drinking water:</strong> Adequate physical access is defined as source of drinking water is located within <code>30 minutes</code> from home</p>
+                             
+                             <br>
+                             
+                             <h5>Formal water service provision</h5>
+                             <p><strong>Percentage of households with formal drinking water service provision:</strong> Formal drinking water service provision is defined as drinking water provided by a formal service according to interviewer asessment.</p>
+                             <p><strong>Percentage of households relying on formal provider for service supply maintenance:</strong> Formal provider for service supply maintenance is defined as a household with a formal service provider contact person in case of problems with water supply.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info41, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Water charts specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Select primary stratification</h5>
+                             <p>Select from choices of data variables the primary factor to be used for grouping / disaggregating the data. When applied to charts, \\(n\\) unique values of the selected variables are used to create \\(n\\) facets or panels of the resulting chart.</p>
+                             <ul>
+                               <li><code>All Data (No Stratification)</code>: full dataset is used and resulting chart has no facets or panels.</li>
+                               <li><code>Survey Area</code>: dataset is grouped into \\(n\\) unique survey areas and resulting chart has \\(n\\) facets or panels corresponding to each survey area.</li>
+                               <li><code>Area Type</code>: dataset is grouped into <code>slum</code> and <code>citywide</code> area types and resulting chart has <code>slum</code> and <code>citywide</code> facets or panels.</li>
+                               <li><code>Wealth Quintile</code>: dataset is grouped into quintiles based on the <code>Progress out of Poverty Index (PPI)</code>.</li>
+                             </ul>
+                             <h5>Select secondary stratification</h5>
+                             <p>Select from choices of data variables the secondary factor to be used for grouping / disaggregating the data. When applied to charts, \\(m\\) unique values of the secondary stratifier variable are used to create \\(n \\times m\\) facets or panels of the resulting chart.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info42, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Water map specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Select colour palette</h5>
+                             <p>Select from choices of colour palettes to use for mapping. Two categories of colour palettes are available.</p>
+                             <ul>
+                               <li><code>Sequential</code> palettes are suited to ordered data that progress from low to high with light colours representing low data values and dark colours representing high data values.</li>
+                               <li><code>Diverging</code> palettes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The middle values are emphasised with light colours and low and high extremes are emphasised with dark colours that have contrasting hues.</li>
+                             </ul>
+                             <p>The choices of colour palettes are based on <a href='http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3' target='_blank'>ColorBrewer 2.0</a> and implemented in R using the <a href='https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf' target='_blank'>RColorBrewer</a> function.</p>
+                             <p>The default colour palette for the <code>Demographics</code> indicator set is <code>sequential yellow to orange to brown (YlOrBb)</code> scheme.</p>
+                             <h5>Select colour mapping method</h5>
+                             <p>Colour mapping methods determine how to match the indicator dataset to the selected colour palette appropriately. Three colour mapping methods are available.</p>
+                             <ul>
+                               <li><code>Linear interpolation</code> is a simple linear mapping from continuous numeric data to an interpolated colour palette. In this method, the selected colour palette is extended (via interpolation) to create a continuous set of colours consistent with the scheme that would be enough to match the range of values of the continuous numeric data being mapped.</li>
+                               <li><code>Equal interval</code> maps continuous numeric data to a fixed number of colours from the palette. The continous indicator values are divided into equal interval group sets determined by the <code>number of bins</code> specified (see below regarding bins). The number of colours correspond to the <code>number of bins</code> into which the indicator values have been divided into.</li>
+                               <li><code>Quantile</code> also maps continuous numeric data to a fixed number of colours from the palette. However, the continuous indicator values are divided into <code>quantiles</code> (group sets with equal number of observations). The number of colours correspond to the <code>number of quantiles</code> into which the indicator values have been divided into.</li> 
+                             </ul>
+                             <h5>Number of bins</h5>
+                             <p><em>For equal interval method.</em> Select number of equal interval groups to divide the dataset into. For example, for a dataset of percentages with values ranging between 0 and 100, specifying <code>number of bins</code> to 5 would mean creating 5 equal interval groupings - <code>[0,20)</code>, <code>[20, 40)</code>, <code>[40,60)</code>, <code>[60,80)</code>, <code>[80,100]</code></p>
+                             <h5>Number of classes</h5>
+                             <p><em>For quantile method.</em> Select number of quantiles to divide dataset into.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info43, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Water table specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Data variables</h5>
+                             <p>The following variables are shown in the data table.</p>
+                             <ul>
+                               <li><code>country</code> - name of country from which data has been collected from.</li>
+                               <li><code>countryCode</code> - the corresponding <code>ISO3166-1</code> three letter country code.</li>
+                               <li><code>indicatorName</code> - string variable describing the indicator.</li>
+                               <li><code>indicatorCode</code> - string variable for short code of indicators.</li>
+                               <li><code>indicatorCategory</code> - string variable for category of indicators or the indicator set to which the indicators belong to.</li>
+                               <li><code>strata</code> - variable containing various factors by which data can be stratified. These factors include <code>survey area</code> and <code>wealth quintile</code>.</li>
+                               <li><code>estimate</code> - numeric values for indicator estimates.</li>
+                               <li><code>lcl</code> - numeric values for the <code>lower 95% confidence interval</code> of the indicator estimates.</li>
+                               <li><code>ucl</code> - numeric values for the <code>upper 95% confidence interval</code> of the indicator estimates.</li>
+                               <li><code>type</code> - character values for survey area type (i.e., <code>slum</code> and <code>citywide</code>)</li> 
+                             </ul>
+                             <h5>Survey area</h5>
+                             <p>Filter data by survey area. Select survey area/s to show in the data table. Default shows data for all survey areas.</p>
+                             <h5>Slum/Citywide</h5>
+                             <p>Filter data by area type. Select whether to show slum or citywide data. Default shows data for all area types.</p>
+                           "),
+                           easyClose = TRUE,
+                           footer = h5("Press ESC or click outside box to close")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info5, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Guide to other sanitation indicators",
+                           HTML("
+                             <h5>Adequate sanitaition facility</h4>
+                             <p><strong>Percentage of households with adequate sanitation facilities</strong>: Adequate sanitation facility is defined as a system which hygienically separates excreta from human contact as well as safe reuse/treatment of excreta in situ, or safe transport and treatment off-site (flush to sewer system, septic tank or pit)</p>
+                                                          
+                             <h5>Individual-based equitable access to sanitation facilities</h4>
+                             <p><strong>Percentage of households in which every member is able to use and actually use the sanitation facilites:</strong> This indicator is defined as all household members are able to use the facilities and all household members actually use the facilities.</p>
+     
+                             
+                             <h5>Physically accessible sanitation facilities</h5>
+                             <p><strong>Percentage of households with adequate physicall access to sanitation facilities:</strong> Adequate physical access is defined as a sanitation facility within < 30 minutes walking time from home.</p>
+                             
+                             
+                             <h5>Access to affordable sanitation facilities</h5>                             
+                             <p><strong>Mean expenditure in sanitation services:</strong> mean expenditure in sanitation per household per year by wealth quintile. It should be noted that expenditure alone does not indicate affordable access to sanitation services. The ideal and recommened indicator is yearly expenditure on sanitation as a fraction of annual income i.e., \\(\\frac{\\mu_\\text{Household yearly expenditure on sanitation}}{\\text{Household annual income}}\\). However, the surveys did not collect data on household income hence this recommended indicator cannot be calculated.</p>
+                             
+                             <h5>Acceptable sanitation facilities</h5>                             
+                             <p><strong>Percentage of households with acceptable sanitation facilities:</strong> Acceptable sanitation facility is defined as sanitation facilities that are appropriate and sensitive to gender, lifecycle and privacy. This requires that the sanitation facility:</p>
+                             <ul>
+                               <li>is adequate (as previously defined)</li>
+                               <li>has a lockable door</li>
+                               <li>has electric light</li>
+                               <li>has a water point</li>
+                               <li>has a container for menstrual hygiene management</li>
+                             </ul>
+
+                             <h5>Sanitary disposal of child faeces</h5>
+                             <p><strong>Percentage of households who practice sanitary disposal of child faeces:</strong> Sanitary dispoal of child faeces either with child using sanitation facility himself/herself or with faeces washed/rinsed into sanitaiton facility</p>
+                                                          
+                             <h5>Formal sanitation service provision</h5>
+                             <p><strong>Percentage of households relying on formal operators to maintain facilities:</strong> Households contact facility operator to fix problems with sanitation facility.</p>
+                             <p><strong>Percentage of households relying on formal pit emptier:</strong> Formal businesses are in charge of emptying the pit/ septic tank</p>                             
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info51, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Sanitation chart specifications",
+                           size = "l", 
+                           HTML("
+                             <h5>Select primary stratification</h5>
+                             <p>Select from choices of data variables the primary factor to be used for grouping / disaggregating the data. When applied to charts, \\(n\\) unique values of the selected variables are used to create \\(n\\) facets or panels of the resulting chart.</p>
+                             <ul>
+                               <li><code>All Data (No Stratification)</code>: full dataset is used and resulting chart has no facets or panels.</li>
+                               <li><code>Survey Area</code>: dataset is grouped into \\(n\\) unique survey areas and resulting chart has \\(n\\) facets or panels corresponding to each survey area.</li>
+                               <li><code>Area Type</code>: dataset is grouped into <code>slum</code> and <code>citywide</code> area types and resulting chart has <code>slum</code> and <code>citywide</code> facets or panels.</li>
+                               <li><code>Wealth Quintile</code>: dataset is grouped into quintiles based on the <code>Progress out of Poverty Index (PPI)</code>.</li>
+                             </ul>
+                             <h5>Select secondary stratification</h5>
+                             <p>Select from choices of data variables the secondary factor to be used for grouping / disaggregating the data. When applied to charts, \\(m\\) unique values of the secondary stratifier variable are used to create \\(n \\times m\\) facets or panels of the resulting chart.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info52, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Sanitation map specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Select colour palette</h5>
+                             <p>Select from choices of colour palettes to use for mapping. Two categories of colour palettes are available.</p>
+                             <ul>
+                               <li><code>Sequential</code> palettes are suited to ordered data that progress from low to high with light colours representing low data values and dark colours representing high data values.</li>
+                               <li><code>Diverging</code> palettes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The middle values are emphasised with light colours and low and high extremes are emphasised with dark colours that have contrasting hues.</li>
+                             </ul>
+                             <p>The choices of colour palettes are based on <a href='http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3' target='_blank'>ColorBrewer 2.0</a> and implemented in R using the <a href='https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf' target='_blank'>RColorBrewer</a> function.</p>
+                             <p>The default colour palette for the <code>Demographics</code> indicator set is <code>sequential yellow to orange to brown (YlOrBb)</code> scheme.</p>
+                             <h5>Select colour mapping method</h5>
+                             <p>Colour mapping methods determine how to match the indicator dataset to the selected colour palette appropriately. Three colour mapping methods are available.</p>
+                             <ul>
+                               <li><code>Linear interpolation</code> is a simple linear mapping from continuous numeric data to an interpolated colour palette. In this method, the selected colour palette is extended (via interpolation) to create a continuous set of colours consistent with the scheme that would be enough to match the range of values of the continuous numeric data being mapped.</li>
+                               <li><code>Equal interval</code> maps continuous numeric data to a fixed number of colours from the palette. The continous indicator values are divided into equal interval group sets determined by the <code>number of bins</code> specified (see below regarding bins). The number of colours correspond to the <code>number of bins</code> into which the indicator values have been divided into.</li>
+                               <li><code>Quantile</code> also maps continuous numeric data to a fixed number of colours from the palette. However, the continuous indicator values are divided into <code>quantiles</code> (group sets with equal number of observations). The number of colours correspond to the <code>number of quantiles</code> into which the indicator values have been divided into.</li> 
+                             </ul>
+                             <h5>Number of bins</h5>
+                             <p><em>For equal interval method.</em> Select number of equal interval groups to divide the dataset into. For example, for a dataset of percentages with values ranging between 0 and 100, specifying <code>number of bins</code> to 5 would mean creating 5 equal interval groupings - <code>[0,20)</code>, <code>[20, 40)</code>, <code>[40,60)</code>, <code>[60,80)</code>, <code>[80,100]</code></p>
+                             <h5>Number of classes</h5>
+                             <p><em>For quantile method.</em> Select number of quantiles to divide dataset into.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info53, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Sanitation table specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Data variables</h5>
+                             <p>The following variables are shown in the data table.</p>
+                             <ul>
+                               <li><code>country</code> - name of country from which data has been collected from.</li>
+                               <li><code>countryCode</code> - the corresponding <code>ISO3166-1</code> three letter country code.</li>
+                               <li><code>indicatorName</code> - string variable describing the indicator.</li>
+                               <li><code>indicatorCode</code> - string variable for short code of indicators.</li>
+                               <li><code>indicatorCategory</code> - string variable for category of indicators or the indicator set to which the indicators belong to.</li>
+                               <li><code>strata</code> - variable containing various factors by which data can be stratified. These factors include <code>survey area</code> and <code>wealth quintile</code>.</li>
+                               <li><code>estimate</code> - numeric values for indicator estimates.</li>
+                               <li><code>lcl</code> - numeric values for the <code>lower 95% confidence interval</code> of the indicator estimates.</li>
+                               <li><code>ucl</code> - numeric values for the <code>upper 95% confidence interval</code> of the indicator estimates.</li>
+                               <li><code>type</code> - character values for survey area type (i.e., <code>slum</code> and <code>citywide</code>)</li> 
+                             </ul>
+                             <h5>Survey area</h5>
+                             <p>Filter data by survey area. Select survey area/s to show in the data table. Default shows data for all survey areas.</p>
+                             <h5>Slum/Citywide</h5>
+                             <p>Filter data by area type. Select whether to show slum or citywide data. Default shows data for all area types.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info6, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Guide to other hygiene indicators",
+                           size = "l",
+                           HTML("
+                             <h5>Use of adequate hygienic materials for menstrual hygiene management</h4>
+                             <p><strong>Percentage of households using adequate hygienic materials foe MHM</strong>: Adequate hygienic maetrials are cloths, pads, tampons or menstrual cups</p>
+                                                          
+                             <h5>Hygienic and adequate disposal of menstrual hygiene materials</h4>
+                             <p><strong>Percentage of households practicing good mentrual hygiene practies/behaviour:</strong> Good menstrual hygiene management includes cloths washed with soap and water and napkins/pads disposed of in the rubbish bin.</p>
+     
+                             
+                             <h5>Comfort with sanitation facilities during menstruation</h5>
+                             <p><strong>Percentage of households in which women and girls are comfortable using sanitation facility during menstruation:</strong></p>                             
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info61, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Hygiene chart specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Select primary stratification</h5>
+                             <p>Select from choices of data variables the primary factor to be used for grouping / disaggregating the data. When applied to charts, \\(n\\) unique values of the selected variables are used to create \\(n\\) facets or panels of the resulting chart.</p>
+                             <ul>
+                               <li><code>All Data (No Stratification)</code>: full dataset is used and resulting chart has no facets or panels.</li>
+                               <li><code>Survey Area</code>: dataset is grouped into \\(n\\) unique survey areas and resulting chart has \\(n\\) facets or panels corresponding to each survey area.</li>
+                               <li><code>Area Type</code>: dataset is grouped into <code>slum</code> and <code>citywide</code> area types and resulting chart has <code>slum</code> and <code>citywide</code> facets or panels.</li>
+                               <li><code>Wealth Quintile</code>: dataset is grouped into quintiles based on the <code>Progress out of Poverty Index (PPI)</code>.</li>
+                             </ul>
+                             <h5>Select secondary stratification</h5>
+                             <p>Select from choices of data variables the secondary factor to be used for grouping / disaggregating the data. When applied to charts, \\(m\\) unique values of the secondary stratifier variable are used to create \\(n \\times m\\) facets or panels of the resulting chart.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info62, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Hygiene map specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Select colour palette</h5>
+                             <p>Select from choices of colour palettes to use for mapping. Two categories of colour palettes are available.</p>
+                             <ul>
+                               <li><code>Sequential</code> palettes are suited to ordered data that progress from low to high with light colours representing low data values and dark colours representing high data values.</li>
+                               <li><code>Diverging</code> palettes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The middle values are emphasised with light colours and low and high extremes are emphasised with dark colours that have contrasting hues.</li>
+                             </ul>
+                             <p>The choices of colour palettes are based on <a href='http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3' target='_blank'>ColorBrewer 2.0</a> and implemented in R using the <a href='https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf' target='_blank'>RColorBrewer</a> function.</p>
+                             <p>The default colour palette for the <code>Demographics</code> indicator set is <code>sequential yellow to orange to brown (YlOrBb)</code> scheme.</p>
+                             <h5>Select colour mapping method</h5>
+                             <p>Colour mapping methods determine how to match the indicator dataset to the selected colour palette appropriately. Three colour mapping methods are available.</p>
+                             <ul>
+                               <li><code>Linear interpolation</code> is a simple linear mapping from continuous numeric data to an interpolated colour palette. In this method, the selected colour palette is extended (via interpolation) to create a continuous set of colours consistent with the scheme that would be enough to match the range of values of the continuous numeric data being mapped.</li>
+                               <li><code>Equal interval</code> maps continuous numeric data to a fixed number of colours from the palette. The continous indicator values are divided into equal interval group sets determined by the <code>number of bins</code> specified (see below regarding bins). The number of colours correspond to the <code>number of bins</code> into which the indicator values have been divided into.</li>
+                               <li><code>Quantile</code> also maps continuous numeric data to a fixed number of colours from the palette. However, the continuous indicator values are divided into <code>quantiles</code> (group sets with equal number of observations). The number of colours correspond to the <code>number of quantiles</code> into which the indicator values have been divided into.</li> 
+                             </ul>
+                             <h5>Number of bins</h5>
+                             <p><em>For equal interval method.</em> Select number of equal interval groups to divide the dataset into. For example, for a dataset of percentages with values ranging between 0 and 100, specifying <code>number of bins</code> to 5 would mean creating 5 equal interval groupings - <code>[0,20)</code>, <code>[20, 40)</code>, <code>[40,60)</code>, <code>[60,80)</code>, <code>[80,100]</code></p>
+                             <h5>Number of classes</h5>
+                             <p><em>For quantile method.</em> Select number of quantiles to divide dataset into.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info63, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Hygiene table specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Data variables</h5>
+                             <p>The following variables are shown in the data table.</p>
+                             <ul>
+                               <li><code>country</code> - name of country from which data has been collected from.</li>
+                               <li><code>countryCode</code> - the corresponding <code>ISO3166-1</code> three letter country code.</li>
+                               <li><code>indicatorName</code> - string variable describing the indicator.</li>
+                               <li><code>indicatorCode</code> - string variable for short code of indicators.</li>
+                               <li><code>indicatorCategory</code> - string variable for category of indicators or the indicator set to which the indicators belong to.</li>
+                               <li><code>strata</code> - variable containing various factors by which data can be stratified. These factors include <code>survey area</code> and <code>wealth quintile</code>.</li>
+                               <li><code>estimate</code> - numeric values for indicator estimates.</li>
+                               <li><code>lcl</code> - numeric values for the <code>lower 95% confidence interval</code> of the indicator estimates.</li>
+                               <li><code>ucl</code> - numeric values for the <code>upper 95% confidence interval</code> of the indicator estimates.</li>
+                               <li><code>type</code> - character values for survey area type (i.e., <code>slum</code> and <code>citywide</code>)</li> 
+                             </ul>
+                             <h5>Survey area</h5>
+                             <p>Filter data by survey area. Select survey area/s to show in the data table. Default shows data for all survey areas.</p>
+                             <h5>Slum/Citywide</h5>
+                             <p>Filter data by area type. Select whether to show slum or citywide data. Default shows data for all area types.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info7, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Guide to overall indicators",
+                           size = "l",
+                           HTML("
+                             <h5>Overall access to adequate water and sanitation services</h5>
+                             <p><strong>Percentage of Households with access to adequate water and sanitation services by quintile</strong>: Adequate water services and adequate sanitation services as defined.</p>
+                             <ul>
+                               <li>Percentage of households with access to adequate sanitation and adequate drinking water</li>
+                               <li>Percentage of households with access to adequate sanitation only</li>
+                               <li>Percentage of households with access to adequate drinking water only</li>
+                               <li>Percentage of households with no access to adequate services</li>
+                             </ul>                                                     
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info71, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Hygiene chart specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Select primary stratification</h5>
+                             <p>Select from choices of data variables the primary factor to be used for grouping / disaggregating the data. When applied to charts, \\(n\\) unique values of the selected variables are used to create \\(n\\) facets or panels of the resulting chart.</p>
+                             <ul>
+                               <li><code>All Data (No Stratification)</code>: full dataset is used and resulting chart has no facets or panels.</li>
+                               <li><code>Survey Area</code>: dataset is grouped into \\(n\\) unique survey areas and resulting chart has \\(n\\) facets or panels corresponding to each survey area.</li>
+                               <li><code>Area Type</code>: dataset is grouped into <code>slum</code> and <code>citywide</code> area types and resulting chart has <code>slum</code> and <code>citywide</code> facets or panels.</li>
+                               <li><code>Wealth Quintile</code>: dataset is grouped into quintiles based on the <code>Progress out of Poverty Index (PPI)</code>.</li>
+                             </ul>
+                             <h5>Select secondary stratification</h5>
+                             <p>Select from choices of data variables the secondary factor to be used for grouping / disaggregating the data. When applied to charts, \\(m\\) unique values of the secondary stratifier variable are used to create \\(n \\times m\\) facets or panels of the resulting chart.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info72, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Hygiene map specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Select colour palette</h5>
+                             <p>Select from choices of colour palettes to use for mapping. Two categories of colour palettes are available.</p>
+                             <ul>
+                               <li><code>Sequential</code> palettes are suited to ordered data that progress from low to high with light colours representing low data values and dark colours representing high data values.</li>
+                               <li><code>Diverging</code> palettes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The middle values are emphasised with light colours and low and high extremes are emphasised with dark colours that have contrasting hues.</li>
+                             </ul>
+                             <p>The choices of colour palettes are based on <a href='http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3' target='_blank'>ColorBrewer 2.0</a> and implemented in R using the <a href='https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf' target='_blank'>RColorBrewer</a> function.</p>
+                             <p>The default colour palette for the <code>Demographics</code> indicator set is <code>sequential yellow to orange to brown (YlOrBb)</code> scheme.</p>
+                             <h5>Select colour mapping method</h5>
+                             <p>Colour mapping methods determine how to match the indicator dataset to the selected colour palette appropriately. Three colour mapping methods are available.</p>
+                             <ul>
+                               <li><code>Linear interpolation</code> is a simple linear mapping from continuous numeric data to an interpolated colour palette. In this method, the selected colour palette is extended (via interpolation) to create a continuous set of colours consistent with the scheme that would be enough to match the range of values of the continuous numeric data being mapped.</li>
+                               <li><code>Equal interval</code> maps continuous numeric data to a fixed number of colours from the palette. The continous indicator values are divided into equal interval group sets determined by the <code>number of bins</code> specified (see below regarding bins). The number of colours correspond to the <code>number of bins</code> into which the indicator values have been divided into.</li>
+                               <li><code>Quantile</code> also maps continuous numeric data to a fixed number of colours from the palette. However, the continuous indicator values are divided into <code>quantiles</code> (group sets with equal number of observations). The number of colours correspond to the <code>number of quantiles</code> into which the indicator values have been divided into.</li> 
+                             </ul>
+                             <h5>Number of bins</h5>
+                             <p><em>For equal interval method.</em> Select number of equal interval groups to divide the dataset into. For example, for a dataset of percentages with values ranging between 0 and 100, specifying <code>number of bins</code> to 5 would mean creating 5 equal interval groupings - <code>[0,20)</code>, <code>[20, 40)</code>, <code>[40,60)</code>, <code>[60,80)</code>, <code>[80,100]</code></p>
+                             <h5>Number of classes</h5>
+                             <p><em>For quantile method.</em> Select number of quantiles to divide dataset into.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info73, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Hygiene table specifications",
+                           size = "l",
+                           HTML("
+                             <h5>Data variables</h5>
+                             <p>The following variables are shown in the data table.</p>
+                             <ul>
+                               <li><code>country</code> - name of country from which data has been collected from.</li>
+                               <li><code>countryCode</code> - the corresponding <code>ISO3166-1</code> three letter country code.</li>
+                               <li><code>indicatorName</code> - string variable describing the indicator.</li>
+                               <li><code>indicatorCode</code> - string variable for short code of indicators.</li>
+                               <li><code>indicatorCategory</code> - string variable for category of indicators or the indicator set to which the indicators belong to.</li>
+                               <li><code>strata</code> - variable containing various factors by which data can be stratified. These factors include <code>survey area</code> and <code>wealth quintile</code>.</li>
+                               <li><code>estimate</code> - numeric values for indicator estimates.</li>
+                               <li><code>lcl</code> - numeric values for the <code>lower 95% confidence interval</code> of the indicator estimates.</li>
+                               <li><code>ucl</code> - numeric values for the <code>upper 95% confidence interval</code> of the indicator estimates.</li>
+                               <li><code>type</code> - character values for survey area type (i.e., <code>slum</code> and <code>citywide</code>)</li> 
+                             </ul>
+                             <h5>Survey area</h5>
+                             <p>Filter data by survey area. Select survey area/s to show in the data table. Default shows data for all survey areas.</p>
+                             <h5>Slum/Citywide</h5>
+                             <p>Filter data by area type. Select whether to show slum or citywide data. Default shows data for all area types.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info91, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "City map data input",
+                           size = "l",
+                           HTML("
+                             <h5>Upload map of citywide survey area</h5>
+                             <p>The map should be in ESRI Shapefile format (SHP). This file format requires a minimum of 3 related files in order to be readable. These files are the <code>.SHP</code>, <code>.SHX</code> and <code>.DBF</code>. Hence, these three files should be uploaded all at the same time by clicking on CTRL and then selecting at least the three files for upload. A warning will pop out if the incorrect file formats and/or incomplete number of files are uploaded. Once the files have been uploaded, two new options come out. First, the app asks for the vaiable name in the map files that contains the stratifying variable. This would be the variable name of a geographic subdivision by which you decided to divide the city. Second, a prompt for the number of primary sampilng units or <code>PSU</code> comes to view. This is set at a default of 30. Once you have specified these parameters, you can click on <code>Sample</code> and corresponding sampling maps will be produced on the main panel and corresponding sampling lists on the appropriate sampling tabs.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info92, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Slum map data input",
+                           size = "l",
+                           HTML("
+                             <h5>Available slum area sampling information</h5>
+                             <p>For slum areas, you are first asked what information you have on slums that can be used for sampling: <code>slum maps</code> or <code>slum lists</code>. If you have slum maps, then you are given the options for sampling with slum maps (below). If you have lists, then you are given the option for sampling with slum lists (below).</p>
+                             
+                             <h5>Upload map of slum survey area</h5>
+                             <p>The map should be in ESRI Shapefile format (SHP). This file format requires a minimum of 3 related files in order to be readable. These files are the <code>.SHP</code>, <code>.SHX</code> and <code>.DBF</code>. Hence, these three files should be uploaded all at the same time by clicking on CTRL and then selecting at least the three files for upload. A warning will pop out if the incorrect file formats and/or incomplete number of files are uploaded. Once the files have been uploaded, two new options come out. First, the app asks for the vaiable name in the map files that contains the stratifying variable. This would be the variable name of a geographic subdivision by which you decided to divide the city. Second, a prompt for the number of primary sampilng units or <code>PSU</code> comes to view. This is set at a default of 30. Once you have specified these parameters, you can click on <code>Sample</code> and corresponding sampling maps will be produced on the main panel and corresponding sampling lists on the appropriate sampling tabs.</p>
+
+                             <h5>Upload list of slum areas</h5>
+                             <p>The list of slum areas should be in CSV format. The list should be organised and sorted along the stratifying variable for survey areas. Once the list has been uploaded, you will need to specify how many <code>PSUs</code> will be survyed. Then press on <code>Sample</code>. A sample list from the complete list is now available on the <code>Slum Lists</code> tab.</p>
+                           ")))
+  })
+
 
 ################################################################################
 #
@@ -676,7 +1643,7 @@ function(input, output, session) {
         #
         updateSliderInput(session = session,
                           inputId = "bins.poverty",
-                          label = "Number of bins:",
+                          label = "Select bin width",
                           value = 0.1, step = 0.1,
                           min = 0.1, max = 1)
       #
@@ -688,7 +1655,7 @@ function(input, output, session) {
         #
         updateSliderInput(session = session,
                           inputId = "bins.poverty",
-                          label = "Number of bins:",
+                          label = "Select bin width",
                           value = 1, step = 1,
                           min = 1, max = 5)
       })
@@ -1234,7 +2201,7 @@ function(input, output, session) {
   area.ladder <- reactive({
     #
     #
-    #   
+    #
     areaResultsLong[areaResultsLong$country == input$country3 & areaResultsLong$indicatorCategory == input$z.ladder, ]
     })
   #
@@ -1513,7 +2480,7 @@ function(input, output, session) {
       basePlot <- ggplot(data = area.ladder(),
                          mapping = aes_string(x = input$x.ladder,
                                               y = "estimate",
-                                              fill = "indicatorCode"))      
+                                              fill = "indicatorCode"))    
     #
     #
     #
@@ -1588,7 +2555,7 @@ function(input, output, session) {
                                               "Adequate water only",
                                               "Adequate sanitation only",
                                               "No access to adequate services"),
-                                   values = rev(overallColour))
+                                   values = overallColour)
       }
     #
     # Facets - type and surveyArea
@@ -4386,7 +5353,636 @@ function(input, output, session) {
       #
       output$deff <- renderTable({NULL})
   })
+
+################################################################################
+#
+# Spatial sampling
+#
+################################################################################
+  #
+  #
+  #
+  output$map.sampling <- renderLeaflet({
+    leaflet() %>%
+      #addTiles(
+      #  urlTemplate = mapbox.northstar,
+      #  attribution = "Maps by <a href='http://www.mapbox.com/'>Mapbox</a>"
+      #) %>%
+      addProviderTiles(providers$Esri.NatGeoWorldMap) %>%      
+      setView(lng = 0, lat = 0, zoom = 2)
+  })
+
+################################################################################
+#
+# Read shapefile
+#
+################################################################################
+  #
+  #
+  #
+  city.map <- reactive({
+    #
+    #
+    #
+    inputFile <- input$shp1
+    #
+    #
+    #
+    if(is.null(inputFile)) { return(NULL) }
+    #
+    #
+    #  
+    infiles <- inputFile$datapath
+    #
+    #
+    #
+    dir <- unique(dirname(infiles))
+    #
+    #
+    #
+    outfiles <- file.path(dir, inputFile$name)
+    #
+    #
+    #
+    purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+    #
+    #
+    #
+    x <- try(readOGR(dir, strsplit(inputFile$name[1], "\\.")[[1]][1]), TRUE)
+    #
+    #
+    #
+    if(class(x) == "try-error") NULL 
+    #
+    #
+    #
+    else
+    #
+    # Transform shapefiles into WGS84 longlat
+    #
+    x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
+  })
+  #
+  #
+  #
+  slum.map <- reactive({
+    #
+    #
+    #
+    inputFile <- input$shp2
+    #
+    #
+    #
+    if(is.null(inputFile)) { return(NULL) }
+    #
+    #
+    #  
+    infiles <- inputFile$datapath
+    #
+    #
+    #
+    dir <- unique(dirname(infiles))
+    #
+    #
+    #
+    outfiles <- file.path(dir, inputFile$name)
+    #
+    #
+    #
+    purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+    #
+    #
+    #
+    x <- try(readOGR(dir, strsplit(inputFile$name[1], "\\.")[[1]][1]), TRUE)
+    #
+    #
+    #
+    if(class(x) == "try-error") NULL 
+    #
+    #
+    #
+    else
+    #
+    # Transform shapefiles into WGS84 longlat
+    #
+    x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
+  })
+
+  #
+  #
+  #
+  observeEvent(input$mapDraw1, {
+      #
+      #
+      #
+      leafletProxy("map.sampling") %>%
+      #
+      #
+      #
+      clearTiles() %>%
+      #
+      #
+      #
+      clearShapes() %>%
+      #
+      #
+      #
+      addTiles(
+        urlTemplate = mapbox.satellite,
+        attribution = "Imagery by <a href='https://www.mapbox.com'>Mapbox</a>"
+      ) %>%
+      #
+      #
+      #
+      setView(lng = mean(coordinates(city.map())[,1]), 
+              lat = mean(coordinates(city.map())[,2]), 
+              zoom = 11) %>%
+      #
+      # Add survey area polygon layer
+      #
+	  addPolygons(
+	    data = city.map(),
+	    weight = 2,
+	    opacity = 1,
+	    color = "yellow",
+	    dashArray = "",
+	    fillOpacity = 0,
+	    highlight = highlightOptions(
+		  weight = 4,
+		  color = "#666",
+		  dashArray = "",
+		  fillOpacity = 0,
+		  bringToFront = TRUE),
+		group = "Survey Areas") %>%
+        #
+        # Add layer control
+        #
+        addLayersControl(
+          baseGroups = c("Survey Areas"),
+          position = "topleft",
+          options = layersControlOptions(collapsed = FALSE))		      
+  })    
+  #
+  #
+  #
+  observeEvent(input$mapDraw2, {
+      #
+      #
+      #
+      leafletProxy("map.sampling") %>%
+      #
+      #
+      #
+      clearTiles() %>%
+      #
+      #
+      #
+      clearShapes() %>%
+      #
+      #
+      #
+      addTiles(
+        urlTemplate = mapbox.satellite,
+        attribution = "Imagery by <a href='https://www.mapbox.com'>Mapbox</a>"
+      ) %>%
+      #
+      #
+      #
+      setView(lng = mean(coordinates(slum.map())[,1]), 
+              lat = mean(coordinates(slum.map())[,2]), 
+              zoom = 11) %>%
+      #
+      # Add survey area polygon layer
+      #
+	  addPolygons(
+	    data = slum.map(),
+	    weight = 2,
+	    opacity = 1,
+	    color = "yellow",
+	    dashArray = "",
+	    fillOpacity = 0,
+	    highlight = highlightOptions(
+		  weight = 4,
+		  color = "#666",
+		  dashArray = "",
+		  fillOpacity = 0,
+		  bringToFront = TRUE),
+		group = "Slum Areas") %>%
+        #
+        # Add layer control
+        #
+        addLayersControl(
+          baseGroups = c("Slum Areas"),
+          position = "topleft",
+          options = layersControlOptions(collapsed = FALSE))		      
+  })
+  #
+  #
+  #
+  observeEvent(input$shp1, {
+    #
+    #
+    #
+    updateSelectInput(session = session,
+                      inputId = "var.city.area",
+                      label = "Select map data identifier for city survey areas",
+                      choices = names(city.map()))
+  })
+  #
+  #
+  #
+  observeEvent(input$shp2, {
+    #
+    #
+    #
+    updateSelectInput(session = session,
+                      inputId = "var.slum.area",
+                      label = "Select map data identifier for slum survey areas",
+                      choices = names(slum.map()))
+  })
+  #
+  #
+  #
+  observeEvent(input$var.city.area, {
+    #
+    #
+    #
+    updateSelectInput(session = session,
+                      inputId = "city.area.name",
+                      label = "Select city area",
+                      choices = levels(city.map()[[input$var.city.area]]))
+  })
+  #
+  #
+  #
+  observeEvent(input$var.slum.area, {
+    #
+    #
+    #
+    updateSelectInput(session = session,
+                      inputId = "slum.area.name",
+                      label = "Select slum area",
+                      choices = levels(slum.map()[[input$var.slum.area]]))
+  })
+  #
+  #
+  #
+  output$map.draw.control1 <- renderUI({
+    #
+    #
+    #
+    if(!is.null(input$shp1))
+      {
+      #
+      #
+      #
+      actionButton(inputId = "mapDraw1",
+                   label = "Map",
+                   class = "btn-primary",
+                   icon = icon(name = "map", class = "fa-lg"))
+      }
+  })
+  #
+  #
+  #
+  output$map.draw.control2 <- renderUI({
+    #
+    #
+    #
+    if(!is.null(input$shp2))
+      {
+      #
+      #
+      #
+      actionButton(inputId = "mapDraw2",
+                   label = "Map",
+                   class = "btn-primary",                   
+                   icon = icon(name = "map", class = "fa-lg"))
+      }
+  })
+  #
+  #
+  #
+  xGrid <- eventReactive(input$sample.city, {
+	#
+	# Subset to current survey area
+	#
+	temp <- subset(city.map(), get(input$var.city.area) == input$city.area.name)
+	#
+	# Grid current area
+	#
+	repeat
+	  {
+	  #
+	  # Spatial sample
+	  #
+	  xSP <- spsample(x = temp, 
+					  n = input$n.psu.citywide, 
+					  type = "regular")
+	  #
+	  # Check if there are enough grids
+	  #
+	  if(length(xSP) == input$n.psu.citywide) break
+	  }  
+	  #
+	  # Create identifiers
+	  #
+	  areaID    <- rep(input$city.area.name, length(xSP))
+	  quadratID <- 1:length(xSP)
+	  longitude <- xSP@coords[ , 1] 
+	  latitude  <- xSP@coords[ , 2]
+	  #
+	  #
+	  #
+	  xGrid <- as(as(xSP, "SpatialPixels"), "SpatialPolygons")
+	  #
+	  #
+	  #
+	  xGrid <- SpatialPolygonsDataFrame(Sr = xGrid,
+										data = data.frame(areaID, quadratID, longitude, latitude),
+										match.ID = FALSE)
+  })				
+  #
+  # 
+  #
+  output$city.grid.table <- DT::renderDataTable(DT::datatable({
+	#
+	#
+    #
+    xGrid()@data
+  }))
+  #
+  #
+  #
+  observeEvent(xGrid(), {
+       #
+       #
+       #
+       leafletProxy("map.sampling") %>%
+       #
+       #
+       #
+       clearShapes() %>%
+       #
+       #
+       #
+       clearMarkers() %>%
+       #
+       #
+       #
+       clearControls() %>%
+       #
+       #
+       #
+       setView(lng = mean(coordinates(xGrid())[,1]), 
+               lat = mean(coordinates(xGrid())[,2]), 
+               zoom = 13) %>%
+      #
+      # Add survey area polygon layer
+      #
+	  addPolygons(
+	    data = city.map(),
+	    weight = 2,
+	    opacity = 1,
+	    color = "yellow",
+	    dashArray = "",
+	    fillOpacity = 0,
+	    highlight = highlightOptions(
+		  weight = 4,
+		  color = "#666",
+		  dashArray = "",
+		  fillOpacity = 0,
+		  bringToFront = TRUE),
+		group = "Survey Areas") %>%
+       #
+       # Add survey area polygon layer
+       #
+	   addPolygons(
+	     data = xGrid(),
+	     weight = 3,
+	     opacity = 1,
+	     color = "blue",
+	     dashArray = "",
+	     fillOpacity = 0,
+	     highlight = highlightOptions(
+		   weight = 4,
+		   color = "#666",
+		   dashArray = "",
+		   fillOpacity = 0,
+		   bringToFront = TRUE),
+		  group = paste(input$city.area.name, "grids", sep = " ")) %>%
+		#
+		#
+		#
+		addCircleMarkers(
+		  data = xGrid(),
+		  lng =  coordinates(xGrid())[,1],
+		  lat = coordinates(xGrid())[,2],
+		  radius = 1,
+		  fill = TRUE,
+		  fillColor = "red",
+		  fillOpacity = 0.8,
+		  color = "red",
+		  group = paste(input$city.area.name, "sampling points", sep = " ")) %>%
+        #
+        # Add layer control
+        #
+        addLayersControl(
+          baseGroups = c("Survey Areas"),
+          overlayGroups = c(paste(input$city.area.name, "grids", sep = " "), paste(input$city.area.name, "sampling points", sep = " ")),
+          position = "topleft",
+          options = layersControlOptions(collapsed = FALSE))		      
+  })         
+  #
+  #
+  #
+  sGrid <- eventReactive(input$sample.slum, {
+	#
+	# Subset to current survey area
+	#
+	temp <- subset(slum.map(), get(input$var.slum.area) == input$slum.area.name)
+	#
+	# Grid current area
+	#
+	repeat
+	  {
+	  #
+	  # Spatial sample
+	  #
+	  xSP <- spsample(x = temp, 
+					  n = input$n.psu.citywide, 
+					  type = "regular")
+	  #
+	  # Check if there are enough grids
+	  #
+	  if(length(xSP) == input$n.psu.citywide) break
+	  }  
+	  #
+	  # Create identifiers
+	  #
+	  areaID    <- rep(input$slum.area.name, length(xSP))
+	  quadratID <- 1:length(xSP)
+	  longitude <- xSP@coords[ , 1] 
+	  latitude  <- xSP@coords[ , 2]
+	  #
+	  #
+	  #
+	  sGrid <- as(as(xSP, "SpatialPixels"), "SpatialPolygons")
+	  #
+	  #
+	  #
+	  sGrid <- SpatialPolygonsDataFrame(Sr = sGrid,
+										data = data.frame(areaID, quadratID, longitude, latitude),
+										match.ID = FALSE)
+  })				
+  #
+  # 
+  #
+  output$slum.grid.table <- DT::renderDataTable(DT::datatable({
+	#
+	#
+    #
+    sGrid()@data
+  }))
+  #
+  #
+  #
+  observeEvent(sGrid(), {
+       #
+       #
+       #
+       leafletProxy("map.sampling") %>%
+       #
+       #
+       #
+       clearShapes() %>%
+       #
+       #
+       #
+       clearMarkers() %>%
+       #
+       #
+       #
+       clearControls() %>%
+       #
+       #
+       #
+       setView(lng = mean(coordinates(sGrid())[,1]), 
+               lat = mean(coordinates(sGrid())[,2]), 
+               zoom = 13) %>%
+      #
+      # Add survey area polygon layer
+      #
+	  addPolygons(
+	    data = slum.map(),
+	    weight = 2,
+	    opacity = 1,
+	    color = "yellow",
+	    dashArray = "",
+	    fillOpacity = 0,
+	    highlight = highlightOptions(
+		  weight = 4,
+		  color = "#666",
+		  dashArray = "",
+		  fillOpacity = 0,
+		  bringToFront = TRUE),
+		group = "Survey Areas") %>%
+       #
+       # Add survey area polygon layer
+       #
+	   addPolygons(
+	     data = sGrid(),
+	     weight = 3,
+	     opacity = 1,
+	     color = "blue",
+	     dashArray = "",
+	     fillOpacity = 0,
+	     highlight = highlightOptions(
+		   weight = 4,
+		   color = "#666",
+		   dashArray = "",
+		   fillOpacity = 0,
+		   bringToFront = TRUE),
+		  group = paste(input$slum.area.name, "grids", sep = " ")) %>%
+		#
+		#
+		#
+		addCircleMarkers(
+		  data = sGrid(),
+		  lng =  coordinates(sGrid())[,1],
+		  lat = coordinates(sGrid())[,2],
+		  radius = 1,
+		  fill = TRUE,
+		  fillColor = "red",
+		  fillOpacity = 0.8,
+		  color = "red",
+		  group = paste(input$slum.area.name, "sampling points", sep = " ")) %>%
+        #
+        # Add layer control
+        #
+        addLayersControl(
+          baseGroups = c("Survey Areas"),
+          overlayGroups = c(paste(input$slum.area.name, "grids", sep = " "), paste(input$slum.area.name, "sampling points", sep = " ")),
+          position = "topleft",
+          options = layersControlOptions(collapsed = FALSE))		      
+  })         
+  #
+  #
+  #
+  sample.list.df <- reactive({
+    #
+    #
+    #
+    inputFile <- input$list1
+    #
+    #
+    #
+    if(is.null(inputFile))
+      {
+      #
+      #
+      #
+      return(NULL)
+      }
+    #
+    #
+    #
+    read.csv(file = inputFile$datapath, header = TRUE, sep = ",")
+  })    
+  #
+  #
+  #
+  observeEvent(input$sample.slum, {
+	  #
+	  #
+	  #
+	  stepInterval <- floor(nrow(sample.list.df()) / input$n.psu.slum)
+      #
+	  #
+	  #
+	  startPoint <- sample(x = 1:input$n.psu.slum, size = 1, replace = FALSE)
+	  #
+	  #
+	  #
+	  selectList <- seq(from = startPoint, to = nrow(sample.list.df()), by = stepInterval)
+	  #
+	  #
+	  #
+	  sample.slum.list <- sample.list.df()[selectList, ]
+	  #
+	  #
+	  #
+	  output$sample.slum.table <- DT::renderDataTable(DT::datatable({
+	    #
+	    #
+        #
+		sample.slum.list
+	  }))
+  })
 }
+
+
+
 
 
 

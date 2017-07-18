@@ -1,10 +1,10 @@
 varList,varFunction,varStatistic,varNames,varShort,varDir,varSet,varTitle,varFile
 nMembers,histogram,oneMean,Mean number of household members,Household members,hi,demographics,Demographics,demographics
-jmpWater5,proportion,oneMean,Households using surface water as source of drinking water,Surface water,hi,waterSet1,Types of Water Sources,types-water-sources
-jmpWater4,proportion,oneMean,Households using unimproved source of drinking water,Unimproved,hi,waterSet1,Types of Water Sources,types-water-sources
+jmpWater1,proportion,oneMean,Households using surface water as source of drinking water,Surface water,hi,waterSet1,Types of Water Sources,types-water-sources
+jmpWater2,proportion,oneMean,Households using unimproved source of drinking water,Unimproved,hi,waterSet1,Types of Water Sources,types-water-sources
 jmpWater3,proportion,oneMean,Households using an improved source of drinking water that takes more than 30 minutes to collect from,Limited,hi,waterSet1,Types of Water Sources,types-water-sources
-jmpWater2,proportion,oneMean,Households using an improved source of drinking water that takes 30 minutes or less to collect from,Basic,lo,waterSet1,Types of Water Sources,types-water-sources
-jmpWater1,proportion,oneMean,Households using an improved source of drinking water that is located on premises and is available when needed,Safely-manged,lo,waterSet1,Types of Water Sources,types-water-sources
+jmpWater4,proportion,oneMean,Households using an improved source of drinking water that takes 30 minutes or less to collect from,Basic,lo,waterSet1,Types of Water Sources,types-water-sources
+jmpWater5,proportion,oneMean,Households using an improved source of drinking water that is located on premises and is available when needed,Safely-manged,lo,waterSet1,Types of Water Sources,types-water-sources
 accessWater,proportion,oneMean,Households with access to sufficient and sustained drinking water,Sufficient and sustained access,hi,waterSet2,Access to Water Sources,access-water-sources
 water14a,proportion,oneMean,Households with good self-perceived quality of drinking water,Self-perceived quality of water,hi,waterSet3,Other Water Indicators,other-water-indicators
 water18,proportion,oneMean,Households safely storing drinking water,Safe water storage,hi,waterSet3,Other Water Indicators,other-water-indicators
@@ -12,11 +12,11 @@ water12,proportion,oneMean,Mean expenditure in drinking water,Water expenditure,
 water7a,proportion,oneMean,Households with adequate physical access to drinking water,Adequate physical access,hi,waterSet2,Access to Water Sources,access-water-sources
 water2a,proportion,oneMean,Households with formal drinking water service provision,Formal service provision,hi,waterSet3,Other Water Indicators,other-water-indicators
 water17,proportion,oneMean,Households relying on formal provider for service supply maintenance,Formal service maintenance,hi,waterSet3,Other Water Indicators,other-water-indicators
-jmpSan5,proportion,oneMean,Households using open defecation,Open defecation,hi,sanSet1,Types of Sanitation Facilities,types-sanitation-facilities
-jmpSan4,proportion,oneMean,Households using unimproved sanitation facility,Unimproved,hi,sanSet1,Types of Sanitation Facilities,types-sanitation-facilities
+jmpSan1,proportion,oneMean,Households using open defecation,Open defecation,hi,sanSet1,Types of Sanitation Facilities,types-sanitation-facilities
+jmpSan2,proportion,oneMean,Households using unimproved sanitation facility,Unimproved,hi,sanSet1,Types of Sanitation Facilities,types-sanitation-facilities
 jmpSan3,proportion,oneMean,Households using shared improved sanitation facility,Limited,hi,sanSet1,Types of Sanitation Facilities,types-sanitation-facilities
-jmpSan2,proportion,oneMean,Households using improved sanitation facility not shared with others,Basic,lo,sanSet1,Types of Sanitation Facilities,types-sanitation-facilities
-jmpSan1,proportion,oneMean,Households using safely managed sanitaion facility,Safely-manged,lo,sanSet1,Types of Sanitation Facilities,types-sanitation-facilities
+jmpSan4,proportion,oneMean,Households using improved sanitation facility not shared with others,Basic,lo,sanSet1,Types of Sanitation Facilities,types-sanitation-facilities
+jmpSan5,proportion,oneMean,Households using safely managed sanitaion facility,Safely-manged,lo,sanSet1,Types of Sanitation Facilities,types-sanitation-facilities
 adequateSan,proportion,oneMean,Households with adequate sanitation facility,Adequate facility,hi,sanSet2,Access to Sanitation Facilities,access-sanitation-facilities
 accessSan,proportion,oneMean,Households in which every member is able to use and actually use sanitation facility,Access to facility,hi,sanSet2,Access to Sanitation Facilities,access-sanitation-facilities
 san13,histogram,oneMean,Mean number of minutes to sanitation facilities,Time to facility (minutes),hi,sanSet2,Access to Sanitation Facilities,access-sanitation-facilities
@@ -30,13 +30,13 @@ san35,proportion,oneMean,Households relying on formal pit emptier,Formal pit emp
 san28,proportion,oneMean,Households whose women are using adequate hygienic menstrual hygiene materials,Adequate menstrual hygiene materials,hi,hygieneSet,Hygiene,hygiene
 jmpWomenHygiene,proportion,oneMean,Households whose women practice good menstrual hygiene behaviour,Good menstrual hygiene behaviour,hi,hygieneSet,Hygiene,hygiene
 jmpWoman,proportion,oneMean,Households whose women are comfortable using sanitation facility during menstruation,Use of facility during menstruation,hi,hygieneSet,Hygiene,hygiene
-jmpHand3,proportion,oneMean,Households with no handwashing facility,No handwashing facility,lo,handSet,Handwashing,handwashing
+jmpHand1,proportion,oneMean,Households with no handwashing facility,No handwashing facility,lo,handSet,Handwashing,handwashing
 jmpHand2,proportion,oneMean,Households with handwashing facility with water only,Water only,lo,handSet,Handwashing,handwashing
-jmpHand1,proportion,oneMean,Households with handwashing facility with clean water and soap,Clean water and soap,hi,handSet,Handwashing,handwashing
-overall4,histogram,oneMean,Households with no adequate water services and no adequate sanitation services,No adequate services,lo,overallSet1,Overall,overall
-overall3,histogram,oneMean,Households with adequate water services only,Adequate water services,hi,overallSet1,Overall,overall
-overall2,histogram,oneMean,Households with adequate sanitation services only,Adequate sanitation services,hi,overallSet1,Overall,overall
-overall1,histogram,oneMean,Households with adequate water services and adequate sanitation services,Adequate water and sanitation,hi,overallSet1,Overall,overall
+jmpHand3,proportion,oneMean,Households with handwashing facility with clean water and soap,Clean water and soap,hi,handSet,Handwashing,handwashing
+overall1,histogram,oneMean,Households with no adequate water services and no adequate sanitation services,No adequate services,lo,overallSet1,Overall,overall
+overall2,histogram,oneMean,Households with adequate water services only,Adequate water services,hi,overallSet1,Overall,overall
+overall3,histogram,oneMean,Households with adequate sanitation services only,Adequate sanitation services,hi,overallSet1,Overall,overall
+overall4,histogram,oneMean,Households with adequate water services and adequate sanitation services,Adequate water and sanitation,hi,overallSet1,Overall,overall
 overallSpend,histogram,oneMean,Mean household expenditure in water and sanitation services,Overall expenditure,hi,overallSet2,Overall,overall
 ppi,histogram,oneMean,Mean poverty score,PPI Score,hi,poverty,Poverty Rates,poverty-rates
 pQuintile,histogram,oneMean,Mean wealth index,Wealth Index,hi,poverty,Poverty Rates,poverty-rates
