@@ -1673,12 +1673,12 @@ function(input, output, session) {
         updateSelectInput(session = session,
                           inputId = "indicator.ladder",
                           label = "Select indicator",
-                          choices = list("Surface water" = "jmpWater5",
-                                         "Unimproved" = "jmpWater4",
+                          choices = list("Surface water" = "jmpWater1",
+                                         "Unimproved" = "jmpWater2",
                                          "Limited" = "jmpWater3",
-                                         "Basic" = "jmpWater2",
-                                         "Safely-managed" = "jmpWater1"),
-                          selected = "jmpWater5")
+                                         "Basic" = "jmpWater4",
+                                         "Safely-managed" = "jmpWater5"),
+                          selected = "jmpWater1")
     #
     #
     #
@@ -1689,12 +1689,12 @@ function(input, output, session) {
       updateSelectInput(session = session,
                         inputId = "indicator.ladder",
                         label = "Select indicator", 
-                        choices = list("Open defecation" = "jmpSan5",
-                                       "Unimproved" = "jmpSan4",
+                        choices = list("Open defecation" = "jmpSan1",
+                                       "Unimproved" = "jmpSan2",
                                        "Limited" = "jmpSan3",
-                                       "Basic" = "jmpSan2",
-                                       "Safely-managed" = "jmpSan1"),
-                        selected = "jmpSan5")
+                                       "Basic" = "jmpSan4",
+                                       "Safely-managed" = "jmpSan5"),
+                        selected = "jmpSan1")
     #
     #
     #
@@ -1705,10 +1705,10 @@ function(input, output, session) {
       updateSelectInput(session = session,
                         inputId = "indicator.ladder",
                         label = "Select indicator",
-                        choices = list("No facility" = "jmpHand3",
+                        choices = list("No facility" = "jmpHand1",
                                        "Limited" = "jmpHand2",
-                                       "Basic" = "jmpHand1"),
-                        selected = "jmpHand3")
+                                       "Basic" = "jmpHand3"),
+                        selected = "jmpHand1")
   })
   #
   #
@@ -5487,6 +5487,10 @@ function(input, output, session) {
       #
       #
       #
+      clearMarkers() %>%
+      #
+      #
+      #
       addTiles(
         urlTemplate = mapbox.satellite,
         attribution = "Imagery by <a href='https://www.mapbox.com'>Mapbox</a>"
@@ -5494,9 +5498,13 @@ function(input, output, session) {
       #
       #
       #
-      setView(lng = mean(coordinates(city.map())[,1]), 
-              lat = mean(coordinates(city.map())[,2]), 
-              zoom = 11) %>%
+      #setView(lng = mean(coordinates(city.map())[,1]), 
+      #        lat = mean(coordinates(city.map())[,2]), 
+      #        zoom = 11) %>%
+      fitBounds(lng1 = bbox(city.map())[1,1], 
+                lat1 = bbox(city.map())[2,1], 
+                lng2 = bbox(city.map())[1,2], 
+                lat2 = bbox(city.map())[2,2]) %>%
       #
       # Add survey area polygon layer
       #
@@ -5519,7 +5527,7 @@ function(input, output, session) {
         #
         addLayersControl(
           baseGroups = c("Survey Areas"),
-          position = "topleft",
+          position = "bottomleft",
           options = layersControlOptions(collapsed = FALSE))		      
   })    
   #
@@ -5541,6 +5549,10 @@ function(input, output, session) {
       #
       #
       #
+      clearMarkers() %>%
+      #
+      #
+      #
       addTiles(
         urlTemplate = mapbox.satellite,
         attribution = "Imagery by <a href='https://www.mapbox.com'>Mapbox</a>"
@@ -5548,9 +5560,13 @@ function(input, output, session) {
       #
       #
       #
-      setView(lng = mean(coordinates(slum.map())[,1]), 
-              lat = mean(coordinates(slum.map())[,2]), 
-              zoom = 11) %>%
+      #setView(lng = mean(coordinates(slum.map())[,1]), 
+      #        lat = mean(coordinates(slum.map())[,2]), 
+      #        zoom = 11) %>%
+      fitBounds(lng1 = bbox(slum.map())[1,1], 
+                lat1 = bbox(slum.map())[2,1], 
+                lng2 = bbox(slum.map())[1,2], 
+                lat2 = bbox(slum.map())[2,2]) %>%
       #
       # Add survey area polygon layer
       #
@@ -5573,7 +5589,7 @@ function(input, output, session) {
         #
         addLayersControl(
           baseGroups = c("Slum Areas"),
-          position = "topleft",
+          position = "bottomleft",
           options = layersControlOptions(collapsed = FALSE))		      
   })
   #
@@ -5596,9 +5612,21 @@ function(input, output, session) {
     #
     #
     updateSelectInput(session = session,
-                      inputId = "var.slum.area",
+                      inputId = "var.slum.area1",
                       label = "Select map data identifier for slum survey areas",
                       choices = names(slum.map()))
+  })
+  #
+  #
+  #
+  observeEvent(input$list1, {
+    #
+    #
+    #
+    updateSelectInput(session = session,
+                      inputId = "var.slum.area2",
+                      label = "Select map data identifier for slum survey areas",
+                      choices = names(sample.list.df()))
   })
   #
   #
@@ -5615,14 +5643,26 @@ function(input, output, session) {
   #
   #
   #
-  observeEvent(input$var.slum.area, {
+  observeEvent(input$var.slum.area1, {
     #
     #
     #
     updateSelectInput(session = session,
-                      inputId = "slum.area.name",
+                      inputId = "slum.area.name1",
                       label = "Select slum area",
-                      choices = levels(slum.map()[[input$var.slum.area]]))
+                      choices = levels(slum.map()[[input$var.slum.area1]]))
+  })
+  #
+  #
+  #
+  observeEvent(input$var.slum.area2, {
+    #
+    #
+    #
+    updateSelectInput(session = session,
+                      inputId = "slum.area.name2",
+                      label = "Select slum area",
+                      choices = levels(sample.list.df()[[input$var.slum.area2]]))
   })
   #
   #
@@ -5734,9 +5774,13 @@ function(input, output, session) {
        #
        #
        #
-       setView(lng = mean(coordinates(xGrid())[,1]), 
-               lat = mean(coordinates(xGrid())[,2]), 
-               zoom = 13) %>%
+       #setView(lng = mean(coordinates(xGrid())[,1]), 
+       #        lat = mean(coordinates(xGrid())[,2]), 
+       #        zoom = 13) %>%
+      fitBounds(lng1 = bbox(xGrid())[1,1], 
+                lat1 = bbox(xGrid())[2,1], 
+                lng2 = bbox(xGrid())[1,2], 
+                lat2 = bbox(xGrid())[2,2]) %>%
       #
       # Add survey area polygon layer
       #
@@ -5790,7 +5834,7 @@ function(input, output, session) {
         addLayersControl(
           baseGroups = c("Survey Areas"),
           overlayGroups = c(paste(input$city.area.name, "grids", sep = " "), paste(input$city.area.name, "sampling points", sep = " ")),
-          position = "topleft",
+          position = "bottomleft",
           options = layersControlOptions(collapsed = FALSE))		      
   })         
   #
@@ -5800,7 +5844,7 @@ function(input, output, session) {
 	#
 	# Subset to current survey area
 	#
-	temp <- subset(slum.map(), get(input$var.slum.area) == input$slum.area.name)
+	temp <- subset(slum.map(), get(input$var.slum.area1) == input$slum.area.name1)
 	#
 	# Grid current area
 	#
@@ -5810,7 +5854,7 @@ function(input, output, session) {
 	  # Spatial sample
 	  #
 	  xSP <- spsample(x = temp, 
-					  n = input$n.psu.citywide, 
+					  n = input$n.psu.slum, 
 					  type = "regular")
 	  #
 	  # Check if there are enough grids
@@ -5820,7 +5864,7 @@ function(input, output, session) {
 	  #
 	  # Create identifiers
 	  #
-	  areaID    <- rep(input$slum.area.name, length(xSP))
+	  areaID    <- rep(input$slum.area.name1, length(xSP))
 	  quadratID <- 1:length(xSP)
 	  longitude <- xSP@coords[ , 1] 
 	  latitude  <- xSP@coords[ , 2]
@@ -5867,9 +5911,13 @@ function(input, output, session) {
        #
        #
        #
-       setView(lng = mean(coordinates(sGrid())[,1]), 
-               lat = mean(coordinates(sGrid())[,2]), 
-               zoom = 13) %>%
+       #setView(lng = mean(coordinates(sGrid())[,1]), 
+       #        lat = mean(coordinates(sGrid())[,2]), 
+       #        zoom = 13) %>%
+      fitBounds(lng1 = bbox(sGrid())[1,1], 
+                lat1 = bbox(sGrid())[2,1], 
+                lng2 = bbox(sGrid())[1,2], 
+                lat2 = bbox(sGrid())[2,2]) %>%
       #
       # Add survey area polygon layer
       #
@@ -5903,9 +5951,9 @@ function(input, output, session) {
 		   dashArray = "",
 		   fillOpacity = 0,
 		   bringToFront = TRUE),
-		  group = paste(input$slum.area.name, "grids", sep = " ")) %>%
+		  group = paste(input$slum.area.name1, "grids", sep = " ")) %>%
 		#
-		#
+		# Add centroids
 		#
 		addCircleMarkers(
 		  data = sGrid(),
@@ -5916,13 +5964,13 @@ function(input, output, session) {
 		  fillColor = "red",
 		  fillOpacity = 0.8,
 		  color = "red",
-		  group = paste(input$slum.area.name, "sampling points", sep = " ")) %>%
+		  group = paste(input$slum.area.name1, "sampling points", sep = " ")) %>%
         #
         # Add layer control
         #
         addLayersControl(
           baseGroups = c("Survey Areas"),
-          overlayGroups = c(paste(input$slum.area.name, "grids", sep = " "), paste(input$slum.area.name, "sampling points", sep = " ")),
+          overlayGroups = c(paste(input$slum.area.name1, "grids", sep = " "), paste(input$slum.area.name1, "sampling points", sep = " ")),
           position = "topleft",
           options = layersControlOptions(collapsed = FALSE))		      
   })         
@@ -5952,11 +6000,15 @@ function(input, output, session) {
   #
   #
   #
-  observeEvent(input$sample.slum, {
+  sample.slum.list <- eventReactive(input$sample.slum, {
 	  #
 	  #
 	  #
-	  stepInterval <- floor(nrow(sample.list.df()) / input$n.psu.slum)
+      temp <- subset(sample.list.df(), get(input$var.slum.area2) == input$slum.area.name2)
+	  #
+	  #
+	  #
+	  stepInterval <- floor(nrow(temp) / input$n.psu.slum)
       #
 	  #
 	  #
@@ -5964,21 +6016,21 @@ function(input, output, session) {
 	  #
 	  #
 	  #
-	  selectList <- seq(from = startPoint, to = nrow(sample.list.df()), by = stepInterval)
+	  selectList <- seq(from = startPoint, to = nrow(temp), by = stepInterval)
 	  #
 	  #
 	  #
-	  sample.slum.list <- sample.list.df()[selectList, ]
-	  #
-	  #
-	  #
-	  output$sample.slum.table <- DT::renderDataTable(DT::datatable({
-	    #
-	    #
-        #
-		sample.slum.list
-	  }))
+	  sample.slum.list <- temp[selectList, ]
   })
+  #
+  #
+  #
+  output$sample.slum.table <- DT::renderDataTable(DT::datatable({
+  #
+  #
+  #
+  sample.slum.list
+  }))
 }
 
 

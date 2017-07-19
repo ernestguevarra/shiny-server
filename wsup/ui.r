@@ -2032,13 +2032,13 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             #
             #
-            selectInput(inputId = "var.slum.area",
+            selectInput(inputId = "var.slum.area1",
                         label = "Select map data identifier for slum survey areas",
                         choices = list(None = ".")),
             #
             #
             #
-            selectInput(inputId = "slum.area.name",
+            selectInput(inputId = "slum.area.name1",
                         label = "Select slum survey area to sample",
                         choices = list(None = ".")),
             #
@@ -2059,6 +2059,18 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             fileInput(inputId = "list1",
                       label = "Upload list of slum areas",
                       accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
+            #
+            #
+            #
+            selectInput(inputId = "var.slum.area2",
+                        label = "Select map data identifier for slum survey areas",
+                        choices = list(None = ".")),
+            #
+            #
+            #
+            selectInput(inputId = "slum.area.name2",
+                        label = "Select slum survey area to sample",
+                        choices = list(None = ".")),
             #
             #
             #
