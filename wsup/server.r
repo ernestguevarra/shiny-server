@@ -89,7 +89,7 @@ function(input, output, session) {
     #
     #
     #
-    paste(steerIndicators$varNames[steerIndicators$varList == input$z.demographics], sep = "")
+    paste("Indicator: ", steerIndicators$varNames[steerIndicators$varList == input$z.demographics], sep = "")
   })
   #
   # Determine which country has been selected - set 2
@@ -172,7 +172,7 @@ function(input, output, session) {
     #
     #
     #
-    paste(steerIndicators$varNames[steerIndicators$varList == input$z.poverty], sep = "")
+    paste("Indicator: ", steerIndicators$varNames[steerIndicators$varList == input$z.poverty], sep = "")
   })
   #
   # Determine which country has been selected - set 3
@@ -255,7 +255,32 @@ function(input, output, session) {
     #
     #
     #
-    paste(steerIndicators$varNames[steerIndicators$varList == input$indicator.ladder], sep = "")
+    paste("Indicator: ", steerIndicators$varNames[steerIndicators$varList == input$indicator.ladder], sep = "")
+  })
+  #
+  #
+  #
+  output$mainHeader3a <- reactive({
+    #
+    #
+    #
+    if(input$z.ladder == "waterSet1") {paste("Drinking water service ladder", sep = "")}
+    #
+    #
+    #
+    else
+    #
+    #
+    #
+    if(input$z.ladder == "sanSet1")   {paste("Sanitation service ladder", sep = "")}
+    #
+    #
+    #
+    else
+    #
+    #
+    #
+    if(input$z.ladder == "handSet")   {paste("Handwashing service ladder", sep = "")}    
   })
   #
   # Determine which country has been selected - set 4
@@ -338,7 +363,7 @@ function(input, output, session) {
     #
     #
     #
-    paste(steerIndicators$varNames[steerIndicators$varList == input$z.water], sep = "")
+    paste("Indicator: ", steerIndicators$varNames[steerIndicators$varList == input$z.water], sep = "")
   })
   #
   # Determine which country has been selected - set 5
@@ -421,7 +446,7 @@ function(input, output, session) {
     #
     #
     #
-    paste(steerIndicators$varNames[steerIndicators$varList == input$z.sanitation], sep = "")
+    paste("Indicator: ", steerIndicators$varNames[steerIndicators$varList == input$z.sanitation], sep = "")
   })
   #
   # Determine which country has been selected - set 6
@@ -504,7 +529,7 @@ function(input, output, session) {
     #
     #
     #
-    paste(steerIndicators$varNames[steerIndicators$varList == input$z.hygiene], sep = "")
+    paste("Indicator: ", steerIndicators$varNames[steerIndicators$varList == input$z.hygiene], sep = "")
   })
   #
   # Determine which country has been selected - set 7
@@ -587,7 +612,7 @@ function(input, output, session) {
     #
     #
     #
-    paste(steerIndicators$varNames[steerIndicators$varList == input$indicator.overall], sep = "")
+    paste("Indicator: ", steerIndicators$varNames[steerIndicators$varList == input$indicator.overall], sep = "")
   })
 
 
@@ -3093,7 +3118,8 @@ function(input, output, session) {
       #
       #
       #
-      setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 11) %>%
+      fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
+  			    lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>%
       #
       #
       #
@@ -3310,7 +3336,8 @@ function(input, output, session) {
       #
       #
       #
-      setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 11) %>%
+      fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
+  			    lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>%
       #
       #
       #
@@ -3526,7 +3553,8 @@ function(input, output, session) {
       #
       #
       #
-      setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 11) %>%
+      fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
+  			    lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>%
       #
       #
       #
@@ -3851,7 +3879,8 @@ function(input, output, session) {
     #
     #
     #
-    setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 11) %>%
+    fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
+  			  lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>%
     #  
     #
     #
@@ -3965,7 +3994,7 @@ function(input, output, session) {
 	    title = steerIndicators$varShort[steerIndicators$varList == input$z.water],
 	    layerId = "Slum") %>%
     #
-    #
+    # Add toggle box for map layers
     #
     addLayersControl(
       baseGroups = c("Slum", "Citywide"),
@@ -4171,25 +4200,26 @@ function(input, output, session) {
       city.labels <- paste(city.results.sp$surveyArea, ": ", city.results.sp[[input$z.sanitation]], sep = "")
       }
     #
-    #
+    # 
     #      
     upazila.labels <- paste("Upazila: ", upazila$Upazila, sep = "") 
     ward.labels <- paste("Ward: ", wards$Union, sep = "") 
     #
-    #
+    # Create map
     #
     leaflet(outline) %>%
     #
+    # Fit map to the boundaries of the survey area
     #
-    #
-    setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 11) %>%
+    fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
+              lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>% 
     #  
-    #
+    # Add baselayer
     #
     addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
              attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
     #
-    #
+    # Add minimap
     #
     addMiniMap(tiles = mapbox.street,
                toggleDisplay = TRUE,
@@ -4297,7 +4327,7 @@ function(input, output, session) {
 	    title = steerIndicators$varShort[steerIndicators$varList == input$z.sanitation],
 	    layerId = "Slum") %>%
     #
-    #
+    # Add toggle box for layers
     #
     addLayersControl(
       baseGroups = c("Slum", "Citywide"),
@@ -4401,13 +4431,14 @@ function(input, output, session) {
     upazila.labels <- paste("Upazila: ", upazila$Upazila, sep = "") 
     ward.labels <- paste("Ward: ", wards$Union, sep = "") 
     #
-    #
+    # Create map based on survey area
     #
     leaflet(outline) %>%
     #
-    #
+    # Fit map to the boundaries of the survey area
     #    
-    setView(lng = mean(coordinates(outline)[,1]), lat = mean(coordinates(outline)[,2]) + 0.02, zoom = 11) %>%
+    fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
+              lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>% 
     #
     #
     #
@@ -4621,16 +4652,15 @@ function(input, output, session) {
       #
       #
       #
-      setView(lng = mean(coordinates(outline)[,1]), 
-              lat = mean(coordinates(outline)[,2]) + 0.02, 
-              zoom = 11) %>%
+      fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
+                lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>% 
       #
-      #
+      # Add satellite map baselayer
       #
       addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
                attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
       #
-      #
+      # Add minimap
       #
       addMiniMap(tiles = mapbox.street,
                  toggleDisplay = TRUE,
@@ -5754,6 +5784,45 @@ function(input, output, session) {
   #
   #
   #
+  output$city.download1 <- downloadHandler(
+    #
+    #
+    #
+    filename = function() {
+      #
+      #
+      #
+      paste("cityList", input$city.area.name, ".csv", sep= "")
+    },
+    #
+    #
+    #
+    content = function(file) {
+      #
+      #
+      #
+      write.csv(xGrid()@data, file)
+    }
+  )
+  #
+  #
+  #
+  output$download.city <- renderUI({
+    #
+    #
+    #
+    if(input$sample.city)
+      #
+      #
+      #
+      downloadButton(outputId = "city.download1",
+                     label = "Download",
+                     class = "btn-primary",
+                     icon = icon(name = "download", class = "fa-lg"))
+  })
+  #
+  #
+  #
   observeEvent(xGrid(), {
        #
        #
@@ -5840,7 +5909,7 @@ function(input, output, session) {
   #
   #
   #
-  sGrid <- eventReactive(input$sample.slum, {
+  sGrid <- eventReactive(input$sample.slum1, {
 	#
 	# Subset to current survey area
 	#
@@ -5888,6 +5957,45 @@ function(input, output, session) {
     #
     sGrid()@data
   }))
+  #
+  #
+  #
+  output$slum.download1 <- downloadHandler(
+    #
+    #
+    #
+    filename = function() {
+      #
+      #
+      #
+      paste("slumList", input$slum.area.name1, ".csv", sep= "")
+    },
+    #
+    #
+    #
+    content = function(file) {
+      #
+      #
+      #
+      write.csv(sGrid()@data, file)
+    }
+  )
+  #
+  #
+  #
+  output$download.slum1 <- renderUI({
+    #
+    #
+    #
+    if(input$sample.slum1)
+      #
+      #
+      #
+      downloadButton(outputId = "slum.download1",
+                     label = "Download",
+                     class = "btn-primary",
+                     icon = icon(name = "download", class = "fa-lg"))
+  })
   #
   #
   #
@@ -6000,7 +6108,7 @@ function(input, output, session) {
   #
   #
   #
-  sample.slum.list <- eventReactive(input$sample.slum, {
+  sample.slum.list <- eventReactive(input$sample.slum2, {
 	  #
 	  #
 	  #
@@ -6026,11 +6134,113 @@ function(input, output, session) {
   #
   #
   output$sample.slum.table <- DT::renderDataTable(DT::datatable({
-  #
-  #
-  #
-  sample.slum.list
+	#
+	#
+	#
+	sample.slum.list()
   }))
+  #
+  #
+  #
+  output$slum.download2 <- downloadHandler(
+    #
+    #
+    #
+    filename = function() {
+      #
+      #
+      #
+      paste("slumList", input$slum.area.name2, ".csv", sep= "")
+    },
+    #
+    #
+    #
+    content = function(file) {
+      #
+      #
+      #
+      write.csv(sample.slum.list(), file)
+    }
+  )
+  #
+  #
+  #
+  output$download.slum2 <- renderUI({
+    #
+    #
+    #
+    if(input$sample.slum2)
+      #
+      #
+      #
+      downloadButton(outputId = "slum.download2",
+                     label = "Download",
+                     class = "btn-primary",
+                     icon = icon(name = "download", class = "fa-lg"))
+  })
+  #
+  #
+  #
+  output$message.list1 <- eventReactive(input$sample.city == 0, {
+    #
+    #
+    #
+    showModal(modalDialog(title = "No sampling lists available",
+                          size = "m",
+                          HTML("
+                            <p>There are no sampling lists available yet. This is most likely because:</p>
+                            <ul>
+                              <li>you have not provided a map of the survey area to sample; and/or</li> 
+                              <li>you have not clicked on the <code>Map</code> button to create the map; and/or</li>
+                              <li>you have not provided additional information regarding specific area on the map you want to sample; and/or</li>
+                              <li>you have not clicked on the <code>Sample</code> button to create the samplig grid on your selected sampling area.</li>
+                            </ul>
+                            <br/>
+                            </p>Please go through these steps again and then come back to this tab to view the sampling list created.</p>
+                          ")))
+  })
+  #
+  #
+  #
+  output$message.list2 <- eventReactive(input$sample.slum1 == 0, {
+    #
+    #
+    #
+    showModal(modalDialog(title = "No sampling lists available",
+                          size = "m",
+                          HTML("
+                            <p>There are no sampling lists available yet. This is most likely because:</p>
+                            <ul>
+                              <li>you have not provided a map of the survey area to sample; and/or</li> 
+                              <li>you have not clicked on the <code>Map</code> button to create the map; and/or</li>
+                              <li>you have not provided additional information regarding specific area on the map you want to sample; and/or</li>
+                              <li>you have not clicked on the <code>Sample</code> button to create the samplig grid on your selected sampling area.</li>
+                            </ul>
+                            <br/>
+                            </p>Please go through these steps again and then come back to this tab to view the sampling list created.</p>
+                          ")))
+  })
+  #
+  #
+  #
+  output$message.list3 <- eventReactive(input$sample.slum2 == 0, {
+    #
+    #
+    #
+    showModal(modalDialog(title = "No sampling lists available",
+                          size = "m",
+                          HTML("
+                            <p>There are no sampling lists available yet. This is most likely because:</p>
+                            <ul>
+                              <li>you have not provided a map of the survey area to sample; and/or</li> 
+                              <li>you have not clicked on the <code>Map</code> button to create the map; and/or</li>
+                              <li>you have not provided additional information regarding specific area on the map you want to sample; and/or</li>
+                              <li>you have not clicked on the <code>Sample</code> button to create the samplig grid on your selected sampling area.</li>
+                            </ul>
+                            <br/>
+                            </p>Please go through these steps again and then come back to this tab to view the sampling list created.</p>
+                          ")))
+  })
 }
 
 

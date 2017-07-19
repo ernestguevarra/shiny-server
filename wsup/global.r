@@ -38,6 +38,12 @@ addAlpha <- function(col, alpha)
   }
 
 
+################################################################################
+#
+# Formatting legends
+#
+################################################################################
+
 legend.format <- function (prefix = "", suffix = "", between = " &ndash; ", digits = 3, 
     big.mark = ",", transform = identity) 
 {
@@ -62,6 +68,41 @@ legend.format <- function (prefix = "", suffix = "", between = " &ndash; ", digi
     }
 }
 
+
+################################################################################
+#
+# 2 x 2 comparisons function
+#
+################################################################################
+
+tab2by2 <- function(exposure, outcome)
+  {
+  tab <- table(exposure, outcome)
+  
+  a <- tab[1,1]
+  b <- tab[1,2]
+  c <- tab[2,1]
+  d <- tab[2,2]
+  
+  rr <- (a / (a + b)) / (c / (c + d))
+  
+  se.log.rr <- sqrt((b / a) / (a + b) + (d / c) / (c + d))
+  
+  lci.rr <- exp(log(rr) - 1.96 * se.log.rr)
+  
+  uci.rr <- exp(log(rr) + 1.96 * se.log.rr)
+  
+  or <- (a / b) / (c / d)
+  
+  se.log.or <- sqrt(1 / a + 1 / b + 1 / c + 1 / d)
+  
+  lci.or <- exp(log(or) - 1.96 * se.log.or)
+  
+  uci.or <- exp(log(or) + 1.96 * se.log.or)
+  
+  ft <- fisher.test(tab)
+  }
+  
 
 ################################################################################
 #

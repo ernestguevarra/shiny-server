@@ -231,7 +231,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
         #
         # Name of indicator on header
         #
-        h3(textOutput("mainHeader1")),
+        h4(textOutput("mainHeader1")),
         #
         # Create sub-tabs panel
         #
@@ -459,7 +459,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
         #
         # Name of indicator on header
         #
-        h3(textOutput("mainHeader2")),
+        h4(textOutput("mainHeader2")),
         #
         # Create sub-tabs panel
         #
@@ -714,7 +714,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           #
           #
-          h3("Service ladders")
+          h4(textOutput("mainHeader3a"))
         ),
         #
         # Check which tab is selected
@@ -723,7 +723,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           # Name of indicator on header
           #
-          h3(textOutput("mainHeader3"))
+          h4(textOutput("mainHeader3"))
         ),
         #
         # Create sub-tabs panel
@@ -956,7 +956,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
         #
         # Name of indicator on header
         #
-        h3(textOutput("mainHeader4")),
+        h4(textOutput("mainHeader4")),
         #
         # Create sub-tabs panel
         #
@@ -1190,7 +1190,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
         #
         # Name of indicator on header
         #
-        h3(textOutput("mainHeader5")),
+        h4(textOutput("mainHeader5")),
         #
         # Create sub-tabs panel
         #
@@ -1418,7 +1418,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
         #
         # Name of indicator on header
         #
-        h3(textOutput("mainHeader6")),
+        h4(textOutput("mainHeader6")),
         #
         # Create sub-tabs panel
         #
@@ -1661,7 +1661,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           #
           #
-          h3("Overall access to services")
+          h4("Overall access to services")
         ),
         #
         #
@@ -1670,7 +1670,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           # Name of indicator on header
           #
-          h3(textOutput("mainHeader7"))
+          h4(textOutput("mainHeader7"))
         ),
         #
         # Create sub-tabs panel
@@ -1717,7 +1717,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           # Sub-header
           #
-          h2("Sample size calculator"),
+          h3("Sample size calculator"),
           #
           # Add whitespace
           #
@@ -1916,7 +1916,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           # Sub-header
           #  
-          h2("Spatial Sampling"),
+          h3("Spatial Sampling"),
           #
           # Add whitespace
           #
@@ -1976,10 +1976,16 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             #
             #
-            actionButton(inputId = "sample.city",
-                         label = "Sample",
-                         class = "btn-primary",
-                         icon = icon(name = "th", clas = "fa-lg"))
+            div(style="display: inline-block;vertical-align:middle;",
+                actionButton(inputId = "sample.city",
+                             label = "Sample",
+                             class = "btn-primary",
+                             icon = icon(name = "th", clas = "fa-lg"))),
+            #
+            #
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                uiOutput("download.city"))                         
             ),
             #
             #
@@ -2044,10 +2050,16 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             #
             #
-            actionButton(inputId = "sample.slum",
-                         label = "Sample",
-                         class = "btn-primary",
-                         icon = icon(name = "th", clas = "fa-lg"))
+            div(style="display: inline-block;vertical-align:middle;",
+                actionButton(inputId = "sample.slum1",
+                             label = "Sample",
+                             class = "btn-primary",
+                             icon = icon(name = "th", clas = "fa-lg"))),
+            #
+            #
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                uiOutput("download.slum1"))
           ),            
           #
           #
@@ -2080,10 +2092,16 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             #
             #
-            actionButton(inputId = "sample.slum",
-                         label = "Sample",
-                         class = "btn-primary",
-                         icon = icon(name = "th", clas = "fa-lg"))
+            div(style="display: inline-block;vertical-align:middle;",
+                actionButton(inputId = "sample.slum2",
+                             label = "Sample",
+                             class = "btn-primary",
+                             icon = icon(name = "th", clas = "fa-lg"))),
+            #
+            #
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                uiOutput("download.slum2"))
         ),
         #
         #
@@ -2112,6 +2130,10 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             tabPanel(title = "City Map Sampling Lists", value = 92,
               #
+              #
+              #
+              uiOutput("message.list1"),
+              #
               # Render table
               #
               DT::dataTableOutput("city.grid.table")
@@ -2121,6 +2143,10 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             tabPanel(title = "Slum Map Sampling Lists", value = 93,
               #
+              #
+              #
+              uiOutput("message.list2"),
+              #
               # Render table
               #
               DT::dataTableOutput("slum.grid.table")
@@ -2129,6 +2155,10 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             #
             tabPanel(title = "Slum Lists", value = 93,
+              #
+              #
+              #
+              uiOutput("message.list3"),
               #
               # Render table
               #
@@ -2140,7 +2170,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           width = 9
         )
-      )                   
+      )        
     )
   )
 )

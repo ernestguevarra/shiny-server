@@ -4,7 +4,7 @@ jmpWater1,proportion,oneMean,Households using surface water as source of drinkin
 jmpWater2,proportion,oneMean,Households using unimproved source of drinking water,Unimproved,hi,waterSet1,Types of Water Sources,types-water-sources
 jmpWater3,proportion,oneMean,Households using an improved source of drinking water that takes more than 30 minutes to collect from,Limited,hi,waterSet1,Types of Water Sources,types-water-sources
 jmpWater4,proportion,oneMean,Households using an improved source of drinking water that takes 30 minutes or less to collect from,Basic,lo,waterSet1,Types of Water Sources,types-water-sources
-jmpWater5,proportion,oneMean,Households using an improved source of drinking water that is located on premises and is available when needed,Safely-manged,lo,waterSet1,Types of Water Sources,types-water-sources
+jmpWater5,proportion,oneMean,Households using an improved source of drinking water that is located on premises and is available when needed and free of faecal and priority contamination,Safely-manged,lo,waterSet1,Types of Water Sources,types-water-sources
 accessWater,proportion,oneMean,Households with access to sufficient and sustained drinking water,Sufficient and sustained access,hi,waterSet2,Access to Water Sources,access-water-sources
 water14a,proportion,oneMean,Households with good self-perceived quality of drinking water,Self-perceived quality of water,hi,waterSet3,Other Water Indicators,other-water-indicators
 water18,proportion,oneMean,Households safely storing drinking water,Safe water storage,hi,waterSet3,Other Water Indicators,other-water-indicators
@@ -16,7 +16,7 @@ jmpSan1,proportion,oneMean,Households using open defecation,Open defecation,hi,s
 jmpSan2,proportion,oneMean,Households using unimproved sanitation facility,Unimproved,hi,sanSet1,Types of Sanitation Facilities,types-sanitation-facilities
 jmpSan3,proportion,oneMean,Households using shared improved sanitation facility,Limited,hi,sanSet1,Types of Sanitation Facilities,types-sanitation-facilities
 jmpSan4,proportion,oneMean,Households using improved sanitation facility not shared with others,Basic,lo,sanSet1,Types of Sanitation Facilities,types-sanitation-facilities
-jmpSan5,proportion,oneMean,Households using safely managed sanitaion facility,Safely-manged,lo,sanSet1,Types of Sanitation Facilities,types-sanitation-facilities
+jmpSan5,proportion,oneMean,Households using safely managed sanitation facility,Safely-manged,lo,sanSet1,Types of Sanitation Facilities,types-sanitation-facilities
 adequateSan,proportion,oneMean,Households with adequate sanitation facility,Adequate facility,hi,sanSet2,Access to Sanitation Facilities,access-sanitation-facilities
 accessSan,proportion,oneMean,Households in which every member is able to use and actually use sanitation facility,Access to facility,hi,sanSet2,Access to Sanitation Facilities,access-sanitation-facilities
 san13,histogram,oneMean,Mean number of minutes to sanitation facilities,Time to facility (minutes),hi,sanSet2,Access to Sanitation Facilities,access-sanitation-facilities
@@ -40,12 +40,12 @@ overall4,histogram,oneMean,Households with adequate water services and adequate 
 overallSpend,histogram,oneMean,Mean household expenditure in water and sanitation services,Overall expenditure,hi,overallSet2,Overall,overall
 ppi,histogram,oneMean,Mean poverty score,PPI Score,hi,poverty,Poverty Rates,poverty-rates
 pQuintile,histogram,oneMean,Mean wealth index,Wealth Index,hi,poverty,Poverty Rates,poverty-rates
-nl,proportion,oneMean,Mean likelihood of household being below the Bangladesh lower national poverty line,,lo,poverty,Poverty Rates,poverty-rates
-nu100,proportion,oneMean,Mean likelihood of household being below 100% of the Bangladesh upper national poverty line,,lo,poverty,Poverty Rates,poverty-rates
-nu150,proportion,oneMean,Mean likelihood of household being below 150% of the Bangladesh upper national poverty line,,lo,poverty,Poverty Rates,poverty-rates
-nu200,proportion,oneMean,Mean likelihood of household being below 200% of the Bangladesh upper national poverty line,,lo,poverty,Poverty Rates,poverty-rates
-extreme,proportion,oneMean,Mean likelihood of household being below the USAID extreme poverty line,,lo,poverty,Poverty Rates,poverty-rates
+nl,proportion,oneMean,Mean likelihood of household being below the Bangladesh lower national poverty line,Below Bangladesh lower national poverty line,lo,poverty,Poverty Rates,poverty-rates
+nu100,proportion,oneMean,Mean likelihood of household being below 100% of the Bangladesh upper national poverty line,Below 100% of Bangladesh upper national line,lo,poverty,Poverty Rates,poverty-rates
+nu150,proportion,oneMean,Mean likelihood of household being below 150% of the Bangladesh upper national poverty line,Below 150% of Bangladesh upper national poverty line,lo,poverty,Poverty Rates,poverty-rates
+nu200,proportion,oneMean,Mean likelihood of household being below 200% of the Bangladesh upper national poverty line,Below 200% of Bangaldesh upper national poverty line,lo,poverty,Poverty Rates,poverty-rates
+extreme,proportion,oneMean,Mean likelihood of household being below the USAID extreme poverty line,Below USAID extreme poverty line,lo,poverty,Poverty Rates,poverty-rates
 ppp125,proportion,oneMean,Mean likelihood of household being below the $1.25/day 2005 PPP poverty line,Below $1.25/day,lo,poverty,Poverty Rates,poverty-rates
-ppp175,proportion,oneMean,Mean likelihood of household being below the $1.75/day 2005 PPP poverty line,,lo,poverty,Poverty Rates,poverty-rates
-ppp200,proportion,oneMean,Mean likelihood of household being below the $2.00/day 2005 PPP poverty line,,lo,poverty,Poverty Rates,poverty-rates
-ppp250,proportion,oneMean,Mean likelihood of household being below the $2.50/day 2005 PPP poverty line,,lo,poverty,Poverty Rates,poverty-rates
+ppp175,proportion,oneMean,Mean likelihood of household being below the $1.75/day 2005 PPP poverty line,Below $1.75/day,lo,poverty,Poverty Rates,poverty-rates
+ppp200,proportion,oneMean,Mean likelihood of household being below the $2.00/day 2005 PPP poverty line,Below $2.00/day,lo,poverty,Poverty Rates,poverty-rates
+ppp250,proportion,oneMean,Mean likelihood of household being below the $2.50/day 2005 PPP poverty line,Below $2.50/day,lo,poverty,Poverty Rates,poverty-rates
