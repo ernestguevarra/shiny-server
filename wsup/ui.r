@@ -1715,6 +1715,14 @@ navbarPage(title = "Urban Water and Sanitation Survey",
         #
         sidebarPanel(
           #
+          # Include shinyjs
+          #
+          shinyjs::useShinyjs(),
+          #
+          # Specify ID for sidebar panel
+          #
+          id = "sample-size",
+          #
           # Sub-header
           #
           h3("Sample size calculator"),
@@ -1914,6 +1922,14 @@ navbarPage(title = "Urban Water and Sanitation Survey",
         #
         sidebarPanel(
           #
+          # Include shinyjs
+          #
+          shinyjs::useShinyjs(),
+          #
+          # Specify ID for sidebar panel
+          #
+          id = "spatial-sample",
+          #
           # Sub-header
           #  
           h3("Spatial Sampling"),
@@ -1943,10 +1959,6 @@ navbarPage(title = "Urban Water and Sanitation Survey",
           #
           #
           div(style="display: inline-block;vertical-align:top;", uiOutput("map.draw.control1")),
-          #
-          #
-          #
-          #div(style="display: inline-block;vertical-align:top;", uiOutput("map.draw.control2")),
           #
           #
           #
@@ -2123,7 +2135,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
               #
               # Render leaflet map
               #
-              withSpinner(leafletOutput("map.sampling", width = "100%", height = 700), type = 5)
+              withSpinner(leafletOutput("map.sampling", width = "100%", height = 500), type = 5)
             ),
             #
             #
@@ -2132,7 +2144,19 @@ navbarPage(title = "Urban Water and Sanitation Survey",
               #
               #
               #
-              uiOutput("message.list1"),
+              conditionalPanel(condition = "input['city.area.name'] == '.'",
+                #
+                #
+                #
+                br(), br(),
+                #
+                #
+                #
+                actionButton(inputId = "warning1",
+                             label = "List not available. Click for more info.",
+                             class = "btn-primary",
+                             icon = icon(name = "exclamation-triangle", class = "fa-lg"))
+              ),
               #
               # Render table
               #
@@ -2145,7 +2169,19 @@ navbarPage(title = "Urban Water and Sanitation Survey",
               #
               #
               #
-              uiOutput("message.list2"),
+              conditionalPanel(condition = "input['slum.area.name1'] == '.'",
+                #
+                #
+                #
+                br(), br(),
+                #
+                #
+                #
+                actionButton(inputId = "warning2",
+                             label = "List not available. Click for more info.",
+                             class = "btn-primary",
+                             icon = icon(name = "exclamation-triangle", class = "fa-lg"))
+              ),
               #
               # Render table
               #
@@ -2154,11 +2190,23 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             #
             #
-            tabPanel(title = "Slum Lists", value = 93,
+            tabPanel(title = "Slum Lists", value = 94,
               #
               #
               #
-              uiOutput("message.list3"),
+              conditionalPanel(condition = "input['slum.area.name2'] == '.'",
+                #
+                #
+                #
+                br(), br(),
+                #
+                #
+                #
+                actionButton(inputId = "warning3",
+                             label = "List not available. Click for more info.",
+                             class = "btn-primary",
+                             icon = icon(name = "exclamation-triangle", class = "fa-lg"))
+              ),
               #
               # Render table
               #

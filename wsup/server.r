@@ -5365,6 +5365,10 @@ function(input, output, session) {
       #
       #
       output$sample <- renderTable({NULL})
+      #
+      #
+      #
+      shinyjs::reset("sample-size")
   })
   #
   #
@@ -5610,9 +5614,6 @@ function(input, output, session) {
       #
       #
       #
-      #setView(lng = mean(coordinates(city.map())[,1]), 
-      #        lat = mean(coordinates(city.map())[,2]), 
-      #        zoom = 11) %>%
       fitBounds(lng1 = bbox(city.map())[1,1], 
                 lat1 = bbox(city.map())[2,1], 
                 lng2 = bbox(city.map())[1,2], 
@@ -6263,7 +6264,7 @@ function(input, output, session) {
   #
   #
   #
-  output$message.list1 <- eventReactive(input$sample.city == 0, {
+  observeEvent(input$warning1, {
     #
     #
     #
@@ -6284,7 +6285,7 @@ function(input, output, session) {
   #
   #
   #
-  output$message.list2 <- eventReactive(input$sample.slum1 == 0, {
+  observeEvent(input$warning2, {
     #
     #
     #
@@ -6305,7 +6306,7 @@ function(input, output, session) {
   #
   #
   #
-  output$message.list3 <- eventReactive(input$sample.slum2 == 0, {
+  observeEvent(input$warning3, {
     #
     #
     #

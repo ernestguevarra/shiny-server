@@ -22,6 +22,8 @@ library(DT)
 library(Hmisc)
 library(purrr)
 library(gstat)
+library(shinyjs)
+library(Cairo)
 
 
 ################################################################################
