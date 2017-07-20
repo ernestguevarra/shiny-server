@@ -4030,7 +4030,8 @@ function(input, output, session) {
       opacity = 0.7,
 	  position = "bottomright",
 	  labFormat = ifelse(input$map.colour.water == "quantile" & input$z.water == "water12", legend.format(digits = 2, between = " to ", suffix = ""), 
-	                ifelse(input$map.colour.water == "quantile" & input$z.water != "water12", legend.format(digits = 2, between = " to ", suffix = "%"), labelFormat(between = " to ", suffix = ""))),
+	                ifelse(input$map.colour.water == "quantile" & input$z.water != "water12", legend.format(digits = 2, between = " to ", suffix = "%"), 
+	                  ifelse(input$map.colour.water != "quantile" & input$z.water == "water12", labelFormat(digits = 2, between = " to ", suffix = ""), labelFormat(between = " to ", suffix = "%")))),
 	    title = steerIndicators$varShort[steerIndicators$varList == input$z.water],
 	    layerId = "Slum") %>%
     #
