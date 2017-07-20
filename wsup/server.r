@@ -3054,7 +3054,9 @@ function(input, output, session) {
 # Demographics Map
 #
 ################################################################################ 
-
+  #
+  #
+  #
   output$map.demographics <- renderLeaflet({
     #
     # 
@@ -3236,7 +3238,7 @@ function(input, output, session) {
       addLayersControl(
         baseGroups = c("Slum", "Citywide"),
         overlayGroups = c("Upazila", "Wards"),
-        position = "topleft",
+        position = "bottomleft",
         options = layersControlOptions(collapsed = FALSE, autoZIndex = TRUE)) %>%
       #
       #
@@ -3261,16 +3263,40 @@ function(input, output, session) {
 #
 ################################################################################  
   #
-  # Poverty
+  # Poverty base map
   #
   output$map.poverty <- renderLeaflet({
     #
+    # Create map
+    # 
+    leaflet(outline) %>%
+      #
+      # Fit map into the area boundaries
+      #
+      fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
+  			    lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>%
+      #
+      # Add baselayer - Mapbox satellite
+      #
+      addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
+               attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
+      #
+      # Add a minimap
+      #
+      addMiniMap(tiles = mapbox.street,
+                 toggleDisplay = TRUE,
+                 position = "topright")
+  })
+  #
+  # Create leaflet proxy
+  #
+  observe({
     #
+    # Set indicator domains
     #
     if(input$z.poverty == "ppi") domain <- c(0, 100)
     if(input$z.poverty == "ppp125") domain <- c(0, 1)
     if(input$z.poverty == "pQuintile") domain <- c(1, 5)
-    
     #
     # Linear interpolation
     #
@@ -3328,7 +3354,150 @@ function(input, output, session) {
     #
     #      
     upazila.labels <- paste("Upazila: ", upazila$Upazila, sep = "") 
-    ward.labels <- paste("Ward: ", wards$Union, sep = "") 
+    ward.labels <- paste("Ward: ", wards$Union, sep = "")
+	#
+	#
+	#
+	leafletProxy("map.poverty") %>%
+	#
+	#
+    #
+    clearShapes() %>%
+	#
+	# Slum polygon
+	#
+	addPolygons(
+	  data = slum.results.sp,
+	  fillColor = pal(slum.results.sp[[input$z.poverty]]), 
+   	  weight = 2,
+	  opacity = 1,
+	  color = "white",
+	  dashArray = "",
+	  fillOpacity = 0.7,
+	  highlight = highlightOptions(
+		weight = 5,
+		color = "#666",
+		dashArray = "",
+		fillOpacity = 0.7,
+		bringToFront = TRUE),
+	  label = slum.labels,
+		labelOptions = labelOptions(
+		  style = list("font-weight" = "normal", padding = "3px 8px"),
+		  textsize = "12px",
+		  direction = "auto"),
+	  group = "Slum") %>%
+	#
+	# City polygon
+	#
+	addPolygons(
+	  data = city.results.sp,
+	  fillColor = pal(city.results.sp[[input$z.poverty]]),
+	  weight = 2,
+	  opacity = 1,
+	  color = "white",
+	  dashArray = "",
+	  fillOpacity = 0.7,
+	  highlight = highlightOptions(
+	    weight = 5,
+		color = "#666",
+		dashArray = "",
+		fillOpacity = 0.7,
+		bringToFront = TRUE),
+	  label = city.labels,
+	  labelOptions = labelOptions(
+		style = list("font-weight" = "normal", padding = "3px 8px"),
+		textsize = "12px",
+		direction = "auto"),
+	  group = "Citywide") %>%
+	#
+	# Add Upazila polygons
+	#
+	addPolygons(
+	  data = upazila,
+	  weight = 1,
+	  opacity = 1,
+	  color = "white",
+	  dashArray = "3",
+	fillOpacity = 0,
+	highlight = highlightOptions(
+	  weight = 4,
+	  color = "#666",
+	  dashArray = "",
+	  fillOpacity = 0,
+	  bringToFront = TRUE),
+	label = upazila.labels,
+	labelOptions = labelOptions(
+	  style = list("font-weight" = "normal", padding = "3px 8px"),
+	  textsize = "12px",
+	  direction = "auto"),
+	group = "Upazila") %>%
+    #
+    # Add Wards polygons
+    #
+    addPolygons(
+	  data = wards,
+	  weight = 0.5,
+	  opacity = 1,
+	  color = "white",
+	  dashArray = "2",
+	  fillOpacity = 0,
+	  highlight = highlightOptions(
+	    weight = 3,
+	    color = "#666",
+	    dashArray = "",
+	    fillOpacity = 0,
+	    bringToFront = TRUE),
+	  label = ward.labels,
+	  labelOptions = labelOptions(
+	    style = list("font-weight" = "normal", padding = "3px 8px"),
+	    textsize = "12px",
+	    direction = "auto"),
+	  group = "Wards") %>%
+    #
+    # Add legend
+    #
+    addLegend(
+	  pal = pal, 
+	  values = values,
+	  opacity = 0.7,
+	  position = "bottomright", 
+	  labFormat = ifelse(input$map.colour.poverty == "quantile", legend.format(digits = 2, between = " to ", suffix = ""), labelFormat(between = " to ", suffix = "")),
+	  title = steerIndicators$varShort[steerIndicators$varList == input$z.poverty],
+	  layerId = "legend") %>%
+    #
+    # Add layer control
+    #
+    addLayersControl(
+	  baseGroups = c("Slum", "Citywide"),
+	  overlayGroups = c("Upazila", "Wards"),
+	  position = "bottomleft",
+	  options = layersControlOptions(collapsed = FALSE)) %>%
+    #
+    # Hide overlays
+    #
+    hideGroup(c("Upazila", "Wards")) %>%
+    #
+    # Keep baselayers at base of map
+    #
+    htmlwidgets::onRender("
+	  function(el, x) {
+	    this.on('baselayerchange', function(e) {
+		  e.layer.bringToBack();
+	    })
+	  }
+    ")
+  })
+
+
+################################################################################
+#
+# Ladder maps
+#
+################################################################################  
+  #
+  # Ladder
+  #
+  output$map.ladder <- renderLeaflet({
     #
     #
     # 
@@ -3348,142 +3517,12 @@ function(input, output, session) {
       #
       addMiniMap(tiles = mapbox.street,
                  toggleDisplay = TRUE,
-                 position = "topright") %>%
-      #
-      # Slum polygon
-      #
-      addPolygons(
-        data = slum.results.sp,
-	    fillColor = pal(slum.results.sp[[input$z.poverty]]), 
-	    weight = 2,
-	    opacity = 1,
-	    color = "white",
-	    dashArray = "",
-	    fillOpacity = 0.7,
-	    highlight = highlightOptions(
-	      weight = 5,
-	      color = "#666",
-	      dashArray = "",
-	      fillOpacity = 0.7,
-	       bringToFront = TRUE),
-	    label = slum.labels,
-	    labelOptions = labelOptions(
-	      style = list("font-weight" = "normal", padding = "3px 8px"),
-	      textsize = "12px",
-	      direction = "auto"),
-	    group = "Slum") %>%
-      #
-      # City polygon
-      #
-      addPolygons(
-        data = city.results.sp,
-	    fillColor = pal(city.results.sp[[input$z.poverty]]),
-	    weight = 2,
-	    opacity = 1,
-	    color = "white",
-	    dashArray = "",
-	    fillOpacity = 0.7,
-	    highlight = highlightOptions(
-	      weight = 5,
-	      color = "#666",
-	      dashArray = "",
-	      fillOpacity = 0.7,
-	      bringToFront = TRUE),
-	    label = city.labels,
-	    labelOptions = labelOptions(
-	      style = list("font-weight" = "normal", padding = "3px 8px"),
-	      textsize = "12px",
-	      direction = "auto"),
-	    group = "Citywide") %>%
-      #
-      # Add Upazila polygons
-      #
-      addPolygons(
-        data = upazila,
-	    weight = 1,
-	    opacity = 1,
-	    color = "white",
-	    dashArray = "3",
-	    fillOpacity = 0,
-	    highlight = highlightOptions(
-	      weight = 4,
-	      color = "#666",
-	      dashArray = "",
-	      fillOpacity = 0,
-	      bringToFront = TRUE),
-	    label = upazila.labels,
-	    labelOptions = labelOptions(
-	      style = list("font-weight" = "normal", padding = "3px 8px"),
-	      textsize = "12px",
-	      direction = "auto"),
-	    group = "Upazila") %>%
-      #
-      # Add Wards polygons
-      #
-      addPolygons(
-        data = wards,
-	    weight = 0.5,
-	    opacity = 1,
-	    color = "white",
-	    dashArray = "2",
-	    fillOpacity = 0,
-	    highlight = highlightOptions(
-	      weight = 3,
-	      color = "#666",
-	      dashArray = "",
-	      fillOpacity = 0,
-	      bringToFront = TRUE),
-	    label = ward.labels,
-	    labelOptions = labelOptions(
-	      style = list("font-weight" = "normal", padding = "3px 8px"),
-	      textsize = "12px",
-	      direction = "auto"),
-	    group = "Wards") %>%
-      #
-      # Add legend
-      #
-      addLegend(
-        pal = pal, 
-        values = values,
-        opacity = 0.7,
-	    position = "bottomright", 
-	    labFormat = ifelse(input$map.colour.poverty == "quantile", legend.format(digits = 2, between = " to ", suffix = ""), labelFormat(between = " to ", suffix = "")),
-	    title = steerIndicators$varShort[steerIndicators$varList == input$z.poverty],
-	    layerId = "legend") %>%
-      #
-      # Add layer control
-      #
-      addLayersControl(
-        baseGroups = c("Slum", "Citywide"),
-        overlayGroups = c("Upazila", "Wards"),
-        position = "topleft",
-        options = layersControlOptions(collapsed = FALSE)) %>%
-      #
-      # Hide overlays
-      #
-      hideGroup(c("Upazila", "Wards")) %>%
-      #
-      # Keep baselayers at base of map
-      #
-      htmlwidgets::onRender("
-        function(el, x) {
-          this.on('baselayerchange', function(e) {
-            e.layer.bringToBack();
-          })
-        }
-      ")
+                 position = "topright")
   })
-
-
-################################################################################
-#
-# Ladder maps
-#
-################################################################################  
   #
-  # Ladder
   #
-  output$map.ladder <- renderLeaflet({
+  #
+  observe({
     #
     # Domains
     #
@@ -3548,24 +3587,12 @@ function(input, output, session) {
     ward.labels <- paste("Ward: ", wards$Union, sep = "") 
     #
     #
-    # 
-    leaflet(outline) %>%
+    #
+    leafletProxy("map.ladder") %>%
       #
       #
       #
-      fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
-  			    lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>%
-      #
-      #
-      #
-      addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
-               attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
-      #
-      #
-      #
-      addMiniMap(tiles = mapbox.street,
-                 toggleDisplay = TRUE,
-                 position = "topright") %>%
+      clearShapes() %>%
       #
       # Slum polygon
       #
@@ -3673,7 +3700,7 @@ function(input, output, session) {
       addLayersControl(
         baseGroups = c("Slum", "Citywide"),
         overlayGroups = c("Upazila", "Wards"),
-        position = "topleft",
+        position = "bottomleft",
         options = layersControlOptions(collapsed = FALSE)) %>%
       #
       # Hide overlays
@@ -3701,6 +3728,31 @@ function(input, output, session) {
   # Water
   #
   output$map.water <- renderLeaflet({
+    #
+    #
+    #
+    leaflet(outline) %>%
+    #
+    #
+    #
+    fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
+  			  lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>%
+    #  
+    #
+    #
+    addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
+             attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
+    #
+    #
+    #
+    addMiniMap(tiles = mapbox.street,
+               toggleDisplay = TRUE,
+               position = "topright")
+  })
+  #
+  #
+  #
+  observe({
     #
     #
     #
@@ -3824,7 +3876,7 @@ function(input, output, session) {
         #
         pal <- colorBin(palette = input$palette.water,
                         domain = domain, 
-                        pretty = FALSE,
+                        pretty = TRUE,
                         bins = ifelse(is.null(input$map.bins.water), 5, input$map.bins.water))
         #
         #
@@ -3872,26 +3924,14 @@ function(input, output, session) {
     #      
     upazila.labels <- paste("Upazila: ", upazila$Upazila, sep = "") 
     ward.labels <- paste("Ward: ", wards$Union, sep = "") 
+  #
+  #
+  #
+  leafletProxy("map.water") %>%
     #
     #
     #
-    leaflet(outline) %>%
-    #
-    #
-    #
-    fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
-  			  lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>%
-    #  
-    #
-    #
-    addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
-             attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
-    #
-    #
-    #
-    addMiniMap(tiles = mapbox.street,
-               toggleDisplay = TRUE,
-               position = "topright") %>%
+    clearShapes() %>%
     #
     # Slum Map
     #
@@ -3990,7 +4030,7 @@ function(input, output, session) {
       opacity = 0.7,
 	  position = "bottomright",
 	  labFormat = ifelse(input$map.colour.water == "quantile" & input$z.water == "water12", legend.format(digits = 2, between = " to ", suffix = ""), 
-	                ifelse(input$map.colour.water == "quantile" & input$z.water != "water12", legend.format(digits = 2, between = " to ", suffix = "%"), labelFormat(between = " to ", suffix = "%"))),
+	                ifelse(input$map.colour.water == "quantile" & input$z.water != "water12", legend.format(digits = 2, between = " to ", suffix = "%"), labelFormat(between = " to ", suffix = ""))),
 	    title = steerIndicators$varShort[steerIndicators$varList == input$z.water],
 	    layerId = "Slum") %>%
     #
@@ -3999,7 +4039,7 @@ function(input, output, session) {
     addLayersControl(
       baseGroups = c("Slum", "Citywide"),
       overlayGroups = c("Upazila", "Wards"),
-      position = "topleft",
+      position = "bottomleft",
       options = layersControlOptions(collapsed = FALSE)) %>%
     #
     # Hide overlays
@@ -4027,6 +4067,31 @@ function(input, output, session) {
   # Sanitation
   #
   output$map.sanitation <- renderLeaflet({
+    #
+    # Create map
+    #
+    leaflet(outline) %>%
+    #
+    # Fit map to the boundaries of the survey area
+    #
+    fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
+              lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>% 
+    #  
+    # Add baselayer
+    #
+    addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
+             attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
+    #
+    # Add minimap
+    #
+    addMiniMap(tiles = mapbox.street,
+               toggleDisplay = TRUE,
+               position = "topright")
+  })
+  #
+  #
+  #
+  observe({
     #
     #
     #
@@ -4204,26 +4269,14 @@ function(input, output, session) {
     #      
     upazila.labels <- paste("Upazila: ", upazila$Upazila, sep = "") 
     ward.labels <- paste("Ward: ", wards$Union, sep = "") 
+  #
+  #
+  #
+  leafletProxy("map.sanitation") %>%
     #
-    # Create map
     #
-    leaflet(outline) %>%
     #
-    # Fit map to the boundaries of the survey area
-    #
-    fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
-              lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>% 
-    #  
-    # Add baselayer
-    #
-    addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
-             attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
-    #
-    # Add minimap
-    #
-    addMiniMap(tiles = mapbox.street,
-               toggleDisplay = TRUE,
-               position = "topright") %>%
+    clearShapes() %>%
     #
     # Slum Map
     #
@@ -4332,7 +4385,7 @@ function(input, output, session) {
     addLayersControl(
       baseGroups = c("Slum", "Citywide"),
       overlayGroups = c("Upazila", "Wards"),
-      position = "topleft",
+      position = "bottomleft",
       options = layersControlOptions(collapsed = FALSE)) %>%
     #
     # Hide overlays
@@ -4360,6 +4413,31 @@ function(input, output, session) {
   # hygiene
   #
   output$map.hygiene <- renderLeaflet({
+    #
+    # Create map based on survey area
+    #
+    leaflet(outline) %>%
+    #
+    # Fit map to the boundaries of the survey area
+    #    
+    fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
+              lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>% 
+    #
+    #
+    #
+    addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
+             attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
+    #
+    #
+    #
+    addMiniMap(tiles = mapbox.street,
+               toggleDisplay = TRUE,
+               position = "topright")
+  })             
+  #
+  #
+  #
+  observe({
     #
     # Linear interpolation
     #
@@ -4430,26 +4508,14 @@ function(input, output, session) {
     #      
     upazila.labels <- paste("Upazila: ", upazila$Upazila, sep = "") 
     ward.labels <- paste("Ward: ", wards$Union, sep = "") 
-    #
-    # Create map based on survey area
-    #
-    leaflet(outline) %>%
-    #
-    # Fit map to the boundaries of the survey area
-    #    
-    fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
-              lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>% 
+  #
+  #
+  #
+  leafletProxy("map.hygiene") %>%
     #
     #
     #
-    addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
-             attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
-    #
-    #
-    #
-    addMiniMap(tiles = mapbox.street,
-               toggleDisplay = TRUE,
-               position = "topright") %>%
+    clearShapes() %>%  
     #
     # Slum Map
     #
@@ -4556,7 +4622,7 @@ function(input, output, session) {
     addLayersControl(
       baseGroups = c("Slum", "Citywide"),
       overlayGroups = c("Upazila", "Wards"),
-      position = "topleft",
+      position = "bottomleft",
       options = layersControlOptions(collapsed = FALSE)) %>%
     #
     # Hide overlays
@@ -4584,6 +4650,31 @@ function(input, output, session) {
   # Overall
   #
   output$map.overall <- renderLeaflet({
+    #
+    #
+    #
+    leaflet(outline) %>%
+      #
+      #
+      #
+      fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
+                lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>% 
+      #
+      # Add satellite map baselayer
+      #
+      addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
+               attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
+      #
+      # Add minimap
+      #
+      addMiniMap(tiles = mapbox.street,
+                 toggleDisplay = TRUE,
+                 position = "topright")
+  })
+  #
+  #
+  #
+  observe({
     #
     # Domains
     #
@@ -4646,25 +4737,15 @@ function(input, output, session) {
     #
     #      
     upazila.labels <- paste("Upazila: ", upazila$Upazila, sep = "") 
-    ward.labels <- paste("Ward: ", wards$Union, sep = "") 
-
-    leaflet(outline) %>%
+    ward.labels <- paste("Ward: ", wards$Union, sep = "")
+    #
+    #
+    #
+    leafletProxy("map.overall") %>%
       #
       #
       #
-      fitBounds(lng1 = bbox(outline)[1,1], lat1 = bbox(outline)[2,1],
-                lng2 = bbox(outline)[1,2], lat2 = bbox(outline)[2,2]) %>% 
-      #
-      # Add satellite map baselayer
-      #
-      addTiles(urlTemplate = mapbox.satellite, group = "Satellite",
-               attribution = "Imagery from <a href='https://www.mapbox.com'>Mapbox</a> | Data layers © <a href='http://www.validinternational.org'>Valid International</a>") %>%
-      #
-      # Add minimap
-      #
-      addMiniMap(tiles = mapbox.street,
-                 toggleDisplay = TRUE,
-                 position = "topright") %>%
+      clearShapes() %>%
       #
       # Slum polygon
       #
@@ -4770,7 +4851,7 @@ function(input, output, session) {
       addLayersControl(
         baseGroups = c("Slum", "Citywide"),
         overlayGroups = c("Upazila", "Wards"),
-        position = "topleft",
+        position = "bottomleft",
         options = layersControlOptions(collapsed = FALSE)) %>%
       #
       # Hide overlays
