@@ -5633,7 +5633,7 @@ function(input, output, session) {
 		  color = "#666",
 		  dashArray = "",
 		  fillOpacity = 0,
-		  bringToFront = TRUE),
+		  bringToFront = FALSE),
 		group = "Survey Areas") %>%
         #
         # Add layer control
@@ -5695,7 +5695,7 @@ function(input, output, session) {
 		  color = "#666",
 		  dashArray = "",
 		  fillOpacity = 0,
-		  bringToFront = TRUE),
+		  bringToFront = FALSE),
 		group = "Slum Areas") %>%
         #
         # Add layer control
@@ -6163,7 +6163,17 @@ function(input, output, session) {
           baseGroups = c("Survey Areas"),
           overlayGroups = c(paste(input$slum.area.name1, "grids", sep = " "), paste(input$slum.area.name1, "sampling points", sep = " ")),
           position = "topleft",
-          options = layersControlOptions(collapsed = FALSE))		      
+          options = layersControlOptions(collapsed = FALSE)) %>%		      
+        #
+        # Keep baselayers at base of map
+        #
+        htmlwidgets::onRender("
+          function(el, x) {
+            this.on('baselayerchange', function(e) {
+              e.layer.bringToBack();
+            })
+          }
+        ")
   })         
   #
   #

@@ -23,7 +23,7 @@ library(Hmisc)
 library(purrr)
 library(gstat)
 library(shinyjs)
-library(Cairo)
+#library(Cairo)
 
 
 ################################################################################
