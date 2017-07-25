@@ -1,5 +1,3 @@
-?labelFormat
-labelFormat
 format.legend <- function (prefix = "", suffix = "", between = " &ndash; ", digits = 3, #
     big.mark = ",", transform = identity) #
   {#
@@ -4092,6 +4090,8 @@ runApp()
 library(shiny)
 runApp()
 install.packages("Cairo")
+runApp()
+library(shiny)
 runApp()
 library(shiny)
 runApp()
