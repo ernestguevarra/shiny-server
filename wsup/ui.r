@@ -2154,7 +2154,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
                 #
                 actionButton(inputId = "warning1",
                              label = "List not available. Click for more info.",
-                             class = "btn-primary",
+                             class = "btn-warning",
                              icon = icon(name = "exclamation-triangle", class = "fa-lg"))
               ),
               #
@@ -2179,7 +2179,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
                 #
                 actionButton(inputId = "warning2",
                              label = "List not available. Click for more info.",
-                             class = "btn-primary",
+                             class = "btn-warning",
                              icon = icon(name = "exclamation-triangle", class = "fa-lg"))
               ),
               #
@@ -2204,7 +2204,7 @@ navbarPage(title = "Urban Water and Sanitation Survey",
                 #
                 actionButton(inputId = "warning3",
                              label = "List not available. Click for more info.",
-                             class = "btn-primary",
+                             class = "btn-warning",
                              icon = icon(name = "exclamation-triangle", class = "fa-lg"))
               ),
               #

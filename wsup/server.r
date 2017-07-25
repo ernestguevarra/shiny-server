@@ -7,6 +7,12 @@
 #
 #
 #
+options(shiny.maxRequestSize = 30 * 1024 ^ 2) 
+options(spinner.color = wsupColour)
+options(spinner.size = 0.5)
+#
+#
+#
 function(input, output, session) {
   #
   # Determine which country has been selected - set 1
