@@ -2497,7 +2497,7 @@ function(input, output, session) {
       #
       #
       #
-      basePlot <- ggplot(data = area.ladder(),
+      basePlot <- ggplot(data = area.ladder()[area.ladder()$type == "Citywide", ],
                          mapping = aes_string(x = "strata",
                                               y = "estimate",
                                               fill = "indicatorCode"))
@@ -2519,7 +2519,7 @@ function(input, output, session) {
       #
       #
       #
-      basePlot <- ggplot(data = wealth.ladder(),
+      basePlot <- ggplot(data = wealth.ladder()[wealth.ladder()$type == "Citywide", ],
                          mapping = aes_string(x = "strata",
                                               y = "estimate",
                                               fill = "indicatorCode"))      
