@@ -7,7 +7,11 @@
 #
 #
 #
+<<<<<<< HEAD
 options(shiny.maxRequestSize = 30 * 1024 ^ 2)
+=======
+options(shiny.maxRequestSize = 30 * 1024 ^ 2) 
+>>>>>>> single-interface
 options(spinner.color = wsupColour)
 options(spinner.size = 0.5)
 #
