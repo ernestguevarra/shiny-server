@@ -2245,6 +2245,15 @@ function(input, output, session) {
     wealthResultsLong[wealthResultsLong$country == input$country3 & wealthResultsLong$indicatorCategory == input$z.ladder, ]        
     })
   #
+  # Get data for service ladders - overall
+  #
+  overall.ladder <- reactive({
+    #
+    #
+    #
+    overallResultsLong[overallResultsLong$country == input$country3 & overallResultsLong$indicatorCategory == input$z.ladder, ]        
+    })
+  #
   # Get data for poverty - survey area
   #
   area.poverty <- reactive({
@@ -2279,6 +2288,15 @@ function(input, output, session) {
     #
     #
     wealthResultsLong[wealthResultsLong$country == input$country7 & wealthResultsLong$indicatorCategory == input$z.overall, ]        
+    })
+  #
+  # Get data for poverty - wealth
+  #
+  overall.overall <- reactive({
+    #
+    #
+    #
+    overallResultsLong[overallResultsLong$country == input$country7 & overallResultsLong$indicatorCategory == input$z.overall, ]        
     })
   #
   # Get data for water - survey area
@@ -2493,7 +2511,18 @@ function(input, output, session) {
     #
     #
     #
-    if(input$x.ladder == "surveyArea")
+    if(input$x.ladder == "." & input$y.ladder == ".")
+      #
+      #
+      #
+      basePlot <- ggplot(data = overall.ladder()[overall.ladder()$type == "Citywide", ],
+                         mapping = aes_string(x = "type",
+                                              y = "estimate",
+                                              fill = "indicatorCode"))
+    #
+    #
+    #
+    if(input$x.ladder == "." & input$y.ladder == "surveyArea")
       #
       #
       #
@@ -2504,18 +2533,18 @@ function(input, output, session) {
     #
     #
     #
-    if(input$x.ladder == "type")
+    if(input$x.ladder == "." & input$y.ladder == "type")
       #
       #
       #
-      basePlot <- ggplot(data = area.ladder(),
-                         mapping = aes_string(x = input$x.ladder,
+      basePlot <- ggplot(data = overall.ladder(),
+                         mapping = aes_string(x = input$y.ladder,
                                               y = "estimate",
                                               fill = "indicatorCode"))    
     #
     #
     #
-    if(input$x.ladder == "wealth")
+    if(input$x.ladder == "." & input$y.ladder == "wealth")
       #
       #
       #
@@ -2526,7 +2555,62 @@ function(input, output, session) {
     #
     #
     #
-    barPlot <- geom_bar(stat = "identity", position = "fill", alpha = 0.8)
+    if(input$x.ladder == "surveyArea" & input$y.ladder == ".")
+      #
+      #
+      #
+      basePlot <- ggplot(data = area.ladder()[area.ladder()$type == "Citywide", ],
+                         mapping = aes_string(x = "strata",
+                                              y = "estimate",
+                                              fill = "indicatorCode"))
+    #
+    #
+    #
+    if(input$x.ladder == "surveyArea" & input$y.ladder == "type")
+      #
+      #
+      #
+      basePlot <- ggplot(data = area.ladder(),
+                         mapping = aes_string(x = "strata",
+                                              y = "estimate",
+                                              fill = "indicatorCode"))
+    #
+    #
+    #
+    if(input$x.ladder == "type" & input$y.ladder == ".")
+      #
+      #
+      #
+      basePlot <- ggplot(data = overall.ladder(),
+                         mapping = aes_string(x = input$x.ladder,
+                                              y = "estimate",
+                                              fill = "indicatorCode"))    
+    #
+    #
+    #
+    if(input$x.ladder == "type" & input$y.ladder == "surveyArea")
+      #
+      #
+      #
+      basePlot <- ggplot(data = area.ladder(),
+                         mapping = aes_string(x = input$x.ladder,
+                                              y = "estimate",
+                                              fill = "indicatorCode"))
+    #
+    #
+    #
+    if(input$x.ladder == "wealth" & input$y.ladder == ".")
+      #
+      #
+      #
+      basePlot <- ggplot(data = wealth.ladder()[wealth.ladder()$type == "Citywide", ],
+                         mapping = aes_string(x = "strata",
+                                              y = "estimate",
+                                              fill = "indicatorCode"))      
+    #
+    #
+    #
+    barPlot <- geom_bar(stat = "identity", position = "fill", alpha = 0.6)
     #
     #
     #
@@ -2609,6 +2693,22 @@ function(input, output, session) {
     #
     xLabel <- labs(y = "Proportion")
     #
+    # y-axis label for All Data
+    #
+    if(input$x.ladder == "." & input$y.ladder == ".") yLabel <- labs(x = "Overall")
+    #
+    # y-axis label for All Data by survey area
+    #
+    if(input$x.ladder == "." & input$y.ladder == "surveyArea") yLabel <- labs(x = "Survey Area")
+    #
+    # y-axis label for All Data by area type
+    #
+    if(input$x.ladder == "." & input$y.ladder == "type") yLabel <- labs(x = "Area Type")
+    #
+    # y-axis label for All Data by wealth
+    #
+    if(input$x.ladder == "." & input$y.ladder == "wealth") yLabel <- labs(x = "Wealth Quintile")
+    #
     # y-axis label for surveyArea
     #
     if(input$x.ladder == "surveyArea") yLabel <- labs(x = "Survey Area")
@@ -2627,7 +2727,7 @@ function(input, output, session) {
     #
     # Set conditions for displaying facets
     #
-    if(input$y.ladder != "." & input$x.ladder != input$y.ladder & input$x.ladder != "wealth")
+    if(input$y.ladder != "." & input$x.ladder != input$y.ladder & input$x.ladder != "wealth" & input$x.ladder != ".")
       #
       # Add facets to plot
       #
@@ -2651,7 +2751,62 @@ function(input, output, session) {
     #
     #
     #
-    if(input$x.overall == "surveyArea")
+    if(input$x.overall == "." & input$y.overall == ".")
+      #
+      #
+      #
+      basePlot <- ggplot(data = overall.overall()[overall.overall()$type == "Citywide", ],
+                         mapping = aes_string(x = "type",
+                                              y = "estimate",
+                                              fill = "indicatorCode"))
+    #
+    #
+    #
+    if(input$x.overall == "." & input$y.overall == "surveyArea")
+      #
+      #
+      #
+      basePlot <- ggplot(data = area.overall()[area.overall()$type == "Citywide", ],
+                         mapping = aes_string(x = "strata",
+                                              y = "estimate",
+                                              fill = "indicatorCode"))
+    #
+    #
+    #
+    if(input$x.overall == "." & input$y.overall == "type")
+      #
+      #
+      #
+      basePlot <- ggplot(data = area.overall(),
+                         mapping = aes_string(x = input$y.overall,
+                                              y = "estimate",
+                                              fill = "indicatorCode"))          
+    #
+    #
+    #
+    if(input$x.overall == "." & input$y.overall == "wealth")
+      #
+      #
+      #
+      basePlot <- ggplot(data = wealth.overall()[wealth.overall()$type == "Citywide", ],
+                         mapping = aes_string(x = "strata",
+                                              y = "estimate",
+                                              fill = "indicatorCode"))      
+    #
+    #
+    #
+    if(input$x.overall == "surveyArea" & input$y.overall == ".")
+      #
+      #
+      #
+      basePlot <- ggplot(data = area.overall()[area.overall()$type == "Citywide", ],
+                         mapping = aes_string(x = "strata",
+                                              y = "estimate",
+                                              fill = "indicatorCode"))
+    #
+    #
+    #
+    if(input$x.overall == "surveyArea" & input$y.overall == "type")
       #
       #
       #
@@ -2662,22 +2817,33 @@ function(input, output, session) {
     #
     #
     #
-    if(input$x.overall == "type")
+    if(input$x.overall == "type" & input$y.overall == ".")
       #
       #
       #
-      basePlot <- ggplot(data = area.overall(),
+      basePlot <- ggplot(data = overall.overall(),
                          mapping = aes_string(x = input$x.overall,
                                               y = "estimate",
                                               fill = "indicatorCode"))      
     #
     #
     #
-    if(input$x.overall == "wealth")
+    if(input$x.overall == "type" & input$y.overall == "surveyArea")
       #
       #
       #
-      basePlot <- ggplot(data = wealth.overall(),
+      basePlot <- ggplot(data = area.overall(),
+                         mapping = aes_string(x = input$x.overall,
+                                              y = "estimate",
+                                              fill = "indicatorCode"))
+    #
+    #
+    #
+    if(input$x.overall == "wealth" & input$y.overall == ".")
+      #
+      #
+      #
+      basePlot <- ggplot(data = wealth.overall()[wealth.overall()$type == "Citywide", ],
                          mapping = aes_string(x = "strata",
                                               y = "estimate",
                                               fill = "indicatorCode"))      
@@ -2719,6 +2885,22 @@ function(input, output, session) {
     #
     if(input$x.overall == "surveyArea") yLabel <- labs(x = "Survey Area")
     #
+    # y-axis label for surveyArea
+    #
+    if(input$x.overall == "." & input$y.overall == ".") yLabel <- labs(x = "Overall")
+    #
+    # y-axis label for surveyArea
+    #
+    if(input$x.overall == "." & input$y.overall == "surveyArea") yLabel <- labs(x = "Survey Area")
+    #
+    # y-axis label for area type
+    #
+    if(input$x.overall == "." & input$y.overall == "type") yLabel <- labs(x = "Area Type")
+    #
+    # y-axis label for wealth quintile
+    #
+    if(input$x.overall == "." & input$y.overall == "wealth") yLabel <- labs(x = "Wealth Quintile")
+    #
     # y-axis label for type
     #
     if(input$x.overall == "type") yLabel <- labs(x = "Area Type")    
@@ -2733,7 +2915,7 @@ function(input, output, session) {
     #
     # Set conditions for displaying facets
     #
-    if(input$y.overall != "." & input$x.overall != input$y.overall & input$x.overall != "wealth")
+    if(input$y.overall != "." & input$x.overall != input$y.overall & input$x.overall != "wealth" & input$x.overall != ".")
       #
       # Add facets to plot
       #

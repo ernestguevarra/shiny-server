@@ -574,7 +574,8 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             selectInput(inputId = "x.ladder", 
                         label = "Select primary stratification", 
-                        choices = list("Survey Area" = "surveyArea", 
+                        choices = list("All Data (No Stratificaiton)" = ".",
+                                       "Survey Area" = "surveyArea", 
                                        "Area Type" = "type", 
                                        "Wealth Quintile" = "wealth")),
             #
@@ -1526,7 +1527,8 @@ navbarPage(title = "Urban Water and Sanitation Survey",
             #
             selectInput(inputId = "x.overall", 
                         label = "Select primary stratification", 
-                        choices = list("Survey Area" = "surveyArea", 
+                        choices = list("All Data (No Stratification)" = ".",
+                                       "Survey Area" = "surveyArea", 
                                        "Area Type" = "type", 
                                        "Wealth Quintile" = "wealth")),
             #  
