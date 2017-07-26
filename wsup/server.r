@@ -2777,7 +2777,7 @@ function(input, output, session) {
       #
       #
       #
-      basePlot <- ggplot(data = area.overall(),
+      basePlot <- ggplot(data = overall.overall(),
                          mapping = aes_string(x = input$y.overall,
                                               y = "estimate",
                                               fill = "indicatorCode"))          
