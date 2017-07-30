@@ -1,0 +1,656 @@
+head(yy)
+runApp()
+?facet_grid
+runApp()
+library(shiny)
+runApp()
+library(shiny)
+runApp()
+xx <- read.csv("surveyResultsAll.csv")
+xx[xx$indicatorCode == "nMembers", ]
+xx[xx$indicatorCode == "san13", ]
+xx[xx$indicatorCode == "san14", ]
+xx[xx$indicatorCode == "water12", ]
+xx[xx$indicatorCode == "overallSpend", ]
+library(shiny)
+runApp()
+library(shiny)
+runApp()
+library(shiny)
+runApp()
+library(shiny)
+runApp()
+xx <- read.csv("surveyResultsAll.csv")
+xx[xx$indicatorCode == "nMembers"]
+xx[xx$indicatorCode == "nMembers", ]
+xx[xx$indicatorCode == "jmpWater5", ]
+xx[xx$indicatorCode == "nMembers", ]
+library(shiny)
+runApp()
+?geocode
+geocode("Dhaka")
+runApp()
+?setView
+geocode("Dhaka", output = "latlona")
+geocode("Dhaka", output = "more")
+xx <- geocode("Dhaka", output = "more")
+str(xx)
+runApp()
+?read.csv
+runApp()
+library(shiny)
+runApp()
+library(shiny)
+runApp()
+xx <- read.csv("surveyResultsAll.csv")
+xx
+temp <- subset(xx, indicatorCode == "nMembers" & type = "Slum" & country == "Bangladesh")
+temp <- subset(xx, indicatorCode == "nMembers" & type == "Slum" & country == "Bangladesh")
+temp
+runApp()
+temp <- subset(xx, indicatorCode == "nMembers" & type == "Slum" & country == "Bangladesh" & !indicatorCode %in% c(paste("Wealth Quintile ", 1:5, sep = "")))
+temp
+temp <- subset(xx, indicatorCode == "nMembers" & type == "Slum" & country == "Bangladesh" & !strata %in% c(paste("Wealth Quintile ", 1:5, sep = "")))
+temp
+runApp()
+outline
+##
+# Pre-load Dhaka Bangladesh map#
+##
+dhaka.map <- readOGR(dsn = "surveyArea3",#
+                     layer = "surveyArea3",#
+                     verbose = FALSE)
+merge(dhaka.map, temp, by.x = "surveyArea", by.y = "strata")
+merge(dhaka.map, temp, by.x = "surveyArea", by.y = "strata")@data
+coordinates(dhaka.mpa)
+coordinates(dhaka.map)
+runApp()
+merge(dhaka.map, temp, by.x = "surveyArea", by.y = "strata")[["nMembers"]]
+runApp()
+library(shiny)
+runApp()
+xx <- read.csv("surveyResultsAll.csv")
+xx
+yy <- xx$estimate[xx$type == "Citywide" & xx$indicatorCode == "nMembers"]
+yy
+xx$estimate[xx$type == "Citywide" & xx$indicatorCode == "nMembers"]
+xx$estimate[xx$type == "Citywide" & xx$indicatorCode == "nMembers" $indicators$strata == "Overall"]
+xx$estimate[xx$type == "Citywide" & xx$indicatorCode == "nMembers" & indicators$strata == "Overall"]
+xx$estimate[xx$type == "Citywide" & xx$indicatorCode == "nMembers" & xx$strata == "Overall"]
+runApp()
+xx$estimate[xx$type == "Citywide" & xx$indicatorCode == "nMembers" & indicators$strata == "Overall"]
+yy <- xx$estimate[xx$type == "Citywide" & xx$indicatorCode == "nMembers"]
+yy
+head(xx)
+runApp()
+library(shiny)
+runApp()
+?addLegend
+runApp()
+library(shiny)
+runApp()
+library(shiny)
+runApp()
+varTitle <- as.character(unique(steerIndicators$varTitle))#
+names(varTitle) <- unique(steerIndicators$varSet)
+varTitle
+#################################################################################
+##
+# Global parameters#
+##
+#################################################################################
+##
+# Load libraries#
+##
+library(shiny)#
+library(ggplot2)#
+library(ggmap)#
+library(stringr)#
+library(leaflet)#
+library(shinycssloaders)#
+library(shinythemes)#
+library(geojsonio)#
+library(rgdal)#
+library(rgeos)#
+library(raster)#
+library(maps)#
+library(RColorBrewer)#
+library(classInt)#
+library(DT)#
+library(Hmisc)#
+library(purrr)#
+library(gstat)#
+library(shinyjs)#
+##
+# Create Mapbox base layer objects for leaflet mapping#
+##
+mapbox.satellite <- "https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.street    <- "https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.dark      <- "https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.light     <- "https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.moonlight <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj3nban30001z2rpahc10c9ef/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.northstar <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj4ke832y4sng2spe2ds4fs55/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.standard  <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj5di36jn0gxg2rphjn3yetpt/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.decimal   <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj5ms1akt3pbi2smtcewsex9m/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+##
+# Read steering file#
+##
+steerIndicators <- read.csv("steerIndicatorsV7.csv", header = TRUE, sep = ",")#
+##
+# Create indicator choices for dropdown#
+##
+vars <- as.character(steerIndicators$varList)#
+names(vars) <- steerIndicators$varShort#
+#
+varTitle <- as.character(unique(steerIndicators$varTitle))#
+names(varTitle) <- unique(steerIndicators$varSet)#
+#
+varSet1  <- c(vars[steerIndicators$varSet == "demographics"])#
+varSet2  <- c(vars[steerIndicators$varSet == "poverty"])#
+varSet3  <- c(vars[steerIndicators$varSet == "waterSet1"])#
+varSet4  <- c(vars[steerIndicators$varSet == "waterSet2"])#
+varSet5  <- c(vars[steerIndicators$varSet == "waterSet3"])#
+varSet6  <- c(vars[steerIndicators$varSet == "sanSet1"])#
+varSet7  <- c(vars[steerIndicators$varSet == "sanSet2"])#
+varSet8  <- c(vars[steerIndicators$varSet == "sanSet3"])#
+varSet9  <- c(vars[steerIndicators$varSet == "sanSet4"])#
+varSet10 <- c(vars[steerIndicators$varSet == "handSet"])#
+varSet11 <- c(vars[steerIndicators$varSet == "hygieneSet"])#
+varSet12 <- c(vars[steerIndicators$varSet == "overallSet1"])#
+varSet13 <- c(vars[steerIndicators$varSet == "overallSet2"])#
+#################################################################################
+##
+# Pre-load data#
+##
+#################################################################################
+##
+# Pre-load data#
+##
+current.data <- read.csv(file = "surveyResultsAll.csv", header = TRUE, sep = ",")#
+#################################################################################
+##
+# Pre-load maps#
+##
+#################################################################################
+##
+# Create GPS long/lat CRS object#
+##
+long.lat.crs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"#
+##
+# Pre-load Dhaka Bangladesh map#
+##
+dhaka.map <- readOGR(dsn = "surveyArea3",#
+                     layer = "surveyArea3",#
+                     verbose = FALSE)#
+##
+##
+##
+dhaka.map <- spTransform(dhaka.map, CRSobj = CRS(long.lat.crs))#
+#################################################################################
+##
+# Formatting legends#
+##
+#################################################################################
+#
+legend.format <- function (prefix = "", suffix = "", between = " &ndash; ", digits = 3, #
+    big.mark = ",", transform = identity) #
+{#
+    formatNum <- function(x) {#
+        format(round(transform(x), digits), trim = TRUE, scientific = FALSE, #
+            big.mark = big.mark)#
+    }#
+    function(type, ...) {#
+        switch(type, numeric = (function(cuts) {#
+            paste0(prefix, formatNum(cuts), suffix)#
+        })(...), bin = (function(cuts) {#
+            n = length(cuts)#
+            paste0(prefix, formatNum(cuts[-n]), between, formatNum(cuts[-1]), #
+                suffix)#
+        })(...), quantile = (function(cuts, p) {#
+            n = length(cuts)#
+            p = paste0(round(p * 100), "%")#
+            cuts = paste0(formatNum(cuts[-n]), between, formatNum(cuts[-1]), suffix)#
+        })(...), factor = (function(cuts) {#
+            paste0(prefix, as.character(transform(cuts)), suffix)#
+        })(...))#
+    }#
+}#
+#################################################################################
+##
+# 2 x 2 comparisons function#
+##
+#################################################################################
+#
+tab2by2 <- function(exposure, outcome)#
+  {#
+  tab <- table(exposure, outcome)#
+  a <- tab[1,1]#
+  b <- tab[1,2]#
+  c <- tab[2,1]#
+  d <- tab[2,2]#
+  rr <- (a / (a + b)) / (c / (c + d))#
+  se.log.rr <- sqrt((b / a) / (a + b) + (d / c) / (c + d))#
+  lci.rr <- exp(log(rr) - 1.96 * se.log.rr)#
+  uci.rr <- exp(log(rr) + 1.96 * se.log.rr)#
+  or <- (a / b) / (c / d)#
+  se.log.or <- sqrt(1 / a + 1 / b + 1 / c + 1 / d)#
+  lci.or <- exp(log(or) - 1.96 * se.log.or)#
+  uci.or <- exp(log(or) + 1.96 * se.log.or)#
+  ft <- fisher.test(tab)#
+  }#
+#################################################################################
+##
+# Function to add alpha parameter to colours#
+##
+#################################################################################
+#
+addArea <- function(string, prefix = "Survey Area") paste(prefix, string, sep = " ")#
+addWealth <- function(string, prefix = "Wealth Quintile") paste(prefix, string, sep = " ")#
+#################################################################################
+#                                                                              ##
+#                ASSEMBLE COLOUR VECTORS FOR CHARTS AND MAPS                   ##
+#                                                                              ##
+#################################################################################
+#
+#################################################################################
+##
+# Create WSUP-specific and WASH-specific colour schemes#
+##
+#################################################################################
+##
+# WSUP blue colour fill#
+##
+wsupFill   <- "#c6dbef"#
+##
+# WSUP blue colour border#
+##
+wsupColour <- "#3182bd"#
+##
+# Error bar colour#
+##
+errorColour <- "#e41a1c" #"#99000d"#
+##
+# Spinner colour#
+##
+options(spinner.color = wsupColour)#
+##
+# WASH ladder indicators colour schemes#
+##
+waterLadder <- c("#4575b4", "#74add1", "#ffffbf", "#feb24c", "#ec7014")#
+sanitationLadder <- c("#1a9850", "#a6d96a", "#ffffbf", "#feb24c", "#ec7014")#
+handwashLadder <- c("#cab2d6", "#feb24c", "#ec7014")#
+##
+# Colour for water collector plots#
+##
+collectColour <- c("#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6")#
+##
+# Colour for formal/informal plots#
+##
+formalColour <- c("#a6cee3", "#1f78b4")#
+##
+# Overall indicators colour schemes#
+##
+overallColour <- c("#fdbf6f", "#b2df8a", "#a6cee3", "#80cdc1")#
+#################################################################################
+##
+# Create WSUP theme for shiny#
+##
+#################################################################################
+#
+theme_wsup <- theme_bw() + #
+              theme(strip.text = element_text(size = 12), #
+                    strip.background = element_rect(colour = wsupColour, size = 1, fill = wsupFill),#
+                    axis.title = element_text(size = 12),#
+                    axis.text = element_text(size = 10),#
+                    panel.border = element_rect(colour = "gray90"),#
+                    panel.background = element_rect(fill = "transparent"),#
+                    legend.key = element_rect(colour = NA, fill = NA),#
+                    legend.key.size = unit(25, "pt"),#
+                    legend.title = element_text(size = 12),#
+                    legend.text = element_text(size = 10))
+varTitle <- as.character(unique(steerIndicators$varTitle))#
+names(varTitle) <- unique(steerIndicators$varSet)
+varTitle
+varTitle[names(varTitle) == "demographics"]
+vars
+vars[names(vars) == "demographics"]
+varSet1
+sets
+sets <- as.character(unique(steerIndicators$varSet))#
+names(sets) <- unique(steerIndicators$varTitle)
+sets
+names(sets)
+str(sets)
+sets[sets == "demographics"]
+sets
+runApp()
+vars
+runApp()
+vars
+vars[vars == steerIndicators$indicatorCode[steerIndicators$varSet == "waterSet1"]]
+vars[steerIndicators$indicatorCode[steerIndicators$varSet == "waterSet1"]]
+vars
+vars[vars == steerIndicators$indicatorCode[steerIndicators$varSet == input$varSet]]
+vars[vars == steerIndicators$indicatorCode[steerIndicators$varSet == "demographics"]]
+vars[1]
+vars["nMembers"]
+vars["Household members"]
+sets
+vars
+varTitle
+steerIndicators$varTitle
+steerIndicators$varTitle[steerIndicators$varSet == "demographcis"]
+steerIndicators$varTitle[steerIndicators$varSet == "demographics"]
+vars[steerIndicators$varTitle[steerIndicators$varSet == "demographics"]]
+vars[as.character(steerIndicators$varTitle)[steerIndicators$varSet == "demographics"]]
+vars[vars[steerIndicators$varSet == "demographics"]]
+vars
+vars[vars[sets == "demographics"]]
+as.character(steerIndicators$varTitle)
+steerIndicators$varTitle
+as.character(steerIndicators$varTitle)
+as.character(steerIndicators$varTitle)[steerIndicators$varSet == "demographics"]
+vars[as.character(steerIndicators$varTitle)[steerIndicators$varSet == "demographics"]]
+vars[as.character(steerIndicators$varTitle)[steerIndicators$varSet == "demographics"], ]
+vars["Demographics"]
+vars
+vars[as.character(steerIndicators$varShort)[steerIndicators$varSet == "demographics"], ]
+vars[as.character(steerIndicators$varShort)[steerIndicators$varSet == "demographics"]]
+vars[as.character(steerIndicators$varShort)[steerIndicators$varSet == "waterSet1"]]
+runApp()
+sets
+runApp()
+vars
+runApp()
+sets
+runApp()
+ls()
+xx <- read.csv("surveyResultsAll.csv")
+yy <- subset(xx, indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet1"])
+yy
+yy <- subset(xx, indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet1"] & strata == "Overall")
+yy
+barPlot <- ggplot(data = yy, mapping = aes(x = strata, y = estimate, fill = indicatorCode))
+basePlot <- ggplot(data = yy, mapping = aes(x = strata, y = estimate, fill = indicatorCode))
+barPlot <- geom_bar(stat = "identity", position = "fill", alpha = 0.6)
+basePlot + barPlot
+barPlot <- geom_bar(stat = "identity", position = "fill", alpha = 0.6, fill = waterLadder)
+basePlot + barPlot
+runApp()
+library(shiny)
+runApp()
+xx <- read.csv("surveyResultsAll.csv")
+yy <- subset(xx, indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == "waterSet1"])
+yy
+yy.overall <- subset(yy, strata == "Overall")
+yy.overall
+runApp()
+xx
+xx[xx$varSet == "overallSet1"]
+xx[xx$varSet == "overallSet1", ]
+xx[xx$indicatorCode %in% c("overall1", "overall2", "overall3", "overall4"), ]
+runApp()
+xx$indicatorCode
+xx[xx$indicatorCode %in% c("sanSet1", "sanSet2", "sanSet3", "sanSet4", "sanSet5"), ]
+class(xx$IndicatorCode)
+xx[xx$indicatorCode %in% c("sanSet1", "sanSet2", "sanSet3", "sanSet4", "sanSet5"), ]
+class(xx$indicatorCode)
+levels(xx$indicatorCode)
+runApp()
+library(shiny)
+runApp()
+#################################################################################
+##
+# Global parameters#
+##
+#################################################################################
+##
+# Load libraries#
+##
+library(shiny)#
+library(ggplot2)#
+library(ggmap)#
+library(stringr)#
+library(leaflet)#
+library(shinycssloaders)#
+library(shinythemes)#
+library(geojsonio)#
+library(rgdal)#
+library(rgeos)#
+library(raster)#
+library(maps)#
+library(RColorBrewer)#
+library(classInt)#
+library(DT)#
+library(Hmisc)#
+library(purrr)#
+library(gstat)#
+library(shinyjs)#
+##
+# Create Mapbox base layer objects for leaflet mapping#
+##
+mapbox.satellite <- "https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.street    <- "https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.dark      <- "https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.light     <- "https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.moonlight <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj3nban30001z2rpahc10c9ef/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.northstar <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj4ke832y4sng2spe2ds4fs55/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.standard  <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj5di36jn0gxg2rphjn3yetpt/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+mapbox.decimal   <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj5ms1akt3pbi2smtcewsex9m/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"#
+##
+# Read steering file#
+##
+steerIndicators <- read.csv("steerIndicatorsV7.csv", header = TRUE, sep = ",")#
+##
+# Create indicator choices for dropdown#
+##
+vars <- as.character(steerIndicators$varList)#
+names(vars) <- steerIndicators$varShort#
+#
+sets <- as.character(unique(steerIndicators$varSet))#
+names(sets) <- unique(steerIndicators$varTitle)#
+#
+varSet1  <- c(vars[steerIndicators$varSet == "demographics"])#
+varSet2  <- c(vars[steerIndicators$varSet == "poverty"])#
+varSet3  <- c(vars[steerIndicators$varSet == "waterSet1"])#
+varSet4  <- c(vars[steerIndicators$varSet == "waterSet2"])#
+varSet5  <- c(vars[steerIndicators$varSet == "waterSet3"])#
+varSet6  <- c(vars[steerIndicators$varSet == "sanSet1"])#
+varSet7  <- c(vars[steerIndicators$varSet == "sanSet2"])#
+varSet8  <- c(vars[steerIndicators$varSet == "sanSet3"])#
+varSet9  <- c(vars[steerIndicators$varSet == "sanSet4"])#
+varSet10 <- c(vars[steerIndicators$varSet == "handSet"])#
+varSet11 <- c(vars[steerIndicators$varSet == "hygieneSet"])#
+varSet12 <- c(vars[steerIndicators$varSet == "overallSet1"])#
+varSet13 <- c(vars[steerIndicators$varSet == "overallSet2"])#
+#################################################################################
+##
+# Pre-load data#
+##
+#################################################################################
+##
+# Pre-load data#
+##
+current.data <- read.csv(file = "surveyResultsAll.csv", header = TRUE, sep = ",")#
+#################################################################################
+##
+# Pre-load maps#
+##
+#################################################################################
+##
+# Create GPS long/lat CRS object#
+##
+long.lat.crs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"#
+##
+# Pre-load Dhaka Bangladesh map#
+##
+dhaka.map <- readOGR(dsn = "surveyArea3",#
+                     layer = "surveyArea3",#
+                     verbose = FALSE)#
+##
+##
+##
+dhaka.map <- spTransform(dhaka.map, CRSobj = CRS(long.lat.crs))#
+#################################################################################
+##
+# Formatting legends#
+##
+#################################################################################
+#
+legend.format <- function (prefix = "", suffix = "", between = " &ndash; ", digits = 3, #
+    big.mark = ",", transform = identity) #
+{#
+    formatNum <- function(x) {#
+        format(round(transform(x), digits), trim = TRUE, scientific = FALSE, #
+            big.mark = big.mark)#
+    }#
+    function(type, ...) {#
+        switch(type, numeric = (function(cuts) {#
+            paste0(prefix, formatNum(cuts), suffix)#
+        })(...), bin = (function(cuts) {#
+            n = length(cuts)#
+            paste0(prefix, formatNum(cuts[-n]), between, formatNum(cuts[-1]), #
+                suffix)#
+        })(...), quantile = (function(cuts, p) {#
+            n = length(cuts)#
+            p = paste0(round(p * 100), "%")#
+            cuts = paste0(formatNum(cuts[-n]), between, formatNum(cuts[-1]), suffix)#
+        })(...), factor = (function(cuts) {#
+            paste0(prefix, as.character(transform(cuts)), suffix)#
+        })(...))#
+    }#
+}#
+#################################################################################
+##
+# 2 x 2 comparisons function#
+##
+#################################################################################
+#
+tab2by2 <- function(exposure, outcome)#
+  {#
+  tab <- table(exposure, outcome)#
+  a <- tab[1,1]#
+  b <- tab[1,2]#
+  c <- tab[2,1]#
+  d <- tab[2,2]#
+  rr <- (a / (a + b)) / (c / (c + d))#
+  se.log.rr <- sqrt((b / a) / (a + b) + (d / c) / (c + d))#
+  lci.rr <- exp(log(rr) - 1.96 * se.log.rr)#
+  uci.rr <- exp(log(rr) + 1.96 * se.log.rr)#
+  or <- (a / b) / (c / d)#
+  se.log.or <- sqrt(1 / a + 1 / b + 1 / c + 1 / d)#
+  lci.or <- exp(log(or) - 1.96 * se.log.or)#
+  uci.or <- exp(log(or) + 1.96 * se.log.or)#
+  ft <- fisher.test(tab)#
+  }#
+#################################################################################
+##
+# Function to add alpha parameter to colours#
+##
+#################################################################################
+#
+addArea <- function(string, prefix = "Survey Area") paste(prefix, string, sep = " ")#
+addWealth <- function(string, prefix = "Wealth Quintile") paste(prefix, string, sep = " ")#
+#################################################################################
+#                                                                              ##
+#                ASSEMBLE COLOUR VECTORS FOR CHARTS AND MAPS                   ##
+#                                                                              ##
+#################################################################################
+#
+#################################################################################
+##
+# Create WSUP-specific and WASH-specific colour schemes#
+##
+#################################################################################
+##
+# WSUP blue colour fill#
+##
+wsupFill   <- "#c6dbef"#
+##
+# WSUP blue colour border#
+##
+wsupColour <- "#3182bd"#
+##
+# Error bar colour#
+##
+errorColour <- "#e41a1c" #"#99000d"#
+##
+# Spinner colour#
+##
+options(spinner.color = wsupColour)#
+##
+# WASH ladder indicators colour schemes#
+##
+waterLadder <- c("#4575b4", "#74add1", "#ffffbf", "#feb24c", "#ec7014")#
+sanitationLadder <- c("#1a9850", "#a6d96a", "#ffffbf", "#feb24c", "#ec7014")#
+handwashLadder <- c("#cab2d6", "#feb24c", "#ec7014")#
+##
+# Colour for water collector plots#
+##
+collectColour <- c("#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6")#
+##
+# Colour for formal/informal plots#
+##
+formalColour <- c("#a6cee3", "#1f78b4")#
+##
+# Overall indicators colour schemes#
+##
+overallColour <- c("#fdbf6f", "#b2df8a", "#a6cee3", "#80cdc1")#
+#################################################################################
+##
+# Create WSUP theme for shiny#
+##
+#################################################################################
+#
+theme_wsup <- theme_bw() + #
+              theme(strip.text = element_text(size = 12), #
+                    strip.background = element_rect(colour = wsupColour, size = 1, fill = wsupFill),#
+                    axis.title = element_text(size = 12),#
+                    axis.text = element_text(size = 10),#
+                    panel.border = element_rect(colour = "gray90"),#
+                    panel.background = element_rect(fill = "transparent"),#
+                    legend.key = element_rect(colour = NA, fill = NA),#
+                    legend.key.size = unit(25, "pt"),#
+                    legend.title = element_text(size = 12),#
+                    legend.text = element_text(size = 10))
+resultsDF <- read.csv("surveyResultsAll.csv")
+xx <- subset(resultsDF, indicatorCode %in% c("jmpSan1", "jmpSan2", "jmpSan3", "jmpSan4", "jmpSan5"))
+xx
+yy <- subset(xx, strata = "Overall" & type = "Citywide")
+yy <- subset(xx, strata == "Overall" & type == "Citywide")
+yy
+barPlot <- ggplot(data = yy, mapping = aes(x = strata, y = estimate, fill = sort(indicatorCode)))
+basePlot <- ggplot(data = yy, mapping = aes(x = strata, y = estimate, fill = sort(indicatorCode)))
+barPlot <- geom_bar(stat = "identity", position = "fill", alpha = 0.6)
+basePlot + barPlot
+barPlot <- ggplot(data = yy, mapping = aes(x = strata, y = estimate, fill = rev(indicatorCode)))
+basePlot <- ggplot(data = yy, mapping = aes(x = strata, y = estimate, fill = rev(indicatorCode)))
+basePlot + barPlot
+barPlot <- geom_bar(stat = "identity", position = "fill", alpha = 0.6)
+basePlot + barPlot
+yy$indicatorCode
+as.factor(yy$indicatorCode, levels = sort(yy$indicatorCode))
+?as.factor
+factor(yy$indicatorCode, levels = sort(yy$indicatorCode))
+runApp()
+resultsDF
+resultsDF$indicatorCode
+xx
+xx$indicatorCode
+yy
+yy$indicatorCode
+levels(yy$indicatorCode)
+levels(yy)
+resultsDF[resultsDF$indicatorCode %in% c("jmpSan1", "jmpSan2", "jmpSan3", "jmpSan4", "jmpSan5"), ]
+xx <- resultsDF[resultsDF$indicatorCode %in% c("jmpSan1", "jmpSan2", "jmpSan3", "jmpSan4", "jmpSan5"), ]
+xx$indicatorCode
+sort(xx$indicatorCode)
+runApp()
+resultsDF
+order(resultsDF$indicatorCode)
+resultsdorder(resultsDF$indicatorCode)
+resultsDF[order(resultsDF$indicatorCode), ]
+write.csv(resultsDF[order(resultsDF$indicatorCode), ], "surveyResultsAll.csv", row.names = FALSE)
+runApp()
+library(shiny)
+runApp()
