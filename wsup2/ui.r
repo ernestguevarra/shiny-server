@@ -465,33 +465,41 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
     #
     tabPanel(title = "Spatial Sampling", id = "tabs22", icon = icon(name = "map", class = "fa-lg"),
       #
-      # Set sidebar layout
-      #
-      sidebarLayout(
+      # Header HTML
+      #       
+      div(class = "outer",
         #
-        # Add sidebar panel
+        # Header HTML
         #
-        sidebarPanel(
+        tags$head(
+          includeCSS("styles.css"),
+          tags$link(rel = "icon", href = "http://www.validmeasures.org/favicon.ico")
+        ),
+        #
+        # Render leaflet map
+        #
+        leafletOutput("map.sampling", width = "100%", height = "100%"),
+        #
+        #
+        #
+        absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
+          draggable = TRUE, top = 65, left = "auto", right = 10, bottom = "auto",
+          width = 330, height = "auto",
           #
           # Include shinyjs
           #
           shinyjs::useShinyjs(),
           #
-          # Specify ID for sidebar panel
           #
-          id = "spatial-sample",
           #
-          # Sub-header
-          #  
-          h3("Spatial Sampling"),
+          h4("Spatial Sampling"),
           #
-          # Add whitespace
           #
-          br(),
+          #
           #
           # Sub-sub-header
           #
-          div(style="display: inline-block;vertical-align:middle;", h4("City map data input")),
+          div(style="display: inline-block;vertical-align:middle;", h5("City map data input")),
           #
           # Action link 'Info' for uploading survey area map
           #
@@ -543,12 +551,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                 actionButton(inputId = "sample.city",
                              label = "Sample",
                              class = "btn-primary",
-                             icon = icon(name = "th", clas = "fa-lg"))),
-            #
-            #
-            #
-            div(style="display: inline-block;vertical-align:middle;",
-                uiOutput("download.city"))                         
+                             icon = icon(name = "th", clas = "fa-lg")))
             ),
             #
             #
@@ -557,7 +560,8 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             #
             # Sub-sub-header
             #
-            div(style="display: inline-block;vertical-align:middle;", h4("Slum map data input")),
+            div(style="display: inline-block;vertical-align:middle;", 
+                h5("Slum map data input")),
             #
             # Action link 'Info' for uploading survey area map
             #
@@ -617,17 +621,16 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                 actionButton(inputId = "sample.slum1",
                              label = "Sample",
                              class = "btn-primary",
-                             icon = icon(name = "th", clas = "fa-lg"))),
-            #
-            #
-            #
-            div(style="display: inline-block;vertical-align:middle;",
-                uiOutput("download.slum1"))
+                             icon = icon(name = "th", clas = "fa-lg")))
           ),            
           #
           #
           #
           conditionalPanel(condition = "input.slumInfo == 'slum.list'",
+            #
+            #
+            #
+            hr(),
             #
             # 
             #
@@ -659,116 +662,101 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                 actionButton(inputId = "sample.slum2",
                              label = "Sample",
                              class = "btn-primary",
-                             icon = icon(name = "th", clas = "fa-lg"))),
-            #
-            #
-            #
-            div(style="display: inline-block;vertical-align:middle;",
-                uiOutput("download.slum2"))
-        ),
-        #
-        #
-        #
-        width = 3
-        ),
-        #
-        #
-        #
-        mainPanel(
+                             icon = icon(name = "th", clas = "fa-lg")))
+          ),
           #
           #
           #
-          tabsetPanel(type = "tabs", id = "tabs9",
+          conditionalPanel(condition = "input['sample.city']",
             #
-            #
-            #
-            tabPanel(title = "Sampling Maps", value = 91,
-              #
-              # Render leaflet map
-              #
-              withSpinner(leafletOutput("map.sampling", width = "100%", height = 500), type = 5)
-            ),
-            #
-            #
-            #
-            tabPanel(title = "City Map Sampling Lists", value = 92,
+            # Create absolute panel - tables
+            # 
+            absolutePanel(id = "tables", class = "panel panel-default", fixed = TRUE,
+              draggable = TRUE, top = "auto", right = "auto", left = 10, bottom = 10,
+              width = "auto", height = "auto",
               #
               #
               #
-              conditionalPanel(condition = "input['city.area.name'] == '.'",
-                #
-                #
-                #
-                br(), br(),
-                #
-                #
-                #
-                actionButton(inputId = "warning1",
-                             label = "List not available. Click for more info.",
-                             class = "btn-warning",
-                             icon = icon(name = "exclamation-triangle", class = "fa-lg"))
+              div(style="display: inline-block;vertical-align:middle;",
+                  h4(textOutput("city.table.header"))
               ),
+              #
+              #
+              #
+              div(style="display: inline-block;vertical-align:middle;",
+                  uiOutput("download.city")                         
+              ),
+              #
+              #
+              #
+              hr(),
               #
               # Render table
               #
               DT::dataTableOutput("city.grid.table")
-            ),
+            )
+          ),
+          #
+          #
+          #
+          conditionalPanel(condition = "input['sample.slum1']",
             #
-            #
-            #
-            tabPanel(title = "Slum Map Sampling Lists", value = 93,
+            # Create absolute panel - tables
+            # 
+            absolutePanel(id = "tables", class = "panel panel-default", fixed = TRUE,
+              draggable = TRUE, top = "auto", right = "auto", left = 10, bottom = 10,
+              width = "auto", height = "auto",
               #
               #
               #
-              conditionalPanel(condition = "input['slum.area.name1'] == '.'",
-                #
-                #
-                #
-                br(), br(),
-                #
-                #
-                #
-                actionButton(inputId = "warning2",
-                             label = "List not available. Click for more info.",
-                             class = "btn-warning",
-                             icon = icon(name = "exclamation-triangle", class = "fa-lg"))
-              ),
+              h4(textOutput("slum1.table.header")),
+              #
+              #
+              #
+              div(style="display: inline-block;vertical-align:middle;",
+                  uiOutput("download.slum1")                         
+              ),              
+              #
+              #
+              #
+              hr(),
               #
               # Render table
               #
               DT::dataTableOutput("slum.grid.table")
-            ),
+            )
+          ),
+          #
+          #
+          #
+          conditionalPanel(condition = "input['sample.slum2']",
             #
-            #
-            #
-            tabPanel(title = "Slum Lists", value = 94,
+            # Create absolute panel - tables
+            # 
+            absolutePanel(id = "tables", class = "panel panel-default", fixed = TRUE,
+              draggable = TRUE, top = "auto", right = "auto", left = 10, bottom = 10,
+              width = "auto", height = "auto",
               #
               #
               #
-              conditionalPanel(condition = "input['slum.area.name2'] == '.'",
-                #
-                #
-                #
-                br(), br(),
-                #
-                #
-                #
-                actionButton(inputId = "warning3",
-                             label = "List not available. Click for more info.",
-                             class = "btn-warning",
-                             icon = icon(name = "exclamation-triangle", class = "fa-lg"))
-              ),
+              h4(textOutput("slum2.table.header")),
+              #
+              #
+              #
+              div(style="display: inline-block;vertical-align:middle;",
+                  uiOutput("download.slum2")                         
+              ),              
+              #
+              #
+              #
+              hr(),
               #
               # Render table
               #
-              DT::dataTableOutput("sample.slum.table")              
+              DT::dataTableOutput("sample.slum.table")
             )
-          ), 
-        #
-        #
-        #
-        width = 9
-        )
+          )                   
+        )  
       )
     )
   ),
@@ -780,3 +768,4 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
            icon = icon(name = "cog", class = "fa-lg")
   )
 )
+

@@ -30,6 +30,17 @@ h1, h2, h3, h4 { font-weight: 400; }
   transition: opacity 500ms 1s;
 }
 
+#tables {
+  /* Appearance */
+  background-color: white;
+  padding: 20px 20px 20px 20px;
+  cursor: move;
+  /* Fade out while not hovering */
+  opacity: 0.45;
+  zoom: 0.9;
+  transition: opacity 500ms 1s;
+}
+
 #controls:hover {
   /* Fade in while hovering */
   opacity: 0.95;
@@ -37,6 +48,12 @@ h1, h2, h3, h4 { font-weight: 400; }
 }
 
 #plots:hover {
+  /* Fade in while hovering */
+  opacity: 0.95;
+  transition-delay: 0;
+}
+
+#tables:hover {
   /* Fade in while hovering */
   opacity: 0.95;
   transition-delay: 0;

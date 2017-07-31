@@ -434,6 +434,33 @@ function(input, output, session) {
                     value = FALSE)
       }
   })
+  #
+  #
+  #
+  output$city.table.header <- reactive({
+    #
+    #
+    #
+    paste("Sampling List: ", input$var.city.area, " - ", input$city.area.name)
+  })
+  #
+  #
+  #
+  output$slum1.table.header <- reactive({
+    #
+    #
+    #
+    paste("Sampling List: ", input$var.slum.area1, " - ", input$slum.area.name1)
+  })
+  #
+  #
+  #
+  output$slum2.table.header <- reactive({
+    #
+    #
+    #
+    paste("Sampling List: ", input$var.slum.area2, " - ", input$slum.area.name2)
+  })
 
 
 ################################################################################
@@ -1571,7 +1598,7 @@ function(input, output, session) {
       #  attribution = "Maps by <a href='http://www.mapbox.com/'>Mapbox</a>"
       #) %>%
       addProviderTiles(providers$Esri.NatGeoWorldMap) %>%      
-      setView(lng = 0, lat = 0, zoom = 2)
+      setView(lng = 20, lat = 20, zoom = 3)
   })
 
 ################################################################################
@@ -1726,8 +1753,18 @@ function(input, output, session) {
         #
         addLayersControl(
           baseGroups = c("Survey Areas"),
-          position = "bottomleft",
-          options = layersControlOptions(collapsed = FALSE))		      
+          position = "topleft",
+          options = layersControlOptions(collapsed = FALSE)) %>%
+        #
+        # Keep baselayers at base of map
+        #
+        htmlwidgets::onRender("
+          function(el, x) {
+            this.on('baselayerchange', function(e) {
+              e.layer.bringToBack();
+            })
+          }
+        ")          		      
   })    
   #
   #
@@ -1788,8 +1825,18 @@ function(input, output, session) {
         #
         addLayersControl(
           baseGroups = c("Slum Areas"),
-          position = "bottomleft",
-          options = layersControlOptions(collapsed = FALSE))		      
+          position = "topleft",
+          options = layersControlOptions(collapsed = FALSE)) %>%
+        #
+        # Keep baselayers at base of map
+        #
+        htmlwidgets::onRender("
+          function(el, x) {
+            this.on('baselayerchange', function(e) {
+              e.layer.bringToBack();
+            })
+          }
+        ")		      
   })
   #
   #
@@ -2072,8 +2119,18 @@ function(input, output, session) {
         addLayersControl(
           baseGroups = c("Survey Areas"),
           overlayGroups = c(paste(input$city.area.name, "grids", sep = " "), paste(input$city.area.name, "sampling points", sep = " ")),
-          position = "bottomleft",
-          options = layersControlOptions(collapsed = FALSE))		      
+          position = "topleft",
+          options = layersControlOptions(collapsed = FALSE)) %>%
+        #
+        # Keep baselayers at base of map
+        #
+        htmlwidgets::onRender("
+          function(el, x) {
+            this.on('baselayerchange', function(e) {
+              e.layer.bringToBack();
+            })
+          }
+        ")          		      
   })         
   #
   #
@@ -2356,68 +2413,5 @@ function(input, output, session) {
                      label = "Download",
                      class = "btn-primary",
                      icon = icon(name = "download", class = "fa-lg"))
-  })
-  #
-  #
-  #
-  observeEvent(input$warning1, {
-    #
-    #
-    #
-    showModal(modalDialog(title = "No sampling lists available",
-                          size = "m",
-                          HTML("
-                            <p>There are no sampling lists available yet. This is most likely because:</p>
-                            <ul>
-                              <li>you have not provided a map of the survey area to sample; and/or</li> 
-                              <li>you have not clicked on the <code>Map</code> button to create the map; and/or</li>
-                              <li>you have not provided additional information regarding specific area on the map you want to sample; and/or</li>
-                              <li>you have not clicked on the <code>Sample</code> button to create the samplig grid on your selected sampling area.</li>
-                            </ul>
-                            <br/>
-                            </p>Please go through these steps again and then come back to this tab to view the sampling list created.</p>
-                          ")))
-  })
-  #
-  #
-  #
-  observeEvent(input$warning2, {
-    #
-    #
-    #
-    showModal(modalDialog(title = "No sampling lists available",
-                          size = "m",
-                          HTML("
-                            <p>There are no sampling lists available yet. This is most likely because:</p>
-                            <ul>
-                              <li>you have not provided a map of the survey area to sample; and/or</li> 
-                              <li>you have not clicked on the <code>Map</code> button to create the map; and/or</li>
-                              <li>you have not provided additional information regarding specific area on the map you want to sample; and/or</li>
-                              <li>you have not clicked on the <code>Sample</code> button to create the samplig grid on your selected sampling area.</li>
-                            </ul>
-                            <br/>
-                            </p>Please go through these steps again and then come back to this tab to view the sampling list created.</p>
-                          ")))
-  })
-  #
-  #
-  #
-  observeEvent(input$warning3, {
-    #
-    #
-    #
-    showModal(modalDialog(title = "No sampling lists available",
-                          size = "m",
-                          HTML("
-                            <p>There are no sampling lists available yet. This is most likely because:</p>
-                            <ul>
-                              <li>you have not provided a map of the survey area to sample; and/or</li> 
-                              <li>you have not clicked on the <code>Map</code> button to create the map; and/or</li>
-                              <li>you have not provided additional information regarding specific area on the map you want to sample; and/or</li>
-                              <li>you have not clicked on the <code>Sample</code> button to create the samplig grid on your selected sampling area.</li>
-                            </ul>
-                            <br/>
-                            </p>Please go through these steps again and then come back to this tab to view the sampling list created.</p>
-                          ")))
   })
 }
