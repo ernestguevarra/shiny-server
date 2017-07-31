@@ -38,7 +38,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         # Panel section header
         #
 		div(style="display: inline-block;vertical-align:middle;",        
-            h3("Chart Options")
+            h4("Chart Options")
         ),
 		#
 		# Add 'Help' action link
@@ -48,11 +48,9 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 					   label = "",
 					   icon = icon(name = "info-sign", lib = "glyphicon"))),
         #
-        # Input control for survey dataset
         #
-        #fileInput(inputId = "file1",
-        #  label = "Upload survey dataset",
-        #  accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
+        #
+        br(),					   
         #
         # Select country survey
         #
@@ -92,14 +90,14 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         #
         #
         #
-        selectInput(inputId = "varSet",
-          label = "Select Indicator Set",
-          choices = list(None = ".")),
+	    selectInput(inputId = "varSet",
+		  label = "Select indicator set",
+		  choices = list(None = ".")),
         #
         #
         #
         selectInput(inputId = "varList",
-          label = "Select Indicator",
+          label = "Select indicator",
           choices = list(None = ".")),
         #
         #
@@ -132,7 +130,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         #
         #
 		div(style="display: inline-block;vertical-align:middle;",        
-            h3("Map Options")
+            h4("Map Options")
         ),
 		#
 		# Add 'Help' action link
@@ -142,46 +140,56 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 					   label = "",
 					   icon = icon(name = "info-sign", lib = "glyphicon"))),
 		#
+		#
+		#
+		br(),
+		#
 		# Select map colour scheme
 		#
-		selectInput(inputId = "map.palette",
-					label = "Select colour palette",
-					choices = list("Sequential" = c("Blues" = "Blues",
-													"Blue to Green" = "BuGn",
-													"Blue to Purple" = "BuPu",
-													"Green to Blue" = "GnBu",
-													"Greens" = "Greens",
-													"Greys" = "Greys",
-													"Oranges" = "Oranges",
-													"Orange to Red" = "OrRd",
-													"Purples" = "Purples",
-													"Purple to Blue" = "PuBu",
-													"Purple to Blue to Green" = "PuBuGn",
-													"Purple to Red" = "PuRd",
-													"Reds" = "Reds",
-													"Yellow to Green" = "YlGn",
-													"Yellow to Green to Blue" = "YlGnBu",
-													"Yellow to Orange to Brown" = "YlOrBr",
-													"Yellow to Orange to Red" = "YlOrRd"),
-									"Divergent" = c("Brown to Blue to Green" = "BrBG",
-													"Pink to Yellow to Green" = "PiYG",
-													"Purple to Red to Green" = "PRGn",
-													"Purple to Orange" = "PuOr",
-													"Red to Blue" = "RdBu",
-													"Red to Grey" = "RdGy",
-													"Red to Yellow to Blue" = "RdYlBu",
-													"Red to Yellow to Green" = "RdYlGn",
-													"Spectral" = "Spectral")),
-					selected = "YlGnBu"),
+        div(style="display: inline-block;vertical-align:middle;",		
+		  selectInput(inputId = "map.palette",
+		   			  label = "Colour palette",
+					  choices = list("Sequential" = c("Blues" = "Blues",
+													  "BuGn" = "BuGn",
+													  "BuPu" = "BuPu",
+													  "GnBu" = "GnBu",
+													  "Greens" = "Greens",
+													  "Greys" = "Greys",
+													  "Oranges" = "Oranges",
+													  "OrRd" = "OrRd",
+													  "Purples" = "Purples",
+													  "PuBu" = "PuBu",
+													  "PuBuGn" = "PuBuGn",
+													  "PuRd" = "PuRd",
+													  "Reds" = "Reds",
+													  "YlGn" = "YlGn",
+													  "YlGnBu" = "YlGnBu",
+													  "YlOrBr" = "YlOrBr",
+													  "YlOrRd" = "YlOrRd"),
+									"Divergent" =   c("BrBuGn" = "BrBG",
+													  "PiYlGn" = "PiYG",
+													  "PuRdGn" = "PRGn",
+													  "PuOr" = "PuOr",
+													  "RdBu" = "RdBu",
+													  "RdGy" = "RdGy",
+													  "RdYlBu" = "RdYlBu",
+													  "RdYlGn" = "RdYlGn",
+													  "Spectral" = "Spectral")),
+					  selected = "YlGnBu",
+					  width = "140px")
+		),
 		#
 		# Select mapping colour method
 		#
-		selectInput(inputId = "map.colour", 
-					label = "Select colour mapping method", 
-					choices = list("Linear" = "linear", 
-								   "Equal Interval" = "interval", 
-								   "Quantile" = "quantile"),
-					selected = "interval"),
+        div(style="display: inline-block;vertical-align:middle;",
+		  selectInput(inputId = "map.colour", 
+					  label = "Mapping method", 
+					  choices = list("Linear" = "linear", 
+						  		     "Equal Interval" = "interval", 
+								     "Quantile" = "quantile"),
+					  selected = "interval",
+					  width = "140px")
+		),
 	    #
 	    #
 	    #

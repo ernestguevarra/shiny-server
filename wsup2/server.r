@@ -51,7 +51,7 @@ function(input, output, session) {
 	  #
 	  updateSelectInput(session = session,
 	    inputId = "varSet",
-	    label = "Select Indicator Set",
+	    label = "Select indicator set",
 	    choices = c("Select" = ".", sets),
 	    selected = ".")
 	}
@@ -325,7 +325,7 @@ function(input, output, session) {
       #
       updateSelectInput(session = session,
                         inputId = "map.colour",
-                        label = "Select colour mapping method",
+                        label = "Mapping method",
                         choices = list("Linear" = "linear",
                                        "Equal interval" = "interval"),
                         selected = "interval")
@@ -338,7 +338,7 @@ function(input, output, session) {
       #
       updateSelectInput(session = session,
                         inputId = "map.colour",
-                        label = "Select colour mapping method",
+                        label = "Mapping method",
                         choices = list("Linear" = "linear",
                                        "Equal interval" = "interval",
                                        "Quantile" = "quantile"),
