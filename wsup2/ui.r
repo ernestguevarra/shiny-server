@@ -46,7 +46,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 		div(style="display: inline-block;vertical-align:middle;",
 			actionLink(inputId = "info1", 
 					   label = "",
-					   icon = icon(name = "question-sign", lib = "glyphicon"))),
+					   icon = icon(name = "info-sign", lib = "glyphicon"))),
         #
         # Input control for survey dataset
         #
@@ -127,14 +127,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         #
         #
         #
-        conditionalPanel(condition = "input.varList != '.' | input.varSet != 'waterSet1' | input.varSet != 'sanSet1' | input.varSet != 'handSet' | input.varSet != 'overallSet1'",
-          #
-          #
-          #
-          checkboxInput(inputId = "error.bar", 
-                        label = "Error bars",
-                        value = FALSE)
-        ),
+        uiOutput("error.bar"),
         #
         #
         #
@@ -147,7 +140,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 		div(style="display: inline-block;vertical-align:middle;",
 			actionLink(inputId = "info2", 
 					   label = "",
-					   icon = icon(name = "question-sign", lib = "glyphicon"))),
+					   icon = icon(name = "info-sign", lib = "glyphicon"))),
 		#
 		# Select map colour scheme
 		#
@@ -231,39 +224,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           #
           #
           #
-          conditionalPanel(condition = "input['group.by'] == '.' & input['facet.by'] == '.' & input.varList != '.'",
-            #
-            #
-            #
-            div(id = "overall", textOutput("overall.estimate"))
-          ),
-          #
-          #
-          #
-          conditionalPanel(condition = "input['group.by'] == '.' & input['facet.by'] == '.' & input.varList != '.'",
-            #
-            # Confidence intervals
-            #
-            div(id = "ci", textOutput("ci.estimate"))
-          ),
-          #
-          #
-          #
-          conditionalPanel(condition = "input.varSet == 'waterSet1' | input.varSet == 'sanSet1' | input.varSet == 'handSet' | input.varSet == 'overallSet1'", 
-            #
-            #
-            #
-            plotOutput("ladder.plot")
-          ),
-          #
-          #
-          #
-          conditionalPanel(condition = "input.varList != '.'",
-            #
-            #
-            #
-            plotOutput("bar.plot")
-          )
+          plotOutput("bar.plot")
         )
       ),
       #

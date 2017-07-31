@@ -71,6 +71,35 @@ function(input, output, session) {
 	  selected = ".")
   })
   #
+  #
+  #
+  observeEvent(input$varList != input$varList, {
+    #
+    #
+    #
+    updateSelectInput(session = session,
+      inputId = "group.by",
+      label = "Disaggregate by",
+      choices = list(None = ".",
+                     "Survey Area" = "surveyArea",
+                     "Wealth Quintile" = "wealth"),
+      selected = ".")
+  })
+  #
+  #
+  #
+  observeEvent(input$varList != input$varList, {
+    #
+    #
+    #
+    updateSelectInput(session = session,
+      inputId = "facet.by",
+      label = "Stratify by",
+      choices = list(None = ".",
+                     "Area Type" = "type"),
+      selected = ".")
+  })
+  #
   # Update city select input based on country/ies in dataset
   #
   observe({
@@ -388,8 +417,210 @@ function(input, output, session) {
     #
     ci
   })
-    
+  #
+  #
+  #
+  output$error.bar <- renderUI({
+    #
+    #
+    #
+    if(input$varList != "." & input$group.by != "." | input$facet.by != ".")
+      {
+      #
+      #
+      #
+      checkboxInput(inputId = "error.bar", 
+                    label = "Error bars",
+                    value = FALSE)
+      }
+  })
 
+
+################################################################################
+#
+# Modal dialogs
+#
+################################################################################
+  #
+  #
+  #
+  observeEvent(input$info1, {
+    #
+    #
+    #
+    showModal(modalDialog(withMathJax(),
+                          title = "Chart Options",
+                          size = "l",
+                          HTML("
+                            <h4>Country</h4>
+                            <p>Choose country data to visualise. The choices of countries to select from is based on the pre-loaded or user-provided data</p>
+                            <br/>
+                            
+                            <h4>City</h4>
+                            <p>Choose city data to visualise. The choices of cities to select from is based on the country selected and on the pre-loaded or user-provided data</p>
+                            <br/>
+                            
+                            <h4>From - To</h4>
+                            <p>Choose year/s of data to visualise. The range of years to select from is based on the country and city selected and on the pre-loaded or user-provided data</p>
+                            <br/>
+                            
+                            <h4>Select indicator set</h4>
+                            <p>Indicators for the <code>Urban Water and Sanitation Survey</code> are organised into thirteen indicator sets. These are: 1) <em>Demographics</em>; 2) <em>Types of Water Sources</em>; 3) <em>Access to Water Sources</em>; 4) <em>Other Water Indicators</em>; 5) <em>Types of Sanitation Facilities</em>; 6) <em>Access to Sanitation Facilities</em>; 7) <em>Sanitation Practices and Behaviours</em>; 8) <em>Other Sanitation Indicators</em>; 9) <em>Women Hygiene</em>; 10) <em>Handwashing</em>; 11) <em>Access to All Services</em>; 12) <em>Overall Expenditure</em>; and, 13) <em>Poverty</em>.</p>
+                            <br/>
+                            
+                            <h4>Select Indicator</h4>
+                            <p><strong>Mean number of household members</strong></p>
+                            <p>This indicator is based on the self-report of number of household members.</p>
+
+                            <br/>                    
+                            <p><strong>Progress out of Poverty Index (PPI)</strong></p>
+                            <p>The <code>Progress out of Poverty Index (PPI)</code> is a measure of poverty developed by <a href='http://www.grameenfoundation.org' target='_blank'>Grameen Foundation</a> in collaboration with the <a href='https://www.fordfoundation.org' target='_blank'>Ford Foundation</a>, and managed by the <a href'http://www.poverty-action.org' target='_blank'>Innovations for Poverty Action</a>. The first <code>PPI</code> was released in 2006 and has since then been customised for 45 countries. The <code>PPI</code> is based on a country-specific 10-item questionnaire about a household’s characteristics and asset ownership which is scored to compute the likelihood that a household is living below country-specific and universal poverty line thresholds.</p>
+
+                            <br/>                            
+                            <p><strong>Poverty Likelihood ($1.25 a day)</strong></p>
+                            <p>This is the measure of the probability that a household is below the <code>$1.25 purchasing power parity (PPP)</code> poverty threshold of 2005. The likelihood is determined through pre-calculated and country-specific probabilites based on the household <code>PPI</code>. Other <code>PPI</code>-based poverty likelihoods using other country-specific and or global poverty thresholds are available.</p> 
+                            
+                            <br/>                            
+                            <p><strong>Wealth Quintile</strong></p>
+                            <p>This is the classification or grouping of each household into quintiles based on <code>PPI</code> with those in the lowest quintile (wealth quintile 1) having the lowest fifth <code>PPI</code> and those in the highest quintile (wealth quintile 5) having the highest fifth <code>PPI</code>.</p>
+
+                            <br/>
+                            <p><strong>Types of Water Sources</strong></p>
+                            <p><code>Safely managed:</code> Drinking water from an improved water source which is located on premises, available when needed and free of faecal and priority contamination. </p>
+                            <p><code>Basic:</code> Drinking water from an improved source provided collection time is not more than 30 minutes for a roundtrip including queuing.</p> 
+                            <p><code>Limited:</code> Drinking water from an improved source where collection time exceeds over 30 minutes for a roundtrip to collect water, including queuing.</p>
+                            <p><code>Unimproved:</code> Drinking water from an unimproved dug well or unprotected spring</p>
+                            <p><code>Surface water:</code> Drinking water directly from a river, dam, lake, pond, stream, canal or irrigation channel.</p>
+
+                            <br/>
+                            <p><strong>Access to sufficient and sustained drinking water</strong></p>
+                            <p><code>Percentage of households with access to sufficient and sustained drinking water</code>: Sufficient is defined as <code>>50 litres per person per day</code>. Sustained is defined as drinking water available <code>24 hours per day</code>, <code>7 days a week</code> and <code>throughout the year</code>.</p>
+
+                            <br/>                                                          
+                            <p><strong>Access to safe and acceptable drinking water for all</strong></p>
+                            <p><code>Percentage of households with good self-reported quality of drinking water:</code> No objective water quality assessment was performed during the survey. This indicator, as stated, is based on self-reported perception of water quality.</p>
+                            <p><code>Percentage of households that are safely storing drinking water:</code> Safe storage is defined as drinking water stored in a clean container with lid only.</p>
+
+                            <br/>                                  
+                            <p><strong>Access to affordable drinking water</strong></p>
+                            <p><code>Mean expenditure in drinking water by wealth quintile:</code> mean expenditure in drinking water per household per year by wealth quintile. It should be noted that expenditure alone does not indicate affordable access to drinking water. The ideal and recommened indicator is yearly expenditure on water as a fraction of annual income i.e., \\(\\frac{\\mu_\\text{Household yearly expenditure on water}}{\\text{Household annual income}}\\). However, the surveys did not collect data on household income hence this recommended indicator cannot be calculated.</p>
+
+                            <br/>                                                         
+                            <p><strong>Physical access to drinking water</strong></p>                             
+                            <p><code>Percentage of households with adequate physical access to drinking water:</code> Adequate physical access is defined as source of drinking water is located within <code>30 minutes</code> from home</p>
+
+                            <br/>                                                          
+                            <p><strong>Formal water service provision</strong></p>
+                            <p><code>Percentage of households with formal drinking water service provision:</code> Formal drinking water service provision is defined as drinking water provided by a formal service according to interviewer asessment.</p>
+                            <p><code>Percentage of households relying on formal provider for service supply maintenance:</code> Formal provider for service supply maintenance is defined as a household with a formal service provider contact person in case of problems with water supply.</p>
+
+                            <br/>
+                            <p><strong>Sanitation Service Ladder</strong></p>       
+                            <p><code>Safely managed:</code> Use of an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site.</p>
+                            <p><code>Basic:</code> Use of improved facilities which are not shared with other households.</p>
+                            <p><code>Limited:</code> Use of improved facilities shared between two or more households.</p>
+                            <p><code>Unimproved:</code> Use of pit latrines wihtout a slab or platform, hanging latrines and bucket latrines</p>
+                            <p><code>Open defecation:</code> Disposal of human faeces in fields, forest, bushes, open bodies of water, beaches or other open spaces or with solid waste.</p>
+
+                            <br/>
+                            <p><strong>Access to sufficient and sustained drinking water</strong></p>
+                            <p><code>Percentage of households with access to sufficient and sustained drinking water</code>: Sufficient is defined as <code>>50 litres per person per day</code>. Sustained is defined as drinking water available <code>24 hours per day</code>, <code>7 days a week</code> and <code>throughout the year</code>.</p>
+                             
+                            <br/> 
+                            <p><strong>Access to safe and acceptable drinking water for all</strong></p>
+                            <p><code>Percentage of households with good self-reported quality of drinking water:</code> No objective water quality assessment was performed during the survey. This indicator, as stated, is based on self-reported perception of water quality.</p>
+                            <p><code>Percentage of households that are safely storing drinking water:</code> Safe storage is defined as drinking water stored in a clean container with lid only.</p>
+     
+                            <br/>
+                            <p><strong>Access to affordable drinking water</strong></p>
+                            <p><code>Mean expenditure in drinking water by wealth quintile:</code> mean expenditure in drinking water per household per year by wealth quintile. It should be noted that expenditure alone does not indicate affordable access to drinking water. The ideal and recommened indicator is yearly expenditure on water as a fraction of annual income i.e., \\(\\frac{\\mu_\\text{Household yearly expenditure on water}}{\\text{Household annual income}}\\). However, the surveys did not collect data on household income hence this recommended indicator cannot be calculated.</p>
+                             
+                            <br/>
+                            <p><strong>Physical access to drinking water</strong></p>                             
+                            <p><code>Percentage of households with adequate physical access to drinking water:</code> Adequate physical access is defined as source of drinking water is located within <code>30 minutes</code> from home</p>
+                             
+                            <br/>
+                            <p><strong>Formal water service provision</strong></p>
+                            <p><code>Percentage of households with formal drinking water service provision:</code> Formal drinking water service provision is defined as drinking water provided by a formal service according to interviewer asessment.</p>
+                            <p><code>Percentage of households relying on formal provider for service supply maintenance:</code> Formal provider for service supply maintenance is defined as a household with a formal service provider contact person in case of problems with water supply.</p>
+
+                            <br/>
+                            <p><strong>Use of adequate hygienic materials for menstrual hygiene management</strong></p>
+                            <p><code>Percentage of households using adequate hygienic materials foe MHM</code>: Adequate hygienic maetrials are cloths, pads, tampons or menstrual cups</p>
+                                                          
+                            <br/>
+                            <p><strong>Hygienic and adequate disposal of menstrual hygiene materials</strong></p>
+                            <p><code>Percentage of households practicing good mentrual hygiene practies/behaviour:</code> Good menstrual hygiene management includes cloths washed with soap and water and napkins/pads disposed of in the rubbish bin.</p>
+     
+                            <br/> 
+                            <p><strong>Comfort with sanitation facilities during menstruation</strong></p>
+                            <p><code>Percentage of households in which women and girls are comfortable using sanitation facility during menstruation:</code></p>                             
+
+                            <br/>
+                            <p><strong>Overall access to adequate water and sanitation services</strong></p>
+                            <p><code>Percentage of Households with access to adequate water and sanitation services by quintile</code>: Adequate water services and adequate sanitation services as defined.</p>
+                            <ul>
+                              <li>Percentage of households with access to adequate sanitation and adequate drinking water</li>
+                              <li>Percentage of households with access to adequate sanitation only</li>
+                              <li>Percentage of households with access to adequate drinking water only</li>
+                              <li>Percentage of households with no access to adequate services</li>
+                            </ul>
+                            
+                            <br/>
+                            <h4>Disaggregate by</h4>
+                            <p>Select from choices of data variables to be used for grouping / disaggregating the data. When applied to charts, data is grouped based on the selected variable and then plotted accordingly on a single chart.</p>
+                             <ul>
+                               <li><code>All Data (No Stratification)</code>: full dataset is used and resulting chart has no facets or panels.</li>
+                               <li><code>Survey Area</code>: dataset is grouped into \\(n\\) unique survey areas and resulting chart has \\(n\\) facets or panels corresponding to each survey area.</li>
+                               <li><code>Area Type</code>: dataset is grouped into <code>slum</code> and <code>citywide</code> area types and resulting chart has <code>slum</code> and <code>citywide</code> facets or panels.</li>
+                               <li><code>Wealth Quintile</code>: dataset is grouped into quintiles based on the <code>Progress out of Poverty Index (PPI)</code>.</li>
+                             </ul>
+                               
+                            <br/>                             
+                            <h4>Stratify by</h4>
+                            <p>Select from choices of data variables to be used for grouping / disaggregating the data. When applied to charts, \\(n\\) unique values of the selected variables are used to create \\(n\\) facets or panels of the resulting chart.</p>
+                          ")))                       
+  })
+  #
+  #
+  #
+  observeEvent(input$info2, {
+    #
+    #
+    #
+    showModal(modalDialog(withMathJax(),
+                          title = "Map Options",
+                          size = "l",
+                          HTML("
+                            <h4>Select colour palette</h4>
+                            <p>Select from choices of colour palettes to use for mapping. Two categories of colour palettes are available.</p>
+                            <ul>
+                              <li><code>Sequential</code> palettes are suited to ordered data that progress from low to high with light colours representing low data values and dark colours representing high data values.</li>
+                              <li><code>Diverging</code> palettes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The middle values are emphasised with light colours and low and high extremes are emphasised with dark colours that have contrasting hues.</li>
+                            </ul>
+                            <p>The choices of colour palettes are based on <a href='http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3' target='_blank'>ColorBrewer 2.0</a> and implemented in R using the <a href='https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf' target='_blank'>RColorBrewer</a> function.</p>
+                            <p>The default colour palette for the <code>Demographics</code> indicator set is <code>sequential yellow to orange to brown (YlOrBb)</code> scheme.</p>
+                            
+                            <br/>
+                            <h4>Select colour mapping method</h4>
+                            <p>Colour mapping methods determine how to match the indicator dataset to the selected colour palette appropriately. Three colour mapping methods are available.</p>
+                            <ul>
+                              <li><code>Linear interpolation</code> is a simple linear mapping from continuous numeric data to an interpolated colour palette. In this method, the selected colour palette is extended (via interpolation) to create a continuous set of colours consistent with the scheme that would be enough to match the range of values of the continuous numeric data being mapped.</li>
+                              <li><code>Equal interval</code> maps continuous numeric data to a fixed number of colours from the palette. The continous indicator values are divided into equal interval group sets determined by the <code>number of bins</code> specified (see below regarding bins). The number of colours correspond to the <code>number of bins</code> into which the indicator values have been divided into.</li>
+                              <li><code>Quantile</code> also maps continuous numeric data to a fixed number of colours from the palette. However, the continuous indicator values are divided into <code>quantiles</code> (group sets with equal number of observations). The number of colours correspond to the <code>number of quantiles</code> into which the indicator values have been divided into.</li> 
+                            </ul>
+                            
+                            <br/>                            
+                            <h4>Number of bins</h4>
+                            <p><em>For equal interval method.</em> Select number of equal interval groups to divide the dataset into. For example, for a dataset of percentages with values ranging between 0 and 100, specifying <code>number of bins</code> to 5 would mean creating 5 equal interval groupings - <code>[0,20)</code>, <code>[20, 40)</code>, <code>[40,60)</code>, <code>[60,80)</code>, <code>[80,100]</code></p>
+                            
+                            <br/>
+                            <h4>Number of classes</h4>
+                            <p><em>For quantile method.</em> Select number of quantiles to divide dataset into.</p>
+                          ")))                       
+  })
+
+  
 ################################################################################
 #
 # Plot indicators
@@ -399,11 +630,6 @@ function(input, output, session) {
   #
   #
   output$bar.plot <- renderPlot({
-  #
-  #
-  #
-  if(input$group.by != "." | input$facet.by != ".")
-    {
     #
     #
     #
@@ -519,6 +745,56 @@ function(input, output, session) {
     #
     #
     #
+    if(input$group.by == "." & input$facet.by == ".")
+      {
+      #
+      #
+      #
+      crossBar <- geom_crossbar(data = temp,
+                                mapping = aes(ymin = LCL, ymax = UCL),
+                                width = 0.25,
+                                size = 0.5,
+                                fatten = 5,
+                                colour = wsupColour)
+      #
+      #
+      #
+      pointBar <- geom_pointrange(mapping = aes(ymin = LCL, ymax = UCL),
+                                  size = 2,
+                                  fatten = 5,
+                                  colour = wsupColour)
+      #
+      #
+      #
+      estText <- annotate(geom = "text", 
+                          x = temp$strata, 
+                          y = temp$estimate + 0.01, 
+                          label = temp$estimate,
+                          size = 8)
+      #
+      #
+      #
+      lclText <- annotate(geom = "text", 
+                          x = temp$strata, 
+                          y = temp$LCL, 
+                          label = temp$LCL,
+                          size = 5)
+      #
+      #
+      #
+      uclText <- annotate(geom = "text", 
+                          x = temp$strata, 
+                          y = temp$UCL, 
+                          label = temp$UCL,
+                          size = 5)
+      #
+      #
+      #
+      indicator.plot <- basePlot + crossBar + theme_wsup + yLabel + xLabel
+      }
+    #
+    #
+    #
     if(!input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"))
       {
       #
@@ -549,7 +825,7 @@ function(input, output, session) {
     #
     #
     #  
-    if(input$facet.by != ".")
+    if(input$facet.by != "." & input$varList != ".")
       {
       #
       # 
@@ -569,28 +845,22 @@ function(input, output, session) {
     #
     #
     #
-    if(input$error.bar)
+    if(!is.null(input$error.bar) & input$group.by != "." | input$facet.by != ".")
       {
       #
       #
       #
-      indicator.plot <- indicator.plot + barCI
+      if(input$error.bar)
+        {
+        #
+        #
+        #
+        indicator.plot <- indicator.plot + barCI
+        }
       }
-    #
-    # 
-    #
-    print(indicator.plot)
-    }
   #
   #
   #
-  }, height = 320)                    
-  #
-  # Ladder Plots
-  #
-  output$ladder.plot <- renderPlot({
-  #
-  # 
   if(input$varSet %in% c("waterSet1", "sanSet1", "handSet", "overallSet1") & input$varList == ".")
     {
     #
@@ -753,7 +1023,7 @@ function(input, output, session) {
     #
     #
     #
-    ladder.plot <- basePlot + barPlot + barFill + theme_wsup + xLabel + yLabel
+    indicator.plot <- basePlot + barPlot + barFill + theme_wsup + xLabel + yLabel
     #
     #
     #  
@@ -762,7 +1032,7 @@ function(input, output, session) {
       #
       # 
       #
-      ladder.plot <- ladder.plot + barFacet
+      indicator.plot <- indicator.plot + barFacet
       }
     #
     #
@@ -772,17 +1042,21 @@ function(input, output, session) {
       #
       #
       #
-      ladder.plot <- ladder.plot + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+      indicator.plot <- indicator.plot + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
       }
     #
     #
     #
-    print(ladder.plot)
+    print(indicator.plot)
     }
   #
   #
   #
-  }, height = 350)
+  print(indicator.plot)
+  #
+  #
+  #
+  }, height = 320)                    
   #
   #
   #
@@ -860,7 +1134,7 @@ function(input, output, session) {
       #
       #
       #
-      geocode(input$country, output = "more")
+      geocode(input$country, output = "more", messaging = FALSE)
     }
   })
   #
