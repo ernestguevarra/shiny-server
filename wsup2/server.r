@@ -1488,11 +1488,11 @@ function(input, output, session) {
     #
     #
     #
-    clearControls() %>%
+    clearControls()
     #
     #
     #
-    removeLayersControl()
+    #removeLayersControl()
   }) 
   #
   # Plot indicator maps
