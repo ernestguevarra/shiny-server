@@ -1467,11 +1467,11 @@ function(input, output, session) {
     #
     #
     #
-    clearControls() %>%
+    clearControls()
     #
     #
     #
-    removeLayersControl()
+    #removeLayersControl()
   }) 
   #
   # Clear maps when indicator is set to none == "."
