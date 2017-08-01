@@ -69,6 +69,16 @@ h1, h2, h3, h4 { font-weight: 400; }
   /*color: #ffffff;*/
 }
 
+/* Position and style citation */
+#citeReverse {
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
 /* Position and style overall */
 #overall {
   position: absolute;

@@ -35,182 +35,200 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         draggable = TRUE, top = 65, left = "auto", right = 10, bottom = "auto",
         width = 330, height = "auto",
         #
-        # Panel section header
         #
-		div(style="display: inline-block;vertical-align:middle;",        
-            h4("Chart Options")
-        ),
-		#
-		# Add 'Help' action link
-		#
-		div(style="display: inline-block;vertical-align:middle;",
-			actionLink(inputId = "info1", 
-					   label = "",
-					   icon = icon(name = "info-sign", lib = "glyphicon"))),
+        #
+        radioButtons(inputId = "radio.controls",
+          label = "",
+          choices = c("Chart controls" = "chart",
+                      "Map controls" = "map"),
+          inline = TRUE),
         #
         #
         #
-        br(),					   
-        #
-        # Select country survey
-        #
-        div(style="display: inline-block;vertical-align:middle;",
-            selectInput(inputId = "country", 
-              label = "Country",
-              choices = list(None = "."), 
-            width = "140px")
-        ),
-        #
-        # Select city survey
-        #
-        div(style="display: inline-block;vertical-align:middle;",
-            selectInput(inputId = "city", 
-              label = "City",
-              choices = list(None = "."),
-            width = "140px")
-        ),
-        #
-        #
-        #
-        div(style="display: inline-block;vertical-align:middle;",        
-            selectInput(inputId = "start.year",
-              label = "From",
-              choices = list(All = "."),
-              width = "140px")
-        ),
-        #
-        #
-        #
-        div(style="display: inline-block;vertical-align:middle;",        
-            selectInput(inputId = "end.year",
-              label = "To",
-              choices = list(All = "."),
-              width = "140px")
-        ),
-        #
-        #
-        #
-	    selectInput(inputId = "varSet",
-		  label = "Select indicator set",
-		  choices = list(None = ".")),
-        #
-        #
-        #
-        selectInput(inputId = "varList",
-          label = "Select indicator",
-          choices = list(None = ".")),
-        #
-        #
-        #
-        div(style="display: inline-block;vertical-align:middle;",
-            selectInput(inputId = "group.by",
-              label = "Disaggregate by",
-              choices = list(None = ".",
-                             "Survey Area" = "surveyArea",
-                             "Wealth Quintile" = "wealth"),
-              selected = ".",
-              width = "140px")
-        ),        
-        #
-        #
-        #
-        div(style="display: inline-block;vertical-align:middle;",        
-            selectInput(inputId = "facet.by",
-              label = "Stratify by",
-              choices = list(None = ".",
-                             "Area Type" = "type"),
-              selected = ".",
-              width = "140px")
-        ),
-        #
-        #
-        #
-        uiOutput("error.bar"),
-        #
-        #
-        #
-		div(style="display: inline-block;vertical-align:middle;",        
-            h4("Map Options")
-        ),
-		#
-		# Add 'Help' action link
-		#
-		div(style="display: inline-block;vertical-align:middle;",
-			actionLink(inputId = "info2", 
-					   label = "",
-					   icon = icon(name = "info-sign", lib = "glyphicon"))),
-		#
-		#
-		#
-		br(),
-		#
-		# Select map colour scheme
-		#
-        div(style="display: inline-block;vertical-align:middle;",		
-		  selectInput(inputId = "map.palette",
-		   			  label = "Colour palette",
-					  choices = list("Sequential" = c("Blues" = "Blues",
-													  "BuGn" = "BuGn",
-													  "BuPu" = "BuPu",
-													  "GnBu" = "GnBu",
-													  "Greens" = "Greens",
-													  "Greys" = "Greys",
-													  "Oranges" = "Oranges",
-													  "OrRd" = "OrRd",
-													  "Purples" = "Purples",
-													  "PuBu" = "PuBu",
-													  "PuBuGn" = "PuBuGn",
-													  "PuRd" = "PuRd",
-													  "Reds" = "Reds",
-													  "YlGn" = "YlGn",
-													  "YlGnBu" = "YlGnBu",
-													  "YlOrBr" = "YlOrBr",
-													  "YlOrRd" = "YlOrRd"),
-									"Divergent" =   c("BrBuGn" = "BrBG",
-													  "PiYlGn" = "PiYG",
-													  "PuRdGn" = "PRGn",
-													  "PuOr" = "PuOr",
-													  "RdBu" = "RdBu",
-													  "RdGy" = "RdGy",
-													  "RdYlBu" = "RdYlBu",
-													  "RdYlGn" = "RdYlGn",
-													  "Spectral" = "Spectral")),
-					  selected = "YlGnBu",
-					  width = "140px")
-		),
-		#
-		# Select mapping colour method
-		#
-        div(style="display: inline-block;vertical-align:middle;",
-		  selectInput(inputId = "map.colour", 
-					  label = "Mapping method", 
-					  choices = list("Linear" = "linear", 
-						  		     "Equal Interval" = "interval", 
-								     "Quantile" = "quantile"),
-					  selected = "interval",
-					  width = "140px")
-		),
-	    #
-	    #
-	    #
-        conditionalPanel(condition = "input['map.colour'] == 'interval'",
+        conditionalPanel(condition = "input['radio.controls'] == 'chart'",
           #
-          # Create slider input control
+          # Panel section header
           #
-          sliderInput(inputId = "map.bins",
-                      label = "Number of classes",
-                      min = 3, max = 7, value = 5, step = 1)
+		  div(style="display: inline-block;vertical-align:middle;",        
+              h4("Chart Options")
+          ),
+		  #
+		  # Add 'Help' action link
+		  #
+		  div(style="display: inline-block;vertical-align:middle;",
+			  actionLink(inputId = "info1", 
+					     label = "",
+					     icon = icon(name = "info-sign", lib = "glyphicon"))),
+          #
+          #
+          #
+          br(),					   
+          #
+          # Select country survey
+          #
+          div(style="display: inline-block;vertical-align:middle;",
+              selectInput(inputId = "country", 
+                label = "Country",
+                choices = list(None = "."), 
+                width = "140px")
+          ),
+          #
+          # Select city survey
+          #
+          div(style="display: inline-block;vertical-align:middle;",
+              selectInput(inputId = "city", 
+                label = "City",
+                choices = list(None = "."),
+                width = "140px")
+          ),
+          #
+          #
+          #
+          div(style="display: inline-block;vertical-align:middle;",        
+              selectInput(inputId = "start.year",
+                label = "From",
+                choices = list(All = "."),
+                width = "140px")
+          ),
+          #
+          #
+          #
+          div(style="display: inline-block;vertical-align:middle;",        
+              selectInput(inputId = "end.year",
+                label = "To",
+                choices = list(All = "."),
+                width = "140px")
+          ),
+          #
+          #
+          #
+	      selectInput(inputId = "varSet",
+		    label = "Select indicator set",
+		    choices = list(None = ".")),
+          #
+          #
+          #
+          selectInput(inputId = "varList",
+            label = "Select indicator",
+            choices = list(None = ".")),
+          #
+          #
+          #
+          div(style="display: inline-block;vertical-align:middle;",
+              selectInput(inputId = "group.by",
+                label = "Disaggregate by",
+                choices = list(None = ".",
+                               "Survey Area" = "surveyArea",
+                               "Wealth Quintile" = "wealth"),
+                selected = ".",
+                width = "140px")
+          ),        
+          #
+          #
+          #
+          div(style="display: inline-block;vertical-align:middle;",        
+              selectInput(inputId = "facet.by",
+                label = "Stratify by",
+                choices = list(None = ".",
+                               "Area Type" = "type"),
+                selected = ".",
+                width = "140px")
+          ),
+          #
+          #
+          #
+          uiOutput("error.bar")
         ),
         #
         #
         #
-        conditionalPanel(condition = "input['map.colour'] == 'quantile'",
+        conditionalPanel(condition = "input['radio.controls'] == 'map'",
           #
-          # Create slider input control
           #
-          sliderInput(inputId = "map.quantiles",
-                      label = "Number of quantiles",
-                      min = 3, max = 7, value = 5, step = 1)      
+          #
+		  div(style="display: inline-block;vertical-align:middle;",        
+              h4("Map Options")
+          ),
+		  #
+		  # Add 'Help' action link
+		  #
+		  div(style="display: inline-block;vertical-align:middle;",
+			  actionLink(inputId = "info2", 
+					     label = "",
+					     icon = icon(name = "info-sign", lib = "glyphicon"))),
+		  #
+		  #
+		  #
+		  br(),
+		  #
+		  # Select map colour scheme
+		  #
+          div(style="display: inline-block;vertical-align:middle;",		
+		      selectInput(inputId = "map.palette",
+		   	    label = "Colour palette",
+				choices = list("Sequential" = c("Blues" = "Blues",
+				      						    "BuGn" = "BuGn",
+												"BuPu" = "BuPu",
+												"GnBu" = "GnBu",
+												"Greens" = "Greens",
+												"Greys" = "Greys",
+												"Oranges" = "Oranges",
+												"OrRd" = "OrRd",
+												"Purples" = "Purples",
+												"PuBu" = "PuBu",
+												"PuBuGn" = "PuBuGn",
+												"PuRd" = "PuRd",
+												"Reds" = "Reds",
+												"YlGn" = "YlGn",
+												"YlGnBu" = "YlGnBu",
+												"YlOrBr" = "YlOrBr",
+												"YlOrRd" = "YlOrRd"),
+							    "Divergent" = c("BrBuGn" = "BrBG",
+												"PiYlGn" = "PiYG",
+												"PuRdGn" = "PRGn",
+												"PuOr" = "PuOr",
+												"RdBu" = "RdBu",
+												"RdGy" = "RdGy",
+												"RdYlBu" = "RdYlBu",
+												"RdYlGn" = "RdYlGn",
+												"Spectral" = "Spectral")),
+				selected = "YlGnBu",
+				width = "140px")
+		  ),
+		  #
+		  # Select mapping colour method
+		  #
+          div(style="display: inline-block;vertical-align:middle;",
+		      selectInput(inputId = "map.colour", 
+			    label = "Mapping method", 
+				choices = list("Linear" = "linear", 
+				               "Equal Interval" = "interval", 
+							   "Quantile" = "quantile"),
+				selected = "interval",
+				width = "140px")
+		  ),
+	      #
+	      #
+	      #
+          conditionalPanel(condition = "input['map.colour'] == 'interval'",
+            #
+            # Create slider input control
+            #
+            sliderInput(inputId = "map.bins",
+                        label = "Number of classes",
+                        min = 3, max = 7, value = 5, step = 1)
+          ),
+          #
+          #
+          #
+          conditionalPanel(condition = "input['map.colour'] == 'quantile'",
+            #
+            # Create slider input control
+            #
+            sliderInput(inputId = "map.quantiles",
+                        label = "Number of quantiles",
+                        min = 3, max = 7, value = 5, step = 1)      
+          )
         )
       ), 
       #
@@ -239,7 +257,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
       # Create footer citation
       #
       tags$div(id = "cite",
-        "Survey designed by ", 
+        "Survey design and analysis by ", 
         tags$a(href = 'http://www.validinternational.org/', 
         'Valid International'), 
         "| Survey data collected by ", 
@@ -278,40 +296,10 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           #
           h3("Sample size calculator"),
           #
-          # Add whitespace
-          #
-          br(),
-          #
-          # Add sub-sub-header
-          #
-          h4("Calculate sample size"),          
-          #
-          # Select z-value for CI
-          #
-          selectInput(inputId = "z.ci",
-                      label = "Select z-value ( z )",
-                      choices = list("96% CI ( z-value: 2.05 )" = "2.05",
-                                     "95% CI ( z-value: 1.96 )" = "1.96",
-                                     "92% CI ( z-value: 1.75 )" = "1.75",
-                                     "90% CI ( z-value: 1.645 )" = "1.645"),
-                      selected = "1.96"),
-          #
-          # Select expected proportion/prevalence
-          #
-          sliderInput(inputId = "proportion",
-                      label = "Indicator proportion/prevalence ( p )",
-                      min = 0, max = 100, value = 50, step = 1),
-          #
-          # Select level of precision
-          # 
-          sliderInput(inputId = "precision",
-                      label = "Select level of precision ( c )",
-                      min = 3, max = 10, value = 5),
-          #
           # Select survey sample type
           #
           radioButtons(inputId = "surveyType",
-                       label = "Survey design",
+                       label = "",
                        choices = list("Simple random sample" = "srs",
                                       "Cluster sample" = "cluster"),
                        inline = TRUE,
@@ -320,6 +308,42 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           # Action buttons available when surveyType == 'srs'
           #
           conditionalPanel(condition = "input.surveyType == 'srs'",
+            #
+            #
+            #
+            hr(),
+            #
+            # Add sub-sub-header
+            #
+            h4("Calculate sample size for a simple random sample survey"),          
+            #
+            # Select z-value for CI
+            #
+            selectInput(inputId = "z.ci",
+                        label = "Select z-value ( z )",
+                        choices = list("96% CI ( z-value: 2.05 )" = "2.05",
+                                       "95% CI ( z-value: 1.96 )" = "1.96",
+                                       "92% CI ( z-value: 1.75 )" = "1.75",
+                                       "90% CI ( z-value: 1.645 )" = "1.645"),
+                        selected = "1.96"),
+            #
+            # Select expected proportion/prevalence
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                sliderInput(inputId = "proportion",
+                            label = "Proportion/prevalence ( p )",
+                            min = 0, max = 100, value = 50, step = 1,
+                            width = "200px")
+            ),
+            #
+            # Select level of precision
+            #
+            div(style="display: inline-block;vertical-align:middle;",           
+                sliderInput(inputId = "precision",
+                            label = "Level of precision ( c )",
+                            min = 3, max = 10, value = 5,
+                            width = "200px")
+            ),
             #
             # Action button
             #
@@ -333,12 +357,11 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             actionButton(inputId = "reset1",
                          label = "Reset",
                          class = "btn-primary",
-                         icon = icon(name = "refresh", class = "fa-lg"))
-          ),
+                         icon = icon(name = "refresh", class = "fa-lg")),
           #
           # Add whitespace
           #
-          br(),
+          br(), hr(),
           #
           # Header for sample size calculation results
           #
@@ -346,19 +369,52 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           #
           # Add table of sample size calculation results
           #
-          tableOutput("sample"),
-          #
-          # Add whitespace
-          #
-          hr(),
+          tableOutput("sample")
+          ),
           #
           # Show if survey design is cluster
           #
           conditionalPanel(condition = "input.surveyType == 'cluster'",
             #
+            # Add whitespace and horizontal bar
+            #
+            hr(),
+            #
+            # Add sub-sub-header
+            #
+            h4("Calculate sample size for a cluster sample survey"),          
+            #
+            # Select z-value for CI
+            #
+            selectInput(inputId = "z.ci",
+                        label = "Select z-value ( z )",
+                        choices = list("96% CI ( z-value: 2.05 )" = "2.05",
+                                       "95% CI ( z-value: 1.96 )" = "1.96",
+                                       "92% CI ( z-value: 1.75 )" = "1.75",
+                                       "90% CI ( z-value: 1.645 )" = "1.645"),
+                        selected = "1.96"),
+            #
+            # Select expected proportion/prevalence
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                sliderInput(inputId = "proportion",
+                            label = "Proportion/prevalence ( p )",
+                            min = 0, max = 100, value = 50, step = 1,
+                            width = "200px")
+            ),
+            #
+            # Select level of precision
+            #
+            div(style="display: inline-block;vertical-align:middle;",           
+                sliderInput(inputId = "precision",
+                            label = "Level of precision ( c )",
+                            min = 3, max = 10, value = 5,
+                            width = "200px")
+            ),
+            #
             # Header for design effect and ICC calculator
             #
-            h4("Calculate design effect and ICC"),
+            h5("Calculate design effect and ICC"),
             #
             # Upload dataset for DEFF calculation
             #
@@ -400,7 +456,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             #
             # Add whitespace
             #
-            hr(), br(),
+            br(), hr(),
             #
             # Header for DEFF and ICC calculation results
             #
@@ -411,9 +467,29 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             tableOutput("deff")         
           ),  
         #
+        #
+        #
+        br(),
+        #
+        #
+        #
+        #h6("Sample size calculator app designed and developed by ",
+        #   tags$a(href = 'http://www.validinternational.org/', 'Valid International')),
+        #
+        # Create footer citation
+        #
+        #tags$div(id = "cite",
+        #  "Survey design and analysis by ", 
+        #  tags$a(href = 'http://www.validinternational.org/', 
+        #  'Valid International'), 
+        #  "| Survey data collected by ", 
+        #  tags$a(href = 'http://www.wsup.com', 
+        #  'Water and Sanitation for the Urban Poor')
+        #),
+        #
         # Set width of sidebar panel
         #
-        width = 5
+        width = 4
         ),
         #
         # Add contents to main panel
@@ -457,7 +533,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         #
         # Set width of main panel
         #
-        width = 7) 
+        width = 8) 
       )
     ),
     #
@@ -496,79 +572,92 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           #
           #
           #
-          #
-          # Sub-sub-header
-          #
-          div(style="display: inline-block;vertical-align:middle;", h5("City map data input")),
-          #
-          # Action link 'Info' for uploading survey area map
-          #
-          div(style="display: inline-block;vertical-align:middle;",
-              actionLink(inputId = "info91",
-                          label = "",
-                          icon = icon(name = "info-sign", lib = "glyphicon"))),
-          #
-          # Upload shapefile
-          #
-          fileInput(inputId = "shp1",
-                    label = "Upload map of citywide survey area",
-                    accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
-                    multiple = TRUE),
+          radioButtons(inputId = "map.controls",
+            label = "",
+            inline = TRUE,
+            choices = c("Citywide Sample" = "city",
+                        "Slum Sample" = "slum"),
+            selected = "city"),
           #
           #
           #
-          div(style="display: inline-block;vertical-align:top;", uiOutput("map.draw.control1")),
-          #
-          #
-          #
-          conditionalPanel(condition = "input.mapDraw1",
-            #
-            # Add whitespace
-            #
-            br(),
-            #
-            #
-            #
-            selectInput(inputId = "var.city.area",
-                        label = "Select map data identifier for city survey areas",
-                        choices = list(None = ".")),
-            #
-            #
-            #
-            selectInput(inputId = "city.area.name",
-                        label = "Select city survey area to sample",
-                        choices = list(None = ".")),
-            #
-            #
-            #
-            numericInput(inputId = "n.psu.citywide",
-                         label = "Number of PSU/clusers to sample",
-                         min = 16, max = 60, step = 1, value = 30),
-            #
-            #
-            #
-            div(style="display: inline-block;vertical-align:middle;",
-                actionButton(inputId = "sample.city",
-                             label = "Sample",
-                             class = "btn-primary",
-                             icon = icon(name = "th", clas = "fa-lg")))
-            ),
-            #
-            #
-            #
-            br(), br(),
+          conditionalPanel(condition = "input['map.controls'] == 'city'",
             #
             # Sub-sub-header
             #
             div(style="display: inline-block;vertical-align:middle;", 
-                h5("Slum map data input")),
+                h5("City map data input")),
             #
             # Action link 'Info' for uploading survey area map
             #
             div(style="display: inline-block;vertical-align:middle;",
-                actionLink(inputId = "info92",
-                            label = "",
-                            icon = icon(name = "info-sign", lib = "glyphicon"))),          
+                actionLink(inputId = "info3",
+                           label = "",
+                           icon = icon(name = "info-sign", lib = "glyphicon"))),
+            #
+            # Upload shapefile
+            #
+            fileInput(inputId = "shp1",
+                      label = "Upload map of citywide survey area",
+                      accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+                      multiple = TRUE),
+            #
+            #
+            #
+            div(style="display: inline-block;vertical-align:top;", 
+                uiOutput("map.draw.control1")),
+            #
+            #  
+            #
+            conditionalPanel(condition = "input.mapDraw1",
+              #
+              # Add whitespace
+              #
+              br(),
+              #
+              #
+              #
+              selectInput(inputId = "var.city.area",
+                          label = "Select map data identifier for city survey areas",
+                          choices = list(None = ".")),
+              #
+              #
+              #
+              selectInput(inputId = "city.area.name",
+                          label = "Select city survey area to sample",
+                          choices = list(None = ".")),
+              #
+              #
+              #
+              numericInput(inputId = "n.psu.citywide",
+                           label = "Number of PSU/clusers to sample",
+                           min = 16, max = 60, step = 1, value = 30),
+              #  
+              #
+              #
+              div(style="display: inline-block;vertical-align:middle;",
+                  actionButton(inputId = "sample.city",
+                               label = "Sample",
+                               class = "btn-primary",
+                               icon = icon(name = "th", clas = "fa-lg")))
+            )
+          ),
+          #
+          #
+          #
+          conditionalPanel(condition = "input['map.controls'] == 'slum'",            
+            #
+            # Sub-sub-header
+            #
+            div(style="display: inline-block;vertical-align:middle;", 
+                  h5("Slum map data input")),
+            #
+            # Action link 'Info' for uploading survey area map
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                actionLink(inputId = "info4",
+                           label = "",
+                           icon = icon(name = "info-sign", lib = "glyphicon"))),          
             #
             #
             #
@@ -578,91 +667,93 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                                         "Slum lists" = "slum.list"),
                          inline = TRUE,
                          selected = "."),
-          #
-          #
-          #
-          conditionalPanel(condition = "input.slumInfo == 'slum.map'",
             #
             #
             #
-            fileInput(inputId = "shp2",
-                      label = "Upload map of slums in survey area",
-                      accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
-                      multiple = TRUE),
-          #
-          #
-          #
-          div(style="display: inline-block;vertical-align:top;", uiOutput("map.draw.control2"))                     
-          ),
-          #
-          #
-          #
-          conditionalPanel(condition = "input.mapDraw2",
+            conditionalPanel(condition = "input.slumInfo == 'slum.map'",
+              #
+              #
+              #
+              fileInput(inputId = "shp2",
+                        label = "Upload map of slums in survey area",
+                        accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+                        multiple = TRUE),
+              #
+              #
+              #
+              div(style="display: inline-block;vertical-align:top;", 
+                  uiOutput("map.draw.control2")),
+              #
+              #
+              #
+              conditionalPanel(condition = "input.mapDraw2",
+                #
+                # Add whitespace
+                #
+                br(),
+                #
+                #
+                #
+                selectInput(inputId = "var.slum.area1",
+                            label = "Select map data identifier for slum survey areas",
+                            choices = list(None = ".")),
+                #
+                #
+                #
+                selectInput(inputId = "slum.area.name1",
+                            label = "Select slum survey area to sample",
+                            choices = list(None = ".")),
+                #
+                #
+                #
+                div(style="display: inline-block;vertical-align:middle;",
+                    actionButton(inputId = "sample.slum1",
+                                 label = "Sample",
+                                 class = "btn-primary",
+                                 icon = icon(name = "th", clas = "fa-lg")))
+              )
+            ),            
             #
-            # Add whitespace
-            #
-            br(),
             #
             #
-            #
-            selectInput(inputId = "var.slum.area1",
-                        label = "Select map data identifier for slum survey areas",
-                        choices = list(None = ".")),
-            #
-            #
-            #
-            selectInput(inputId = "slum.area.name1",
-                        label = "Select slum survey area to sample",
-                        choices = list(None = ".")),
-            #
-            #
-            #
-            div(style="display: inline-block;vertical-align:middle;",
-                actionButton(inputId = "sample.slum1",
-                             label = "Sample",
-                             class = "btn-primary",
+            conditionalPanel(condition = "input.slumInfo == 'slum.list'",
+              #
+              #
+              #
+              hr(),
+              #
+              # 
+              #
+              fileInput(inputId = "list1",
+                        label = "Upload list of slum areas",
+                        accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
+              #
+              #
+              #
+              selectInput(inputId = "var.slum.area2",
+                          label = "Select map data identifier for slum survey areas",
+                          choices = list(None = ".")),
+              #
+              #
+              #  
+              selectInput(inputId = "slum.area.name2",
+                          label = "Select slum survey area to sample",
+                          choices = list(None = ".")),
+              #
+              #
+              #
+              numericInput(inputId = "n.psu.slum",
+                           label = "Number of PSU/clusers to sample",
+                           min = 16, max = 60, step = 1, value = 30),         
+              #
+              #
+              #
+              div(style="display: inline-block;vertical-align:middle;",
+                  actionButton(inputId = "sample.slum2",
+                               label = "Sample",
+                               class = "btn-primary",
                              icon = icon(name = "th", clas = "fa-lg")))
-          ),            
-          #
-          #
-          #
-          conditionalPanel(condition = "input.slumInfo == 'slum.list'",
-            #
-            #
-            #
-            hr(),
-            #
-            # 
-            #
-            fileInput(inputId = "list1",
-                      label = "Upload list of slum areas",
-                      accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
-            #
-            #
-            #
-            selectInput(inputId = "var.slum.area2",
-                        label = "Select map data identifier for slum survey areas",
-                        choices = list(None = ".")),
-            #
-            #
-            #
-            selectInput(inputId = "slum.area.name2",
-                        label = "Select slum survey area to sample",
-                        choices = list(None = ".")),
-            #
-            #
-            #
-            numericInput(inputId = "n.psu.slum",
-                         label = "Number of PSU/clusers to sample",
-                         min = 16, max = 60, step = 1, value = 30),         
-            #
-            #
-            #
-            div(style="display: inline-block;vertical-align:middle;",
-                actionButton(inputId = "sample.slum2",
-                             label = "Sample",
-                             class = "btn-primary",
-                             icon = icon(name = "th", clas = "fa-lg")))
+            )
           ),
           #
           #
@@ -756,7 +847,15 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
               DT::dataTableOutput("sample.slum.table")
             )
           )                   
-        )  
+        ),
+        #
+        # Create footer citation
+        #
+        tags$div(id = "citeReverse",
+          "Spatial sampling app designed and developed by ", 
+          tags$a(href = 'http://www.validinternational.org/', 
+          'Valid International')
+        )          
       )
     )
   ),
@@ -765,7 +864,96 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
   #
   tabPanel(title = "Settings",
            value = 3,
-           icon = icon(name = "cog", class = "fa-lg")
+           icon = icon(name = "cog", class = "fa-lg"),
+    #
+    #
+    #
+    fluidPage(title = "Settings",
+      #
+      #
+      #
+      fluidRow(
+        #
+        #
+        #
+        column(width = 3,
+          #
+          #
+          #
+          h4("Datasets"),
+          #
+          #
+          #
+          fileInput(inputId = "file1",
+                    label = "Upload results dataset to visualise",
+                    accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
+          #
+          #
+          #
+          hr(),
+          #
+          #
+          #
+          tags$p("The application uses a pre-loaded dataset produced by the analysis workflow for the ", 
+                 tags$strong("Urban Water and Sanitation Surveys"), 
+                 ". If a new results dataset has been produced for other country surveys that have been conducted, this can be uploaded here for visualisation. The analysis workflow has been designed to concatenate all results datasets from all country/city surveys into a single dataset called", 
+                 tags$code("'surveyResultsAll.csv'"), 
+                 "which can be found inside the ", 
+                 tags$code("'outputTables'"), "folder of the workflow. This is the dataset that should be uploaded here")
+        ),
+        #
+        #
+        #
+        column(width = 3,
+          #
+          #
+          #
+          h4("Maps"),
+          #
+          # Dhaka, Bangladesh
+          #
+          fileInput(inputId = "shp.dhaka",
+            label = "Upload map of Dhaka, Bangladesh",
+            accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+            multiple = TRUE),
+          #
+          # Accra, Ghana
+          #
+          fileInput(inputId = "shp.accra",
+            label = "Upload map of Accra, Ghana",
+            accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+            multiple = TRUE),
+          #
+          # Nakuru, Kenya
+          #
+          fileInput(inputId = "shp.nakuru",
+            label = "Upload map of Nakuru, Kenya",
+            accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+            multiple = TRUE),
+          #
+          # Antananarivo, Madagascar
+          #
+          fileInput(inputId = "shp.antananarivo",
+            label = "Upload map of Antananarivo, Madagascar",
+            accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+            multiple = TRUE),
+          #
+          # Maputo, Mozambique
+          #
+          fileInput(inputId = "shp.maputo",
+            label = "Upload map of Maputo, Mozambique",
+            accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+            multiple = TRUE),
+          #
+          # Lusaka, Zambia
+          #
+          fileInput(inputId = "shp.lusaka",
+            label = "Upload map of Lusaka, Zambia",
+            accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+            multiple = TRUE)            
+        )           
+      )
+    )        
   )
 )
 

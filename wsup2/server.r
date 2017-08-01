@@ -14,18 +14,20 @@ function(input, output, session) {
     # Use pre-loaded data if no dataset is uploaded
     #
     inputFile <- input$file1
-    if(is.null(inputFile)){ 
-      current.data 
-    }
+    #
+    #
+    #
+    if(is.null(inputFile)) { current.data }
     #
     # If dataset is uploaded...
     #
-    else{
+    else
+      {
       #
       # Read dataset file
       #
       read.csv(file = inputFile$datapath, header = TRUE, sep = ",")
-    }
+      }
   })
   #
   # Update country select input based on survey dataset uploaded
@@ -646,6 +648,44 @@ function(input, output, session) {
                             <p><em>For quantile method.</em> Select number of quantiles to divide dataset into.</p>
                           ")))                       
   })
+  #
+  #
+  #
+  observeEvent(input$info3, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "City map data input",
+                           size = "l",
+                           HTML("
+                             <h4>Upload map of citywide survey area</h4>
+                             <p>The map should be in ESRI Shapefile format (SHP). This file format requires a minimum of 3 related files in order to be readable. These files are the <code>.SHP</code>, <code>.SHX</code> and <code>.DBF</code>. Hence, these three files should be uploaded all at the same time by clicking on CTRL and then selecting at least the three files for upload. A warning will pop out if the incorrect file formats and/or incomplete number of files are uploaded. Once the files have been uploaded, two new options come out. First, the app asks for the vaiable name in the map files that contains the stratifying variable. This would be the variable name of a geographic subdivision by which you decided to divide the city. Second, a prompt for the number of primary sampilng units or <code>PSU</code> comes to view. This is set at a default of 30. Once you have specified these parameters, you can click on <code>Sample</code> and corresponding sampling maps will be produced on the main panel and corresponding sampling lists on the appropriate sampling tabs.</p>
+                           ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info4, {
+     #
+     #
+     #
+     showModal(modalDialog(withMathJax(),
+                           title = "Slum map data input",
+                           size = "l",
+                           HTML("
+                             <h4>Available slum area sampling information</h4>
+                             <p>For slum areas, you are first asked what information you have on slums that can be used for sampling: <code>slum maps</code> or <code>slum lists</code>. If you have slum maps, then you are given the options for sampling with slum maps (below). If you have lists, then you are given the option for sampling with slum lists (below).</p>
+                             
+                             <br/>
+                             <h4>Upload map of slum survey area</h4>
+                             <p>The map should be in ESRI Shapefile format (SHP). This file format requires a minimum of 3 related files in order to be readable. These files are the <code>.SHP</code>, <code>.SHX</code> and <code>.DBF</code>. Hence, these three files should be uploaded all at the same time by clicking on CTRL and then selecting at least the three files for upload. A warning will pop out if the incorrect file formats and/or incomplete number of files are uploaded. Once the files have been uploaded, two new options come out. First, the app asks for the vaiable name in the map files that contains the stratifying variable. This would be the variable name of a geographic subdivision by which you decided to divide the city. Second, a prompt for the number of primary sampilng units or <code>PSU</code> comes to view. This is set at a default of 30. Once you have specified these parameters, you can click on <code>Sample</code> and corresponding sampling maps will be produced on the main panel and corresponding sampling lists on the appropriate sampling tabs.</p>
+
+                             <br/>
+                             <h4>Upload list of slum areas</h4>
+                             <p>The list of slum areas should be in CSV format. The list should be organised and sorted along the stratifying variable for survey areas. Once the list has been uploaded, you will need to specify how many <code>PSUs</code> will be survyed. Then press on <code>Sample</code>. A sample list from the complete list is now available on the <code>Slum Lists</code> tab.</p>
+                           ")))
+  })
 
   
 ################################################################################
@@ -1091,7 +1131,8 @@ function(input, output, session) {
     #
     # If selected country is Bangladesh and selected city is Dhaka
     #
-    if(input$country == "Bangladesh" & input$city == "Dhaka"){
+    if(input$country == "Bangladesh" & input$city == "Dhaka")
+      {
       #
       #
       #
@@ -1099,9 +1140,7 @@ function(input, output, session) {
       #
       # If no map is uploaded, use pre-loaded map
       #
-      if(is.null(inputFile)) { 
-        dhaka.map
-      }
+      if(is.null(inputFile)) { dhaka.map }
       #
       #
       #
@@ -1113,21 +1152,228 @@ function(input, output, session) {
       # Read shapefile
       #
       x <- try(readOGR(dsn = dir, 
-                 layer = strsplit(inputFile$name[1], "\\.")[[1]][1]), 
-                 verbose = TRUE)
+               layer = strsplit(inputFile$name[1], "\\.")[[1]][1]), 
+               verbose = TRUE)
       #
       # If uploaded file is readable...
       #
-      if(class(x) == "try-error") { 
+      if(class(x) == "try-error")
+        {
         NULL 
-      } 
-      else {
+        } 
+      else 
+        {
         #
         # Transform shapefiles into WGS84 longlat
         #
         x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
+        }
       }
-    }
+    #
+    # If selected country is Ghana and selected city is Accra
+    #
+    if(input$country == "Ghana" & input$city == "Accra")
+      {
+      #
+      #
+      #
+      inputFile <- input$shp.accra
+      #
+      # If no map is uploaded, use pre-loaded map
+      #
+      if(is.null(inputFile)) { accra.map }
+      #
+      #
+      #
+      infiles <- inputFile$datapath
+      dir <- unique(dirname(infiles))
+      outfiles <- file.path(dir, inputFile$name)
+      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+      #
+      # Read shapefile
+      #
+      x <- try(readOGR(dsn = dir, 
+               layer = strsplit(inputFile$name[1], "\\.")[[1]][1]), 
+               verbose = TRUE)
+      #
+      # If uploaded file is readable...
+      #
+      if(class(x) == "try-error")
+        {
+        NULL 
+        } 
+      else 
+        {
+        #
+        # Transform shapefiles into WGS84 longlat
+        #
+        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
+        }
+      }
+    #
+    # If selected country is Kenya and selected city is Nakuru
+    #
+    if(input$country == "Kenya" & input$city == "Nakuru")
+      {
+      #
+      #
+      #
+      inputFile <- input$shp.nakuru
+      #
+      # If no map is uploaded, use pre-loaded map
+      #
+      if(is.null(inputFile)) { nakuru.map }
+      #
+      #
+      #
+      infiles <- inputFile$datapath
+      dir <- unique(dirname(infiles))
+      outfiles <- file.path(dir, inputFile$name)
+      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+      #
+      # Read shapefile
+      #
+      x <- try(readOGR(dsn = dir, 
+               layer = strsplit(inputFile$name[1], "\\.")[[1]][1]), 
+               verbose = TRUE)
+      #
+      # If uploaded file is readable...
+      #
+      if(class(x) == "try-error")
+        {
+        NULL 
+        } 
+      else 
+        {
+        #
+        # Transform shapefiles into WGS84 longlat
+        #
+        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
+        }
+      }
+    #
+    # If selected country is Madagascar and selected city is Antananarivo
+    #
+    if(input$country == "Madagascar" & input$city == "Antananarivo")
+      {
+      #
+      #
+      #
+      inputFile <- input$shp.antananarivo
+      #
+      # If no map is uploaded, use pre-loaded map
+      #
+      if(is.null(inputFile)) { antananarivo.map }
+      #
+      #
+      #
+      infiles <- inputFile$datapath
+      dir <- unique(dirname(infiles))
+      outfiles <- file.path(dir, inputFile$name)
+      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+      #
+      # Read shapefile
+      #
+      x <- try(readOGR(dsn = dir, 
+               layer = strsplit(inputFile$name[1], "\\.")[[1]][1]), 
+               verbose = TRUE)
+      #
+      # If uploaded file is readable...
+      #
+      if(class(x) == "try-error")
+        {
+        NULL 
+        } 
+      else 
+        {
+        #
+        # Transform shapefiles into WGS84 longlat
+        #
+        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
+        }
+      }
+    #
+    # If selected country is Mozambique and selected city is Maputo
+    #
+    if(input$country == "Mozambique" & input$city == "Maputo")
+      {
+      #
+      #
+      #
+      inputFile <- input$shp.maputo
+      #
+      # If no map is uploaded, use pre-loaded map
+      #
+      if(is.null(inputFile)) { maputo.map }
+      #
+      #
+      #
+      infiles <- inputFile$datapath
+      dir <- unique(dirname(infiles))
+      outfiles <- file.path(dir, inputFile$name)
+      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+      #
+      # Read shapefile
+      #
+      x <- try(readOGR(dsn = dir, 
+               layer = strsplit(inputFile$name[1], "\\.")[[1]][1]), 
+               verbose = TRUE)
+      #
+      # If uploaded file is readable...
+      #
+      if(class(x) == "try-error")
+        {
+        NULL 
+        } 
+      else 
+        {
+        #
+        # Transform shapefiles into WGS84 longlat
+        #
+        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
+        }
+      }
+    #
+    # If selected country is Zambia and selected city is Lusaka
+    #
+    if(input$country == "Zambia" & input$city == "Lusaka")
+      {
+      #
+      #
+      #
+      inputFile <- input$shp.lusaka
+      #
+      # If no map is uploaded, use pre-loaded map
+      #
+      if(is.null(inputFile)) { lusaka.map }
+      #
+      #
+      #
+      infiles <- inputFile$datapath
+      dir <- unique(dirname(infiles))
+      outfiles <- file.path(dir, inputFile$name)
+      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+      #
+      # Read shapefile
+      #
+      x <- try(readOGR(dsn = dir, 
+               layer = strsplit(inputFile$name[1], "\\.")[[1]][1]), 
+               verbose = TRUE)
+      #
+      # If uploaded file is readable...
+      #
+      if(class(x) == "try-error")
+        {
+        NULL 
+        } 
+      else 
+        {
+        #
+        # Transform shapefiles into WGS84 longlat
+        #
+        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
+        }
+      }
   })
   #
   #
@@ -1207,7 +1453,7 @@ function(input, output, session) {
   		      lng2 = survey.city()$west, lat2 = survey.city()$south)
   }) 
   #
-  # Zoom in to selected city
+  # Clear maps when indicator set is changed
   #
   observeEvent(input$varSet != input$varSet, {
     #
@@ -1221,7 +1467,32 @@ function(input, output, session) {
     #
     #
     #
-    clearControls()
+    clearControls() %>%
+    #
+    #
+    #
+    removeLayersControl()
+  }) 
+  #
+  # Clear maps when indicator is set to none == "."
+  #
+  observeEvent(input$varList == ".", {
+    #
+    #
+    #
+    leafletProxy("map") %>%
+    #
+    #
+    #
+    clearShapes() %>%
+    #
+    #
+    #
+    clearControls() %>%
+    #
+    #
+    #
+    removeLayersControl()
   }) 
   #
   # Plot indicator maps
@@ -1285,8 +1556,6 @@ function(input, output, session) {
 	  #  
 	  slum.labels <- paste(slum.map.data()$surveyArea, ": ", round(slum.map.data()[["estimate"]], digits = 1), sep = "")
 	  city.labels <- paste(city.map.data()$surveyArea, ": ", round(city.map.data()[["estimate"]], digits = 1), sep = "")
-	  #upazila.labels <- paste("Upazila: ", upazila$Upazila, sep = "") 
-	  #ward.labels <- paste("Ward: ", wards$Union, sep = "") 
 	  #
 	  #
 	  #
@@ -1366,10 +1635,6 @@ function(input, output, session) {
 	  #
 	  #
 	  #
-	  #addMiniMap(tiles = mapbox.satellite,
-	  #  toggleDisplay = TRUE,
-	  #	position = "topleft",
-	  #	width = 150, height = 150)
     }
   })
   

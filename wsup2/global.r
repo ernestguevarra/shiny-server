@@ -87,14 +87,47 @@ long.lat.crs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0
 #
 # Pre-load Dhaka Bangladesh map
 #
-dhaka.map <- readOGR(dsn = "surveyArea3",
-                     layer = "surveyArea3",
+dhaka.map <- readOGR(dsn = "dhaka",
+                     layer = "dhaka",
                      verbose = FALSE)
 #
 #
 #
 dhaka.map <- spTransform(dhaka.map, CRSobj = CRS(long.lat.crs))
-
+#
+# Pre-load Accra, Ghana map
+#
+accra.map <- readOGR(dsn = "accra",
+                     layer = "accra",
+                     verbose = FALSE)
+#
+# Pre-load Nakuru, Kenya map
+#
+nakuru.map <- readOGR(dsn = "nakuru",
+                      layer = "nakuru",
+                      verbose = FALSE)
+#
+# Pre-load Antananarivo, Madagascar map
+#
+antananarivo.map <- readOGR(dsn = "antananarivo",
+                            layer = "tnr2",
+                            verbose = FALSE)
+#
+# Pre-load Maputo, Mozambique map
+#
+maputo.map <- readOGR(dsn = "maputo",
+                      layer = "maputo",
+                      verbose = FALSE)
+#
+# Pre-load Lusaka, Zambia map
+#
+lusaka.map <- readOGR(dsn = "lusaka",
+                      layer = "lusaka",
+                      verbose = FALSE)
+#
+#
+#
+lusaka.map <- spTransform(lusaka.map, CRSobj = CRS(long.lat.crs))
                                       
 ################################################################################
 #
