@@ -4,6 +4,7 @@
 #
 ################################################################################
 
+options(shiny.maxRequestSize = 30*1024^2)
 
 function(input, output, session) {
   #
@@ -26,9 +27,22 @@ function(input, output, session) {
       #
       # Read dataset file
       #
-      read.csv(file = inputFile$datapath, header = TRUE, sep = ",")
+      temp <- read.csv(file = inputFile$datapath, header = TRUE, sep = ",")
+      #
+      #
+      #
+      temp <- temp[order(temp$indicatorCode), ]
       }
   })
+  #
+  #
+  #
+  output$current.data.table <- DT::renderDataTable(
+	#
+	#
+    #
+    survey.dataset(), options = list(pageLength = 5)
+  )  
   #
   # Update country select input based on survey dataset uploaded
   #
@@ -39,67 +53,6 @@ function(input, output, session) {
       choices = list(Select = ".", unique(survey.dataset()$country)),
       selected = "."
     )
-  })
-  #
-  #
-  #
-  observe({
-	#
-	#
-	#
-	if(input$city != "."){
-	  #
-	  #
-	  #
-	  updateSelectInput(session = session,
-	    inputId = "varSet",
-	    label = "Select indicator set",
-	    choices = c("Select" = ".", sets),
-	    selected = ".")
-	}
-  })
-  #
-  #
-  #
-  observe({
-    #
-    #
-    #
-    updateSelectInput(session = session,
-	  inputId = "varList",
-	  label = "Select indicator",
-	  choices = c("Select" = ".",
-				  vars[as.character(steerIndicators$varShort)[steerIndicators$varSet == input$varSet]]),
-	  selected = ".")
-  })
-  #
-  #
-  #
-  observeEvent(input$varList != input$varList, {
-    #
-    #
-    #
-    updateSelectInput(session = session,
-      inputId = "group.by",
-      label = "Disaggregate by",
-      choices = list(None = ".",
-                     "Survey Area" = "surveyArea",
-                     "Wealth Quintile" = "wealth"),
-      selected = ".")
-  })
-  #
-  #
-  #
-  observeEvent(input$varList != input$varList, {
-    #
-    #
-    #
-    updateSelectInput(session = session,
-      inputId = "facet.by",
-      label = "Stratify by",
-      choices = list(None = ".",
-                     "Area Type" = "type"),
-      selected = ".")
   })
   #
   # Update city select input based on country/ies in dataset
@@ -179,6 +132,104 @@ function(input, output, session) {
                                     "Lusaka" = "Lusaka"))
   })
   #
+  # Subset steerIndicators to current city and country
+  #
+  steer.indicators <- eventReactive(input$country != ".", {
+    #
+    #
+    #
+    steerIndicators[steerIndicators[[input$country]] == 1, ]
+  })
+  #
+  #
+  #
+  vars <- reactive({
+    #
+    # Create indicator choices for dropdown
+    #
+    temp <- as.character(steer.indicators()$varList)
+    names(temp) <- steer.indicators()$varShort
+    #
+    #
+    #
+    return(temp)
+  })
+  #
+  #
+  #
+  sets <- reactive({
+    #
+    #
+    #
+    temp <- as.character(unique(steerIndicators$varSet))
+    names(temp) <- unique(steerIndicators$varTitle)
+    #
+    #
+    #
+    return(temp)
+  })
+  #
+  #
+  #
+  observe({
+	#
+	#
+	#
+	if(input$city != "."){
+	  #
+	  #
+	  #
+	  updateSelectInput(session = session,
+	    inputId = "varSet",
+	    label = "Select indicator set",
+	    choices = c("Select" = ".", sets()),
+	    selected = ".")
+	}
+  })
+  #
+  #
+  #
+  observe({
+    #
+    #
+    #
+    updateSelectInput(session = session,
+	  inputId = "varList",
+	  label = "Select indicator",
+	  choices = c("Select" = ".",
+				  vars()[as.character(steer.indicators()$varShort)[steer.indicators()$varSet == input$varSet]]),
+	  selected = ".")
+  })
+  #
+  #
+  #
+  observeEvent(input$varList != input$varList, {
+    #
+    #
+    #
+    updateSelectInput(session = session,
+      inputId = "group.by",
+      label = "Disaggregate by",
+      choices = list(None = ".",
+                     "Survey Area" = "surveyArea",
+                     "Wealth Quintile" = "wealth"),
+      selected = ".")
+  })
+  #
+  #
+  #
+  observeEvent(input$varList != input$varList, {
+    #
+    #
+    #
+    updateSelectInput(session = session,
+      inputId = "facet.by",
+      label = "Stratify by",
+      choices = list(None = ".",
+                     "Area Type" = "type"),
+      selected = ".")
+  })
+  #
   # Update years select input based on survey dataset uploaded
   #
   observe({
@@ -220,57 +271,7 @@ function(input, output, session) {
     subset(survey.dataset(),
            subset = country == input$country & 
                     year >= input$start.year & year <= input$end.year &
-                    indicatorCode %in% steerIndicators$varList[steerIndicators$varSet == input$varSet])                    
-  })
-  #
-  # Create map data for slum areas of current city and indicator
-  #
-  slum.map.data <- reactive({
-    #
-    #
-    #
-    temp <- subset(sub.data(), 
-                   type == "Slum" &
-                   !strata %in% c(paste("Wealth Quintile ", 1:5, sep = ""), "Overall"))
-    #
-    #
-    #
-    if(!input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"))
-      {
-      #
-      #
-      #
-      temp$estimate <- temp$estimate * 100
-      }
-    #
-    #
-    #
-    merge(dhaka.map, temp, by.x = "surveyArea", by.y = "strata")
-  })
-  #
-  # Create map data for city areas of current city and indicator
-  #
-  city.map.data <- reactive({
-    #
-    #
-    #
-    temp <- subset(sub.data(), 
-                   type == "Citywide" &
-                   !strata %in% c(paste("Wealth Quintile ", 1:5, sep = ""), "Overall"))
-    #
-    #
-    #
-    if(!input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"))
-      {
-      #
-      #
-      #
-      temp$estimate <- temp$estimate * 100
-      }
-    #
-    #
-    #
-    merge(dhaka.map, temp, by.x = "surveyArea", by.y = "strata")
+                    indicatorCode %in% steer.indicators()$varList[steer.indicators()$varSet == input$varSet])                    
   })
   #
   #
@@ -288,7 +289,7 @@ function(input, output, session) {
     #
     #
     #
-    paste(steerIndicators$varNames[steerIndicators$varList == input$varList])
+    paste(steer.indicators()$varNames[steer.indicators()$varList == input$varList])
   })
   #
   #
@@ -309,43 +310,7 @@ function(input, output, session) {
       paste(input$start.year, " - ", input$end.year, sep = "")
       }
   })
-  #
-  #
-  #
-  observe({   
-    #
-    #
-    #
-    yy <- c(slum.map.data()[[input$varList]], city.map.data()[[input$varList]])
-    xx <- try(cut(yy, breaks = quantile(yy, probs = c(0.2, 0.4, 0.6, 0.8, 1))), silent = TRUE)
-    #
-    #
-    #
-    if(class(xx) == "try-error")
-      #
-      #
-      #
-      updateSelectInput(session = session,
-                        inputId = "map.colour",
-                        label = "Mapping method",
-                        choices = list("Linear" = "linear",
-                                       "Equal interval" = "interval"),
-                        selected = "interval")
-    #
-    #
-    #
-    if(class(xx) != "try-error")
-      #
-      #
-      #
-      updateSelectInput(session = session,
-                        inputId = "map.colour",
-                        label = "Mapping method",
-                        choices = list("Linear" = "linear",
-                                       "Equal interval" = "interval",
-                                       "Quantile" = "quantile"),
-                        selected = "interval")
-  })                                       
+                                       
 
 
 ################################################################################
@@ -370,7 +335,7 @@ function(input, output, session) {
     #
     # If varList is not proportion...
     #
-    if(input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"))
+    if(input$varList %in% steer.indicators()$varList[steer.indicators()$varFunction != "proportion"])
 	  {
 	  #
 	  #
@@ -403,7 +368,7 @@ function(input, output, session) {
     #
     #
     #
-    if(input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"))
+    if(input$varList %in% steer.indicators()$varlist[steer.indicators()$varFunction != "proportion", ])
       {
       #
       #
@@ -627,7 +592,7 @@ function(input, output, session) {
                               <li><code>Sequential</code> palettes are suited to ordered data that progress from low to high with light colours representing low data values and dark colours representing high data values.</li>
                               <li><code>Diverging</code> palettes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The middle values are emphasised with light colours and low and high extremes are emphasised with dark colours that have contrasting hues.</li>
                             </ul>
-                            <p>The choices of colour palettes are based on <a href='http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3' target='_blank'>ColorBrewer 2.0</a> and implemented in R using the <a href='https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf' target='_blank'>RColorBrewer</a> function.</p>
+                            <p>The choices of colour palettes are based on <a href='http://colorbrewer2.org/' target='_blank'>ColorBrewer 2.0</a> and implemented in R using the <a href='https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf' target='_blank'>RColorBrewer</a> function.</p>
                             <p>The default colour palette for the <code>Demographics</code> indicator set is <code>sequential yellow to orange to brown (YlOrBb)</code> scheme.</p>
                             
                             <br/>
@@ -712,7 +677,7 @@ function(input, output, session) {
       #
       #
       temp <- subset(sub.data(), 
-                     strata %in% paste("Survey Area ", 1:9, sep = "") &
+                     !strata %in% c(paste("Wealth Quintile ", 1:5, sep = ""), "Overall") &
                      type == "Citywide")
       }
     #
@@ -724,7 +689,7 @@ function(input, output, session) {
       #
       #
       temp <- subset(sub.data(), 
-                     strata %in% paste("Survey Area ", 1:9, sep = ""))
+                     !strata %in% c(paste("Wealth Quintile ", 1:5, sep = ""), "Overall"))
       }
     #
     #
@@ -862,7 +827,7 @@ function(input, output, session) {
     #
     #
     #
-    if(!input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"))
+    if(input$varList %in% steer.indicators()$varList[steer.indicators()$varFunction == "proportion"])
       {
       #
       #
@@ -907,7 +872,7 @@ function(input, output, session) {
       #
       #
       #
-      indicator.plot <- indicator.plot + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+      indicator.plot <- indicator.plot + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
       }
     #
     #
@@ -1109,7 +1074,7 @@ function(input, output, session) {
       #
       #
       #
-      indicator.plot <- indicator.plot + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+      indicator.plot <- indicator.plot + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
       }
     #
     #
@@ -1129,7 +1094,7 @@ function(input, output, session) {
   #
   survey.area.map <- reactive({
     #
-    # If selected country is Bangladesh and selected city is Dhaka
+    #
     #
     if(input$country == "Bangladesh" & input$city == "Dhaka")
       {
@@ -1140,34 +1105,15 @@ function(input, output, session) {
       #
       # If no map is uploaded, use pre-loaded map
       #
-      if(is.null(inputFile)) { dhaka.map }
+      if(is.null(inputFile)) { return(dhaka.map) }
       #
       #
       #
-      infiles <- inputFile$datapath
-      dir <- unique(dirname(infiles))
-      outfiles <- file.path(dir, inputFile$name)
-      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+      #names(survey.upload.dhaka())[names(survey.upload.dhaka()) == input$survey.area.id] <- "surveyArea"
       #
-      # Read shapefile
       #
-      x <- try(readOGR(dsn = dir, 
-               layer = strsplit(inputFile$name[1], "\\.")[[1]][1]), 
-               verbose = TRUE)
       #
-      # If uploaded file is readable...
-      #
-      if(class(x) == "try-error")
-        {
-        NULL 
-        } 
-      else 
-        {
-        #
-        # Transform shapefiles into WGS84 longlat
-        #
-        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
-        }
+      return(survey.upload.dhaka())
       }
     #
     # If selected country is Ghana and selected city is Accra
@@ -1181,34 +1127,11 @@ function(input, output, session) {
       #
       # If no map is uploaded, use pre-loaded map
       #
-      if(is.null(inputFile)) { accra.map }
+      if(is.null(inputFile)) { return(accra.map) }
       #
       #
       #
-      infiles <- inputFile$datapath
-      dir <- unique(dirname(infiles))
-      outfiles <- file.path(dir, inputFile$name)
-      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
-      #
-      # Read shapefile
-      #
-      x <- try(readOGR(dsn = dir, 
-               layer = strsplit(inputFile$name[1], "\\.")[[1]][1]), 
-               verbose = TRUE)
-      #
-      # If uploaded file is readable...
-      #
-      if(class(x) == "try-error")
-        {
-        NULL 
-        } 
-      else 
-        {
-        #
-        # Transform shapefiles into WGS84 longlat
-        #
-        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
-        }
+      return(survey.upload.accra())
       }
     #
     # If selected country is Kenya and selected city is Nakuru
@@ -1222,34 +1145,11 @@ function(input, output, session) {
       #
       # If no map is uploaded, use pre-loaded map
       #
-      if(is.null(inputFile)) { nakuru.map }
+      if(is.null(inputFile)) { return(nakuru.map) }
       #
       #
       #
-      infiles <- inputFile$datapath
-      dir <- unique(dirname(infiles))
-      outfiles <- file.path(dir, inputFile$name)
-      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
-      #
-      # Read shapefile
-      #
-      x <- try(readOGR(dsn = dir, 
-               layer = strsplit(inputFile$name[1], "\\.")[[1]][1]), 
-               verbose = TRUE)
-      #
-      # If uploaded file is readable...
-      #
-      if(class(x) == "try-error")
-        {
-        NULL 
-        } 
-      else 
-        {
-        #
-        # Transform shapefiles into WGS84 longlat
-        #
-        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
-        }
+      return(survey.upload.nakuru())
       }
     #
     # If selected country is Madagascar and selected city is Antananarivo
@@ -1263,34 +1163,11 @@ function(input, output, session) {
       #
       # If no map is uploaded, use pre-loaded map
       #
-      if(is.null(inputFile)) { antananarivo.map }
+      if(is.null(inputFile)) { return(antananarivo.map) }
       #
       #
       #
-      infiles <- inputFile$datapath
-      dir <- unique(dirname(infiles))
-      outfiles <- file.path(dir, inputFile$name)
-      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
-      #
-      # Read shapefile
-      #
-      x <- try(readOGR(dsn = dir, 
-               layer = strsplit(inputFile$name[1], "\\.")[[1]][1]), 
-               verbose = TRUE)
-      #
-      # If uploaded file is readable...
-      #
-      if(class(x) == "try-error")
-        {
-        NULL 
-        } 
-      else 
-        {
-        #
-        # Transform shapefiles into WGS84 longlat
-        #
-        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
-        }
+      return(survey.upload.antananarivo())
       }
     #
     # If selected country is Mozambique and selected city is Maputo
@@ -1304,34 +1181,11 @@ function(input, output, session) {
       #
       # If no map is uploaded, use pre-loaded map
       #
-      if(is.null(inputFile)) { maputo.map }
+      if(is.null(inputFile)) { return(maputo.map) }
       #
       #
       #
-      infiles <- inputFile$datapath
-      dir <- unique(dirname(infiles))
-      outfiles <- file.path(dir, inputFile$name)
-      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
-      #
-      # Read shapefile
-      #
-      x <- try(readOGR(dsn = dir, 
-               layer = strsplit(inputFile$name[1], "\\.")[[1]][1]), 
-               verbose = TRUE)
-      #
-      # If uploaded file is readable...
-      #
-      if(class(x) == "try-error")
-        {
-        NULL 
-        } 
-      else 
-        {
-        #
-        # Transform shapefiles into WGS84 longlat
-        #
-        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
-        }
+      survey.upload.maputo()
       }
     #
     # If selected country is Zambia and selected city is Lusaka
@@ -1345,45 +1199,112 @@ function(input, output, session) {
       #
       # If no map is uploaded, use pre-loaded map
       #
-      if(is.null(inputFile)) { lusaka.map }
+      if(is.null(inputFile)) { return(lusaka.map) }
       #
       #
       #
-      infiles <- inputFile$datapath
-      dir <- unique(dirname(infiles))
-      outfiles <- file.path(dir, inputFile$name)
-      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+      return(survey.upload.lusaka())
+      }
+  })
+  #
+  # Create map data for slum areas of current city and indicator
+  #
+  slum.map.data <- reactive({
+    #
+    #
+    #
+    temp <- subset(sub.data(), 
+                   type == "Slum" &
+                   !strata %in% c(paste("Wealth Quintile ", 1:5, sep = ""), "Overall"))
+    #
+    #
+    #
+    if(input$varList %in% steer.indicators()$varlist[steer.indicators()$varFunction == "proportion", ])
+      {
       #
-      # Read shapefile
       #
-      x <- try(readOGR(dsn = dir, 
-               layer = strsplit(inputFile$name[1], "\\.")[[1]][1]), 
-               verbose = TRUE)
       #
-      # If uploaded file is readable...
+      temp$estimate <- temp$estimate * 100
+      }
+    #
+    #
+    #
+    if(input$country != "." & input$city != ".")
+      {
       #
-      if(class(x) == "try-error")
-        {
-        NULL 
-        } 
-      else 
-        {
-        #
-        # Transform shapefiles into WGS84 longlat
-        #
-        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
-        }
+      #
+      #
+      merge(survey.area.map(), temp, by.x = "surveyArea", by.y = "strata")
+      }
+  })
+  #
+  # Create map data for city areas of current city and indicator
+  #
+  city.map.data <- reactive({
+    #
+    #
+    #
+    temp <- subset(sub.data(), 
+                   type == "Citywide" &
+                   !strata %in% c(paste("Wealth Quintile ", 1:5, sep = ""), "Overall"))
+    #
+    #
+    #
+    if(input$varList %in% steer.indicators()$varlist[steer.indicators()$varFunction == "proportion", ])
+      {
+      #
+      #
+      #
+      temp$estimate <- temp$estimate * 100
+      }
+    #
+    #
+    #
+    if(input$country != "." & input$city != ".")
+      {
+      #
+      #
+      #
+      merge(survey.area.map(), temp, by.x = "surveyArea", by.y = "strata")
       }
   })
   #
   #
   #
-  observeEvent(input$shp.dhaka, {
-    updateSelectInput(session = session,
-                      inputId = "survey.area.id",
-                      label = "Select map data identifier for survey areas",
-                      choices = names(survey.area.map()))
-  })  
+  observe({   
+    #
+    #
+    #
+    yy <- c(slum.map.data()[[input$varList]], city.map.data()[[input$varList]])
+    xx <- try(cut(yy, breaks = quantile(yy, probs = c(0.2, 0.4, 0.6, 0.8, 1))), silent = TRUE)
+    #
+    #
+    #
+    if(class(xx) == "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour",
+                        label = "Mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval"),
+                        selected = "interval")
+    #
+    #
+    #
+    if(class(xx) != "try-error")
+      #
+      #
+      #
+      updateSelectInput(session = session,
+                        inputId = "map.colour",
+                        label = "Mapping method",
+                        choices = list("Linear" = "linear",
+                                       "Equal interval" = "interval",
+                                       "Quantile" = "quantile"),
+                        selected = "interval")
+  })
   #
   # Map baselayer
   #  
@@ -1391,7 +1312,7 @@ function(input, output, session) {
     leaflet() %>%
       addTiles(
         urlTemplate = mapbox.standard,
-        attribution = "Maps by <a href = 'http://www.mapbox.com/'>Mapbox</a>"
+        attribution = "Map by <a href = 'http://www.mapbox.com/'>Mapbox</a>"
       ) %>%
       #addProviderTiles(providers$Esri.NatGeoWorldMap) %>%
       setView(lng = 20, lat = 20, zoom = 3)
@@ -1467,11 +1388,11 @@ function(input, output, session) {
     #
     #
     #
-    clearControls()
+    clearControls() %>%
     #
     #
     #
-    #removeLayersControl()
+    removeLayersControl()
   }) 
   #
   # Clear maps when indicator is set to none == "."
@@ -1488,11 +1409,36 @@ function(input, output, session) {
     #
     #
     #
-    clearControls()
+    clearControls() %>%
     #
     #
     #
-    #removeLayersControl()
+    removeLayersControl()
+  }) 
+  #
+  # Clear maps when control panel is reset
+  #
+  observeEvent(input$refresh.chart.settings, {
+    #
+    #
+    #
+    leafletProxy("map") %>%
+    #
+    #
+    #
+    clearShapes() %>%
+    #
+    #
+    #
+    clearControls() %>%
+    #
+    #
+    #
+    removeLayersControl() %>%
+    #
+    #
+    #
+    setView(lng = 20, lat = 20, zoom = 3)
   }) 
   #
   # Plot indicator maps
@@ -1554,8 +1500,25 @@ function(input, output, session) {
 	  #
 	  #
 	  #  
-	  slum.labels <- paste(slum.map.data()$surveyArea, ": ", round(slum.map.data()[["estimate"]], digits = 1), sep = "")
-	  city.labels <- paste(city.map.data()$surveyArea, ": ", round(city.map.data()[["estimate"]], digits = 1), sep = "")
+	  slum.labels <- paste(slum.map.data()$surveyArea, ": ", round(slum.map.data()[["estimate"]], digits = 1), "%", sep = "")
+	  #
+	  #
+	  #
+	  city.labels <- paste(city.map.data()$surveyArea, ": ", round(city.map.data()[["estimate"]], digits = 1), "%", sep = "")
+	  #
+	  #
+	  #
+	  if(input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"))
+	    {
+	    #
+	    #
+        #  
+	    slum.labels <- paste(slum.map.data()$surveyArea, ": ", round(slum.map.data()[["estimate"]], digits = 1), sep = "")
+	    #
+	    #
+	    #
+	    city.labels <- paste(city.map.data()$surveyArea, ": ", round(city.map.data()[["estimate"]], digits = 1), sep = "")
+	    }
 	  #
 	  #
 	  #
@@ -1622,14 +1585,12 @@ function(input, output, session) {
 		labFormat = ifelse(input$map.colour == "quantile" & !input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"), legend.format(digits = 1, between = " to ", suffix = "%"),
 		              ifelse(input$map.colour == "quantile" & input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"), legend.format(digits = 1, between = " to "),
 		                ifelse(input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"), labelFormat(digits = 1, between = " to "), labelFormat(digits = 1, between = " to ", suffix = "%")))),
-		#title = steerIndicators$varShort[steerIndicators$varList == input$varList],
 		layerId = "legend") %>%
 	  #
 	  #
 	  #
 	  addLayersControl(
 		baseGroups = c("Slum", "Citywide"),
-		#overlayGroups = c("Upazila", "Wards"),
 		position = "topleft",
 		options = layersControlOptions(collapsed = FALSE, autoZIndex = TRUE)) #%>%
 	  #
@@ -1848,6 +1809,8 @@ function(input, output, session) {
       #
       output$deff <- renderTable({NULL})
   })
+  
+  
 ################################################################################
 #
 # Spatial sampling
@@ -1865,6 +1828,7 @@ function(input, output, session) {
       addProviderTiles(providers$Esri.NatGeoWorldMap) %>%      
       setView(lng = 20, lat = 20, zoom = 3)
   })
+
 
 ################################################################################
 #
@@ -1906,7 +1870,7 @@ function(input, output, session) {
     #
     #
     #
-    if(class(x) == "try-error") NULL 
+    if(class(x) == "try-error") { return(NULL) } 
     #
     #
     #
@@ -1987,7 +1951,7 @@ function(input, output, session) {
       #
       addTiles(
         urlTemplate = mapbox.satellite,
-        attribution = "Imagery by <a href='https://www.mapbox.com'>Mapbox</a>"
+        attribution = "Map by <a href='https://www.mapbox.com'>Mapbox</a>"
       ) %>%
       #
       #
@@ -2056,14 +2020,11 @@ function(input, output, session) {
       #
       addTiles(
         urlTemplate = mapbox.satellite,
-        attribution = "Imagery by <a href='https://www.mapbox.com'>Mapbox</a>"
+        attribution = "Map by <a href='https://www.mapbox.com'>Mapbox</a>"
       ) %>%
       #
       #
       #
-      #setView(lng = mean(coordinates(slum.map())[,1]), 
-      #        lat = mean(coordinates(slum.map())[,2]), 
-      #        zoom = 11) %>%
       fitBounds(lng1 = bbox(slum.map())[1,1], 
                 lat1 = bbox(slum.map())[2,1], 
                 lng2 = bbox(slum.map())[1,2], 
@@ -2346,7 +2307,7 @@ function(input, output, session) {
 		  color = "#666",
 		  dashArray = "",
 		  fillOpacity = 0,
-		  bringToFront = TRUE),
+		  bringToFront = FALSE),
 		group = "Survey Areas") %>%
        #
        # Add survey area polygon layer
@@ -2372,7 +2333,7 @@ function(input, output, session) {
 		  data = xGrid(),
 		  lng =  coordinates(xGrid())[,1],
 		  lat = coordinates(xGrid())[,2],
-		  radius = 1,
+		  radius = 5,
 		  fill = TRUE,
 		  fillColor = "red",
 		  fillOpacity = 0.8,
@@ -2532,7 +2493,7 @@ function(input, output, session) {
 		  color = "#666",
 		  dashArray = "",
 		  fillOpacity = 0,
-		  bringToFront = TRUE),
+		  bringToFront = FALSE),
 		group = "Survey Areas") %>%
        #
        # Add survey area polygon layer
@@ -2558,7 +2519,7 @@ function(input, output, session) {
 		  data = sGrid(),
 		  lng =  coordinates(sGrid())[,1],
 		  lat = coordinates(sGrid())[,2],
-		  radius = 1,
+		  radius = 5,
 		  fill = TRUE,
 		  fillColor = "red",
 		  fillOpacity = 0.8,
@@ -2679,4 +2640,1327 @@ function(input, output, session) {
                      class = "btn-primary",
                      icon = icon(name = "download", class = "fa-lg"))
   })
+  #
+  # Subset steerIndicators to current city and country
+  #
+  steer.corr <- eventReactive(input$country.corr != ".", {
+    #
+    #
+    #
+    steerIndicators[steerIndicators[[input$country.corr]] == 1, ]
+  })
+  #
+  #
+  #
+  vars.corr <- reactive({
+    #
+    # Create indicator choices for dropdown
+    #
+    temp <- as.character(steer.corr()$varList)
+    names(temp) <- steer.corr()$varShort
+    #
+    #
+    #
+    return(temp)
+  })
+  #
+  #
+  #
+  output$x.corr <- renderUI({
+    #
+    #
+    #
+    selectInput(inputId = "x.corr",
+                label = "Independent variable",
+                choices = c(Select = "", names(stat.dataset())),
+                multiple = FALSE,
+                selected = "")
+    })
+  #
+  #
+  #
+  output$y.corr <- renderUI({
+    #
+    #
+    #
+    selectInput(inputId = "y.corr",
+                label = "Dependent variable",
+                choices = c(Select = "", names(stat.dataset())),
+                multiple = FALSE,
+                selected = "")
+  })
+  #
+  #
+  #
+  output$x.var <- renderUI({
+    #
+    #
+    #
+    selectInput(inputId = "x.var",
+                label = "Independent variable",
+                choices = c(Select = "", names(stat.dataset())),
+                multiple = FALSE,
+                selected = "")
+    })
+  #
+  #
+  #
+  output$y.var <- renderUI({
+    #
+    #
+    #
+    selectInput(inputId = "y.var",
+                label = "Dependent variable",
+                choices = c(Select = "", names(stat.dataset())),
+                multiple = FALSE,
+                selected = "")
+  })
+  #
+  # Read uploaded data
+  #
+  temp <- reactive({
+    #
+    # Use pre-loaded data if no dataset is uploaded
+    #
+    inputFile <- input$stat.test.data
+    #
+    #
+    #
+    if(is.null(inputFile))
+      {
+      #
+      #
+      #
+      return(NULL)
+      }
+    #
+    #
+    #
+    else
+      {
+      #
+      # Read dataset file
+      #
+      read.csv(file = inputFile$datapath, header = TRUE, sep = ",")
+      }
+  })
+  #
+  #
+  #
+  observeEvent(input$stat.test.data, {
+    #
+    #
+    #
+    updateSelectInput(session = session,
+                      inputId = "country.corr",
+                      label = "Subset data to selected city",
+                      choices = c("Select" = ".", "All" = "all", unique(as.character(temp()$country))))
+  })
+  #
+  #
+  #
+  stat.dataset <- reactive({
+    #
+    #
+    #
+    if(input$country.corr != "all" & input$country.corr != ".")
+      {
+      #
+      #
+      #
+      subset(temp(), country == input$country.corr)
+      }
+    #
+    #
+    #
+    else
+      {
+      #
+      #
+      #
+      temp()
+      }
+  })
+  #
+  #
+  #
+  output$corr.results <- renderTable({
+    #
+    #
+    #
+    req(input$x.corr, input$y.corr, input$z.corr)
+	  {
+	  #
+	  #
+	  #
+	  temp <- cor.test(x = stat.dataset()[[input$x.corr]], y = stat.dataset()[[input$y.corr]], method = input$z.corr)
+	  }
+    #
+    #
+    #
+    if(input$z.corr == "pearson")
+	  {
+	  #
+	  #
+	  #
+	  ci <- paste(round(temp$conf.int[1], digits = 4), " to ", round(temp$conf.int[2], digits = 4), sep = "")
+	  #
+ 	  #
+	  #
+	  results.vector <- c(round(temp$statistic, digits = 4), 
+	  					  round(temp$parameter, digits = 4), 
+						  round(temp$p.value, digits = 4), 
+						  round(temp$estimate, digits = 4), 
+						  ci)
+	  results.name <- c("Test statistic", "Degrees of freedom (df)", "p-value", "Correlation coefficient", "95% CI")
+	  }
+    #
+    #
+    #
+    if(input$z.corr == "kendall")
+	  {
+	  #
+	  #
+	  #
+	  results.vector <- c(round(temp$statistic, digits = 4), 
+						  round(temp$p.value, digits = 4), 
+						  round(temp$estimate, digits = 4))
+	  results.name <- c("Test statistic", "p-value", "Correlation coefficient")
+	  }    
+  #
+  #
+  #
+  results.table <- data.frame(results.name, results.vector)
+  #
+  #
+  #
+  names(results.table) <- c("Parameters", "Values")
+  #
+  #
+  #
+  results.table
+  })
+  #
+  #
+  #
+  output$corr.results.header <- renderText({
+    #
+    #
+    #
+    req(input$x.corr, input$y.corr, input$z.corr)
+      {
+      #
+      #
+      #
+      temp <- cor.test(x = stat.dataset()[[input$x.corr]], y = stat.dataset()[[input$y.corr]], method = input$z.corr)
+      }
+    #
+    #
+    #
+    temp$method
+  })
+  #
+  #
+  #
+  output$var.results.t <- renderTable({
+    #
+    #
+    #
+    req(input$x.var, input$y.var, input$z.var)
+      {
+      #
+      #
+      #
+      if(input$z.var == "t.test")
+        {
+        #
+        #
+        #
+        diff.test <- ifelse(bartlett.test(x = stat.dataset()[[input$x.var]], g = stat.dataset()[[input$y.var]])$p.value < 0.05, TRUE, FALSE)
+        #
+        #
+        #
+        temp <- t.test(x = stat.dataset()[[input$x.var]], y = stat.dataset()[[input$y.var]], var.equal = diff.test)
+        #
+        #
+        #
+        #ci <- paste(round(temp$conf.int[1], digits = 4), " to ", round(temp$conf.int[2], digits = 4))
+        #
+        #
+        #
+        results.vector <- c(round(temp$statistic, digits = 4),
+                            round(temp$parameter, digits = 4),
+                            round(temp$p.value, digits = 4))
+        results.name <- c("t statistic", "Degrees of freedom (df)", "p-value")
+        #
+        #
+        #
+        results.table <- data.frame(results.name, results.vector)
+        #
+        #
+        #
+        names(results.table) <- c("Parameters", "Values")
+        #
+        #
+        #
+        results.table
+        }
+      }
+  })
+  #
+  #
+  #
+  output$var.results.wilcox <- renderTable({
+    #
+    #
+    #
+    req(input$x.var, input$y.var, input$z.var)
+      {    
+      #
+      #
+      #
+      if(input$z.var == "wilcox")
+        {
+        #
+        #
+        #
+        temp <- wilcox.test(x = stat.dataset()[[input$x.var]], y = stat.dataset()[[input$y.var]], conf.int = TRUE, exact = FALSE)
+        #
+        #
+        #
+        #ci <- paste(round(temp$conf.int[1], digits = 4), " to ", round(temp$conf.int[2], digits = 4))
+        #
+        #
+        #
+        results.vector <- c(round(temp$statistic, digits = 4),
+                            round(temp$p.value, digits = 4))
+        results.name <- c("W statistic", "p-value")
+        #
+        #
+        #
+        results.table <- data.frame(results.name, results.vector)
+        #
+        #
+        #
+        names(results.table) <- c("Parameters", "Values")
+        #
+        #
+        #
+        results.table
+        }
+      }
+  })  
+  #
+  #
+  #
+  output$var.results.kruskal <- renderTable({
+    #
+    #
+    #
+    req(input$x.var, input$y.var, input$z.var)
+      {    
+      #
+      #
+      #
+      if(input$z.var == "kruskal")
+        {
+        #
+        #
+        #
+        temp <- kruskal.test(x = stat.dataset()[[input$x.var]], g = stat.dataset()[[input$y.var]])
+        #
+        #
+        #
+        #ci <- paste(round(temp$conf.int[1], digits = 4), " to ", round(temp$conf.int[2], digits = 4))
+        #
+        #
+        #
+        results.vector <- c(round(temp$statistic, digits = 4),
+                            round(temp$parameter, digits = 4),
+                            round(temp$p.value, digits = 4))
+        results.name <- c("Kruskal-Wallis chi-squared statistic", "Degrees of freedom", "p-value")
+        #
+        #
+        #
+        results.table <- data.frame(results.name, results.vector)
+        #
+        #
+        #
+        names(results.table) <- c("Parameters", "Values")
+        #
+        #
+        #
+        results.table
+        }
+      }
+  })
+  #
+  #
+  #
+  output$var.results.t.header <- renderText({
+    #
+    #
+    #
+    req(input$x.var, input$y.var, input$z.var)
+      {
+      #
+      #
+      #
+      if(input$z.var == "t.test")
+        {
+        #
+        #
+        #    
+        diff.test <- ifelse(bartlett.test(x = stat.dataset()[[input$x.var]], g = stat.dataset()[[input$y.var]])$p.value < 0.05, TRUE, FALSE)
+        #
+        #
+        #
+        t.test(x = stat.dataset()[[input$x.var]], y = stat.dataset()[[input$y.var]], var.equal = diff.test)$method
+        }
+      }
+  })
+  #
+  #
+  #
+  output$var.results.wilcox.header <- renderText({
+    #
+    #
+    #
+    req(input$x.var, input$y.var, input$z.var)
+      {
+      #
+      #
+      #
+      if(input$z.var == "wilcox")
+        {
+        #
+        #
+        #
+        wilcox.test(x = stat.dataset()[[input$x.var]], y = stat.dataset()[[input$y.var]])$method
+        }
+      }
+  })
+  #
+  #
+  #
+  output$var.results.kruskal.header <- renderText({
+    #
+    #
+    #
+    req(input$x.var, input$y.var, input$z.var)
+      {
+      #
+      #
+      #
+      if(input$z.var == "kruskal")
+        {
+        #
+        #
+        #
+        kruskal.test(x = stat.dataset()[[input$x.var]], g = stat.dataset()[[input$y.var]])$method
+        }
+      }
+  })
+  #
+  #
+  #
+  output$x.odds <- renderUI({
+    #
+    #
+    #
+    selectInput(inputId = "x.odds",
+                label = "Exposure / Predictor",
+                choices = c(Select = "", names(stat.dataset())),
+                multiple = FALSE,
+                selected = "")
+    })
+  #
+  #
+  #
+  output$y.odds <- renderUI({
+    #
+    #
+    #
+    selectInput(inputId = "y.odds",
+                label = "Outcome",
+                choices = c(Select = "", names(stat.dataset())),
+                multiple = FALSE,
+                selected = "")
+  })
+  #
+  #
+  #
+  output$odds.table <- renderTable({
+    #
+    #
+    #
+    req(input$x.odds, input$y.odds)
+      {
+      #
+      #
+      #
+      temp <- table(stat.dataset()[[input$x.odds]], stat.dataset()[[input$y.odds]])
+      #
+      #
+      #
+      odds.df <- data.frame(temp[ , 1], temp[ , 2])
+      #
+      #
+      #
+      odds.df <- data.frame(c(paste(input$x.odds, " = ", 0, sep = ""), paste(input$x.odds, " = ", 1, sep = "")), odds.df)
+      names(odds.df) <- c("Variable", paste(input$y.odds, " = ", 0, sep = ""), paste(input$y.odds, " = ", 1, sep = ""))      
+      #
+      #
+      #
+      odds.df
+      }
+  })         
+  #
+  #
+  #
+  output$odds.results <- renderTable({
+    #
+    #
+    #
+    req(input$x.odds, input$y.odds)
+      {
+      #
+      #
+      #
+      temp <- table(stat.dataset()[[input$x.odds]], stat.dataset()[[input$y.odds]])
+      #
+      #
+      #
+      odds.ratio <- fisher.test(temp)
+      #
+      #
+      #
+      ci <- paste(round(odds.ratio$conf.int[1], digits = 2), " to ", round(odds.ratio$conf.int[2], digits = 2), sep = "")
+      #
+      #
+      #
+      results.vector <- c(round(odds.ratio$estimate, digits = 4),
+                          ci,
+                          round(odds.ratio$p.value, digits = 4))
+      results.name <- c("Odds ratio", "95% CI", "p-value")
+      #
+      #
+      #
+      odds.table <- data.frame(results.name, results.vector)
+      #
+      #
+      #
+      names(odds.table) <- c("Parameters", "Values")
+      #
+      #
+      #
+      odds.table
+      }
+  })         
+  #
+  #
+  #
+  output$odds.results.header <- renderText({
+    #
+    #
+    #
+    req(input$x.odds, input$y.odds)
+      {
+      #
+      #
+      #
+      temp <- table(stat.dataset()[[input$x.odds]], stat.dataset()[[input$y.odds]])
+      #
+      #
+      #
+      fisher.test(temp)$method
+      }
+  })
+  #
+  #
+  #
+  output$x.risk <- renderUI({
+    #
+    #
+    #
+    selectInput(inputId = "x.risk",
+                label = "Exposure / Predictor",
+                choices = c(Select = "", names(stat.dataset())),
+                multiple = FALSE,
+                selected = "")
+    })
+  #
+  #
+  #
+  output$y.risk <- renderUI({
+    #
+    #
+    #
+    selectInput(inputId = "y.risk",
+                label = "Outcome",
+                choices = c(Select = "", names(stat.dataset())),
+                multiple = FALSE,
+                selected = "")
+  })
+  #
+  #
+  #
+  output$risk.table <- renderTable({
+    #
+    #
+    #
+    req(input$x.risk, input$y.risk, input$z.risk)
+      {
+      #
+      #
+      #
+      temp <- riskratio(x = stat.dataset()[[input$x.risk]], y = stat.dataset()[[input$y.risk]], method = input$z.risk)
+      #
+      #
+      #
+      risk.df <- temp$data
+      }
+  })      
+  #
+  #
+  #
+  output$risk.results <- renderTable({
+    #
+    #
+    #
+    req(input$x.risk, input$y.risk, input$z.risk)
+      {
+      #
+      #
+      #
+      temp <- riskratio(x = stat.dataset()[[input$x.risk]], y = stat.dataset()[[input$y.risk]], method = input$z.risk)
+      #
+      #
+      #
+      results.vector <- c(round(temp$measure[2,1], digits = 4), round(temp$p.value[2,1], digits = 4),
+                          paste(round(temp$measure[2,2], digits = 2), " to ", round(temp$measure[2,3], digits = 2)))
+      results.name <- c("Risk ratio", "p-value", "95% CI")
+      #
+      #
+      #
+      risk.table <- data.frame(results.name, results.vector)
+      #
+      #
+      #
+      names(risk.table) <- c("Parameters", "Values")
+      #
+      #
+      #
+      risk.table
+      }
+  })
+  #
+  #
+  #
+  output$risk.results.header <- renderText({
+    #
+    #
+    #
+    req(input$x.risk, input$y.risk, input$z.risk)
+      {
+      #
+      #
+      #
+      temp <- riskratio(x = stat.dataset()[[input$x.risk]], y = stat.dataset()[[input$y.risk]], method = input$z.risk)
+      #
+      #
+      #
+      attr(temp, "method")
+      }
+  })
+  #
+  #
+  #
+  observeEvent(input$refresh.stats, {
+    #
+    #
+    #
+    shinyjs::reset("stats.test")
+  })
+  #
+  #
+  #
+  observeEvent(input$refresh.chart.settings, {
+    #
+    #
+    #
+    shinyjs::reset("controls")
+  })
+  #
+  #
+  #
+  observeEvent(input$refresh.map.settings, {
+    #
+    #
+    #
+    shinyjs::reset("controls")
+  })
+
+
+################################################################################
+#
+# View uploaded maps
+#
+################################################################################
+  #
+  #
+  #
+  output$map.upload <- renderLeaflet({
+    leaflet() %>%
+      addTiles(
+        urlTemplate = mapbox.northstar,
+        attribution = "Maps by <a href='http://www.mapbox.com/'>Mapbox</a>"
+      ) %>%
+      setView(lng = 20, lat = 20, zoom = 3)
+  })
+  #
+  # Get map centre and/or bounds of selected city
+  #
+  survey.upload <- reactive({
+    #
+    #
+    #
+    if(input$map.settings != ".") {
+      #
+      #
+      #
+      geocode(input$map.settings, output = "more")
+    }
+  })
+  #
+  # Zoom in to selected city
+  #
+  observe({
+    #
+    #
+    #
+    leafletProxy("map.upload") %>%
+    #
+    #
+    #
+    fitBounds(lng1 = survey.upload()$east, lat1 = survey.upload()$north,
+  		      lng2 = survey.upload()$west, lat2 = survey.upload()$south)
+  })  
+  #
+  #
+  #
+  survey.upload.dhaka <- reactive({
+    #
+    # If selected country is Bangladesh and selected city is Dhaka
+    #
+    if(input$map.settings == "dhaka")
+      {
+      #
+      #
+      #
+      inputFile <- input$shp.dhaka
+      #
+      # If no map is uploaded, use pre-loaded map
+      #
+      if(is.null(inputFile)) { return(dhaka.map) }
+      #
+      #
+      #
+      infiles <- inputFile$datapath
+      dir <- unique(dirname(infiles))
+      outfiles <- file.path(dir, inputFile$name)
+      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+      #
+      # Read shapefile
+      #
+      x <- try(readOGR(dsn = dir, 
+                       layer = strsplit(inputFile$name[1], "\\.")[[1]][1], 
+                       verbose = FALSE),
+               silent = TRUE)
+      #
+      # If uploaded file is readable...
+      #
+      if(class(x) == "try-error")
+        {
+        return(NULL) 
+        } 
+      else 
+        {
+        #
+        # Transform shapefiles into WGS84 longlat
+        #
+        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
+        }
+      }
+  })
+  #
+  #
+  #
+  survey.upload.accra <- reactive({
+    #
+    # If selected country is Ghana and selected city is Accra
+    #
+    if(input$map.settings == "accra")
+      {
+      #
+      #
+      #
+      inputFile <- input$shp.accra
+      #
+      # If no map is uploaded, use pre-loaded map
+      #
+      if(is.null(inputFile)) { return(accra.map) }
+      #
+      #
+      #
+      infiles <- inputFile$datapath
+      dir <- unique(dirname(infiles))
+      outfiles <- file.path(dir, inputFile$name)
+      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+      #
+      # Read shapefile
+      #
+      x <- try(readOGR(dsn = dir, 
+                       layer = strsplit(inputFile$name[1], "\\.")[[1]][1],
+                        verbose = FALSE),
+               silent = TRUE)
+      #
+      # If uploaded file is readable...
+      #
+      if(class(x) == "try-error")
+        {
+        NULL 
+        } 
+      else 
+        {
+        #
+        # Transform shapefiles into WGS84 longlat
+        #
+        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
+        }
+      }
+    })
+  #
+  #
+  #
+  survey.upload.nakuru <- reactive({    
+    #
+    # If selected country is Kenya and selected city is Nakuru
+    #
+    if(input$map.settings == "nakuru")
+      {
+      #
+      #
+      #
+      inputFile <- input$shp.nakuru
+      #
+      # If no map is uploaded, use pre-loaded map
+      #
+      if(is.null(inputFile)) { return(nakuru.map) }
+      #
+      #
+      #
+      infiles <- inputFile$datapath
+      dir <- unique(dirname(infiles))
+      outfiles <- file.path(dir, inputFile$name)
+      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+      #
+      # Read shapefile
+      #
+      x <- try(readOGR(dsn = dir, 
+                       layer = strsplit(inputFile$name[1], "\\.")[[1]][1],
+                       verbose = FALSE),
+               silent = TRUE)
+      #
+      # If uploaded file is readable...
+      #
+      if(class(x) == "try-error")
+        {
+        NULL 
+        } 
+      else 
+        {
+        #
+        # Transform shapefiles into WGS84 longlat
+        #
+        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
+        }
+      }
+    })
+  #
+  #
+  #
+  survey.upload.antananarivo <- reactive({   
+    #
+    # If selected country is Madagascar and selected city is Antananarivo
+    #
+    if(input$map.settings == "antananarivo")
+      {
+      #
+      #
+      #
+      inputFile <- input$shp.antananarivo
+      #
+      # If no map is uploaded, use pre-loaded map
+      #
+      if(is.null(inputFile)) { return(antananarivo.map) }
+      #
+      #
+      #
+      infiles <- inputFile$datapath
+      dir <- unique(dirname(infiles))
+      outfiles <- file.path(dir, inputFile$name)
+      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+      #
+      # Read shapefile
+      #
+      x <- try(readOGR(dsn = dir, 
+                       layer = strsplit(inputFile$name[1], "\\.")[[1]][1], 
+                       verbose = FALSE),
+               silent = TRUE)
+      #
+      # If uploaded file is readable...
+      #
+      if(class(x) == "try-error")
+        {
+        NULL 
+        } 
+      else 
+        {
+        #
+        # Transform shapefiles into WGS84 longlat
+        #
+        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
+        }
+      }
+    })
+  #
+  #
+  #
+  survey.upload.maputo <- reactive({
+    #
+    # If selected country is Mozambique and selected city is Maputo
+    #
+    if(input$map.settings == "maputo")
+      {
+      #
+      #
+      #
+      inputFile <- input$shp.maputo
+      #
+      # If no map is uploaded, use pre-loaded map
+      #
+      if(is.null(inputFile)) { return(maputo.map) }
+      #
+      #
+      #
+      infiles <- inputFile$datapath
+      dir <- unique(dirname(infiles))
+      outfiles <- file.path(dir, inputFile$name)
+      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+      #
+      # Read shapefile
+      #
+      x <- try(readOGR(dsn = dir, 
+                       layer = strsplit(inputFile$name[1], "\\.")[[1]][1], 
+                       verbose = FALSE),
+               silent = TRUE)
+      #
+      # If uploaded file is readable...
+      #
+      if(class(x) == "try-error")
+        {
+        NULL 
+        } 
+      else 
+        {
+        #
+        # Transform shapefiles into WGS84 longlat
+        #
+        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
+        }
+      }
+    })
+  #
+  #
+  #
+  survey.upload.lusaka <- reactive({    
+    #
+    # If selected country is Zambia and selected city is Lusaka
+    #
+    if(input$map.settings == "lusaka")
+      {
+      #
+      #
+      #
+      inputFile <- input$shp.lusaka
+      #
+      # If no map is uploaded, use pre-loaded map
+      #
+      if(is.null(inputFile)) { return(lusaka.map) }
+      #
+      #
+      #
+      infiles <- inputFile$datapath
+      dir <- unique(dirname(infiles))
+      outfiles <- file.path(dir, inputFile$name)
+      purrr:::walk2(infiles, outfiles, ~file.rename(.x, .y))
+      #
+      # Read shapefile
+      #
+      x <- try(readOGR(dsn = dir, 
+                       layer = strsplit(inputFile$name[1], "\\.")[[1]][1],
+                       verbose = FALSE),
+               silent = TRUE)
+      #
+      # If uploaded file is readable...
+      #
+      if(class(x) == "try-error")
+        {
+        NULL 
+        } 
+      else 
+        {
+        #
+        # Transform shapefiles into WGS84 longlat
+        #
+        x <- spTransform(x = x, CRSobj = CRS(long.lat.crs))
+        }
+      }
+  })
+  #
+  # Draw uploaded map
+  #
+  observe({
+    #
+    #
+    #
+    if(!is.null(input$shp.dhaka) & input$map.settings == "dhaka")
+      {
+      #
+      #
+      #
+      leafletProxy("map.upload") %>%
+      #
+      #
+      #
+      clearShapes() %>%
+      #
+      #
+      #
+      fitBounds(lng1 = bbox(survey.upload.dhaka())[1,1], lat1 = bbox(survey.upload.dhaka())[2,1],
+  	  	        lng2 = bbox(survey.upload.dhaka())[1,2], lat2 = bbox(survey.upload.dhaka())[2,2]) %>%
+      #
+      # Add survey area polygon layer
+      #
+	  addPolygons(
+	    data = survey.upload.dhaka(),
+	    weight = 4,
+	    opacity = 1,
+	    color = "#2C3E50",
+	    dashArray = "",
+	    fillOpacity = 0.3,
+	    highlight = highlightOptions(
+	      weight = 4,
+		  color = "#666",
+		  dashArray = "",
+		  fillOpacity = 0.3,
+		  bringToFront = FALSE))
+	  }
+    #
+    #
+    #
+    if(!is.null(input$shp.accra) & input$map.settings == "accra")
+      {
+      #
+      #
+      #
+      leafletProxy("map.upload") %>%
+      #
+      #
+      #
+      clearShapes() %>%
+      #
+      #
+      #
+      fitBounds(lng1 = bbox(survey.upload.accra())[1,1], lat1 = bbox(survey.upload.accra())[2,1],
+  	  	        lng2 = bbox(survey.upload.accra())[1,2], lat2 = bbox(survey.upload.accra())[2,2]) %>%
+      #
+      # Add survey area polygon layer
+      #
+	  addPolygons(
+	    data = survey.upload.accra(),
+	    weight = 4,
+	    opacity = 1,
+	    color = "#2C3E50",
+	    dashArray = "",
+	    fillOpacity = 0.3,
+	    highlight = highlightOptions(
+	      weight = 4,
+		  color = "#666",
+		  dashArray = "",
+		  fillOpacity = 0.3,
+		  bringToFront = FALSE))
+	  }
+    #
+    #
+    #
+    if(!is.null(input$shp.nakuru) & input$map.settings == "nakuru")
+      {
+      #
+      #
+      #
+      leafletProxy("map.upload") %>%
+      #
+      #
+      #
+      clearShapes() %>%
+      #
+      #
+      #
+      fitBounds(lng1 = bbox(survey.upload.nakuru())[1,1], lat1 = bbox(survey.upload.nakuru())[2,1],
+  	  	        lng2 = bbox(survey.upload.nakuru())[1,2], lat2 = bbox(survey.upload.nakuru())[2,2]) %>%
+      #
+      # Add survey area polygon layer
+      #
+	  addPolygons(
+	    data = survey.upload.nakuru(),
+	    weight = 4,
+	    opacity = 1,
+	    color = "#2C3E50",
+	    dashArray = "",
+	    fillOpacity = 0.3,
+	    highlight = highlightOptions(
+	      weight = 4,
+		  color = "#666",
+		  dashArray = "",
+		  fillOpacity = 0.3,
+		  bringToFront = FALSE))
+	  }
+    #
+    #
+    #
+    if(!is.null(input$shp.antananarivo) & input$map.settings == "antananarivo")
+      {
+      #
+      #
+      #
+      leafletProxy("map.upload") %>%
+      #
+      #
+      #
+      clearShapes() %>%
+      #
+      #
+      #
+      fitBounds(lng1 = bbox(survey.upload.antananarivo())[1,1], lat1 = bbox(survey.upload.antananarivo())[2,1],
+  	  	        lng2 = bbox(survey.upload.antananarivo())[1,2], lat2 = bbox(survey.upload.antananarivo())[2,2]) %>%
+      #
+      # Add survey area polygon layer
+      #
+	  addPolygons(
+	    data = survey.upload.antananarivo(),
+	    weight = 4,
+	    opacity = 1,
+	    color = "#2C3E50",
+	    dashArray = "",
+	    fillOpacity = 0.3,
+	    highlight = highlightOptions(
+	      weight = 4,
+		  color = "#666",
+		  dashArray = "",
+		  fillOpacity = 0.3,
+		  bringToFront = FALSE))
+	  }
+    #
+    #
+    #
+    if(!is.null(input$shp.maputo) & input$map.settings == "maputo")
+      {
+      #
+      #
+      #
+      leafletProxy("map.upload") %>%
+      #
+      #
+      #
+      clearShapes() %>%
+      #
+      #
+      #
+      fitBounds(lng1 = bbox(survey.upload.maputo())[1,1], lat1 = bbox(survey.upload.maputo())[2,1],
+  	  	        lng2 = bbox(survey.upload.maputo())[1,2], lat2 = bbox(survey.upload.maputo())[2,2]) %>%
+      #
+      # Add survey area polygon layer
+      #
+	  addPolygons(
+	    data = survey.upload.maputo(),
+	    weight = 4,
+	    opacity = 1,
+	    color = "#2C3E50",
+	    dashArray = "",
+	    fillOpacity = 0.3,
+	    highlight = highlightOptions(
+	      weight = 4,
+		  color = "#666",
+		  dashArray = "",
+		  fillOpacity = 0.3,
+		  bringToFront = FALSE))
+	  }
+    #
+    #
+    #
+    if(!is.null(input$shp.lusaka) & input$map.settings == "lusaka")
+      {
+      #
+      #
+      #
+      leafletProxy("map.upload") %>%
+      #
+      #
+      #
+      clearShapes() %>%
+      #
+      #
+      #
+      fitBounds(lng1 = bbox(survey.upload.lusaka())[1,1], lat1 = bbox(survey.upload.lusaka())[2,1],
+  	  	        lng2 = bbox(survey.upload.lusaka())[1,2], lat2 = bbox(survey.upload.lusaka())[2,2]) %>%
+      #
+      # Add survey area polygon layer
+      #
+	  addPolygons(
+	    data = survey.upload.lusaka(),
+	    weight = 4,
+	    opacity = 1,
+	    color = "#2C3E50",
+	    dashArray = "",
+	    fillOpacity = 0.3,
+	    highlight = highlightOptions(
+	      weight = 4,
+		  color = "#666",
+		  dashArray = "",
+		  fillOpacity = 0.3,
+		  bringToFront = FALSE))
+	  }
+  })  
+
+################################################################################
+#
+#
+#
+################################################################################
+  #
+  #
+  #
+  output$select.dhaka.id <- renderUI({
+    #
+    #
+    #
+    if(!is.null(input$shp.dhaka) & input$map.settings == "dhaka")
+      {
+      #
+      #
+      #
+      selectInput(inputId = "survey.area.id",
+                  label = "Select map data identifier for survey areas",
+                  choices = c(Select = ".", names(survey.upload.dhaka())),
+                  selected = ".",
+                  width = "100%")
+      }
+  })  
+  #
+  #
+  #
+  output$select.accra.id <- renderUI({
+    #
+    #
+    #
+    if(!is.null(input$shp.accra) & input$map.settings == "accra")
+      {
+      #
+      #
+      #
+      selectInput(inputId = "survey.area.id",
+                  label = "Select map data identifier for survey areas",
+                  choices = c(Select = ".", names(survey.upload.accra())),
+                  selected = ".",
+                  width = "100%")
+      }
+  })  
+  #
+  #
+  #
+  output$select.nakuru.id <- renderUI({
+    #
+    #
+    #
+    if(!is.null(input$shp.nakuru) & input$map.settings == "nakuru")
+      {
+      #
+      #
+      #
+      selectInput(inputId = "survey.area.id",
+                  label = "Select map data identifier for survey areas",
+                  choices = c(Select = ".", names(survey.upload.nakuru())),
+                  selected = ".",
+                  width = "100%")
+      }
+  })  
+  #
+  #
+  #
+  output$select.antananarivo.id <- renderUI({
+    #
+    #
+    #
+    if(!is.null(input$shp.antananarivo) & input$map.settings == "antananarivo")
+      {
+      #
+      #
+      #
+      selectInput(inputId = "survey.area.id",
+                  label = "Select map data identifier for survey areas",
+                  choices = c(Select = ".", names(survey.upload.antananarivo())),
+                  selected = ".",
+                  width = "100%")
+      }
+  })  
+  #
+  #
+  #
+  output$select.maputo.id <- renderUI({
+    #
+    #
+    #
+    if(!is.null(input$shp.maputo) & input$map.settings == "maputo")
+      {
+      #
+      #
+      #
+      selectInput(inputId = "survey.area.id",
+                  label = "Select map data identifier for survey areas",
+                  choices = c(Select = ".", names(survey.upload.maputo())),
+                  selected = ".",
+                  width = "100%")
+      }
+  })  
+  #
+  #
+  #
+  output$select.lusaka.id <- renderUI({
+    #
+    #
+    #
+    if(!is.null(input$shp.lusaka) & input$map.settings == "lusaka")
+      {
+      #
+      #
+      #
+      selectInput(inputId = "survey.area.id",
+                  label = "Select map data identifier for survey areas",
+                  choices = c(Select = ".", names(survey.upload.lusaka())),
+                  selected = ".",
+                  width = "100%")
+      }
+  })  
 }

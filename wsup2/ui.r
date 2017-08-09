@@ -37,6 +37,10 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         #
         #
         #
+        shinyjs::useShinyjs(),
+        #
+        #
+        #
         radioButtons(inputId = "radio.controls",
           label = "",
           choices = c("Chart controls" = "chart",
@@ -88,6 +92,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
               selectInput(inputId = "start.year",
                 label = "From",
                 choices = list(All = "."),
+                selected = ".",
                 width = "140px")
           ),
           #
@@ -97,6 +102,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
               selectInput(inputId = "end.year",
                 label = "To",
                 choices = list(All = "."),
+                selected = ".",
                 width = "140px")
           ),
           #
@@ -138,6 +144,12 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           #
           #
           uiOutput("error.bar")
+          #
+          #
+          #
+          #actionButton(inputId = "refresh.chart.settings",
+          #             label = "Reset",
+          #             icon = icon(name = "refresh", class = "fa-lg"))
         ),
         #
         #
@@ -229,6 +241,12 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                         label = "Number of quantiles",
                         min = 3, max = 7, value = 5, step = 1)      
           )
+          #
+          #
+          #
+          #actionButton(inputId = "refresh.map.settings",
+          #             label = "Reset",
+          #             icon = icon(name = "refresh", class = "fa-lg"))          
         )
       ), 
       #
@@ -239,7 +257,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         # Create absolute panel - OUTPUT
         # 
         absolutePanel(id = "plots", class = "panel panel-default", fixed = TRUE,
-          draggable = TRUE, top = "auto", right = "auto", left = 10, bottom = 10,
+          draggable = FALSE, top = "auto", right = "auto", left = 10, bottom = 10,
           width = 500, height = 470,
           #
           # Panel section header
@@ -329,21 +347,15 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             #
             # Select expected proportion/prevalence
             #
-            div(style="display: inline-block;vertical-align:middle;",
-                sliderInput(inputId = "proportion",
-                            label = "Proportion/prevalence ( p )",
-                            min = 0, max = 100, value = 50, step = 1,
-                            width = "200px")
-            ),
+            sliderInput(inputId = "proportion",
+                        label = "Proportion/prevalence ( p )",
+                        min = 0, max = 100, value = 50, step = 1),
             #
             # Select level of precision
             #
-            div(style="display: inline-block;vertical-align:middle;",           
-                sliderInput(inputId = "precision",
-                            label = "Level of precision ( c )",
-                            min = 3, max = 10, value = 5,
-                            width = "200px")
-            ),
+            sliderInput(inputId = "precision",
+                        label = "Level of precision ( c )",
+                        min = 3, max = 10, value = 5),
             #
             # Action button
             #
@@ -396,21 +408,19 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             #
             # Select expected proportion/prevalence
             #
-            div(style="display: inline-block;vertical-align:middle;",
-                sliderInput(inputId = "proportion",
-                            label = "Proportion/prevalence ( p )",
-                            min = 0, max = 100, value = 50, step = 1,
-                            width = "200px")
-            ),
+            sliderInput(inputId = "proportion",
+                        label = "Proportion/prevalence ( p )",
+                        min = 0, max = 100, value = 50, step = 1),
             #
             # Select level of precision
             #
-            div(style="display: inline-block;vertical-align:middle;",           
-                sliderInput(inputId = "precision",
-                            label = "Level of precision ( c )",
-                            min = 3, max = 10, value = 5,
-                            width = "200px")
-            ),
+            sliderInput(inputId = "precision",
+                        label = "Level of precision ( c )",
+                        min = 3, max = 10, value = 5),
+            #
+            #
+            #
+            hr(),
             #
             # Header for design effect and ICC calculator
             #
@@ -857,6 +867,468 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           'Valid International')
         )          
       )
+    ),
+    #
+    #
+    #
+    tabPanel(title = "Statistical Tests", id = "tabs23", icon = icon(name = "line-chart", class = "fa-lg"),
+      #
+      #
+      #
+      sidebarLayout(
+        #
+        #
+        #
+        sidebarPanel(
+          #
+          # Include shinyjs
+          #
+          shinyjs::useShinyjs(),
+          #
+          #
+          #
+          id = "stats.test",
+          #
+          #
+          #
+          div(style="display: inline-block;vertical-align:middle;",          
+              #
+              #
+              #
+              h4("Statistical Tests")
+          ),
+          #
+          #
+          #
+          div(style="display: inline-block;vertical-align:middle;",
+              #
+              #
+              #
+              actionLink(inputId = "info5",
+                label = "",
+                icon = icon(name = "info-sign", lib = "glyphicon"))
+          ),
+          #
+          #
+          #
+          fileInput(inputId = "stat.test.data",
+                    label = "Upload dataset for testing",
+                    accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")
+          ),
+          #
+          #
+          #
+          selectInput(inputId = "country.corr",
+                      label = "Subset data",
+                      choices = c(Select = "."),
+                      selected = "."),
+          #
+          #
+          #
+          selectInput(inputId = "select.stats",
+                      label = "Select statistical test to perform",
+                      choices = c(Select = ".",
+                                  "Correlation testing" = "corr",
+                                  "Variance testing" = "variance",
+                                  "Odds ratio" = "odds",
+                                  "Risk ratio" = "risk"),
+                      selected = "."),
+          #
+          #
+          #
+          hr(),          
+          #
+          #
+          #
+          conditionalPanel(condition = "input['country.corr'] != '.' & input['select.stats'] == 'corr'",
+            #
+            #
+            # 
+            div(style="display: inline-block;vertical-align:middle;",            
+                #
+                #
+                #
+                h5("Set correlation test parameters")
+            ),
+            #
+            #
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                #
+                #
+                #
+                actionLink(inputId = "info6",
+                           label = "",
+                           icon = icon(name = "info-sign", lib = "glyphicon"))
+            ),            
+            #
+            #
+            #
+            uiOutput("x.corr"),
+            uiOutput("y.corr"),
+            #
+            #
+            #
+            selectInput(inputId = "z.corr",
+                        label = "Type of correlation coefficient",
+                        choices = c(Select = "",
+                                    "Pearson's r" = "pearson",
+                                    "Kendall's tau" = "kendall",
+                                    "Spearman's rho" = "spearman"),
+                        selected = ""),
+            #
+            #
+            #
+            hr()                        
+          ),
+          #
+          #
+          #
+          conditionalPanel(condition = "input['country.corr'] != '.' & input['select.stats'] == 'variance'",
+            #
+            #
+            #
+            div(style="display: inline-block;vertical-align:middle;",            
+                #
+                #
+                #
+                h5("Set variance test parameters")
+            ),
+            #
+            #
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                #
+                #
+                #
+                actionLink(inputId = "info7",
+                           label = "",
+                           icon = icon(name = "info-sign", lib = "glyphicon"))
+            ),
+            #
+            #
+            #
+            uiOutput("x.var"),
+            uiOutput("y.var"),
+            #
+            #
+            #
+            selectInput(inputId = "z.var",
+                        label = "Type of variance testing",
+                        choices = c(Select = "",
+                                    "t-test" = "t.test",
+                                    "Wilcoxon test" = "wilcox",
+                                    "Kruskal-Wallis test" = "kruskal"),
+                        selected = ""),                      
+            #
+            #
+            #
+            hr()                        
+          ),
+          #
+          #
+          #
+          conditionalPanel(condition = "input['country.corr'] != '.' & input['select.stats'] == 'odds'",
+            #
+            #
+            #
+            div(style="display: inline-block;vertical-align:middle;",            
+                #
+                #
+                #
+                h5("Set odds ratio calculation parameters")
+            ),
+            #
+            #
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                #
+                #
+                #
+                actionLink(inputId = "info8",
+                           label = "",
+                           icon = icon(name = "info-sign", lib = "glyphicon"))
+            ),
+            #
+            #
+            #
+            uiOutput("x.odds"),
+            uiOutput("y.odds"),
+            #
+            #
+            #
+            hr()                        
+          ),
+          #
+          #
+          #
+          conditionalPanel(condition = "input['country.corr'] != '.' & input['select.stats'] == 'risk'",
+            #
+            #
+            #
+            div(style="display: inline-block;vertical-align:middle;",            
+                #
+                #
+                #
+                h5("Set risk ratio calculation parameters")
+            ),
+            #
+            #
+            #
+            div(style="display: inline-block;vertical-align:middle;",
+                #
+                #
+                #
+                actionLink(inputId = "info9",
+                           label = "",
+                           icon = icon(name = "info-sign", lib = "glyphicon"))
+            ),
+            #
+            #
+            #
+            uiOutput("x.risk"),
+            uiOutput("y.risk"),
+            #
+            #
+            #
+            selectInput(inputId = "z.risk",
+                        label = "Risk ratio calculation method",
+                        choices = c(Select = "",
+                                    "Wald" = "wald",
+                                    "Small sample adjustment" = "small",
+                                    "Bootstrap" = "boot"),
+                        selected = ""),
+            #
+            #
+            #
+            hr()                        
+          ),
+          #
+          #
+          #
+          actionButton(inputId = "refresh.stats",
+                       label = "Reset",
+                       class = "btn-primary",
+                       icon = icon(name = "refresh", class = "fa-lg")),
+        #
+        #
+        #
+        width = 3
+        ),
+        #
+        #
+        #
+        mainPanel(
+          #
+          #
+          #
+          fluidPage(
+            #
+            #
+            #
+            fluidRow(
+              #
+              #
+              #
+              column(
+                #
+                #
+                #
+                wellPanel(
+                  #
+                  #
+                  #
+                  h4("Correlation Test"),
+                  #
+                  #
+                  #
+                  hr(),
+                  #
+                  #
+                  #
+                  h5(textOutput("corr.results.header")),
+                  #
+                  #
+                  #
+                  tableOutput("corr.results")
+                ),
+                #
+                #
+                #
+                width = 4
+              ),
+              #
+              #
+              #
+              column(
+                #
+                #
+                #
+                wellPanel(
+                  #
+                  #
+                  #
+                  h4("Variance Test"),
+                  #
+                  #
+                  #
+                  hr(),
+                  #
+                  #
+                  #
+                  conditionalPanel(condition = "input['z.var'] == 't.test'",
+                    #
+                    #
+                    #
+                    h5(textOutput("var.results.t.header")),
+                    #
+                    #
+                    #
+                    tableOutput("var.results.t")
+                  ),
+                  #
+                  #
+                  #
+                  conditionalPanel(condition = "input['z.var'] == 'wilcox'",
+                    #
+                    #
+                    #
+                    h5(textOutput("var.results.wilcox.header")),
+                    #
+                    #
+                    #
+                    tableOutput("var.results.wilcox")
+                  ),
+                  #
+                  #
+                  #
+                  conditionalPanel(condition = "input['z.var'] == 'kruskal'",
+                    #
+                    #
+                    #
+                    h5(textOutput("var.results.kruskal.header")),
+                    #
+                    #
+                    #
+                    tableOutput("var.results.kruskal")
+                  )
+                ),
+                #
+                #
+                #
+                width = 4
+              )              
+            ),
+            #
+            #
+            #
+            fluidRow(hr()),
+            #
+            #
+            #
+            fluidRow(
+              #
+              #
+              #
+              column(
+                #
+                #
+                #
+                wellPanel(
+                  #
+                  #
+                  #
+                  h4("Odds ratio"),
+                  #
+                  #
+                  #
+                  hr(),
+                  #
+                  #
+                  #
+                  conditionalPanel(condition = "input['country.corr'] != '.' & input['select.stats'] == 'odds' & input['x.odds'] != '' & input['y.odds'] != ''",
+                    #
+                    #
+                    #
+                    h5("Two by Two Table")
+                  ),
+                  #
+                  #
+                  #
+                  tableOutput("odds.table"),
+                  #
+                  #
+                  #
+                  br(),
+                  #
+                  #
+                  #
+                  h5(textOutput("odds.results.header")),
+                  #
+                  #
+                  #
+                  tableOutput("odds.results")
+                ),
+                #
+                #
+                #
+                width = 4
+              ),
+              #
+              #
+              #
+              column(
+                #
+                #
+                #
+                wellPanel(
+                  #
+                  #
+                  #
+                  h4("Risk ratio"),
+                  #
+                  #
+                  #
+                  hr(),
+                  #
+                  #
+                  #
+                  conditionalPanel(condition = "input['country.corr'] != '.' & input['select.stats'] == 'risk' & input['x.risk'] != '' & input['y.risk'] != '' & input['z.risk'] != ''",
+                    #
+                    #
+                    #
+                    h5("Two by Two Table")
+                  ),
+                  #
+                  #
+                  #
+                  tableOutput("risk.table"),
+                  #
+                  #
+                  #
+                  br(),
+                  #
+                  #
+                  #
+                  h5(textOutput("risk.results.header")), 
+                  #
+                  #
+                  #
+                  tableOutput("risk.results")
+                ),
+                #
+                #
+                #
+                width = 4
+              )              
+            )            
+          ),
+          #
+          #
+          #
+          width = 9
+        )
+      ) 
     )
   ),
   #
@@ -868,90 +1340,244 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
     #
     #
     #
-    fluidPage(title = "Settings",
+    tabsetPanel(
       #
       #
       #
-      fluidRow(
+      tabPanel(title = "Datasets",
+        #
+        #  
+        #
+        fluidPage(
+          #
+          #
+          #
+          fluidRow(
+            #
+            #
+            #
+            column(width = 12, br())
+          ),
+          #
+          #
+          #
+          fluidRow(
+            #
+            #
+            #
+            column(width = 3,
+              #
+              #
+              #
+              h4("Datasets"),
+              #
+              #
+              #
+              hr(),
+              #
+              #
+              #
+              tags$p("The application uses a pre-loaded dataset produced by the analysis workflow for the ", 
+                     tags$strong("Urban Water and Sanitation Surveys"), 
+                     ". If a new results dataset has been produced that includes other country surveys that have been conducted, this can be uploaded here for visualisation. The analysis workflow has been designed to concatenate all results datasets from all country/city surveys into a single dataset called", 
+                     tags$code("'surveyResultsAll.csv'"), 
+                     "which can be found inside the ", 
+                     tags$code("'outputTables'"), "folder of the workflow. This is the dataset that should be uploaded here. The pre-loaded dataset is shown to the right. When a new dataset is uploaded, the table is refreshed to show the uploaded dataset."),
+              #
+              #
+              #
+              hr(),
+              #
+              #
+              #
+              fileInput(inputId = "file1",
+                        label = "Upload results dataset to visualise",
+                        accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv"),
+                        width = "100%")
+            ),
+            #
+            #
+            #
+            column(width = 9,
+              #
+              #
+              #
+              DT::dataTableOutput("current.data.table")
+            )
+          )
+        )
+      ),
+      #
+      #
+      #
+      tabPanel(title = "Maps",
         #
         #
         #
-        column(width = 3,
+        fluidPage(
           #
           #
           #
-          h4("Datasets"),
+          fluidRow(
+            #
+            #
+            #
+            column(width = 12, br())
+          ),
           #
           #
           #
-          fileInput(inputId = "file1",
-                    label = "Upload results dataset to visualise",
-                    accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
-          #
-          #
-          #
-          hr(),
-          #
-          #
-          #
-          tags$p("The application uses a pre-loaded dataset produced by the analysis workflow for the ", 
-                 tags$strong("Urban Water and Sanitation Surveys"), 
-                 ". If a new results dataset has been produced for other country surveys that have been conducted, this can be uploaded here for visualisation. The analysis workflow has been designed to concatenate all results datasets from all country/city surveys into a single dataset called", 
-                 tags$code("'surveyResultsAll.csv'"), 
-                 "which can be found inside the ", 
-                 tags$code("'outputTables'"), "folder of the workflow. This is the dataset that should be uploaded here")
-        ),
-        #
-        #
-        #
-        column(width = 3,
-          #
-          #
-          #
-          h4("Maps"),
-          #
-          # Dhaka, Bangladesh
-          #
-          fileInput(inputId = "shp.dhaka",
-            label = "Upload map of Dhaka, Bangladesh",
-            accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
-            multiple = TRUE),
-          #
-          # Accra, Ghana
-          #
-          fileInput(inputId = "shp.accra",
-            label = "Upload map of Accra, Ghana",
-            accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
-            multiple = TRUE),
-          #
-          # Nakuru, Kenya
-          #
-          fileInput(inputId = "shp.nakuru",
-            label = "Upload map of Nakuru, Kenya",
-            accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
-            multiple = TRUE),
-          #
-          # Antananarivo, Madagascar
-          #
-          fileInput(inputId = "shp.antananarivo",
-            label = "Upload map of Antananarivo, Madagascar",
-            accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
-            multiple = TRUE),
-          #
-          # Maputo, Mozambique
-          #
-          fileInput(inputId = "shp.maputo",
-            label = "Upload map of Maputo, Mozambique",
-            accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
-            multiple = TRUE),
-          #
-          # Lusaka, Zambia
-          #
-          fileInput(inputId = "shp.lusaka",
-            label = "Upload map of Lusaka, Zambia",
-            accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
-            multiple = TRUE)            
-        )           
+          fluidRow(
+            #
+            # Create column for uploading maps
+            #
+            column(width = 3,
+              #
+              # Header
+              #
+              h4("Maps"),
+				#
+				#
+				#
+				hr(),
+				#
+				#
+				#
+				selectInput(inputId = "map.settings",
+				  label = "Upload map dataset for",
+				  choices = c("Select" = ".",
+							  "Dhaka, Bangladesh" = "dhaka",
+							  "Accra, Ghana" = "accra",
+							  "Nakuru, Kenya" = "nakuru",
+							  "Antananarivo, Madagascar" = "antananarivo",
+							  "Maputo, Mozambique" = "maputo",
+							  "Lusaka, Zambia" = "lusaka"),
+				  selected = ".",
+				  width = "100%"),
+				#
+				#
+				#
+				br(),
+				#
+				# Dhaka, Bangladesh
+				#
+				conditionalPanel(condition = "input['map.settings'] == 'dhaka'",
+				  #
+				  #
+				  #
+				  fileInput(inputId = "shp.dhaka",
+					label = "Select map for Dhaka to upload",
+					accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+					multiple = TRUE,
+					width = "100%")
+				),
+				#
+				# Accra, Ghana
+				#
+				conditionalPanel(condition = "input['map.settings'] == 'accra'",
+				  #
+				  #
+				  #
+				  fileInput(inputId = "shp.accra",
+					label = "Select map for Accra to upload",
+					accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+					multiple = TRUE,
+					width = "100%")
+				),
+				#
+				# Nakuru, Kenya
+				#
+				conditionalPanel(condition = "input['map.settings'] == 'nakuru'",
+				  #
+				  #
+				  #
+				  fileInput(inputId = "shp.nakuru",
+					label = "Select map for Nakuru to upload",
+					accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+					multiple = TRUE,
+					width = "100%")
+				),
+				#
+				# Antananarivo, Madagascar
+				#
+				conditionalPanel(condition = "input['map.settings'] == 'antananarivo'",
+				  #
+				  #
+				  #
+				  fileInput(inputId = "shp.antananarivo",
+					label = "Select map for Antananarivo to upload",
+					accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+					multiple = TRUE,
+					width = "100%")
+				),
+				#
+				# Maputo, Mozambique
+				#
+				conditionalPanel(condition = "input['map.settings'] == 'maputo'",
+				  #
+				  #
+				  #
+				  fileInput(inputId = "shp.maputo",
+					label = "Select map for Maputo to upload",
+					accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+					multiple = TRUE,
+					width = "100%")
+				),
+				#
+				# Lusaka, Zambia
+				#
+				conditionalPanel(condition = "input['map.settings'] == 'lusaka'",
+				  #
+				  #
+				  #
+				  fileInput(inputId = "shp.lusaka",
+					label = "Select map for Lusaka to upload",
+					accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
+					multiple = TRUE,
+					width = "100%")
+				),
+				#
+				#
+				#
+				uiOutput("select.dhaka.id"),
+				uiOutput("select.accra.id"),
+				uiOutput("select.nakuru.id"),
+				uiOutput("select.antananarivo.id"),
+				uiOutput("select.maputo.id"),
+				uiOutput("select.lusaka.id"),
+				#
+				#
+				#
+				#conditionalPanel(condition = "input['map.settings'] != '.'",
+				  #
+				  #
+				  #
+                #  actionButton(inputId = "use.map",
+                #               label = "Use Map",
+                #               class = "btn-primary",
+                #               icon = icon(name = "location-arrow", clas = "fa-lg"))
+                #),
+				#
+				#
+				#
+				hr(),
+				#
+				#
+				#
+				tags$p("The application uses pre-loaded map datasets for each of the city surveys for the ", 
+					   tags$strong("Urban Water and Sanitation Surveys"), ". These pre-loaded map datasets can be updated or changed by uploading a map dataset for each of the cities surveyed that matches the results dataset provided. Specifically, the map dataset should have a data column that identifies the unique areas or zones that were surveyed.")
+			  ),
+            #    
+            #
+            # 
+            column(width = 9,
+              #
+              #
+              #
+              leafletOutput("map.upload", height = 500)
+            )             
+          )
+        )
       )
     )        
   )

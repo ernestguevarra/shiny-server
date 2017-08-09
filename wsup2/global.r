@@ -25,6 +25,7 @@ library(Hmisc)
 library(purrr)
 library(gstat)
 library(shinyjs)
+library(epitools)
 #
 # Create Mapbox base layer objects for leaflet mapping
 #
@@ -39,7 +40,7 @@ mapbox.decimal   <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj5ms1akt3p
 #
 # Read steering file
 #
-steerIndicators <- read.csv("steerIndicatorsV7.csv", header = TRUE, sep = ",")
+steerIndicators <- read.csv("steerIndicatorsV8.csv", header = TRUE, sep = ",")
 #
 # Create indicator choices for dropdown
 #
@@ -73,6 +74,7 @@ varSet13 <- c(vars[steerIndicators$varSet == "overallSet2"])
 # Pre-load data
 #
 current.data <- read.csv(file = "surveyResultsAll.csv", header = TRUE, sep = ",")
+current.data <- current.data[order(current.data$indicatorCode), ]
 
 
 ################################################################################
@@ -190,8 +192,18 @@ tab2by2 <- function(exposure, outcome)
   lci.or <- exp(log(or) - 1.96 * se.log.or)
   
   uci.or <- exp(log(or) + 1.96 * se.log.or)
+    
+  rr.values <- c(round(rr, digits = 4), 
+                 round(se.log.rr, digits = 4), 
+                 paste(round(lci.rr, digits = 2), " to ", round(uci.rr, digits = 2), sep = ""))
   
-  ft <- fisher.test(tab)
+  rr.names <- c("Risk ratio", "Standard error", "95% CI")
+  
+  rr.df <- data.frame(rr.names, rr.values)
+  
+  names(rr.df) <- c("Parameters", "Values")
+  
+  return(rr.df)
   }
   
 
