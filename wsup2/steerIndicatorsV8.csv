@@ -40,35 +40,35 @@ overall4,proportion,oneMean,Households with adequate water services and adequate
 overallSpend,histogram,oneMean,Household mean household expenditure in water and sanitation services,Overall expenditure,overallSet2,Overall Expenditure,overall,1,1,1,1,1,1
 ppi,histogram,oneMean,Household mean poverty score,PPI Score,poverty,Poverty Rates,poverty-rates,1,1,1,1,1,1
 pQuintile,histogram,oneMean,Household mean wealth index,Wealth Index,poverty,Poverty Rates,poverty-rates,1,1,1,1,1,1
-nl,histogram,oneMean,Mean likelihood of household being below the Bangladesh lower national poverty line,Below Bangladesh lower national poverty line,poverty,Poverty Rates,poverty-rates,1,0,0,0,0,0
-nu100,histogram,oneMean,Mean likelihood of household being below 100% of the Bangladesh upper national poverty line,Below 100% of Bangladesh upper national line,poverty,Poverty Rates,poverty-rates,1,0,0,0,0,0
-nu150,histogram,oneMean,Mean likelihood of household being below 150% of the Bangladesh upper national poverty line,Below 150% of Bangladesh upper national poverty line,poverty,Poverty Rates,poverty-rates,1,0,0,0,0,0
-nu200,histogram,oneMean,Mean likelihood of household being below 200% of the Bangladesh upper national poverty line,Below 200% of Bangaldesh upper national poverty line,poverty,Poverty Rates,poverty-rates,1,0,0,0,0,0
-extreme,histogram,oneMean,Mean likelihood of household being below the USAID extreme poverty line,Below USAID extreme poverty line,poverty,Poverty Rates,poverty-rates,1,0,1,0,1,1
-ppp125,histogram,oneMean,Mean likelihood of household being below the $1.25/day 2005 PPP poverty line,Below $1.25/day,poverty,Poverty Rates,poverty-rates,1,1,1,1,1,1
-ppp175,histogram,oneMean,Mean likelihood of household being below the $1.75/day 2005 PPP poverty line,Below $1.75/day,poverty,Poverty Rates,poverty-rates,1,0,0,0,0,0
-ppp200,histogram,oneMean,Mean likelihood of household being below the $2.00/day 2005 PPP poverty line,Below $2.00/day,poverty,Poverty Rates,poverty-rates,1,0,0,1,0,1
-ppp250,histogram,oneMean,Mean likelihood of household being below the $2.50/day 2005 PPP poverty line,Below $2.50/day,poverty,Poverty Rates,poverty-rates,1,1,1,1,1,1
-nlFood,histogram,oneMean,Mean likelihood of household being below the Ghana food national poverty line,Below Ghana food national poverty line,poverty,Poverty Rates,poverty-rates,0,1,0,0,0,0
-nl100,histogram,oneMean,Mean likelihood of household being below 100% of the Ghana national poverty line,Below 100% of Ghana national poverty line,poverty,Poverty Rates,poverty-rates,0,1,0,0,0,0
-nl150,histogram,oneMean,Mean likelihood of household being below 150% of the Ghana national poverty line,Below 150% of Ghana national poverty line,poverty,Poverty Rates,poverty-rates,0,1,0,0,0,0
-nl200,histogram,oneMean,Mean likelihood of household being below 200% of the Ghana national poverty line,Below 200% of Ghana national poverty line,poverty,Poverty Rates,poverty-rates,0,1,0,0,0,0
-ppp375,histogram,oneMean,Mean likelihood of household being below the $3.75/day 2005 PPP poverty line,Below $3.75/day,poverty,Poverty Rates,poverty-rates,0,1,0,0,0,0
-nlFood,histogram,oneMean,Mean likelihood of household being below the Madagascar food national poverty line,Below Madagascar food national poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,1,0,0
-nl100,histogram,oneMean,Mean likelihood of household being below 100% of the Madagascar national poverty line,Below 100% of Madagascar national poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,1,0,0
-nl150,histogram,oneMean,Mean likelihood of household being below 150% of the Madagascar national poverty line,Below 150% of Madagascar national  poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,1,0,0
-nl200,histogram,oneMean,Mean likelihood of household being below 200% of the Madagascar national poverty line,Below 200% of Madagascar national poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,1,0,0
-nlPoor,histogram,oneMean,Mean likelihood of household being below 100% of the Madagascar poorest half,Below 100% of Madagascar poorest half,poverty,Poverty Rates,poverty-rates,0,0,0,1,0,0
-ppp500,histogram,oneMean,Mean likelihood of household being below the $5.00/day 2005 PPP poverty line,Below $5.00/day,poverty,Poverty Rates,poverty-rates,0,0,0,1,0,0
-nl100,histogram,oneMean,Mean likelihood of household being below 100% of the Mozambique national poverty line,Below 100% of Mozambique national poverty line,poverty,Poverty Rates,poverty-rates,0,0,1,0,0,0
-nl150,histogram,oneMean,Mean likelihood of household being below 150% of the Mozambique national poverty line,Below 150% of Mozambique national poverty line,poverty,Poverty Rates,poverty-rates,0,0,1,0,0,0
-nl200,histogram,oneMean,Mean likelihood of household being below 200% of the Mozambique national poverty line,Below 200% of Mozambique national poverty line,poverty,Poverty Rates,poverty-rates,0,0,1,0,0,0
-nlFood,histogram,oneMean,Mean likelihood of household being below the Zambia food national poverty line,Below Zambia food national poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,0,0,1
-nl100,histogram,oneMean,Mean likelihood of household being below 100% of the Zambia national poverty line,Below 100% of Zambia national poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,0,0,1
-nl150,histogram,oneMean,Mean likelihood of household being below 150% of the Zambia national poverty line,Below 150% of Zambia national  poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,0,0,1
-nl200,histogram,oneMean,Mean likelihood of household being below 200% of the Zambia national poverty line,Below 200% of Zambia national poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,0,0,1
-nlFood,histogram,oneMean,Mean likelihood of household being below the Kenya food national poverty line,Below Kenya food national poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,0,1,0
-nl150,histogram,oneMean,Mean likelihood of household being below 150% of the Kenya national poverty line,Below 150% of Kenya national  poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,0,1,0
+nl,proportion,oneMean,Mean likelihood of household being below the Bangladesh lower national poverty line,Below Bangladesh lower national poverty line,poverty,Poverty Rates,poverty-rates,1,0,0,0,0,0
+nu100,proportion,oneMean,Mean likelihood of household being below 100% of the Bangladesh upper national poverty line,Below 100% of Bangladesh upper national line,poverty,Poverty Rates,poverty-rates,1,0,0,0,0,0
+nu150,proportion,oneMean,Mean likelihood of household being below 150% of the Bangladesh upper national poverty line,Below 150% of Bangladesh upper national poverty line,poverty,Poverty Rates,poverty-rates,1,0,0,0,0,0
+nu200,proportion,oneMean,Mean likelihood of household being below 200% of the Bangladesh upper national poverty line,Below 200% of Bangaldesh upper national poverty line,poverty,Poverty Rates,poverty-rates,1,0,0,0,0,0
+extreme,proportion,oneMean,Mean likelihood of household being below the USAID extreme poverty line,Below USAID extreme poverty line,poverty,Poverty Rates,poverty-rates,1,0,1,0,1,1
+ppp125,proportion,oneMean,Mean likelihood of household being below the $1.25/day 2005 PPP poverty line,Below $1.25/day,poverty,Poverty Rates,poverty-rates,1,1,1,1,1,1
+ppp175,proportion,oneMean,Mean likelihood of household being below the $1.75/day 2005 PPP poverty line,Below $1.75/day,poverty,Poverty Rates,poverty-rates,1,0,0,0,0,0
+ppp200,proportion,oneMean,Mean likelihood of household being below the $2.00/day 2005 PPP poverty line,Below $2.00/day,poverty,Poverty Rates,poverty-rates,1,0,0,1,0,1
+ppp250,proportion,oneMean,Mean likelihood of household being below the $2.50/day 2005 PPP poverty line,Below $2.50/day,poverty,Poverty Rates,poverty-rates,1,1,1,1,1,1
+nlFood,proportion,oneMean,Mean likelihood of household being below the Ghana food national poverty line,Below Ghana food national poverty line,poverty,Poverty Rates,poverty-rates,0,1,0,0,0,0
+nl100,proportion,oneMean,Mean likelihood of household being below 100% of the Ghana national poverty line,Below 100% of Ghana national poverty line,poverty,Poverty Rates,poverty-rates,0,1,0,0,0,0
+nl150,proportion,oneMean,Mean likelihood of household being below 150% of the Ghana national poverty line,Below 150% of Ghana national poverty line,poverty,Poverty Rates,poverty-rates,0,1,0,0,0,0
+nl200,proportion,oneMean,Mean likelihood of household being below 200% of the Ghana national poverty line,Below 200% of Ghana national poverty line,poverty,Poverty Rates,poverty-rates,0,1,0,0,0,0
+ppp375,proportion,oneMean,Mean likelihood of household being below the $3.75/day 2005 PPP poverty line,Below $3.75/day,poverty,Poverty Rates,poverty-rates,0,1,0,0,0,0
+nlFood,proportion,oneMean,Mean likelihood of household being below the Madagascar food national poverty line,Below Madagascar food national poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,1,0,0
+nl100,proportion,oneMean,Mean likelihood of household being below 100% of the Madagascar national poverty line,Below 100% of Madagascar national poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,1,0,0
+nl150,proportion,oneMean,Mean likelihood of household being below 150% of the Madagascar national poverty line,Below 150% of Madagascar national  poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,1,0,0
+nl200,proportion,oneMean,Mean likelihood of household being below 200% of the Madagascar national poverty line,Below 200% of Madagascar national poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,1,0,0
+nlPoor,proportion,oneMean,Mean likelihood of household being below 100% of the Madagascar poorest half,Below 100% of Madagascar poorest half,poverty,Poverty Rates,poverty-rates,0,0,0,1,0,0
+ppp500,proportion,oneMean,Mean likelihood of household being below the $5.00/day 2005 PPP poverty line,Below $5.00/day,poverty,Poverty Rates,poverty-rates,0,0,0,1,0,0
+nl100,proportion,oneMean,Mean likelihood of household being below 100% of the Mozambique national poverty line,Below 100% of Mozambique national poverty line,poverty,Poverty Rates,poverty-rates,0,0,1,0,0,0
+nl150,proportion,oneMean,Mean likelihood of household being below 150% of the Mozambique national poverty line,Below 150% of Mozambique national poverty line,poverty,Poverty Rates,poverty-rates,0,0,1,0,0,0
+nl200,proportion,oneMean,Mean likelihood of household being below 200% of the Mozambique national poverty line,Below 200% of Mozambique national poverty line,poverty,Poverty Rates,poverty-rates,0,0,1,0,0,0
+nlFood,proportion,oneMean,Mean likelihood of household being below the Zambia food national poverty line,Below Zambia food national poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,0,0,1
+nl100,proportion,oneMean,Mean likelihood of household being below 100% of the Zambia national poverty line,Below 100% of Zambia national poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,0,0,1
+nl150,proportion,oneMean,Mean likelihood of household being below 150% of the Zambia national poverty line,Below 150% of Zambia national  poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,0,0,1
+nl200,proportion,oneMean,Mean likelihood of household being below 200% of the Zambia national poverty line,Below 200% of Zambia national poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,0,0,1
+nlFood,proportion,oneMean,Mean likelihood of household being below the Kenya food national poverty line,Below Kenya food national poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,0,1,0
+nl150,proportion,oneMean,Mean likelihood of household being below 150% of the Kenya national poverty line,Below 150% of Kenya national  poverty line,poverty,Poverty Rates,poverty-rates,0,0,0,0,1,0
 water2a,proportion,oneMean,Households with a formal source of drinking water,Formal source of drinking water,waterSet3,Other Water Indicators,other-water-indicators,1,1,1,1,1,1
 water3a,proportion,oneMean,Households with a WSUP-supported source of drinking water,WSUP-supported drinking water,waterSet3,Other Water Indicators,other-water-indicators,1,1,1,1,1,1
 water4,histogram,oneMean,Household mean number of hours per day drinking water is available from source,Hours per day water is available,waterSet2,Access to Water Sources,access-water-sources,1,1,1,1,1,1
@@ -85,14 +85,13 @@ water14a,proportion,oneMean,Households satisfied with water quality,Satisfied wi
 water16a,proportion,oneMean,Households satisfied with water pressure,Satisfied with water pressure,waterSet3,Other Water Indicators,other-water-indicators,1,1,1,1,1,1
 water17,proportion,oneMean,Households with a formal water service maintenance provider,Formal water service maintenance provider,waterSet3,Other Water Indicators,other-water-indicators,1,1,1,1,1,1
 san1a,proportion,oneMean,Households with shared sanitation facility,Shared sanitaiton facility,sanSet2,Access to Sanitation Facilities,access-sanitation-facilities,1,1,1,1,1,1
-san2,proportion,oneMean,Mean number of people sharing sanitation facility,Number of people sharing sanitation facility,sanSet2,Access to Sanitation Facilities,access-sanitation-facilities,1,1,1,1,1,1
+san2,histogram,oneMean,Mean number of people sharing sanitation facility,Number of people sharing sanitation facility,sanSet2,Access to Sanitation Facilities,access-sanitation-facilities,1,1,1,1,1,1
 san5,proportion,oneMean,Households with a WSUP-supported sanitation facility,WSUP-supported sanitation facility,sanSet4,Other Sanitation Indicators,other-sanitation-indicators,1,1,1,1,1,1
 san6,proportion,oneMean,Households whose sanitation facility has water,Water in sanitation facility,sanSet4,Other Sanitation Indicators,other-sanitation-indicators,1,1,1,1,1,1
 san7,proportion,oneMean,Households satisfied with handwashing facility in sanitation facility,Satisfied with handwashing facility in sanitation facility,sanSet4,Other Sanitation Indicators,other-sanitation-indicators,1,1,1,1,1,1
 san9,proportion,oneMean,Households whose sanitation facility has lights,Lights in sanitation facility,sanSet4,Other Sanitation Indicators,other-sanitation-indicators,1,1,1,1,1,1
 san10,proportion,oneMean,Households whose sanitation facility has lockable doors,Lockable doors in sanitation facility,sanSet4,Other Sanitation Indicators,other-sanitation-indicators,1,1,1,1,1,1
 san11,proportion,oneMean,Households whose sanitation facility has a container for menstrual hygiene management,Container for menstrual hygiene management,hygieneSet,Women's Hygiene,hygiene,1,1,1,1,1,1
-san13,histogram,oneMean,Household mean travel time to use sanitation facility,Time to sanitation facility (minutes),sanSet4,Other Sanitation Indicators,other-sanitation-indicators,1,1,1,1,1,1
 san15,proportion,oneMean,Households satisfied with amount of spending on sanitation facility,Satisfied with spending on sanitation facility,sanSet4,Other Sanitation Indicators,other-sanitation-indicators,1,1,1,1,1,1
 san17,histogram,oneMean,Household mean amount of initial investment in sanitation facility,Mean amount of initial investment in toilet facility,sanSet4,Other Sanitation Indicators,other-sanitation-indicators,1,1,1,1,1,1
 san16,proportion,oneMean,Households that made an initial investment in sanitaiton facility,Initial investment in sanitation facility,sanSet4,Other Sanitation Indicators,other-sanitation-indicators,1,1,1,1,1,1

@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-options(shiny.maxRequestSize = 30*1024^2)
+options(shiny.maxRequestSize = 70 * 1024 ^ 2)
 
 function(input, output, session) {
   #
@@ -760,10 +760,20 @@ function(input, output, session) {
     #
     # y-axis labels
     #
-    yLabel <- labs(y = ifelse(input$varList %in% c("water12", "san14") & input$country == "Bangladesh", "Bangladesh Taka (BDT)", 
-                         ifelse(input$varList == "san13", "Time (minutes)", 
-                           ifelse(input$varList == "pQuintile", "Quintiles", 
-                             ifelse(input$varList == "nMembers", "No. of Household Members", "Proportion")))))
+    yLabel <- labs(y = ifelse(input$varList %in% c("water12", "san14", "overallSpend", "san17", "san34") & input$country == "Bangladesh", "Bangladeshi Taka (BDT)",
+                         ifelse(input$varList %in% c("water12", "san14", "overallSpend", "san17", "san34") & input$country == "Ghana", "Ghanaian Cedi (GHS)",
+                           ifelse(input$varList %in% c("water12", "san14", "overallSpend", "san17", "san34") & input$country == "Kenya", "Kenyan Shillings (KSH)",
+                             ifelse(input$varList %in% c("water12", "san14", "overallSpend", "san17", "san34") & input$country == "Madagascar", "Malagasy Ariary (MGA)",
+                               ifelse(input$varList %in% c("water12", "san14", "overallSpend", "san17", "san34") & input$country == "Mozambique", "Mozambican Metical (MZN)",
+                                 ifelse(input$varList %in% c("water12", "san14", "overallSpend", "san17", "san34") & input$country == "Zambia", "Zambian Kwacha (ZMK)",
+                                   ifelse(input$varList %in% c("san13", "water7"), "No. of Minutes", 
+                                     ifelse(input$varList == "pQuintile", "Quintiles",
+                                       ifelse(input$varList == "ppi", "PPI",
+                                         ifelse(input$varList == "water4", "No. of Hours",
+                                           ifelse(input$varList == "water5", "No. of Days",
+                                             ifelse(input$varList == "san2", "No. of People",
+                                               ifelse(input$varList == "acceptScore", "Sanitation Score",
+                                                 ifelse(input$varList == "nMembers", "No. of Household Members", "Proportion")))))))))))))))
     #
     # x-axis labels
     #
@@ -1219,7 +1229,7 @@ function(input, output, session) {
     #
     #
     #
-    if(input$varList %in% steer.indicators()$varlist[steer.indicators()$varFunction == "proportion", ])
+    if(input$varList %in% steer.indicators()$varList[steer.indicators()$varFunction == "proportion"])
       {
       #
       #
@@ -1250,7 +1260,7 @@ function(input, output, session) {
     #
     #
     #
-    if(input$varList %in% steer.indicators()$varlist[steer.indicators()$varFunction == "proportion", ])
+    if(input$varList %in% steer.indicators()$varList[steer.indicators()$varFunction == "proportion"])
       {
       #
       #
@@ -1508,7 +1518,8 @@ function(input, output, session) {
 	  #
 	  #
 	  #
-	  if(input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"))
+	  #if(input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"))
+	  if(input$varList %in% steer.indicators()$varList[steer.indicators()$varFunction != "proportion"])
 	    {
 	    #
 	    #
@@ -1582,9 +1593,9 @@ function(input, output, session) {
 	  #
 	  addLegend(pal = pal, values = values, opacity = 0.7,
 		position = "bottomright", 
-		labFormat = ifelse(input$map.colour == "quantile" & !input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"), legend.format(digits = 1, between = " to ", suffix = "%"),
-		              ifelse(input$map.colour == "quantile" & input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"), legend.format(digits = 1, between = " to "),
-		                ifelse(input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"), labelFormat(digits = 1, between = " to "), labelFormat(digits = 1, between = " to ", suffix = "%")))),
+		labFormat = ifelse(input$map.colour == "quantile" & input$varList %in% steer.indicators()$varList[steer.indicators()$varFunction == "proportion"], legend.format(digits = 1, between = " to ", suffix = "%"),
+		              ifelse(input$map.colour == "quantile" & input$varList %in% steer.indicators()$varList[steer.indicators()$varFunction != "proportion"], legend.format(digits = 1, between = " to "),
+		                ifelse(input$varList %in% steer.indicators()$varList[steer.indicators()$varFunction != "proportion"], labelFormat(digits = 1, between = " to "), labelFormat(digits = 1, between = " to ", suffix = "%")))),
 		layerId = "legend") %>%
 	  #
 	  #
