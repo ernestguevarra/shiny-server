@@ -35,13 +35,64 @@ function(input, output, session) {
       }
   })
   #
+  # Read uploaded data
+  #
+  survey.indicators <- reactive({
+    #
+    # Use pre-loaded data if no dataset is uploaded
+    #
+    inputFile <- input$file1a
+    #
+    #
+    #
+    if(is.null(inputFile)) { current.indicators }
+    #
+    # If dataset is uploaded...
+    #
+    else
+      {
+      #
+      # Read dataset file
+      #
+      temp <- read.csv(file = inputFile$datapath, header = TRUE, sep = ",")
+      #
+      #
+      #
+      #temp <- temp[order(temp$indicatorCode), ]
+      }
+  })
+  #
   #
   #
   output$current.data.table <- DT::renderDataTable(
 	#
 	#
     #
-    survey.dataset(), options = list(pageLength = 5)
+    survey.dataset()[ , c("country", "month", "year", "indicatorName", "strata", "type", "estimate", "LCL", "UCL")], 
+    #
+    #
+    #
+    options = list(pageLength = 10)
+  )  
+  #
+  # Update country select input based on survey dataset uploaded
+  #
+  observe({
+    updateSelectInput(session = session,
+      inputId = "country",
+      label = "Country",
+      choices = list(Select = ".", unique(survey.dataset()$country)),
+      selected = "."
+    )
+  })
+  #
+  #
+  #
+  output$current.indicators.table <- DT::renderDataTable(
+	#
+	#
+    #
+    survey.indicators(), options = list(pageLength = 5)
   )  
   #
   # Update country select input based on survey dataset uploaded
@@ -264,6 +315,31 @@ function(input, output, session) {
   #
   #
   #
+  output$current.sub.table <- DT::renderDataTable(
+	#
+	#
+    #
+    sub.data()[ , c("country", "month", "year", "strata", "type", "estimate", "LCL", "UCL")], 
+    #
+    #
+    #
+    options = list(pageLength = 10)
+  )
+  #
+  #
+  #
+  sub.indicators <- reactive({
+    #
+    #
+    #
+    subset(survey.indicators(),
+           subset = country == input$country & 
+                    year >= input$start.year & year <= input$end.year &
+                    indicatorCode == input$varList)
+  })
+  #
+  #
+  #
   ladder.data <- reactive({
     #
     #
@@ -295,6 +371,25 @@ function(input, output, session) {
   #
   #
   output$year.header <- reactive({
+    #
+    #
+    #
+    if(input$start.year == input$end.year)
+      {
+      paste(input$start.year, sep = "")
+      }
+    #
+    #
+    #
+    else
+      {
+      paste(input$start.year, " - ", input$end.year, sep = "")
+      }
+  })
+  #
+  #
+  #
+  year.header <- reactive({
     #
     #
     #
@@ -876,6 +971,26 @@ function(input, output, session) {
   #
   #
   }, height = 320)                    
+
+################################################################################
+#
+# Plot indicators - special plots
+#
+################################################################################
+  #
+  #
+  #
+  output$pareto.plot <- renderPlot({
+    #
+    #
+    #
+    temp <- subset(sub.indicators(), select = names(sub.indicators())[grepl(input$varList, names(sub.indicators()))])
+    #
+    #
+    #
+  })    
+
+
   #
   #
   #
@@ -4339,5 +4454,36 @@ function(input, output, session) {
                    <li>An RR of > 1 means the event is more likely to occur in the experimental group than in the control group.</li>
                  </ul>
 		   ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$view.table, {
+     #
+     #
+     #
+     showModal(
+       #
+       #
+       #
+       modalDialog(
+         #
+         #
+         #
+         withMathJax(),
+         #
+         #
+         #
+         title = paste(input$country, ", ", input$city, " (", year.header(), "): ", steer.indicators()$varNames[steer.indicators()$varList == input$varList], sep = ""),
+         #
+         #
+         #
+         size = "l",
+         #
+         #
+         #
+         DT::dataTableOutput("current.sub.table")
+       )
+     )         
   })
 }

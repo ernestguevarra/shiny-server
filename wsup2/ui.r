@@ -120,7 +120,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           #
           # Select disaggregating variable
           #
-          div(style="display: inline-block;vertical-align:middle;",
+          div(style="display:inline-block; vertical-align:middle;",
               selectInput(inputId = "group.by",
                 label = "Disaggregate by",
                 choices = list(None = ".",
@@ -132,7 +132,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           #
           # Select faceting variable
           #
-          div(style="display: inline-block;vertical-align:middle;",        
+          div(style="display:inline-block; vertical-align:middle;",        
               selectInput(inputId = "facet.by",
                 label = "Stratify by",
                 choices = list(None = ".",
@@ -143,7 +143,26 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           #
           # Include error bars?
           #
-          uiOutput("error.bar")
+          div(style="display:inline-block; float:left;",
+            uiOutput("error.bar")
+          ),
+          #
+          #
+          #
+          conditionalPanel(condition = "input['varList'] != '.' & input['varSet'] != '.'",
+            #
+            #
+            #
+            div(style="display:inline-block; float:right;",
+              #
+              #
+              #
+              actionButton(inputId = "view.table",
+                           label = "Data",
+                           class = "btn-primary",
+                           icon = icon(name = "eye", class = "fa-lg"))
+            )
+          )         
           #
           # Reset button for chart settings
           #
@@ -263,7 +282,13 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           # Panel section header
           #
           h3(textOutput("panel.header")),
+          #
+          #
+          #
           h5(textOutput("indicator.header")),
+          #
+          #
+          #
           h5(textOutput("year.header")),
           #
           # Output bar plot
@@ -1404,25 +1429,67 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                 #
                 hr(),
                 #
-                # Upload results dataset
                 #
-                fileInput(inputId = "file1",
-                          label = "Upload results dataset to visualise",
-                          accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv"),
-                          width = "100%"),
                 #
-                # Add horizontal line
+                radioButtons(inputId = "data.settings",
+                             label = "",
+                             inline = TRUE,
+                             choices = c("Results dataset" = "results",
+                                         "Indicators dataset" = "indicators")),
                 #
-                hr(),
                 #
-                # Add annotations
                 #
-                tags$p("The application uses a pre-loaded dataset produced by the analysis workflow for the ", 
-                       tags$strong("Urban Water and Sanitation Surveys"), 
-                       ". If a new results dataset has been produced that includes other country surveys that have been conducted, this can be uploaded here for visualisation. The analysis workflow has been designed to concatenate all results datasets from all country/city surveys into a single dataset called", 
-                       tags$code("'surveyResultsAll.csv'"), 
-                       "which can be found inside the ", 
-                       tags$code("'outputTables'"), "folder of the workflow. This is the dataset that should be uploaded here. The pre-loaded dataset is shown to the right. When a new dataset is uploaded, the table is refreshed to show the uploaded dataset.")
+                br(),
+                #
+                #
+                #
+                conditionalPanel(condition = "input['data.settings'] == 'results'",
+                  #
+                  # Upload results dataset
+                  #
+                  fileInput(inputId = "file1",
+                            label = "Upload results dataset to visualise",
+                            accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv"),
+                            width = "100%"),
+                  #
+                  #
+                  #
+                  hr(),
+                  #
+                  # Add annotations
+                  #
+                  tags$p("The application uses a pre-loaded survey results dataset produced by the analysis workflow for the ", 
+                         tags$strong("Urban Water and Sanitation Surveys"), 
+                         ". If a new results dataset has been produced that includes other country surveys that have been conducted, this can be uploaded here for visualisation. The analysis workflow has been designed to concatenate all results datasets from all country/city surveys into a single dataset called", 
+                         tags$code("'surveyResultsAll.csv'"), 
+                         "which can be found inside the ", 
+                         tags$code("'outputTables'"), "folder of the workflow. This is the dataset that should be uploaded here. The pre-loaded dataset is shown to the right. When a new dataset is uploaded, the table is refreshed to show the uploaded dataset.")
+                ),
+                #
+                #
+                #
+                conditionalPanel(condition = "input['data.settings'] == 'indicators'",
+                  #
+                  # Upload indicators dataset
+                  #
+                  fileInput(inputId = "file1a",
+                            label = "Upload indicators dataset to visualise",
+                            accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv"),
+                            width = "100%"),
+                  #
+                  # Add horizontal line
+                  #
+                  hr(),
+                  #
+                  # Add annotations
+                  #
+                  tags$p("The application uses a pre-loaded survey indicators dataset produced by the analysis workflow for the ", 
+                         tags$strong("Urban Water and Sanitation Surveys"), 
+                         ". If a new indicators dataset has been produced that includes other country surveys that have been conducted, this can be uploaded here for visualisation. The analysis workflow has been designed to concatenate all indicators datasets from all country/city surveys into a single dataset called", 
+                         tags$code("'indicatorsDataAll.csv'"), 
+                         "which can be found inside the ", 
+                         tags$code("'data'"), "folder of the workflow. This is the dataset that should be uploaded here. The pre-loaded dataset is shown to the right. When a new dataset is uploaded, the table is refreshed to show the uploaded dataset.")
+                )
               ),
             #
             # Set column width

@@ -40,7 +40,7 @@ mapbox.decimal   <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj5ms1akt3p
 #
 # Read steering file
 #
-steerIndicators <- read.csv("steerIndicatorsV8.csv", header = TRUE, sep = ",")
+steerIndicators <- read.csv("steerIndicatorsV9.csv", header = TRUE, sep = ",")
 #
 # Create indicator choices for dropdown
 #
@@ -75,6 +75,10 @@ varSet13 <- c(vars[steerIndicators$varSet == "overallSet2"])
 #
 current.data <- read.csv(file = "surveyResultsAll.csv", header = TRUE, sep = ",")
 current.data <- current.data[order(current.data$indicatorCode), ]
+#
+#
+#
+current.indicators <- read.csv("indicatorsDataAll.csv", header = TRUE, sep = ",")
 
 
 ################################################################################
