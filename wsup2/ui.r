@@ -35,11 +35,11 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         draggable = TRUE, top = 65, left = "auto", right = 10, bottom = "auto",
         width = 330, height = "auto",
         #
-        #
+        # Add shinyjs for additional javascript capabilities
         #
         shinyjs::useShinyjs(),
         #
-        #
+        # Select which controls to set
         #
         radioButtons(inputId = "radio.controls",
           label = "",
@@ -47,7 +47,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                       "Map controls" = "map"),
           inline = TRUE),
         #
-        #
+        # If chart settings selected...
         #
         conditionalPanel(condition = "input['radio.controls'] == 'chart'",
           #
@@ -64,7 +64,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 					     label = "",
 					     icon = icon(name = "info-sign", lib = "glyphicon"))),
           #
-          #
+          # Add whitespace
           #
           br(),					   
           #
@@ -86,7 +86,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                 width = "140px")
           ),
           #
-          #
+          # Start year
           #
           div(style="display: inline-block;vertical-align:middle;",        
               selectInput(inputId = "start.year",
@@ -96,7 +96,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                 width = "140px")
           ),
           #
-          #
+          # End year
           #
           div(style="display: inline-block;vertical-align:middle;",        
               selectInput(inputId = "end.year",
@@ -106,19 +106,19 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                 width = "140px")
           ),
           #
-          #
+          # Select indicator set
           #
 	      selectInput(inputId = "varSet",
 		    label = "Select indicator set",
 		    choices = list(None = ".")),
           #
-          #
+          # Select indicator
           #
           selectInput(inputId = "varList",
             label = "Select indicator",
             choices = list(None = ".")),
           #
-          #
+          # Select disaggregating variable
           #
           div(style="display: inline-block;vertical-align:middle;",
               selectInput(inputId = "group.by",
@@ -130,7 +130,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                 width = "140px")
           ),        
           #
-          #
+          # Select faceting variable
           #
           div(style="display: inline-block;vertical-align:middle;",        
               selectInput(inputId = "facet.by",
@@ -141,22 +141,22 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                 width = "140px")
           ),
           #
-          #
+          # Include error bars?
           #
           uiOutput("error.bar")
           #
-          #
+          # Reset button for chart settings
           #
           #actionButton(inputId = "refresh.chart.settings",
           #             label = "Reset",
           #             icon = icon(name = "refresh", class = "fa-lg"))
         ),
         #
-        #
+        # If map settings selected...
         #
         conditionalPanel(condition = "input['radio.controls'] == 'map'",
           #
-          #
+          # Section header
           #
 		  div(style="display: inline-block;vertical-align:middle;",        
               h4("Map Options")
@@ -169,7 +169,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 					     label = "",
 					     icon = icon(name = "info-sign", lib = "glyphicon"))),
 		  #
-		  #
+		  # Add whitespace
 		  #
 		  br(),
 		  #
@@ -220,7 +220,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 				width = "140px")
 		  ),
 	      #
-	      #
+	      # If interval method selected...
 	      #
           conditionalPanel(condition = "input['map.colour'] == 'interval'",
             #
@@ -231,7 +231,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                         min = 3, max = 7, value = 5, step = 1)
           ),
           #
-          #
+          # If quantile method selected...
           #
           conditionalPanel(condition = "input['map.colour'] == 'quantile'",
             #
@@ -242,7 +242,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                         min = 3, max = 7, value = 5, step = 1)      
           )
           #
-          #
+          # Add reset button for map settings
           #
           #actionButton(inputId = "refresh.map.settings",
           #             label = "Reset",
@@ -250,7 +250,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         )
       ), 
       #
-      #
+      # If indicator set and indicator selected...
       #
       conditionalPanel(condition = "input.varSet == 'waterSet1' | input.varSet == 'sanSet1' | input.varSet == 'handSet' | input.varSet == 'overallSet1' | input.varList != '.'",
         #
@@ -266,7 +266,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           h5(textOutput("indicator.header")),
           h5(textOutput("year.header")),
           #
-          #
+          # Output bar plot
           #
           plotOutput("bar.plot")
         )
@@ -285,14 +285,16 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
     )
   ),
   #
-  #
+  # Create navigation bar menu
   #
   navbarMenu(title = "Tools",
              icon = icon(name = "wrench", class = "fa-lg"),
     #
     # Sample size calculator tab
     #
-    tabPanel(title = "Sample Size Calculator", value = "tabs21", icon = icon(name = "calculator", class = "fa-lg"),
+    tabPanel(title = "Sample Size Calculator", 
+      value = "tabs21", 
+      icon = icon(name = "calculator", class = "fa-lg"),
       #
       # Sidebar layout
       #
@@ -302,7 +304,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         #
         sidebarPanel(
           #
-          # Include shinyjs
+          # Include shinyjs for additional javascript functionalities
           #
           shinyjs::useShinyjs(),
           #
@@ -327,7 +329,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           #
           conditionalPanel(condition = "input.surveyType == 'srs'",
             #
-            #
+            # Add horizontal line
             #
             hr(),
             #
@@ -418,7 +420,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                         label = "Level of precision ( c )",
                         min = 3, max = 10, value = 5),
             #
-            #
+            # Add horizontal line
             #
             hr(),
             #
@@ -444,7 +446,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                         label = "Select variable name of survey cluster",
                         choices = c("Select variable name" = "")),
             #
-            #
+            # Add slider input for cluster size
             #
             sliderInput(inputId = "cluster.size",
                         label = "Number of samples per cluster planned for survey",
@@ -477,25 +479,9 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             tableOutput("deff")         
           ),  
         #
-        #
+        # Add whitespace
         #
         br(),
-        #
-        #
-        #
-        #h6("Sample size calculator app designed and developed by ",
-        #   tags$a(href = 'http://www.validinternational.org/', 'Valid International')),
-        #
-        # Create footer citation
-        #
-        #tags$div(id = "cite",
-        #  "Survey design and analysis by ", 
-        #  tags$a(href = 'http://www.validinternational.org/', 
-        #  'Valid International'), 
-        #  "| Survey data collected by ", 
-        #  tags$a(href = 'http://www.wsup.com', 
-        #  'Water and Sanitation for the Urban Poor')
-        #),
         #
         # Set width of sidebar panel
         #
@@ -566,21 +552,21 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         #
         leafletOutput("map.sampling", width = "100%", height = "100%"),
         #
-        #
+        # Add absolute panel for controls for spatial sampling
         #
         absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
           draggable = TRUE, top = 65, left = "auto", right = 10, bottom = "auto",
           width = 330, height = "auto",
           #
-          # Include shinyjs
+          # Include shinyjs to add javascript capabilities
           #
           shinyjs::useShinyjs(),
           #
-          #
+          # Section header
           #
           h4("Spatial Sampling"),
           #
-          #
+          # Add radio buttons to choose city sampling vs slum sampling
           #
           radioButtons(inputId = "map.controls",
             label = "",
@@ -589,7 +575,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                         "Slum Sample" = "slum"),
             selected = "city"),
           #
-          #
+          # If city settings selected...
           #
           conditionalPanel(condition = "input['map.controls'] == 'city'",
             #
@@ -612,12 +598,12 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                       accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
                       multiple = TRUE),
             #
-            #
+            # Add controls for drawing map
             #
             div(style="display: inline-block;vertical-align:top;", 
                 uiOutput("map.draw.control1")),
             #
-            #  
+            # If 'Draw' button tapped...
             #
             conditionalPanel(condition = "input.mapDraw1",
               #
@@ -625,25 +611,25 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
               #
               br(),
               #
-              #
+              # Select city survey area identifiers
               #
               selectInput(inputId = "var.city.area",
                           label = "Select map data identifier for city survey areas",
                           choices = list(None = ".")),
               #
-              #
+              # Select which survey area to sample
               #
               selectInput(inputId = "city.area.name",
                           label = "Select city survey area to sample",
                           choices = list(None = ".")),
               #
-              #
+              # Select number of clusters to sample
               #
               numericInput(inputId = "n.psu.citywide",
                            label = "Number of PSU/clusers to sample",
                            min = 16, max = 60, step = 1, value = 30),
               #  
-              #
+              # Add action button to initiate sampling
               #
               div(style="display: inline-block;vertical-align:middle;",
                   actionButton(inputId = "sample.city",
@@ -653,7 +639,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             )
           ),
           #
-          #
+          # if slum settings selected...
           #
           conditionalPanel(condition = "input['map.controls'] == 'slum'",            
             #
@@ -669,7 +655,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                            label = "",
                            icon = icon(name = "info-sign", lib = "glyphicon"))),          
             #
-            #
+            # Add radio buttons to select map or list-based sampling
             #
             radioButtons(inputId = "slumInfo",
                          label = "Available slum area sampling information",
@@ -678,23 +664,23 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                          inline = TRUE,
                          selected = "."),
             #
-            #
+            # If slum mapping approach selected...
             #
             conditionalPanel(condition = "input.slumInfo == 'slum.map'",
               #
-              #
+              # Upload slum shapefile
               #
               fileInput(inputId = "shp2",
                         label = "Upload map of slums in survey area",
                         accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
                         multiple = TRUE),
               #
-              #
+              # Add "Draw" button to draw slum map
               #
               div(style="display: inline-block;vertical-align:top;", 
                   uiOutput("map.draw.control2")),
               #
-              #
+              # If "Draw" button tapped...
               #
               conditionalPanel(condition = "input.mapDraw2",
                 #
@@ -702,19 +688,19 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                 #
                 br(),
                 #
-                #
+                # Select slum survey area identifier
                 #
                 selectInput(inputId = "var.slum.area1",
                             label = "Select map data identifier for slum survey areas",
                             choices = list(None = ".")),
                 #
-                #
+                # Select slum area to sample
                 #
                 selectInput(inputId = "slum.area.name1",
                             label = "Select slum survey area to sample",
                             choices = list(None = ".")),
                 #
-                #
+                # Add action button to initiate sampling
                 #
                 div(style="display: inline-block;vertical-align:middle;",
                     actionButton(inputId = "sample.slum1",
@@ -724,39 +710,39 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
               )
             ),            
             #
-            #
+            # If list-based sampling selected
             #
             conditionalPanel(condition = "input.slumInfo == 'slum.list'",
               #
-              #
+              # Add horizontal line
               #
               hr(),
               #
-              # 
+              # Upload slum area list
               #
               fileInput(inputId = "list1",
                         label = "Upload list of slum areas",
                         accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
               #
-              #
+              # Select survey area identifier
               #
               selectInput(inputId = "var.slum.area2",
                           label = "Select map data identifier for slum survey areas",
                           choices = list(None = ".")),
               #
-              #
+              # Select survey area to sample
               #  
               selectInput(inputId = "slum.area.name2",
                           label = "Select slum survey area to sample",
                           choices = list(None = ".")),
               #
-              #
+              # Select number of clusters to sample
               #
               numericInput(inputId = "n.psu.slum",
                            label = "Number of PSU/clusers to sample",
                            min = 16, max = 60, step = 1, value = 30),         
               #
-              #
+              # Add action button to initiate sampling
               #
               div(style="display: inline-block;vertical-align:middle;",
                   actionButton(inputId = "sample.slum2",
@@ -766,7 +752,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             )
           ),
           #
-          #
+          # If "Sample" button tapped for city sampling...
           #
           conditionalPanel(condition = "input['sample.city']",
             #
@@ -776,19 +762,19 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
               draggable = TRUE, top = "auto", right = "auto", left = 10, bottom = 10,
               width = "auto", height = "auto",
               #
-              #
+              # Section header
               #
               div(style="display: inline-block;vertical-align:middle;",
                   h4(textOutput("city.table.header"))
               ),
               #
-              #
+              # Add "Download" sampling list button
               #
               div(style="display: inline-block;vertical-align:middle;",
                   uiOutput("download.city")                         
               ),
               #
-              #
+              # Add horizontal line
               #
               hr(),
               #
@@ -798,7 +784,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             )
           ),
           #
-          #
+          # If "Sample" button tapped for map-based slum sampling
           #
           conditionalPanel(condition = "input['sample.slum1']",
             #
@@ -808,17 +794,17 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
               draggable = TRUE, top = "auto", right = "auto", left = 10, bottom = 10,
               width = "auto", height = "auto",
               #
-              #
+              # Section header
               #
               h4(textOutput("slum1.table.header")),
               #
-              #
+              # Add "Download" sampling list button
               #
               div(style="display: inline-block;vertical-align:middle;",
                   uiOutput("download.slum1")                         
               ),              
               #
-              #
+              # Add horizontal line
               #
               hr(),
               #
@@ -828,7 +814,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             )
           ),
           #
-          #
+          # If "Sample" button tapped for list-based slum sampling
           #
           conditionalPanel(condition = "input['sample.slum2']",
             #
@@ -838,17 +824,17 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
               draggable = TRUE, top = "auto", right = "auto", left = 10, bottom = 10,
               width = "auto", height = "auto",
               #
-              #
+              # Section header
               #
               h4(textOutput("slum2.table.header")),
               #
-              #
+              # Add "Download" button for sampling list
               #
               div(style="display: inline-block;vertical-align:middle;",
                   uiOutput("download.slum2")                         
               ),              
               #
-              #
+              # Add horizontal line
               #
               hr(),
               #
@@ -869,85 +855,76 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
       )
     ),
     #
-    #
+    # Create tab for "Statistical Tests"
     #
     tabPanel(title = "Statistical Tests", id = "tabs23", icon = icon(name = "line-chart", class = "fa-lg"),
       #
-      #
+      # Create sidebar layout
       #
       sidebarLayout(
         #
-        #
+        # Add sidebar panel
         #
         sidebarPanel(
           #
-          # Include shinyjs
+          # Include shinyjs to add javascript capabilities
           #
           shinyjs::useShinyjs(),
           #
-          #
+          # Provide an id for sidebar panel
           #
           id = "stats.test",
           #
-          #
+          # Section header
           #
           div(style="display: inline-block;vertical-align:middle;",          
-              #
-              #
-              #
               h4("Statistical Tests")
           ),
           #
-          #
+          # Add "Info" button for statistical tests...
           #
           div(style="display: inline-block;vertical-align:middle;",
-              #
-              #
-              #
               actionLink(inputId = "info5",
                 label = "",
                 icon = icon(name = "info-sign", lib = "glyphicon"))
           ),
           #
-          #
+          # Upload dataset to perform statistical test with
           #
           fileInput(inputId = "stat.test.data",
                     label = "Upload dataset for testing",
                     accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")
           ),
           #
-          #
+          # Select country to subset test data to
           #
           selectInput(inputId = "country.corr",
                       label = "Subset data",
                       choices = c(Select = "."),
                       selected = "."),
           #
-          #
+          # Select statistical test to perform
           #
           selectInput(inputId = "select.stats",
                       label = "Select statistical test to perform",
                       choices = c(Select = ".",
-                                  "Correlation testing" = "corr",
-                                  "Variance testing" = "variance",
+                                  "Correlation" = "corr",
+                                  "Variance" = "variance",
                                   "Odds ratio" = "odds",
                                   "Risk ratio" = "risk"),
                       selected = "."),
           #
-          #
+          # Add horizontal line
           #
           hr(),          
           #
-          #
+          # If correlation testing selected...
           #
           conditionalPanel(condition = "input['country.corr'] != '.' & input['select.stats'] == 'corr'",
             #
-            #
+            # Section header
             # 
             div(style="display: inline-block;vertical-align:middle;",            
-                #
-                #
-                #
                 h5("Set correlation test parameters")
             ),
             #
@@ -1138,7 +1115,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                   #
                   #
                   #
-                  h4("Correlation Test"),
+                  h4("Correlation"),
                   #
                   #
                   #
@@ -1147,6 +1124,14 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                   #
                   #
                   h5(textOutput("corr.results.header")),
+                  #
+                  #
+                  #
+                  textOutput("corr.results.description"),
+                  #
+                  #
+                  #
+                  br(),
                   #
                   #
                   #
@@ -1168,7 +1153,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                   #
                   #
                   #
-                  h4("Variance Test"),
+                  h4("Variance"),
                   #
                   #
                   #
@@ -1181,6 +1166,14 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                     #
                     #
                     h5(textOutput("var.results.t.header")),
+                    #
+                    #
+                    #
+                    textOutput("var.results.t.description"),
+                    #
+                    #
+                    #
+                    br(),
                     #
                     #
                     #
@@ -1197,6 +1190,14 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                     #
                     #
                     #
+                    textOutput("var.results.wilcox.description"),
+                    #
+                    #
+                    #
+                    br(),
+                    #
+                    #
+                    #
                     tableOutput("var.results.wilcox")
                   ),
                   #
@@ -1207,6 +1208,14 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                     #
                     #
                     h5(textOutput("var.results.kruskal.header")),
+                    #
+                    #
+                    #
+                    textOutput("var.results.kruskal.description"),
+                    #
+                    #
+                    #
+                    br(),
                     #
                     #
                     #
@@ -1267,6 +1276,14 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                   #
                   #
                   #
+                  textOutput("odds.results.description"),
+                  #
+                  #
+                  #
+                  br(),
+                  #
+                  #
+                  #
                   tableOutput("odds.results")
                 ),
                 #
@@ -1314,6 +1331,14 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                   #
                   #
                   #
+                  textOutput("risk.results.description"),
+                  #
+                  #
+                  #
+                  br(),
+                  #
+                  #
+                  #
                   tableOutput("risk.results")
                 ),
                 #
@@ -1346,61 +1371,74 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
       #
       tabPanel(title = "Datasets",
         #
-        #  
+        # Add fluid page
         #
         fluidPage(
           #
-          #
+          # Add fluid row
           #
           fluidRow(
             #
-            #
+            # Add blank column
             #
             column(width = 12, br())
           ),
           #
-          #
+          # Add fluid row
           #
           fluidRow(
             #
+            # Add column
             #
+            column(
+              #
+              # Create well panel
+              #
+              wellPanel(
+                #
+                # Section header
+                #
+                h4("Datasets"),
+                #
+                # Add horizontal line
+                #
+                hr(),
+                #
+                # Upload results dataset
+                #
+                fileInput(inputId = "file1",
+                          label = "Upload results dataset to visualise",
+                          accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv"),
+                          width = "100%"),
+                #
+                # Add horizontal line
+                #
+                hr(),
+                #
+                # Add annotations
+                #
+                tags$p("The application uses a pre-loaded dataset produced by the analysis workflow for the ", 
+                       tags$strong("Urban Water and Sanitation Surveys"), 
+                       ". If a new results dataset has been produced that includes other country surveys that have been conducted, this can be uploaded here for visualisation. The analysis workflow has been designed to concatenate all results datasets from all country/city surveys into a single dataset called", 
+                       tags$code("'surveyResultsAll.csv'"), 
+                       "which can be found inside the ", 
+                       tags$code("'outputTables'"), "folder of the workflow. This is the dataset that should be uploaded here. The pre-loaded dataset is shown to the right. When a new dataset is uploaded, the table is refreshed to show the uploaded dataset.")
+              ),
             #
-            column(width = 3,
-              #
-              #
-              #
-              h4("Datasets"),
-              #
-              #
-              #
-              hr(),
-              #
-              #
-              #
-              tags$p("The application uses a pre-loaded dataset produced by the analysis workflow for the ", 
-                     tags$strong("Urban Water and Sanitation Surveys"), 
-                     ". If a new results dataset has been produced that includes other country surveys that have been conducted, this can be uploaded here for visualisation. The analysis workflow has been designed to concatenate all results datasets from all country/city surveys into a single dataset called", 
-                     tags$code("'surveyResultsAll.csv'"), 
-                     "which can be found inside the ", 
-                     tags$code("'outputTables'"), "folder of the workflow. This is the dataset that should be uploaded here. The pre-loaded dataset is shown to the right. When a new dataset is uploaded, the table is refreshed to show the uploaded dataset."),
-              #
-              #
-              #
-              hr(),
-              #
-              #
-              #
-              fileInput(inputId = "file1",
-                        label = "Upload results dataset to visualise",
-                        accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv"),
-                        width = "100%")
+            # Set column width
+            #
+            width = 3
             ),
             #
+            # Add column to layout
             #
-            #
-            column(width = 9,
+            column(
               #
+              # Set column width
               #
+              width = 9,
+              #
+              # Add table output of pre-loaded or uploaded dataset
               #
               DT::dataTableOutput("current.data.table")
             )
@@ -1408,40 +1446,44 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         )
       ),
       #
-      #
+      # Add tab for maps settings
       #
       tabPanel(title = "Maps",
         #
-        #
+        # Add fluid page
         #
         fluidPage(
           #
-          #
+          # Add fluid row
           #
           fluidRow(
             #
-            #
+            # Add blank column to layout
             #
             column(width = 12, br())
           ),
           #
-          #
+          # Add fluid row
           #
           fluidRow(
             #
             # Create column for uploading maps
             #
-            column(width = 3,
+            column(
               #
-              # Header
+              # Create well panel
               #
-              h4("Maps"),
+              wellPanel(
+                #
+                # Header
+                #
+                h4("Maps"),
 				#
-				#
+				# Add horizontal line
 				#
 				hr(),
 				#
-				#
+				# Select which country dataset to upload
 				#
 				selectInput(inputId = "map.settings",
 				  label = "Upload map dataset for",
@@ -1455,7 +1497,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 				  selected = ".",
 				  width = "100%"),
 				#
-				#
+				# Add whitespace
 				#
 				br(),
 				#
@@ -1463,7 +1505,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 				#
 				conditionalPanel(condition = "input['map.settings'] == 'dhaka'",
 				  #
-				  #
+				  # Upload Dhaka shapefile
 				  #
 				  fileInput(inputId = "shp.dhaka",
 					label = "Select map for Dhaka to upload",
@@ -1476,7 +1518,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 				#
 				conditionalPanel(condition = "input['map.settings'] == 'accra'",
 				  #
-				  #
+				  # Upload Accra shapefile
 				  #
 				  fileInput(inputId = "shp.accra",
 					label = "Select map for Accra to upload",
@@ -1489,7 +1531,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 				#
 				conditionalPanel(condition = "input['map.settings'] == 'nakuru'",
 				  #
-				  #
+				  # Add Nakuru shapefile
 				  #
 				  fileInput(inputId = "shp.nakuru",
 					label = "Select map for Nakuru to upload",
@@ -1502,7 +1544,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 				#
 				conditionalPanel(condition = "input['map.settings'] == 'antananarivo'",
 				  #
-				  #
+				  # Add Antananarivo shapefile
 				  #
 				  fileInput(inputId = "shp.antananarivo",
 					label = "Select map for Antananarivo to upload",
@@ -1515,7 +1557,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 				#
 				conditionalPanel(condition = "input['map.settings'] == 'maputo'",
 				  #
-				  #
+				  # Add Maputo shapefile
 				  #
 				  fileInput(inputId = "shp.maputo",
 					label = "Select map for Maputo to upload",
@@ -1528,7 +1570,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 				#
 				conditionalPanel(condition = "input['map.settings'] == 'lusaka'",
 				  #
-				  #
+				  # Add Lusaka shapefile
 				  #
 				  fileInput(inputId = "shp.lusaka",
 					label = "Select map for Lusaka to upload",
@@ -1537,7 +1579,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 					width = "100%")
 				),
 				#
-				#
+				# Select survey area identifiers for each country shapefile
 				#
 				uiOutput("select.dhaka.id"),
 				uiOutput("select.accra.id"),
@@ -1558,21 +1600,30 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                 #               icon = icon(name = "location-arrow", clas = "fa-lg"))
                 #),
 				#
-				#
+				# Add horizontal line
 				#
 				hr(),
 				#
-				#
+				# Add annotations
 				#
 				tags$p("The application uses pre-loaded map datasets for each of the city surveys for the ", 
 					   tags$strong("Urban Water and Sanitation Surveys"), ". These pre-loaded map datasets can be updated or changed by uploading a map dataset for each of the cities surveyed that matches the results dataset provided. Specifically, the map dataset should have a data column that identifies the unique areas or zones that were surveyed.")
 			  ),
-            #    
             #
+            # Set column width
+            #
+            width = 3
+			),
+            #    
+            # Add column
             # 
-            column(width = 9,
+            column(
               #
+              # Set column width
               #
+              width = 9,
+              #
+              # visualise uploaded shapefile
               #
               leafletOutput("map.upload", height = 500)
             )             

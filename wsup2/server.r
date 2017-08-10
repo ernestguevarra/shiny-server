@@ -429,229 +429,6 @@ function(input, output, session) {
     paste("Sampling List: ", input$var.slum.area2, " - ", input$slum.area.name2)
   })
 
-
-################################################################################
-#
-# Modal dialogs
-#
-################################################################################
-  #
-  #
-  #
-  observeEvent(input$info1, {
-    #
-    #
-    #
-    showModal(modalDialog(withMathJax(),
-                          title = "Chart Options",
-                          size = "l",
-                          HTML("
-                            <h4>Country</h4>
-                            <p>Choose country data to visualise. The choices of countries to select from is based on the pre-loaded or user-provided data</p>
-                            <br/>
-                            
-                            <h4>City</h4>
-                            <p>Choose city data to visualise. The choices of cities to select from is based on the country selected and on the pre-loaded or user-provided data</p>
-                            <br/>
-                            
-                            <h4>From - To</h4>
-                            <p>Choose year/s of data to visualise. The range of years to select from is based on the country and city selected and on the pre-loaded or user-provided data</p>
-                            <br/>
-                            
-                            <h4>Select indicator set</h4>
-                            <p>Indicators for the <code>Urban Water and Sanitation Survey</code> are organised into thirteen indicator sets. These are: 1) <em>Demographics</em>; 2) <em>Types of Water Sources</em>; 3) <em>Access to Water Sources</em>; 4) <em>Other Water Indicators</em>; 5) <em>Types of Sanitation Facilities</em>; 6) <em>Access to Sanitation Facilities</em>; 7) <em>Sanitation Practices and Behaviours</em>; 8) <em>Other Sanitation Indicators</em>; 9) <em>Women Hygiene</em>; 10) <em>Handwashing</em>; 11) <em>Access to All Services</em>; 12) <em>Overall Expenditure</em>; and, 13) <em>Poverty</em>.</p>
-                            <br/>
-                            
-                            <h4>Select Indicator</h4>
-                            <p><strong>Mean number of household members</strong></p>
-                            <p>This indicator is based on the self-report of number of household members.</p>
-
-                            <br/>                    
-                            <p><strong>Progress out of Poverty Index (PPI)</strong></p>
-                            <p>The <code>Progress out of Poverty Index (PPI)</code> is a measure of poverty developed by <a href='http://www.grameenfoundation.org' target='_blank'>Grameen Foundation</a> in collaboration with the <a href='https://www.fordfoundation.org' target='_blank'>Ford Foundation</a>, and managed by the <a href'http://www.poverty-action.org' target='_blank'>Innovations for Poverty Action</a>. The first <code>PPI</code> was released in 2006 and has since then been customised for 45 countries. The <code>PPI</code> is based on a country-specific 10-item questionnaire about a household’s characteristics and asset ownership which is scored to compute the likelihood that a household is living below country-specific and universal poverty line thresholds.</p>
-
-                            <br/>                            
-                            <p><strong>Poverty Likelihood ($1.25 a day)</strong></p>
-                            <p>This is the measure of the probability that a household is below the <code>$1.25 purchasing power parity (PPP)</code> poverty threshold of 2005. The likelihood is determined through pre-calculated and country-specific probabilites based on the household <code>PPI</code>. Other <code>PPI</code>-based poverty likelihoods using other country-specific and or global poverty thresholds are available.</p> 
-                            
-                            <br/>                            
-                            <p><strong>Wealth Quintile</strong></p>
-                            <p>This is the classification or grouping of each household into quintiles based on <code>PPI</code> with those in the lowest quintile (wealth quintile 1) having the lowest fifth <code>PPI</code> and those in the highest quintile (wealth quintile 5) having the highest fifth <code>PPI</code>.</p>
-
-                            <br/>
-                            <p><strong>Types of Water Sources</strong></p>
-                            <p><code>Safely managed:</code> Drinking water from an improved water source which is located on premises, available when needed and free of faecal and priority contamination. </p>
-                            <p><code>Basic:</code> Drinking water from an improved source provided collection time is not more than 30 minutes for a roundtrip including queuing.</p> 
-                            <p><code>Limited:</code> Drinking water from an improved source where collection time exceeds over 30 minutes for a roundtrip to collect water, including queuing.</p>
-                            <p><code>Unimproved:</code> Drinking water from an unimproved dug well or unprotected spring</p>
-                            <p><code>Surface water:</code> Drinking water directly from a river, dam, lake, pond, stream, canal or irrigation channel.</p>
-
-                            <br/>
-                            <p><strong>Access to sufficient and sustained drinking water</strong></p>
-                            <p><code>Percentage of households with access to sufficient and sustained drinking water</code>: Sufficient is defined as <code>>50 litres per person per day</code>. Sustained is defined as drinking water available <code>24 hours per day</code>, <code>7 days a week</code> and <code>throughout the year</code>.</p>
-
-                            <br/>                                                          
-                            <p><strong>Access to safe and acceptable drinking water for all</strong></p>
-                            <p><code>Percentage of households with good self-reported quality of drinking water:</code> No objective water quality assessment was performed during the survey. This indicator, as stated, is based on self-reported perception of water quality.</p>
-                            <p><code>Percentage of households that are safely storing drinking water:</code> Safe storage is defined as drinking water stored in a clean container with lid only.</p>
-
-                            <br/>                                  
-                            <p><strong>Access to affordable drinking water</strong></p>
-                            <p><code>Mean expenditure in drinking water by wealth quintile:</code> mean expenditure in drinking water per household per year by wealth quintile. It should be noted that expenditure alone does not indicate affordable access to drinking water. The ideal and recommened indicator is yearly expenditure on water as a fraction of annual income i.e., \\(\\frac{\\mu_\\text{Household yearly expenditure on water}}{\\text{Household annual income}}\\). However, the surveys did not collect data on household income hence this recommended indicator cannot be calculated.</p>
-
-                            <br/>                                                         
-                            <p><strong>Physical access to drinking water</strong></p>                             
-                            <p><code>Percentage of households with adequate physical access to drinking water:</code> Adequate physical access is defined as source of drinking water is located within <code>30 minutes</code> from home</p>
-
-                            <br/>                                                          
-                            <p><strong>Formal water service provision</strong></p>
-                            <p><code>Percentage of households with formal drinking water service provision:</code> Formal drinking water service provision is defined as drinking water provided by a formal service according to interviewer asessment.</p>
-                            <p><code>Percentage of households relying on formal provider for service supply maintenance:</code> Formal provider for service supply maintenance is defined as a household with a formal service provider contact person in case of problems with water supply.</p>
-
-                            <br/>
-                            <p><strong>Sanitation Service Ladder</strong></p>       
-                            <p><code>Safely managed:</code> Use of an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site.</p>
-                            <p><code>Basic:</code> Use of improved facilities which are not shared with other households.</p>
-                            <p><code>Limited:</code> Use of improved facilities shared between two or more households.</p>
-                            <p><code>Unimproved:</code> Use of pit latrines wihtout a slab or platform, hanging latrines and bucket latrines</p>
-                            <p><code>Open defecation:</code> Disposal of human faeces in fields, forest, bushes, open bodies of water, beaches or other open spaces or with solid waste.</p>
-
-                            <br/>
-                            <p><strong>Access to sufficient and sustained drinking water</strong></p>
-                            <p><code>Percentage of households with access to sufficient and sustained drinking water</code>: Sufficient is defined as <code>>50 litres per person per day</code>. Sustained is defined as drinking water available <code>24 hours per day</code>, <code>7 days a week</code> and <code>throughout the year</code>.</p>
-                             
-                            <br/> 
-                            <p><strong>Access to safe and acceptable drinking water for all</strong></p>
-                            <p><code>Percentage of households with good self-reported quality of drinking water:</code> No objective water quality assessment was performed during the survey. This indicator, as stated, is based on self-reported perception of water quality.</p>
-                            <p><code>Percentage of households that are safely storing drinking water:</code> Safe storage is defined as drinking water stored in a clean container with lid only.</p>
-     
-                            <br/>
-                            <p><strong>Access to affordable drinking water</strong></p>
-                            <p><code>Mean expenditure in drinking water by wealth quintile:</code> mean expenditure in drinking water per household per year by wealth quintile. It should be noted that expenditure alone does not indicate affordable access to drinking water. The ideal and recommened indicator is yearly expenditure on water as a fraction of annual income i.e., \\(\\frac{\\mu_\\text{Household yearly expenditure on water}}{\\text{Household annual income}}\\). However, the surveys did not collect data on household income hence this recommended indicator cannot be calculated.</p>
-                             
-                            <br/>
-                            <p><strong>Physical access to drinking water</strong></p>                             
-                            <p><code>Percentage of households with adequate physical access to drinking water:</code> Adequate physical access is defined as source of drinking water is located within <code>30 minutes</code> from home</p>
-                             
-                            <br/>
-                            <p><strong>Formal water service provision</strong></p>
-                            <p><code>Percentage of households with formal drinking water service provision:</code> Formal drinking water service provision is defined as drinking water provided by a formal service according to interviewer asessment.</p>
-                            <p><code>Percentage of households relying on formal provider for service supply maintenance:</code> Formal provider for service supply maintenance is defined as a household with a formal service provider contact person in case of problems with water supply.</p>
-
-                            <br/>
-                            <p><strong>Use of adequate hygienic materials for menstrual hygiene management</strong></p>
-                            <p><code>Percentage of households using adequate hygienic materials foe MHM</code>: Adequate hygienic maetrials are cloths, pads, tampons or menstrual cups</p>
-                                                          
-                            <br/>
-                            <p><strong>Hygienic and adequate disposal of menstrual hygiene materials</strong></p>
-                            <p><code>Percentage of households practicing good mentrual hygiene practies/behaviour:</code> Good menstrual hygiene management includes cloths washed with soap and water and napkins/pads disposed of in the rubbish bin.</p>
-     
-                            <br/> 
-                            <p><strong>Comfort with sanitation facilities during menstruation</strong></p>
-                            <p><code>Percentage of households in which women and girls are comfortable using sanitation facility during menstruation:</code></p>                             
-
-                            <br/>
-                            <p><strong>Overall access to adequate water and sanitation services</strong></p>
-                            <p><code>Percentage of Households with access to adequate water and sanitation services by quintile</code>: Adequate water services and adequate sanitation services as defined.</p>
-                            <ul>
-                              <li>Percentage of households with access to adequate sanitation and adequate drinking water</li>
-                              <li>Percentage of households with access to adequate sanitation only</li>
-                              <li>Percentage of households with access to adequate drinking water only</li>
-                              <li>Percentage of households with no access to adequate services</li>
-                            </ul>
-                            
-                            <br/>
-                            <h4>Disaggregate by</h4>
-                            <p>Select from choices of data variables to be used for grouping / disaggregating the data. When applied to charts, data is grouped based on the selected variable and then plotted accordingly on a single chart.</p>
-                             <ul>
-                               <li><code>All Data (No Stratification)</code>: full dataset is used and resulting chart has no facets or panels.</li>
-                               <li><code>Survey Area</code>: dataset is grouped into \\(n\\) unique survey areas and resulting chart has \\(n\\) facets or panels corresponding to each survey area.</li>
-                               <li><code>Area Type</code>: dataset is grouped into <code>slum</code> and <code>citywide</code> area types and resulting chart has <code>slum</code> and <code>citywide</code> facets or panels.</li>
-                               <li><code>Wealth Quintile</code>: dataset is grouped into quintiles based on the <code>Progress out of Poverty Index (PPI)</code>.</li>
-                             </ul>
-                               
-                            <br/>                             
-                            <h4>Stratify by</h4>
-                            <p>Select from choices of data variables to be used for grouping / disaggregating the data. When applied to charts, \\(n\\) unique values of the selected variables are used to create \\(n\\) facets or panels of the resulting chart.</p>
-                          ")))                       
-  })
-  #
-  #
-  #
-  observeEvent(input$info2, {
-    #
-    #
-    #
-    showModal(modalDialog(withMathJax(),
-                          title = "Map Options",
-                          size = "l",
-                          HTML("
-                            <h4>Select colour palette</h4>
-                            <p>Select from choices of colour palettes to use for mapping. Two categories of colour palettes are available.</p>
-                            <ul>
-                              <li><code>Sequential</code> palettes are suited to ordered data that progress from low to high with light colours representing low data values and dark colours representing high data values.</li>
-                              <li><code>Diverging</code> palettes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The middle values are emphasised with light colours and low and high extremes are emphasised with dark colours that have contrasting hues.</li>
-                            </ul>
-                            <p>The choices of colour palettes are based on <a href='http://colorbrewer2.org/' target='_blank'>ColorBrewer 2.0</a> and implemented in R using the <a href='https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf' target='_blank'>RColorBrewer</a> function.</p>
-                            <p>The default colour palette for the <code>Demographics</code> indicator set is <code>sequential yellow to orange to brown (YlOrBb)</code> scheme.</p>
-                            
-                            <br/>
-                            <h4>Select colour mapping method</h4>
-                            <p>Colour mapping methods determine how to match the indicator dataset to the selected colour palette appropriately. Three colour mapping methods are available.</p>
-                            <ul>
-                              <li><code>Linear interpolation</code> is a simple linear mapping from continuous numeric data to an interpolated colour palette. In this method, the selected colour palette is extended (via interpolation) to create a continuous set of colours consistent with the scheme that would be enough to match the range of values of the continuous numeric data being mapped.</li>
-                              <li><code>Equal interval</code> maps continuous numeric data to a fixed number of colours from the palette. The continous indicator values are divided into equal interval group sets determined by the <code>number of bins</code> specified (see below regarding bins). The number of colours correspond to the <code>number of bins</code> into which the indicator values have been divided into.</li>
-                              <li><code>Quantile</code> also maps continuous numeric data to a fixed number of colours from the palette. However, the continuous indicator values are divided into <code>quantiles</code> (group sets with equal number of observations). The number of colours correspond to the <code>number of quantiles</code> into which the indicator values have been divided into.</li> 
-                            </ul>
-                            
-                            <br/>                            
-                            <h4>Number of bins</h4>
-                            <p><em>For equal interval method.</em> Select number of equal interval groups to divide the dataset into. For example, for a dataset of percentages with values ranging between 0 and 100, specifying <code>number of bins</code> to 5 would mean creating 5 equal interval groupings - <code>[0,20)</code>, <code>[20, 40)</code>, <code>[40,60)</code>, <code>[60,80)</code>, <code>[80,100]</code></p>
-                            
-                            <br/>
-                            <h4>Number of classes</h4>
-                            <p><em>For quantile method.</em> Select number of quantiles to divide dataset into.</p>
-                          ")))                       
-  })
-  #
-  #
-  #
-  observeEvent(input$info3, {
-     #
-     #
-     #
-     showModal(modalDialog(withMathJax(),
-                           title = "City map data input",
-                           size = "l",
-                           HTML("
-                             <h4>Upload map of citywide survey area</h4>
-                             <p>The map should be in ESRI Shapefile format (SHP). This file format requires a minimum of 3 related files in order to be readable. These files are the <code>.SHP</code>, <code>.SHX</code> and <code>.DBF</code>. Hence, these three files should be uploaded all at the same time by clicking on CTRL and then selecting at least the three files for upload. A warning will pop out if the incorrect file formats and/or incomplete number of files are uploaded. Once the files have been uploaded, two new options come out. First, the app asks for the vaiable name in the map files that contains the stratifying variable. This would be the variable name of a geographic subdivision by which you decided to divide the city. Second, a prompt for the number of primary sampilng units or <code>PSU</code> comes to view. This is set at a default of 30. Once you have specified these parameters, you can click on <code>Sample</code> and corresponding sampling maps will be produced on the main panel and corresponding sampling lists on the appropriate sampling tabs.</p>
-                           ")))
-  })
-  #
-  #
-  #
-  observeEvent(input$info4, {
-     #
-     #
-     #
-     showModal(modalDialog(withMathJax(),
-                           title = "Slum map data input",
-                           size = "l",
-                           HTML("
-                             <h4>Available slum area sampling information</h4>
-                             <p>For slum areas, you are first asked what information you have on slums that can be used for sampling: <code>slum maps</code> or <code>slum lists</code>. If you have slum maps, then you are given the options for sampling with slum maps (below). If you have lists, then you are given the option for sampling with slum lists (below).</p>
-                             
-                             <br/>
-                             <h4>Upload map of slum survey area</h4>
-                             <p>The map should be in ESRI Shapefile format (SHP). This file format requires a minimum of 3 related files in order to be readable. These files are the <code>.SHP</code>, <code>.SHX</code> and <code>.DBF</code>. Hence, these three files should be uploaded all at the same time by clicking on CTRL and then selecting at least the three files for upload. A warning will pop out if the incorrect file formats and/or incomplete number of files are uploaded. Once the files have been uploaded, two new options come out. First, the app asks for the vaiable name in the map files that contains the stratifying variable. This would be the variable name of a geographic subdivision by which you decided to divide the city. Second, a prompt for the number of primary sampilng units or <code>PSU</code> comes to view. This is set at a default of 30. Once you have specified these parameters, you can click on <code>Sample</code> and corresponding sampling maps will be produced on the main panel and corresponding sampling lists on the appropriate sampling tabs.</p>
-
-                             <br/>
-                             <h4>Upload list of slum areas</h4>
-                             <p>The list of slum areas should be in CSV format. The list should be organised and sorted along the stratifying variable for survey areas. Once the list has been uploaded, you will need to specify how many <code>PSUs</code> will be survyed. Then press on <code>Sample</code>. A sample list from the complete list is now available on the <code>Slum Lists</code> tab.</p>
-                           ")))
-  })
-
   
 ################################################################################
 #
@@ -2804,7 +2581,9 @@ function(input, output, session) {
 	  #
 	  #
 	  #
-	  temp <- cor.test(x = stat.dataset()[[input$x.corr]], y = stat.dataset()[[input$y.corr]], method = input$z.corr)
+	  temp <- cor.test(x = stat.dataset()[[input$x.corr]], 
+	                   y = stat.dataset()[[input$y.corr]], 
+	                   method = input$z.corr)
 	  }
     #
     #
@@ -2823,7 +2602,11 @@ function(input, output, session) {
 						  round(temp$p.value, digits = 4), 
 						  round(temp$estimate, digits = 4), 
 						  ci)
-	  results.name <- c("Test statistic", "Degrees of freedom (df)", "p-value", "Correlation coefficient", "95% CI")
+	  results.name <- c("Test statistic", 
+	                    "Degrees of freedom (df)", 
+	                    "p-value", 
+	                    "Correlation coefficient", 
+	                    "95% CI")
 	  }
     #
     #
@@ -2863,12 +2646,35 @@ function(input, output, session) {
       #
       #
       #
-      temp <- cor.test(x = stat.dataset()[[input$x.corr]], y = stat.dataset()[[input$y.corr]], method = input$z.corr)
+      temp <- cor.test(x = stat.dataset()[[input$x.corr]], 
+                       y = stat.dataset()[[input$y.corr]], 
+                       method = input$z.corr)
       }
     #
     #
     #
     temp$method
+  })
+  #
+  #
+  #
+  output$corr.results.description <- renderText({
+    #
+    #
+    #
+    req(input$x.corr, input$y.corr, input$z.corr)
+      {
+      #
+      #
+      #
+      temp <- cor.test(x = stat.dataset()[[input$x.corr]], 
+                       y = stat.dataset()[[input$y.corr]], 
+                       method = input$z.corr)
+      }
+    #
+    #
+    #
+    paste("Correlation between ", input$x.corr, " and ", input$y.corr, sep = "")
   })
   #
   #
@@ -2891,11 +2697,9 @@ function(input, output, session) {
         #
         #
         #
-        temp <- t.test(x = stat.dataset()[[input$x.var]], y = stat.dataset()[[input$y.var]], var.equal = diff.test)
-        #
-        #
-        #
-        #ci <- paste(round(temp$conf.int[1], digits = 4), " to ", round(temp$conf.int[2], digits = 4))
+        temp <- t.test(x = stat.dataset()[[input$x.var]], 
+                       y = stat.dataset()[[input$y.var]], 
+                       var.equal = diff.test)
         #
         #
         #
@@ -2935,11 +2739,10 @@ function(input, output, session) {
         #
         #
         #
-        temp <- wilcox.test(x = stat.dataset()[[input$x.var]], y = stat.dataset()[[input$y.var]], conf.int = TRUE, exact = FALSE)
-        #
-        #
-        #
-        #ci <- paste(round(temp$conf.int[1], digits = 4), " to ", round(temp$conf.int[2], digits = 4))
+        temp <- wilcox.test(x = stat.dataset()[[input$x.var]], 
+                            y = stat.dataset()[[input$y.var]], 
+                            conf.int = TRUE, 
+                            exact = FALSE)
         #
         #
         #
@@ -2982,7 +2785,6 @@ function(input, output, session) {
         #
         #
         #
-        #ci <- paste(round(temp$conf.int[1], digits = 4), " to ", round(temp$conf.int[2], digits = 4))
         #
         #
         #
@@ -3075,6 +2877,69 @@ function(input, output, session) {
   #
   #
   #
+  output$var.results.t.description <- renderText({
+    #
+    #
+    #
+    req(input$x.var, input$y.var, input$z.var)
+      {
+      #
+      #
+      #
+      if(input$z.var == "t.test")
+        {
+        #
+        #
+        #    
+        paste("Variance between ", input$x.var, " and ", input$y.var, sep = "")
+        }
+      }
+  })
+  #
+  #
+  #
+  output$var.results.wilcox.description <- renderText({
+    #
+    #
+    #
+    req(input$x.var, input$y.var, input$z.var)
+      {
+      #
+      #
+      #
+      if(input$z.var == "wilcox")
+        {
+        #
+        #
+        #    
+        paste("Variance between ", input$x.var, " and ", input$y.var, sep = "")
+        }
+      }
+  })
+  #
+  #
+  #
+  output$var.results.kruskal.description <- renderText({
+    #
+    #
+    #
+    req(input$x.var, input$y.var, input$z.var)
+      {
+      #
+      #
+      #
+      if(input$z.var == "kruskal")
+        {
+        #
+        #
+        #    
+        paste("Variance between ", input$x.var, " and ", input$y.var, sep = "")
+        }
+      }
+  })
+  #
+  #
+  #
   output$x.odds <- renderUI({
     #
     #
@@ -3110,16 +2975,17 @@ function(input, output, session) {
       #
       #
       #
-      temp <- table(stat.dataset()[[input$x.odds]], stat.dataset()[[input$y.odds]])
+      #temp <- table(stat.dataset()[[input$x.odds]], stat.dataset()[[input$y.odds]])
+      temp <- riskratio(stat.dataset()[[input$x.odds]], stat.dataset()[[input$y.odds]])
       #
       #
       #
-      odds.df <- data.frame(temp[ , 1], temp[ , 2])
+      odds.df <- data.frame(c(paste(input$x.odds, " = 0", sep = ""), paste(input$y.odds, " = 1", sep = ""), "Total"), temp$data)
       #
       #
       #
-      odds.df <- data.frame(c(paste(input$x.odds, " = ", 0, sep = ""), paste(input$x.odds, " = ", 1, sep = "")), odds.df)
-      names(odds.df) <- c("Variable", paste(input$y.odds, " = ", 0, sep = ""), paste(input$y.odds, " = ", 1, sep = ""))      
+      #odds.df <- data.frame(c(paste(input$x.odds, " = ", 0, sep = ""), paste(input$x.odds, " = ", 1, sep = "")), odds.df)
+      names(odds.df) <- c("Variable", paste(input$y.odds, " = ", 0, sep = ""), paste(input$y.odds, " = ", 1, sep = ""), "Total")      
       #
       #
       #
@@ -3190,6 +3056,21 @@ function(input, output, session) {
   #
   #
   #
+  output$odds.results.description <- renderText({
+    #
+    #
+    #
+    req(input$x.odds, input$y.odds)
+      {
+      #
+      #
+      #
+      paste("Odds of ", input$y.odds, " given ", input$x.odds, sep = "")
+      }
+  })
+  #
+  #
+  #
   output$x.risk <- renderUI({
     #
     #
@@ -3225,11 +3106,27 @@ function(input, output, session) {
       #
       #
       #
-      temp <- riskratio(x = stat.dataset()[[input$x.risk]], y = stat.dataset()[[input$y.risk]], method = input$z.risk)
+      temp <- riskratio(x = stat.dataset()[[input$x.risk]], 
+                        y = stat.dataset()[[input$y.risk]], 
+                        method = input$z.risk)
       #
       #
       #
-      risk.df <- temp$data
+      risk.df <- data.frame(c(paste(input$x.risk, " = 0", sep = ""), 
+                              paste(input$x.risk, " = 1", sep = ""), 
+                              "Total"), 
+                            temp$data)
+      #
+      #
+      #
+      names(risk.df) <- c("Variables", 
+                          paste(input$y.risk, " = 0", sep = ""), 
+                          paste(input$y.risk, " = 1", sep = ""), 
+                          "Total")
+      #
+      #
+      #
+      risk.df
       }
   })      
   #
@@ -3244,7 +3141,9 @@ function(input, output, session) {
       #
       #
       #
-      temp <- riskratio(x = stat.dataset()[[input$x.risk]], y = stat.dataset()[[input$y.risk]], method = input$z.risk)
+      temp <- riskratio(x = stat.dataset()[[input$x.risk]], 
+                        y = stat.dataset()[[input$y.risk]], 
+                        method = input$z.risk)
       #
       #
       #
@@ -3277,11 +3176,28 @@ function(input, output, session) {
       #
       #
       #
-      temp <- riskratio(x = stat.dataset()[[input$x.risk]], y = stat.dataset()[[input$y.risk]], method = input$z.risk)
+      temp <- riskratio(x = stat.dataset()[[input$x.risk]], 
+                        y = stat.dataset()[[input$y.risk]], 
+                        method = input$z.risk)
       #
       #
       #
       attr(temp, "method")
+      }
+  })
+  #
+  #
+  #
+  output$risk.results.description <- renderText({
+    #
+    #
+    #
+    req(input$x.risk, input$y.risk, input$z.risk)
+      {
+      #
+      #
+      #
+      paste("Risk of ", input$y.odds, " given ", input$x.odds, sep = "")
       }
   })
   #
@@ -3659,8 +3575,10 @@ function(input, output, session) {
       #
       #
       #
-      fitBounds(lng1 = bbox(survey.upload.dhaka())[1,1], lat1 = bbox(survey.upload.dhaka())[2,1],
-  	  	        lng2 = bbox(survey.upload.dhaka())[1,2], lat2 = bbox(survey.upload.dhaka())[2,2]) %>%
+      fitBounds(lng1 = bbox(survey.upload.dhaka())[1,1], 
+                lat1 = bbox(survey.upload.dhaka())[2,1],
+  	  	        lng2 = bbox(survey.upload.dhaka())[1,2], 
+  	  	        lat2 = bbox(survey.upload.dhaka())[2,2]) %>%
       #
       # Add survey area polygon layer
       #
@@ -3694,8 +3612,10 @@ function(input, output, session) {
       #
       #
       #
-      fitBounds(lng1 = bbox(survey.upload.accra())[1,1], lat1 = bbox(survey.upload.accra())[2,1],
-  	  	        lng2 = bbox(survey.upload.accra())[1,2], lat2 = bbox(survey.upload.accra())[2,2]) %>%
+      fitBounds(lng1 = bbox(survey.upload.accra())[1,1], 
+                lat1 = bbox(survey.upload.accra())[2,1],
+  	  	        lng2 = bbox(survey.upload.accra())[1,2], 
+  	  	        lat2 = bbox(survey.upload.accra())[2,2]) %>%
       #
       # Add survey area polygon layer
       #
@@ -3729,8 +3649,10 @@ function(input, output, session) {
       #
       #
       #
-      fitBounds(lng1 = bbox(survey.upload.nakuru())[1,1], lat1 = bbox(survey.upload.nakuru())[2,1],
-  	  	        lng2 = bbox(survey.upload.nakuru())[1,2], lat2 = bbox(survey.upload.nakuru())[2,2]) %>%
+      fitBounds(lng1 = bbox(survey.upload.nakuru())[1,1], 
+                lat1 = bbox(survey.upload.nakuru())[2,1],
+  	  	        lng2 = bbox(survey.upload.nakuru())[1,2], 
+  	  	        lat2 = bbox(survey.upload.nakuru())[2,2]) %>%
       #
       # Add survey area polygon layer
       #
@@ -3764,8 +3686,10 @@ function(input, output, session) {
       #
       #
       #
-      fitBounds(lng1 = bbox(survey.upload.antananarivo())[1,1], lat1 = bbox(survey.upload.antananarivo())[2,1],
-  	  	        lng2 = bbox(survey.upload.antananarivo())[1,2], lat2 = bbox(survey.upload.antananarivo())[2,2]) %>%
+      fitBounds(lng1 = bbox(survey.upload.antananarivo())[1,1], 
+                lat1 = bbox(survey.upload.antananarivo())[2,1],
+  	  	        lng2 = bbox(survey.upload.antananarivo())[1,2], 
+  	  	        lat2 = bbox(survey.upload.antananarivo())[2,2]) %>%
       #
       # Add survey area polygon layer
       #
@@ -3799,8 +3723,10 @@ function(input, output, session) {
       #
       #
       #
-      fitBounds(lng1 = bbox(survey.upload.maputo())[1,1], lat1 = bbox(survey.upload.maputo())[2,1],
-  	  	        lng2 = bbox(survey.upload.maputo())[1,2], lat2 = bbox(survey.upload.maputo())[2,2]) %>%
+      fitBounds(lng1 = bbox(survey.upload.maputo())[1,1], 
+                lat1 = bbox(survey.upload.maputo())[2,1],
+  	  	        lng2 = bbox(survey.upload.maputo())[1,2], 
+  	  	        lat2 = bbox(survey.upload.maputo())[2,2]) %>%
       #
       # Add survey area polygon layer
       #
@@ -3834,8 +3760,10 @@ function(input, output, session) {
       #
       #
       #
-      fitBounds(lng1 = bbox(survey.upload.lusaka())[1,1], lat1 = bbox(survey.upload.lusaka())[2,1],
-  	  	        lng2 = bbox(survey.upload.lusaka())[1,2], lat2 = bbox(survey.upload.lusaka())[2,2]) %>%
+      fitBounds(lng1 = bbox(survey.upload.lusaka())[1,1], 
+                lat1 = bbox(survey.upload.lusaka())[2,1],
+  	  	        lng2 = bbox(survey.upload.lusaka())[1,2], 
+  	  	        lat2 = bbox(survey.upload.lusaka())[2,2]) %>%
       #
       # Add survey area polygon layer
       #
@@ -3974,4 +3902,442 @@ function(input, output, session) {
                   width = "100%")
       }
   })  
+
+################################################################################
+#
+# Modal dialogs
+#
+################################################################################
+  #
+  #
+  #
+  observeEvent(input$info1, {
+    #
+    #
+    #
+    showModal(
+      #
+      #
+      #
+      modalDialog(
+        #
+        #
+        #
+        withMathJax(),
+		  title = "Chart Options",
+		  size = "l",
+		  HTML("
+			<h4>Country</h4>
+			<p>Choose country data to visualise. The choices of countries to select from is based on the pre-loaded or user-provided data</p>
+			<br/>
+			
+			<h4>City</h4>
+			<p>Choose city data to visualise. The choices of cities to select from is based on the country selected and on the pre-loaded or user-provided data</p>
+			<br/>
+			
+			<h4>From - To</h4>
+			<p>Choose year/s of data to visualise. The range of years to select from is based on the country and city selected and on the pre-loaded or user-provided data</p>
+			<br/>
+			
+			<h4>Select indicator set</h4>
+			<p>Indicators for the <code>Urban Water and Sanitation Survey</code> are organised into thirteen indicator sets. These are: 1) <em>Demographics</em>; 2) <em>Types of Water Sources</em>; 3) <em>Access to Water Sources</em>; 4) <em>Other Water Indicators</em>; 5) <em>Types of Sanitation Facilities</em>; 6) <em>Access to Sanitation Facilities</em>; 7) <em>Sanitation Practices and Behaviours</em>; 8) <em>Other Sanitation Indicators</em>; 9) <em>Women Hygiene</em>; 10) <em>Handwashing</em>; 11) <em>Access to All Services</em>; 12) <em>Overall Expenditure</em>; and, 13) <em>Poverty</em>.</p>
+			<br/>
+			
+			<h4>Select Indicator</h4>
+			<p><strong>Mean number of household members</strong></p>
+			<p>This indicator is based on the self-report of number of household members.</p>
+
+			<br/>                    
+			<p><strong>Progress out of Poverty Index (PPI)</strong></p>
+			<p>The <code>Progress out of Poverty Index (PPI)</code> is a measure of poverty developed by <a href='http://www.grameenfoundation.org' target='_blank'>Grameen Foundation</a> in collaboration with the <a href='https://www.fordfoundation.org' target='_blank'>Ford Foundation</a>, and managed by the <a href'http://www.poverty-action.org' target='_blank'>Innovations for Poverty Action</a>. The first <code>PPI</code> was released in 2006 and has since then been customised for 45 countries. The <code>PPI</code> is based on a country-specific 10-item questionnaire about a household’s characteristics and asset ownership which is scored to compute the likelihood that a household is living below country-specific and universal poverty line thresholds.</p>
+
+			<br/>                            
+			<p><strong>Poverty Likelihood ($1.25 a day)</strong></p>
+			<p>This is the measure of the probability that a household is below the <code>$1.25 purchasing power parity (PPP)</code> poverty threshold of 2005. The likelihood is determined through pre-calculated and country-specific probabilites based on the household <code>PPI</code>. Other <code>PPI</code>-based poverty likelihoods using other country-specific and or global poverty thresholds are available.</p> 
+			
+			<br/>                            
+			<p><strong>Wealth Quintile</strong></p>
+			<p>This is the classification or grouping of each household into quintiles based on <code>PPI</code> with those in the lowest quintile (wealth quintile 1) having the lowest fifth <code>PPI</code> and those in the highest quintile (wealth quintile 5) having the highest fifth <code>PPI</code>.</p>
+
+			<br/>
+			<p><strong>Types of Water Sources</strong></p>
+			<p><code>Safely managed:</code> Drinking water from an improved water source which is located on premises, available when needed and free of faecal and priority contamination. </p>
+			<p><code>Basic:</code> Drinking water from an improved source provided collection time is not more than 30 minutes for a roundtrip including queuing.</p> 
+			<p><code>Limited:</code> Drinking water from an improved source where collection time exceeds over 30 minutes for a roundtrip to collect water, including queuing.</p>
+			<p><code>Unimproved:</code> Drinking water from an unimproved dug well or unprotected spring</p>
+			<p><code>Surface water:</code> Drinking water directly from a river, dam, lake, pond, stream, canal or irrigation channel.</p>
+
+			<br/>
+			<p><strong>Access to sufficient and sustained drinking water</strong></p>
+			<p><code>Percentage of households with access to sufficient and sustained drinking water</code>: Sufficient is defined as <code>>50 litres per person per day</code>. Sustained is defined as drinking water available <code>24 hours per day</code>, <code>7 days a week</code> and <code>throughout the year</code>.</p>
+
+			<br/>                                                          
+			<p><strong>Access to safe and acceptable drinking water for all</strong></p>
+			<p><code>Percentage of households with good self-reported quality of drinking water:</code> No objective water quality assessment was performed during the survey. This indicator, as stated, is based on self-reported perception of water quality.</p>
+			<p><code>Percentage of households that are safely storing drinking water:</code> Safe storage is defined as drinking water stored in a clean container with lid only.</p>
+
+			<br/>                                  
+			<p><strong>Access to affordable drinking water</strong></p>
+			<p><code>Mean expenditure in drinking water by wealth quintile:</code> mean expenditure in drinking water per household per year by wealth quintile. It should be noted that expenditure alone does not indicate affordable access to drinking water. The ideal and recommened indicator is yearly expenditure on water as a fraction of annual income i.e., \\(\\frac{\\mu_\\text{Household yearly expenditure on water}}{\\text{Household annual income}}\\). However, the surveys did not collect data on household income hence this recommended indicator cannot be calculated.</p>
+
+			<br/>                                                         
+			<p><strong>Physical access to drinking water</strong></p>                             
+			<p><code>Percentage of households with adequate physical access to drinking water:</code> Adequate physical access is defined as source of drinking water is located within <code>30 minutes</code> from home</p>
+
+			<br/>                                                          
+			<p><strong>Formal water service provision</strong></p>
+			<p><code>Percentage of households with formal drinking water service provision:</code> Formal drinking water service provision is defined as drinking water provided by a formal service according to interviewer asessment.</p>
+			<p><code>Percentage of households relying on formal provider for service supply maintenance:</code> Formal provider for service supply maintenance is defined as a household with a formal service provider contact person in case of problems with water supply.</p>
+
+			<br/>
+			<p><strong>Sanitation Service Ladder</strong></p>       
+			<p><code>Safely managed:</code> Use of an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site.</p>
+			<p><code>Basic:</code> Use of improved facilities which are not shared with other households.</p>
+			<p><code>Limited:</code> Use of improved facilities shared between two or more households.</p>
+			<p><code>Unimproved:</code> Use of pit latrines wihtout a slab or platform, hanging latrines and bucket latrines</p>
+			<p><code>Open defecation:</code> Disposal of human faeces in fields, forest, bushes, open bodies of water, beaches or other open spaces or with solid waste.</p>
+
+			<br/>
+			<p><strong>Access to sufficient and sustained drinking water</strong></p>
+			<p><code>Percentage of households with access to sufficient and sustained drinking water</code>: Sufficient is defined as <code>>50 litres per person per day</code>. Sustained is defined as drinking water available <code>24 hours per day</code>, <code>7 days a week</code> and <code>throughout the year</code>.</p>
+			 
+			<br/> 
+			<p><strong>Access to safe and acceptable drinking water for all</strong></p>
+			<p><code>Percentage of households with good self-reported quality of drinking water:</code> No objective water quality assessment was performed during the survey. This indicator, as stated, is based on self-reported perception of water quality.</p>
+			<p><code>Percentage of households that are safely storing drinking water:</code> Safe storage is defined as drinking water stored in a clean container with lid only.</p>
+
+			<br/>
+			<p><strong>Access to affordable drinking water</strong></p>
+			<p><code>Mean expenditure in drinking water by wealth quintile:</code> mean expenditure in drinking water per household per year by wealth quintile. It should be noted that expenditure alone does not indicate affordable access to drinking water. The ideal and recommened indicator is yearly expenditure on water as a fraction of annual income i.e., \\(\\frac{\\mu_\\text{Household yearly expenditure on water}}{\\text{Household annual income}}\\). However, the surveys did not collect data on household income hence this recommended indicator cannot be calculated.</p>
+			 
+			<br/>
+			<p><strong>Physical access to drinking water</strong></p>                             
+			<p><code>Percentage of households with adequate physical access to drinking water:</code> Adequate physical access is defined as source of drinking water is located within <code>30 minutes</code> from home</p>
+			 
+			<br/>
+			<p><strong>Formal water service provision</strong></p>
+			<p><code>Percentage of households with formal drinking water service provision:</code> Formal drinking water service provision is defined as drinking water provided by a formal service according to interviewer asessment.</p>
+			<p><code>Percentage of households relying on formal provider for service supply maintenance:</code> Formal provider for service supply maintenance is defined as a household with a formal service provider contact person in case of problems with water supply.</p>
+
+			<br/>
+			<p><strong>Use of adequate hygienic materials for menstrual hygiene management</strong></p>
+			<p><code>Percentage of households using adequate hygienic materials foe MHM</code>: Adequate hygienic maetrials are cloths, pads, tampons or menstrual cups</p>
+										  
+			<br/>
+			<p><strong>Hygienic and adequate disposal of menstrual hygiene materials</strong></p>
+			<p><code>Percentage of households practicing good mentrual hygiene practies/behaviour:</code> Good menstrual hygiene management includes cloths washed with soap and water and napkins/pads disposed of in the rubbish bin.</p>
+
+			<br/> 
+			<p><strong>Comfort with sanitation facilities during menstruation</strong></p>
+			<p><code>Percentage of households in which women and girls are comfortable using sanitation facility during menstruation:</code></p>                             
+
+			<br/>
+			<p><strong>Overall access to adequate water and sanitation services</strong></p>
+			<p><code>Percentage of Households with access to adequate water and sanitation services by quintile</code>: Adequate water services and adequate sanitation services as defined.</p>
+			<ul>
+			  <li>Percentage of households with access to adequate sanitation and adequate drinking water</li>
+			  <li>Percentage of households with access to adequate sanitation only</li>
+			  <li>Percentage of households with access to adequate drinking water only</li>
+			  <li>Percentage of households with no access to adequate services</li>
+			</ul>
+			
+			<br/>
+			<h4>Disaggregate by</h4>
+			<p>Select from choices of data variables to be used for grouping / disaggregating the data. When applied to charts, data is grouped based on the selected variable and then plotted accordingly on a single chart.</p>
+			 <ul>
+			   <li><code>All Data (No Stratification)</code>: full dataset is used and resulting chart has no facets or panels.</li>
+			   <li><code>Survey Area</code>: dataset is grouped into \\(n\\) unique survey areas and resulting chart has \\(n\\) facets or panels corresponding to each survey area.</li>
+			   <li><code>Area Type</code>: dataset is grouped into <code>slum</code> and <code>citywide</code> area types and resulting chart has <code>slum</code> and <code>citywide</code> facets or panels.</li>
+			   <li><code>Wealth Quintile</code>: dataset is grouped into quintiles based on the <code>Progress out of Poverty Index (PPI)</code>.</li>
+			 </ul>
+			   
+			<br/>                             
+			<h4>Stratify by</h4>
+			<p>Select from choices of data variables to be used for grouping / disaggregating the data. When applied to charts, \\(n\\) unique values of the selected variables are used to create \\(n\\) facets or panels of the resulting chart.</p>
+		  ")))                       
+  })
+  #
+  #
+  #
+  observeEvent(input$info2, {
+    #
+    #
+    #
+    showModal(
+      #
+      #
+      #
+      modalDialog(
+        #
+        #
+        #
+        withMathJax(),
+		  title = "Map Options",
+		  size = "l",
+		  HTML("
+			<h4>Select colour palette</h4>
+			<p>Select from choices of colour palettes to use for mapping. Two categories of colour palettes are available.</p>
+			<ul>
+			  <li><code>Sequential</code> palettes are suited to ordered data that progress from low to high with light colours representing low data values and dark colours representing high data values.</li>
+			  <li><code>Diverging</code> palettes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The middle values are emphasised with light colours and low and high extremes are emphasised with dark colours that have contrasting hues.</li>
+			</ul>
+			<p>The choices of colour palettes are based on <a href='http://colorbrewer2.org/' target='_blank'>ColorBrewer 2.0</a> and implemented in R using the <a href='https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf' target='_blank'>RColorBrewer</a> function.</p>
+			<p>The default colour palette for the <code>Demographics</code> indicator set is <code>sequential yellow to orange to brown (YlOrBb)</code> scheme.</p>
+			
+			<br/>
+			<h4>Select colour mapping method</h4>
+			<p>Colour mapping methods determine how to match the indicator dataset to the selected colour palette appropriately. Three colour mapping methods are available.</p>
+			<ul>
+			  <li><code>Linear interpolation</code> is a simple linear mapping from continuous numeric data to an interpolated colour palette. In this method, the selected colour palette is extended (via interpolation) to create a continuous set of colours consistent with the scheme that would be enough to match the range of values of the continuous numeric data being mapped.</li>
+			  <li><code>Equal interval</code> maps continuous numeric data to a fixed number of colours from the palette. The continous indicator values are divided into equal interval group sets determined by the <code>number of bins</code> specified (see below regarding bins). The number of colours correspond to the <code>number of bins</code> into which the indicator values have been divided into.</li>
+			  <li><code>Quantile</code> also maps continuous numeric data to a fixed number of colours from the palette. However, the continuous indicator values are divided into <code>quantiles</code> (group sets with equal number of observations). The number of colours correspond to the <code>number of quantiles</code> into which the indicator values have been divided into.</li> 
+			</ul>
+			
+			<br/>                            
+			<h4>Number of bins</h4>
+			<p><em>For equal interval method.</em> Select number of equal interval groups to divide the dataset into. For example, for a dataset of percentages with values ranging between 0 and 100, specifying <code>number of bins</code> to 5 would mean creating 5 equal interval groupings - <code>[0,20)</code>, <code>[20, 40)</code>, <code>[40,60)</code>, <code>[60,80)</code>, <code>[80,100]</code></p>
+			
+			<br/>
+			<h4>Number of classes</h4>
+			<p><em>For quantile method.</em> Select number of quantiles to divide dataset into.</p>
+		  ")))                       
+  })
+  #
+  #
+  #
+  observeEvent(input$info3, {
+     #
+     #
+     #
+     showModal(
+       #
+       #
+       #
+       modalDialog(
+         #
+         #
+         #
+         withMathJax(),
+		   title = "City map data input",
+		   size = "l",
+		   HTML("
+			 <h4>Upload map of citywide survey area</h4>
+			 <p>The map should be in ESRI Shapefile format (SHP). This file format requires a minimum of 3 related files in order to be readable. These files are the <code>.SHP</code>, <code>.SHX</code> and <code>.DBF</code>. Hence, these three files should be uploaded all at the same time by clicking on CTRL and then selecting at least the three files for upload. A warning will pop out if the incorrect file formats and/or incomplete number of files are uploaded. Once the files have been uploaded, two new options come out. First, the app asks for the vaiable name in the map files that contains the stratifying variable. This would be the variable name of a geographic subdivision by which you decided to divide the city. Second, a prompt for the number of primary sampilng units or <code>PSU</code> comes to view. This is set at a default of 30. Once you have specified these parameters, you can click on <code>Sample</code> and corresponding sampling maps will be produced on the main panel and corresponding sampling lists on the appropriate sampling tabs.</p>
+		   ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info4, {
+     #
+     #
+     #
+     showModal(
+       #
+       #
+       #
+       modalDialog(
+         #
+         #
+         #
+         withMathJax(),
+		   title = "Slum map data input",
+		   size = "l",
+		   HTML("
+			 <h4>Available slum area sampling information</h4>
+			 <p>For slum areas, you are first asked what information you have on slums that can be used for sampling: <code>slum maps</code> or <code>slum lists</code>. If you have slum maps, then you are given the options for sampling with slum maps (below). If you have lists, then you are given the option for sampling with slum lists (below).</p>
+			 
+			 <br/>
+			 <h4>Upload map of slum survey area</h4>
+			 <p>The map should be in ESRI Shapefile format (SHP). This file format requires a minimum of 3 related files in order to be readable. These files are the <code>.SHP</code>, <code>.SHX</code> and <code>.DBF</code>. Hence, these three files should be uploaded all at the same time by clicking on CTRL and then selecting at least the three files for upload. A warning will pop out if the incorrect file formats and/or incomplete number of files are uploaded. Once the files have been uploaded, two new options come out. First, the app asks for the vaiable name in the map files that contains the stratifying variable. This would be the variable name of a geographic subdivision by which you decided to divide the city. Second, a prompt for the number of primary sampilng units or <code>PSU</code> comes to view. This is set at a default of 30. Once you have specified these parameters, you can click on <code>Sample</code> and corresponding sampling maps will be produced on the main panel and corresponding sampling lists on the appropriate sampling tabs.</p>
+
+			 <br/>
+			 <h4>Upload list of slum areas</h4>
+			 <p>The list of slum areas should be in CSV format. The list should be organised and sorted along the stratifying variable for survey areas. Once the list has been uploaded, you will need to specify how many <code>PSUs</code> will be survyed. Then press on <code>Sample</code>. A sample list from the complete list is now available on the <code>Slum Lists</code> tab.</p>
+		   ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info5, {
+     #
+     #
+     #
+     showModal(
+       #
+       #
+       #
+       modalDialog(
+         #
+         #
+         #
+         withMathJax(),
+		   title = "Statistical Tests",
+		   size = "l",
+		   HTML("
+			 <h4>Correlation</h4>
+			 <p>This is a test for association between paired samples, using one of <code>Pearson's</code> product moment correlation coefficient, <code>Kendall's tau</code> or <code>Spearman's rho</code>.</p>
+			 
+			 <br/>
+			 <h4>Variance</h4>
+			 <p>This is a test for variance, using <code>Student's t-test</code>, <code>Wilcoxon Rank Summ and Signed Rank Tests</code>, or <code>Kruskal-Wallis Rank Sum Test</code>.</p>
+
+			 <br/>
+			 <h4>Odds ratio</h4>
+			 <p>Performs <code>Fisher's exact test</code> for testing the null of independence of rows and columns in a contingency table or 2 x 2 table.</p>
+
+			 <br/>
+			 <h4>Risk ratio</h4>
+			 <p>Calculates risk ratio by unconditional <code>maximum likelihood estimation (Wald)</code>, and <code>small sample adjustment (small)</code>. Confidence intervals are calculated using <code>normal approximation (Wald)</code>, and <code>normal approximation with small sample adjustment (small)</code>, and <code>bootstrap method (boot)</code>.</p>
+		   ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info6, {
+     #
+     #
+     #
+     showModal(
+       #
+       #
+       #
+       modalDialog(
+         #
+         #
+         #
+         withMathJax(),
+		   title = "Correlation test parameters",
+		   size = "l",
+		   HTML("
+			 <h4>Independent variable</h4>
+			 <p>The <code>independent variable</code> represents inputs or causes or the potential reasons for variation in the <code>dependent variable</code>.</p>
+			 
+			 <br/>
+			 <h4>Dependent variable</h4>
+			 <p>The <code>dependent variable</code> responds to the <code>independent variable</code>. It is called <code>dependent</code> because it <em>depends</em> on the <code>independent variable</code>.</p>
+
+			 <br/>
+			 <h4>Type of correlation coefficient</h4>
+			   <ul>
+			     <li><code>Pearson's <em>r</em></code> : Applies <strong>Pearson's product moment correlation coefficient</strong> calculations. It is a measure of the linear correlation between two variables. It has a value between +1 and −1, where 1 is total positive linear correlation, 0 is no linear correlation, and −1 is total negative linear correlation.</li>
+			     <li><code>Kendall's tau</code> : <strong>Kendall's tau</strong> is a statistic used to measure the ordinal association between two measured quantities. A <code>tau test</code> is a non-parametric hypothesis test for statistical dependence based on the <code>tau</code> coefficient. It is a measure of rank correlation: the similarity of the orderings of the data when ranked by each of the quantities. The coefficient must be in the range −1 ≤ tau ≤ 1. If the agreement between the two rankings is perfect (i.e., the two rankings are the same) the coefficient has value 1. If the disagreement between the two rankings is perfect (i.e., one ranking is the reverse of the other) the coefficient has value −1. If X and Y are independent, then we would expect the coefficient to be approximately zero.</li>
+			     <li><code>Spearman's rho</code> : <strong>Spearman's rho</strong> is a nonparametric measure of rank correlation (statistical dependence between the ranking of two variables). It assesses how well the relationship between two variables can be described using a monotonic function. The Spearman correlation between two variables will be high when observations have a similar (or identical for a correlation of 1) rank (i.e. relative position label of the observations within the variable: 1st, 2nd, 3rd, etc.) between the two variables, and low when observations have a dissimilar (or fully opposed for a correlation of −1) rank between the two variables. Spearman's coefficient is appropriate for both continuous and discrete variables, including ordinal variables.</li>
+			   </ul>
+		   ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info7, {
+     #
+     #
+     #
+     showModal(
+       #
+       #
+       #
+       modalDialog(
+         #
+         #
+         #
+         withMathJax(),
+		   title = "Variance test parameters",
+		   size = "l",
+		   HTML("
+			 <h4>Independent variable</h4>
+			 <p>The <code>independent variable</code> represents inputs or causes or the potential reasons for variation in the <code>dependent variable</code>.</p>
+			 
+			 <br/>
+			 <h4>Dependent variable</h4>
+			 <p>The <code>dependent variable</code> responds to the <code>independent variable</code>. It is called <code>dependent</code> because it <em>depends</em> on the <code>independent variable</code>.</p>
+
+			 <br/>
+			 <h4>Type of variance testing</h4>
+			   <ul>
+			     <li><code>t-test</code> : A <strong>t-test</strong> is most commonly applied when the test statistic would follow a normal distribution. The t-test can be used, for example, to determine if two sets of data are significantly different from each other.</li>
+			     <li><code>Wilcoxon test</code> : The <strong>Wilcoxon signed-rank test</strong> is a non-parametric statistical hypothesis test used when comparing two related samples, matched samples, or repeated measurements on a single sample to assess whether their population mean ranks differ (i.e. it is a paired difference test). It can be used as an alternative to the paired Student's t-test, t-test for matched pairs, or the t-test for dependent samples when the population cannot be assumed to be normally distributed. A Wilcoxon signed-rank test is a nonparametric test that can be used to determine whether two dependent samples were selected from populations having the same distribution.</li>
+			     <li><code>Kruskal-Walis test</code> : <strong>Kruskal-Walis test</strong> is a non-parametric method for testing whether samples originate from the same distribution. Since it is a non-parametric method, the Kruskal–Wallis test does not assume a normal distribution of the residuals.</li>
+			   </ul>
+		   ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info8, {
+     #
+     #
+     #
+     showModal(
+       #
+       #
+       #
+       modalDialog(
+         #
+         #
+         #
+         withMathJax(),
+		   title = "Odds ratio calculation parameters",
+		   size = "l",
+		   HTML("
+			 <h4>Exposure / predictor</h4>
+			 <p>The term <strong>exposure</strong> can be broadly applied to any factor that may be associated with an outcome of interest. When using observational data sources, researchers often rely on readily available (existing) data elements to identify whether individuals have been exposed to a factor of interest.</p>
+			 
+			 <br/>
+			 <h4>Outcome</h4>
+			 <p>The <strong>outcome</strong> is the effect or end result or end point caused and/or contributed to by the exposure or predictor. </p>
+
+			 <br/>
+			 <h4>About Odds Ratio</h4>
+			   <p>An <code>odds ratio (OR)</code> is a measure of association between an exposure and an outcome. The OR represents the odds that an outcome will occur given a particular exposure, compared to the odds of the outcome occurring in the absence of that exposure. Odds ratios are most commonly used in case-control studies, however they can also be used in cross-sectional and cohort study designs as well (with some modifications and/or assumptions). Odds ratios are used to compare the relative odds of the occurrence of the outcome of interest (e.g. disease or disorder), given exposure to the variable of interest (e.g. health characteristic, aspect of medical history). The odds ratio can also be used to determine whether a particular exposure is a risk factor for a particular outcome, and to compare the magnitude of various risk factors for that outcome.</p>
+               <ul>
+                 <li><strong>OR = 1</strong> Exposure does not affect odds of outcome</li>
+                 <li><strong>OR > 1</strong> Exposure associated with higher odds of outcome</li>
+                 <li><strong>OR < 1</strong> Exposure associated with lower odds of outcome</li>
+               </ul>
+		   ")))
+  })
+  #
+  #
+  #
+  observeEvent(input$info9, {
+     #
+     #
+     #
+     showModal(
+       #
+       #
+       #
+       modalDialog(
+         #
+         #
+         #
+         withMathJax(),
+		   title = "Risk ratio calculation parameters",
+		   size = "l",
+		   HTML("
+			 <h4>Exposure / predictor</h4>
+			 <p>The term <strong>exposure</strong> can be broadly applied to any factor that may be associated with an outcome of interest. When using observational data sources, researchers often rely on readily available (existing) data elements to identify whether individuals have been exposed to a factor of interest.</p>
+			 
+			 <br/>
+			 <h4>Outcome</h4>
+			 <p>The <strong>outcome</strong> is the effect or end result or end point caused and/or contributed to by the exposure or predictor. </p>
+
+			 <br/>
+			 <h4>About Risk Ratio</h4>
+			   <p><strongRisk ratio</strong> is the ratio of the probability of an event occurring (for example, developing a disease, being injured) in an exposed group to the probability of the event occurring in a comparison, non-exposed group. Relative risk includes two important features:</p> 
+			     <ul>
+			       <li>a comparison of risk between two exposures puts risks in context, and;</li>
+			       <li>exposure is ensured by having proper denominators for each group representing the exposure</li>
+			     </ul>
+			   <p>Risk ratio is used frequently in the statistical analysis of binary outcomes where the outcome of interest has relatively low probability. It is thus often suited to clinical trial data, where it is used to compare the risk of developing a disease, in people not receiving the new medical treatment (or receiving a placebo) versus people who are receiving an established (standard of care) treatment.</p>
+			   			   
+			   <p>In a simple comparison between an experimental group and a control group:</p>
+                 <ul>
+                   <li>A relative risk of 1 means there is no difference in risk between the two groups.</li>
+                   <li>An RR of < 1 means the event is less likely to occur in the experimental group than in the control group.</li>
+                   <li>An RR of > 1 means the event is more likely to occur in the experimental group than in the control group.</li>
+                 </ul>
+		   ")))
+  })
 }
