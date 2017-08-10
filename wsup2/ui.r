@@ -32,7 +32,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
       # Create absolute panel - INPUT
       # 
       absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
-        draggable = TRUE, top = 65, left = "auto", right = 10, bottom = "auto",
+        draggable = FALSE, top = 65, left = "auto", right = 10, bottom = "auto",
         width = 330, height = "auto",
         #
         # Add shinyjs for additional javascript capabilities
@@ -555,7 +555,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         # Add absolute panel for controls for spatial sampling
         #
         absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
-          draggable = TRUE, top = 65, left = "auto", right = 10, bottom = "auto",
+          draggable = FALSE, top = 65, left = "auto", right = 10, bottom = "auto",
           width = 330, height = "auto",
           #
           # Include shinyjs to add javascript capabilities
@@ -759,7 +759,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             # Create absolute panel - tables
             # 
             absolutePanel(id = "tables", class = "panel panel-default", fixed = TRUE,
-              draggable = TRUE, top = "auto", right = "auto", left = 10, bottom = 10,
+              draggable = FALSE, top = "auto", right = "auto", left = 10, bottom = 10,
               width = "auto", height = "auto",
               #
               # Section header
@@ -791,7 +791,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             # Create absolute panel - tables
             # 
             absolutePanel(id = "tables", class = "panel panel-default", fixed = TRUE,
-              draggable = TRUE, top = "auto", right = "auto", left = 10, bottom = 10,
+              draggable = FALSE, top = "auto", right = "auto", left = 10, bottom = 10,
               width = "auto", height = "auto",
               #
               # Section header
@@ -821,7 +821,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             # Create absolute panel - tables
             # 
             absolutePanel(id = "tables", class = "panel panel-default", fixed = TRUE,
-              draggable = TRUE, top = "auto", right = "auto", left = 10, bottom = 10,
+              draggable = FALSE, top = "auto", right = "auto", left = 10, bottom = 10,
               width = "auto", height = "auto",
               #
               # Section header
