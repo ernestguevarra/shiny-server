@@ -26,8 +26,6 @@ acceptSan,proportion,oneMean,Households with appropriate / acceptable sanitation
 acceptScore,histogram,oneMean,Household acceptable sanitation score,Acceptable sanitation score,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
 san12,proportion,oneMean,Households practicing sanitary disposal of child's faeces,Sanitary disposal of child's faeces,sanSet3,Sanitation Practices and Behaviours,1,1,1,1,1,1
 san25,proportion,oneMean,Households relying on formal operators to maintain facility,Formal service provision,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
-san35,proportion,oneMean,Households relying on formal pit emptier,Formal pit emptying,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
-san28,proportion,oneMean,Households whose women are using adequate hygienic menstrual hygiene materials,Adequate menstrual hygiene materials,hygieneSet,Women's Hygiene,1,1,1,1,1,1
 jmpWomenHygiene,proportion,oneMean,Households whose women practice good menstrual hygiene behaviour,Good menstrual hygiene behaviour,hygieneSet,Women's Hygiene,1,1,1,1,1,1
 jmpWoman,proportion,oneMean,Households whose women are comfortable using sanitation facility during menstruation,Use of facility during menstruation,hygieneSet,Women's Hygiene,1,1,1,1,1,1
 jmpHand1,proportion,oneMean,Households with no handwashing facility,No handwashing facility,handSet,Handwashing,1,1,1,1,1,1
@@ -69,21 +67,17 @@ nl150,proportion,oneMean,Mean likelihood of household being below 150% of the Za
 nl200,proportion,oneMean,Mean likelihood of household being below 200% of the Zambia national poverty line,Below 200% of Zambia national poverty line,poverty,Poverty Rates,0,0,0,0,0,1
 nlFood,proportion,oneMean,Mean likelihood of household being below the Kenya food national poverty line,Below Kenya food national poverty line,poverty,Poverty Rates,0,0,0,0,1,0
 nl150,proportion,oneMean,Mean likelihood of household being below 150% of the Kenya national poverty line,Below 150% of Kenya national  poverty line,poverty,Poverty Rates,0,0,0,0,1,0
-water2a,proportion,oneMean,Households with a formal source of drinking water,Formal source of drinking water,waterSet3,Other Water Indicators,1,1,1,1,1,1
 water3a,proportion,oneMean,Households with a WSUP-supported source of drinking water,WSUP-supported drinking water,waterSet3,Other Water Indicators,1,1,1,1,1,1
 water4,histogram,oneMean,Household mean number of hours per day drinking water is available from source,Hours per day water is available,waterSet2,Access to Water Sources,1,1,1,1,1,1
 water5,histogram,oneMean,Household mean number of days per week drinking water is available from source,Days per week water is available,waterSet2,Access to Water Sources,1,1,1,1,1,1
 water6a,proportion,oneMean,Households with drinking water available from source for the whole year,Whole year water is available,waterSet2,Access to Water Sources,1,1,1,1,1,1
 water7,histogram,oneMean,Household mean number of minutes to collect water from source,Time to collect water (minutes),waterSet2,Access to Water Sources,1,1,1,1,1,1
-water7a,proportion,oneMean,Households that take 30 minutes or less to collect water,Collect water within 30 minutes,waterSet2,Access to Water Sources,1,1,1,1,1,1
 water7c,proportion,oneMean,Households satisfied with distance from drinking water source,Satisfied with distance from drinking water source,waterSet2,Access to Water Sources,1,1,1,1,1,1
 water8a,proportion,oneMean,Households satisfied with water collection queuing time,Satisfied with water collection queuing time,waterSet2,Access to Water Sources,1,1,1,1,1,1
 water10b,proportion,oneMean,Households with sufficient self-perceived amount of water,Sufficient amount of water,waterSet2,Access to Water Sources,1,1,1,1,1,1
 water11d,proportion,oneMean,Households with an improved secondary source of drinking water,Improved secondary source of drinking water,waterSet2,Access to Water Sources,1,1,1,1,1,1
 water13a,proportion,oneMean,Households willing to make an investment in drinking water source,Willing to make an investment in water source improvement,waterSet3,Other Water Indicators,1,1,1,1,1,1
-water14a,proportion,oneMean,Households satisfied with water quality,Satisfied with water quality,waterSet3,Other Water Indicators,1,1,1,1,1,1
 water16a,proportion,oneMean,Households satisfied with water pressure,Satisfied with water pressure,waterSet3,Other Water Indicators,1,1,1,1,1,1
-water17,proportion,oneMean,Households with a formal water service maintenance provider,Formal water service maintenance provider,waterSet3,Other Water Indicators,1,1,1,1,1,1
 san1a,proportion,oneMean,Households with shared sanitation facility,Shared sanitaiton facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
 san2,histogram,oneMean,Mean number of people sharing sanitation facility,Number of people sharing sanitation facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
 san5,proportion,oneMean,Households with a WSUP-supported sanitation facility,WSUP-supported sanitation facility,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
@@ -99,7 +93,6 @@ san18,proportion,oneMean,Households willing to make an investment in sanitation 
 san19,proportion,oneMean,Households satisfied with cleanliness of sanitation facility,Satisfied with cleanliness of sanitation facility,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
 san21,proportion,oneMean,Households whose members are all able to get to sanitation facility,Ability to get to sanitation facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
 san23,proportion,oneMean,Households whose members are all usually able to use the sanitation facility,Actual use of sanitation facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
-san25,proportion,oneMean,Households with a formal sanitation facility service operators,Formal sanitation facility service operator,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
 san34,histogram,oneMean,Household mean cost of sanitation facility emptying,Cost of sanitation facility emptying,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
 san35,proportion,oneMean,Households with a formal sanitation facility emptier,Formal sanitation facility emptier,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
 san26,proportion,oneMean,Households whose women feel safe using sanitation facility,Women feel safe using sanitation facility,hygieneSet,Women's Hygiene,1,1,1,1,1,1
@@ -108,7 +101,7 @@ san28,proportion,oneMean,Households whose women use clean menstrual management m
 san29,proportion,oneMean,Households whose women cleanse menstrual cloth appropriately,Women cleansing menstrual cloth appropriately,hygieneSet,Women's Hygiene,1,1,1,1,1,1
 san30,proportion,oneMean,Households whose women dispose of sanitary napkins appropriately,Women disposing of sanitary napkins appropriately,hygieneSet,Women's Hygiene,1,1,1,1,1,1
 waterSource,pareto,barplot,Household main source of water,Main source of water,waterSet2,Access to Water Sources,1,1,1,1,1,1
-waterCollect,pareto,barplot,Household member responsible for water collection,Responsible for water collection,waterSet3,Other Water Indicators,1,1,1,1,1,1
+water9,pareto,barplot,Household member responsible for water collection,Responsible for water collection,waterSet3,Other Water Indicators,1,1,1,1,1,1
 water10,pareto,barplot,Household amount of daily usage of water,Amount of daily usage of water,waterSet2,Access to Water Sources,1,1,1,1,1,1
 water11a,proportion,oneMean,Households with a secondary water source,Use secondary source of water,waterSet2,Access to Water Sources,1,1,1,1,1,1
 water11b,pareto,barplot,Household secondary sources of water,Secondary source of water,waterSet2,Access to Water Sources,1,1,1,1,1,1
