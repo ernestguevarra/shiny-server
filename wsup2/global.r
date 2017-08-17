@@ -277,12 +277,12 @@ overallColour <- c("#fdbf6f", "#b2df8a", "#a6cee3", "#80cdc1")
 theme_wsup <- theme_bw() + 
               theme(strip.text = element_text(size = 12), 
                     strip.background = element_rect(colour = wsupColour, size = 1, fill = wsupFill),
-                    axis.title = element_text(size = 12),
-                    axis.text = element_text(size = 10),
+                    axis.title = element_text(size = 10),
+                    axis.text = element_text(size = 8),
                     panel.border = element_rect(colour = "gray90"),
                     panel.background = element_rect(fill = "transparent"),
                     legend.key = element_rect(colour = NA, fill = NA),
-                    legend.key.size = unit(25, "pt"),
-                    legend.title = element_text(size = 12),
-                    legend.text = element_text(size = 10))
+                    legend.key.size = unit(15, "pt"),
+                    legend.title = element_text(size = 10),
+                    legend.text = element_text(size = 8))
 

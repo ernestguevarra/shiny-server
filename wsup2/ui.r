@@ -125,6 +125,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                 label = "Disaggregate by",
                 choices = list(None = ".",
                                "Survey Area" = "surveyArea",
+                               "City Corporations" = "corporations",
                                "Wealth Quintile" = "wealth"),
                 selected = ".",
                 width = "140px")
@@ -1505,9 +1506,23 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
               #
               width = 9,
               #
-              # Add table output of pre-loaded or uploaded dataset
               #
-              DT::dataTableOutput("current.data.table")
+              #
+              conditionalPanel(condition = "input['data.settings'] == 'results'",
+                #
+                # Add table output of pre-loaded or uploaded dataset
+                #
+                DT::dataTableOutput("current.data.table")
+              ),
+              #
+              #
+              #
+              conditionalPanel(condition = "input['data.settings'] == 'indicators'",
+                #
+                # Add table output of pre-loaded or uploaded dataset
+                #
+                DT::dataTableOutput("current.indicators.table")
+              )              
             )
           )
         )

@@ -112,4 +112,4 @@ san35a,pareto,barplot,Person who pays for pit emptying,Person who pays for pit e
 san22,pareto,barplot,Which household members are not able to use the sanitation facilities,Household members not able to use sanitation facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
 san24,pareto,barplot,Which household members are not using the sanitation facilities,Household members not using sanitation facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
 san37,proportion,oneMean,Household satisfied with pit emptying service,Satisfied with pit emptying service,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
-san28a,pareto,oneMean,Main menstrual hygiene management materials used during menstruation,Menstrual hygiene management materials,hygieneSet,Women's Hygiene,1,1,1,1,1,1
+san28a,pareto,barplot,Main menstrual hygiene management materials used during menstruation,Menstrual hygiene management materials,hygieneSet,Women's Hygiene,1,1,1,1,1,1

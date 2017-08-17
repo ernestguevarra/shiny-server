@@ -55,10 +55,6 @@ function(input, output, session) {
       # Read dataset file
       #
       temp <- read.csv(file = inputFile$datapath, header = TRUE, sep = ",")
-      #
-      #
-      #
-      #temp <- temp[order(temp$indicatorCode), ]
       }
   })
   #
@@ -68,7 +64,21 @@ function(input, output, session) {
 	#
 	#
     #
-    survey.dataset()[ , c("country", "month", "year", "indicatorName", "strata", "type", "estimate", "LCL", "UCL")], 
+    survey.dataset()[ , c("country", "month", "year", "indicatorName", 
+                          "strata", "type", "estimate", "LCL", "UCL")], 
+    #
+    #
+    #
+    options = list(pageLength = 10)
+  )  
+  #
+  #
+  #
+  output$current.indicators.table <- DT::renderDataTable(
+	#
+	#
+    #
+    survey.indicators(), 
     #
     #
     #
@@ -85,15 +95,6 @@ function(input, output, session) {
       selected = "."
     )
   })
-  #
-  #
-  #
-  output$current.indicators.table <- DT::renderDataTable(
-	#
-	#
-    #
-    survey.indicators(), options = list(pageLength = 5)
-  )  
   #
   # Update country select input based on survey dataset uploaded
   #
@@ -263,6 +264,7 @@ function(input, output, session) {
       label = "Disaggregate by",
       choices = list(None = ".",
                      "Survey Area" = "surveyArea",
+                     "City Corporation" = "corporation",
                      "Wealth Quintile" = "wealth"),
       selected = ".")
   })
@@ -334,9 +336,95 @@ function(input, output, session) {
     #
     subset(survey.indicators(),
            subset = country == input$country & 
-                    year >= input$start.year & year <= input$end.year &
-                    indicatorCode == input$varList)
+                    year >= input$start.year & year <= input$end.year)
   })
+  #
+  #
+  #
+  output$current.sub.indicators <- DT::renderDataTable(
+	#
+	#
+	#
+	options = list(pageLength = 10),
+	#
+	#
+    #
+	if(input$varList %in% c("waterSource", "water10", "water11b", "san1", "san35a", "san28a"))
+	  {
+	  #
+	  #
+      #
+      sub.indicators()[ , c("uniqueID", "country", "psu", "zone", "type", "month", "year", "corporation", input$varList)]
+      }
+    #
+    #
+    #
+    else
+	  {
+	  #
+	  #
+	  #
+	  temp <- subset(sub.indicators(), select = grepl(input$varList, names(sub.indicators())))
+	  #
+	  #
+	  #
+	  zone <- NULL
+	  corporation <- NULL
+	  type <- NULL
+	  pQuintile <- NULL
+	  indicator <- NULL
+	  #
+	  #
+	  #
+	  for(i in 1:ncol(temp))
+		{
+		#
+		#
+		#
+		zone <- c(zone, sub.indicators()$zone)
+		#
+		#
+		#
+		corporation <- c(corporation, sub.indicators()$corporation)
+		#
+		#
+		#
+		type <- c(type, sub.indicators()$type)
+		#
+		#
+		#
+		pQuintile <- c(pQuintile, sub.indicators()$pQuintile)
+		#
+		#
+		#
+		indicator <- c(indicator, as.character(temp[ , i]))
+		}
+	  #
+	  #
+	  #
+	  paretoDF <- data.frame(zone, corporation, type, pQuintile, indicator)
+	  #
+	  #
+	  #
+	  paretoDF$zone <- paste("Survey Area ", paretoDF$zone, sep = "")
+	  #
+	  #
+	  #
+	  paretoDF$type <- ifelse(paretoDF$type == 1, "Slum", "Citwyide")
+	  #
+	  #
+	  #
+	  paretoDF$pQuintile <- paste("Wealth Quintile ", paretoDF$pQuintile, sep = "")
+	  #
+	  #
+      #
+      paretoDF <- paretoDF[!is.na(paretoDF$indicator), ]
+	  #
+	  #
+	  #
+	  paretoDF
+      }
+  )
   #
   #
   #
@@ -486,7 +574,9 @@ function(input, output, session) {
     #
     #
     #
-    if(input$varList != "." & input$group.by != "." | input$facet.by != ".")
+    if(input$varList != "." & 
+       !input$varList %in% c("waterSource", "water9", "water10", "water11b", "san1", "san8", "san20", "san22", "san24", "san35a", "san28a") & 
+       input$group.by != "." | input$facet.by != ".")
       {
       #
       #
@@ -549,7 +639,7 @@ function(input, output, session) {
       #
       #
       temp <- subset(sub.data(), 
-                     !strata %in% c(paste("Wealth Quintile ", 1:5, sep = ""), "Overall") &
+                     !strata %in% c(paste("Wealth Quintile ", 1:5, sep = ""), "Overall", "North City Corporation", "South City Corporation") &
                      type == "Citywide")
       }
     #
@@ -561,7 +651,7 @@ function(input, output, session) {
       #
       #
       temp <- subset(sub.data(), 
-                     !strata %in% c(paste("Wealth Quintile ", 1:5, sep = ""), "Overall"))
+                     !strata %in% c(paste("Wealth Quintile ", 1:5, sep = ""), "Overall", "North City Corporation", "South City Corporation"))
       }
     #
     #
@@ -586,6 +676,29 @@ function(input, output, session) {
       temp <- subset(sub.data(), 
                      strata %in% paste("Wealth Quintile ", 1:5, sep = ""))
       } 
+    #
+    #
+    #
+    if(input$group.by == "corporation" & input$facet.by == ".")
+      {
+      #
+      #
+      #
+      temp <- subset(sub.data(), 
+                     strata %in% c("North City Corporation", "South City Corporation") &
+                     type == "Citywide")
+      }
+    #
+    #
+    #
+    if(input$group.by == "corporation" & input$facet.by == "type")
+      {
+      #
+      #
+      #
+      temp <- subset(sub.data(), 
+                     strata %in% c("North City Corporation", "South City Corporation"))
+      }
     #
     #
     #
@@ -809,6 +922,29 @@ function(input, output, session) {
     #
     #
     #
+    if(input$group.by == "corporation" & input$facet.by == ".")
+      {
+      #
+      #
+      #
+      temp <- subset(ladder.data(), 
+                     strata %in% c("North City Corporation", "South City Corporation") &
+                     type == "Citywide")
+      }
+    #
+    #
+    #
+    if(input$group.by == "corporation" & input$facet.by == "type")
+      {
+      #
+      #
+      #
+      temp <- subset(ladder.data(), 
+                     strata %in% c("North City Corporation", "South City Corporation"))
+      }
+    #
+    #
+    #
     if(input$group.by == "wealth" & input$facet.by == ".")
       {
       #
@@ -966,31 +1102,315 @@ function(input, output, session) {
   #
   #
   #
+  if(input$varList %in% c("water9", "san8", "san20", "san22", "san24"))
+    {
+    #
+    #
+    #
+    temp <- subset(sub.indicators(), select = grepl(input$varList, names(sub.indicators())))
+    #
+    #
+    #
+    zone <- NULL
+    corporation <- NULL
+    type <- NULL
+    pQuintile <- NULL
+    variables <- NULL
+    #
+    #
+    #
+    for(i in 1:ncol(temp))
+	  {
+	  #
+	  #
+	  #
+	  zone <- c(zone, sub.indicators()$zone)
+	  #
+	  #
+	  #
+	  corporation <- c(corporation, as.character(sub.indicators()$corporation))
+	  #
+	  #
+	  #
+	  type <- c(type, sub.indicators()$type)
+	  #
+	  #
+  	  #
+	  pQuintile <- c(pQuintile, sub.indicators()$pQuintile)
+	  #
+	  #
+	  #
+	  variables <- c(variables, as.character(temp[ , i]))
+	  }
+    #
+    #
+    #
+    paretoDF <- data.frame(zone, corporation, type, pQuintile, variables)
+    #
+    #
+    #
+    paretoDF$zone <- paste("Survey Area ", paretoDF$zone, sep = "")
+    #
+    #
+    #
+    paretoDF$corporation <- factor(paretoDF$corporation, levels = c("North City Corporation", "South City Corporation", "Outside"))
+    #
+    #
+    #
+    paretoDF$type <- ifelse(paretoDF$type == 1, "Slum", "Citwyide")
+    #
+    #
+    #
+    paretoDF$pQuintile <- paste("Wealth Quintile ", paretoDF$pQuintile, sep = "")
+    #
+    #
+    #
+    basePlot <- ggplot(data = paretoDF[!is.na(paretoDF$variables), ], mapping = aes(x = variables))
+    #
+    #
+    #
+    barPlot <- geom_bar(stat = "count", position = "stack", fill = wsupColour, alpha = 0.6)
+    #
+    #
+    #
+    if(input$group.by == "surveyArea")
+	  {
+	  #
+	  #
+	  #
+	  basePlot <- ggplot(data = paretoDF[!is.na(paretoDF$variables), ], mapping = aes(x = zone, fill = variables))
+	  #
+	  # 
+	  #
+	  barPlot <- geom_bar(stat = "count", position = "stack")
+	  }
+    #
+    #
+    #
+    if(input$group.by == "corporation")
+	  {
+	  #
+	  #
+	  #
+	  basePlot <- ggplot(data = paretoDF[!is.na(paretoDF$variables), ], mapping = aes(x = corporation, fill = variables))
+	  #
+	  # 
+	  #
+	  barPlot <- geom_bar(stat = "count", position = "stack")
+	  }
+    #
+    #
+    #
+    if(input$group.by == "wealth")
+	  {
+	  #
+	  #
+	  #
+	  basePlot <- ggplot(data = paretoDF[!is.na(paretoDF$variables), ], mapping = aes(x = pQuintile, fill = variables))
+	  #
+	  #
+	  #
+	  barPlot <- geom_bar(stat = "count", position = "stack")
+	  }
+    #
+    #
+    #
+    if(input$group.by == "type")
+      {
+	  #
+	  #
+	  #
+	  basePlot <- ggplot(data = paretoDF[!is.na(paretoDF$variables), ], mapping = aes(x = type, fill = variables))
+	  #
+	  #
+	  #
+	  barPlot <- geom_bar(stat = "count", position = "stack")
+	  }
+    #
+    #
+    #
+    if(input$facet.by != ".")
+	  {
+	  #
+	  #
+	  #
+	  barFacet <- facet_grid(facets = . ~ type)
+	  }
+    #
+    #
+    #
+    barFill <- scale_fill_manual(name = "",
+							     label = levels(paretoDF$variables),
+							     values = brewer.pal(n = length(levels(paretoDF$variables)),
+												     name = "Pastel1"))
+	#
+	#
+	#
+    xLabel <- labs(x = ifelse(input$group.by == "surveyArea", "Survey Area",
+                          ifelse(input$group.by == "wealth", "Wealth Quintile",
+                            ifelse(input$group.by == "type", "Area Type", ""))))
+    #
+    #
+    #
+    yLabel <- labs(y = "Frequency")
+    #
+    #
+    #
+    indicator.plot <- basePlot + barPlot + barFill + xLabel + yLabel + 
+                      theme_wsup + theme(axis.text.x = element_text(angle = 45, 
+                                                                    vjust = 1, 
+                                                                    hjust = 1))
+    #
+    #
+    #
+    if(input$facet.by != ".")
+	  {
+	  #
+	  #
+	  #
+	  indicator.plot <- indicator.plot + barFacet
+	  }
+    #
+    #
+    #
+    print(indicator.plot)    
+    }
+  #
+  #
+  #
+  if(input$varList %in% c("waterSource", "water10", "water11b", "san1", "san35a", "san28a"))
+    {
+    #
+    #
+    #
+    temp <- sub.indicators()
+    #
+    #
+    #
+    temp$zone <- paste("Survey Area ", temp$zone, sep = "")
+    #
+    #
+    #
+    levels(temp$corporation) <- c("North City Corporation", "South City Corporation", "Outside")
+    #
+    #
+    #
+    temp$pQuintile <- paste("Wealth Quintile ", temp$pQuintile, sep = "")
+    #
+    #
+    #
+    temp$type <- ifelse(temp$type == 1, "Slum", "Citywide")
+    #
+    #
+    #
+    temp <- temp[!is.na(temp[[input$varList]]), ]
+    #
+    #
+    #
+    temp$water10 <- factor(temp$water10, levels = c("Don't know", "<11 litres per day",
+                                                    "11-20 litres per day", "21-40 litres per day",
+                                                    "41-60 litres per day", "61-100 litres per day",
+                                                    "101-150 litres per day", "151-200 litres per day",
+                                                    "201-300 litres per day", ">301 litres per day"))
+    #
+    #
+    #
+    basePlot <- ggplot(data = temp, mapping = aes(x = get(input$varList)))
+    #
+    #
+    #
+    barPlot <- geom_bar(stat = "count", position = "stack", fill = wsupColour, alpha = 0.6)
+    #
+    #
+    #
+    if(input$group.by == "surveyArea")
+      {
+      #
+      #
+      #
+      basePlot <- ggplot(data = temp, mapping = aes(x = zone, fill = get(input$varList)))
+      #
+      #
+      #
+      barPlot <- geom_bar(stat = "count", position = "fill", alpha = 0.6)
+      }
+    #
+    #
+    #
+    if(input$group.by == "corporation")
+      {
+      #
+      #
+      #
+      basePlot <- ggplot(data = temp, mapping = aes(x = corporation, fill = get(input$varList)))
+      #
+      #
+      #
+      barPlot <- geom_bar(stat = "count", position = "fill", alpha = 0.6)
+      }
+    #
+    #
+    #
+    if(input$group.by == "wealth")
+      {
+      #
+      #
+      #
+      basePlot <- ggplot(data = temp, mapping = aes(x = pQuintile, fill = get(input$varList)))
+      #
+      #
+      #
+      barPlot <- geom_bar(stat = "count", position = "fill", alpha = 0.6)
+      }
+    #
+    #
+    #
+    barFill <- scale_fill_discrete(name = "")
+    #
+    #
+    #
+    yLabel <- labs(y = ifelse(input$group.by == ".", "Frequency", ""))
+    #
+    #
+    #
+    xLabel <- labs(x = ifelse(input$group.by == "surveyArea", "Survey Area",
+                         ifelse(input$group.by == "wealth", "Wealth Quintile",
+                           ifelse(input$group.by == "corporation", "City Corporation",
+                             ifelse(input$facet.by == "type", "Area Type", "")))))
+    #
+    #
+    #
+    indicator.plot <- basePlot + barPlot + barFill + xLabel + yLabel + 
+                      theme_wsup + theme(axis.text.x = element_text(angle = 45, 
+                                                                    vjust = 1, 
+                                                                    hjust = 1))
+    #
+    #
+    #
+    if(input$facet.by != ".")
+      {
+      #
+      #
+      #
+      barFacet <- facet_grid(. ~ type)
+      #
+      #
+      #
+      indicator.plot <- indicator.plot + barFacet
+      }
+    #
+    #
+    #
+    print(indicator.plot)
+    }  
+  #
+  #
+  #
   print(indicator.plot)
   #
   #
   #
   }, height = 320)                    
-
-################################################################################
-#
-# Plot indicators - special plots
-#
-################################################################################
-  #
-  #
-  #
-  output$pareto.plot <- renderPlot({
-    #
-    #
-    #
-    temp <- subset(sub.indicators(), select = names(sub.indicators())[grepl(input$varList, names(sub.indicators()))])
-    #
-    #
-    #
-  })    
-
-
   #
   #
   #
@@ -1343,13 +1763,34 @@ function(input, output, session) {
     setView(lng = 20, lat = 20, zoom = 3)
   }) 
   #
+  # Clear maps when specific set of indicators are selected
+  #
+  observeEvent(input$varList %in% c("waterSource", "water9", "water10", "water11b", "san1", "san8", "san20", "san22", "san24", "san35a", "san28a"), {
+    #
+    #
+    #
+    leafletProxy("map") %>%
+    #
+    #
+    #
+    clearShapes() %>%
+    #
+    #
+    #
+    clearControls() %>%
+    #
+    #
+    #
+    removeLayersControl()
+  }) 
+  #
   # Plot indicator maps
   #   
   observe({
     #
     #
     #
-    if(input$varList != ".")
+    if(input$varList != "." & !input$varList %in% c("waterSource", "water9", "water10", "water11b", "san1", "san8", "san20", "san22", "san24", "san35a", "san28a"))
       {
 	  #
 	  # 
@@ -1639,10 +2080,6 @@ function(input, output, session) {
 	  #
 	  if(!is.null(input$file2))
 	    {
-	    #
-        # Design effect
-        #
-	    #design.effect <- deff(y = sample.df()[[input$variable]], cluster = sample.df()[[input$cluster]])[["deff"]]
 	    #
 	    #
 	    #
@@ -3090,7 +3527,6 @@ function(input, output, session) {
       #
       #
       #
-      #temp <- table(stat.dataset()[[input$x.odds]], stat.dataset()[[input$y.odds]])
       temp <- riskratio(stat.dataset()[[input$x.odds]], stat.dataset()[[input$y.odds]])
       #
       #
@@ -3099,7 +3535,6 @@ function(input, output, session) {
       #
       #
       #
-      #odds.df <- data.frame(c(paste(input$x.odds, " = ", 0, sep = ""), paste(input$x.odds, " = ", 1, sep = "")), odds.df)
       names(odds.df) <- c("Variable", paste(input$y.odds, " = ", 0, sep = ""), paste(input$y.odds, " = ", 1, sep = ""), "Total")      
       #
       #
@@ -3134,6 +3569,9 @@ function(input, output, session) {
       results.vector <- c(round(odds.ratio$estimate, digits = 4),
                           ci,
                           round(odds.ratio$p.value, digits = 4))
+      #
+      #
+      #
       results.name <- c("Odds ratio", "95% CI", "p-value")
       #
       #
@@ -3264,6 +3702,9 @@ function(input, output, session) {
       #
       results.vector <- c(round(temp$measure[2,1], digits = 4), round(temp$p.value[2,1], digits = 4),
                           paste(round(temp$measure[2,2], digits = 2), " to ", round(temp$measure[2,3], digits = 2)))
+      #
+      #
+      #
       results.name <- c("Risk ratio", "p-value", "95% CI")
       #
       #
@@ -4187,33 +4628,44 @@ function(input, output, session) {
         #
         #
         withMathJax(),
-		  title = "Map Options",
-		  size = "l",
-		  HTML("
-			<h4>Select colour palette</h4>
+        #
+        #
+        #
+		title = "Map Options",
+		#
+		#
+		#
+		size = "l",
+		#
+		#
+		#
+		HTML("
+		  <h4>Select colour palette</h4>
 			<p>Select from choices of colour palettes to use for mapping. Two categories of colour palettes are available.</p>
-			<ul>
-			  <li><code>Sequential</code> palettes are suited to ordered data that progress from low to high with light colours representing low data values and dark colours representing high data values.</li>
-			  <li><code>Diverging</code> palettes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The middle values are emphasised with light colours and low and high extremes are emphasised with dark colours that have contrasting hues.</li>
-			</ul>
+			  <ul>
+			    <li><code>Sequential</code> palettes are suited to ordered data that progress from low to high with light colours representing low data values and dark colours representing high data values.</li>
+			    <li><code>Diverging</code> palettes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The middle values are emphasised with light colours and low and high extremes are emphasised with dark colours that have contrasting hues.</li>
+			  </ul>
+			
 			<p>The choices of colour palettes are based on <a href='http://colorbrewer2.org/' target='_blank'>ColorBrewer 2.0</a> and implemented in R using the <a href='https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf' target='_blank'>RColorBrewer</a> function.</p>
+			
 			<p>The default colour palette for the <code>Demographics</code> indicator set is <code>sequential yellow to orange to brown (YlOrBb)</code> scheme.</p>
 			
-			<br/>
-			<h4>Select colour mapping method</h4>
+		  <br/>	
+		  <h4>Select colour mapping method</h4>
 			<p>Colour mapping methods determine how to match the indicator dataset to the selected colour palette appropriately. Three colour mapping methods are available.</p>
-			<ul>
-			  <li><code>Linear interpolation</code> is a simple linear mapping from continuous numeric data to an interpolated colour palette. In this method, the selected colour palette is extended (via interpolation) to create a continuous set of colours consistent with the scheme that would be enough to match the range of values of the continuous numeric data being mapped.</li>
-			  <li><code>Equal interval</code> maps continuous numeric data to a fixed number of colours from the palette. The continous indicator values are divided into equal interval group sets determined by the <code>number of bins</code> specified (see below regarding bins). The number of colours correspond to the <code>number of bins</code> into which the indicator values have been divided into.</li>
-			  <li><code>Quantile</code> also maps continuous numeric data to a fixed number of colours from the palette. However, the continuous indicator values are divided into <code>quantiles</code> (group sets with equal number of observations). The number of colours correspond to the <code>number of quantiles</code> into which the indicator values have been divided into.</li> 
-			</ul>
+			  <ul>
+			    <li><code>Linear interpolation</code> is a simple linear mapping from continuous numeric data to an interpolated colour palette. In this method, the selected colour palette is extended (via interpolation) to create a continuous set of colours consistent with the scheme that would be enough to match the range of values of the continuous numeric data being mapped.</li>
+			    <li><code>Equal interval</code> maps continuous numeric data to a fixed number of colours from the palette. The continous indicator values are divided into equal interval group sets determined by the <code>number of bins</code> specified (see below regarding bins). The number of colours correspond to the <code>number of bins</code> into which the indicator values have been divided into.</li>
+			    <li><code>Quantile</code> also maps continuous numeric data to a fixed number of colours from the palette. However, the continuous indicator values are divided into <code>quantiles</code> (group sets with equal number of observations). The number of colours correspond to the <code>number of quantiles</code> into which the indicator values have been divided into.</li> 
+			  </ul>
 			
-			<br/>                            
-			<h4>Number of bins</h4>
+		  <br/>                            
+		  <h4>Number of bins</h4>
 			<p><em>For equal interval method.</em> Select number of equal interval groups to divide the dataset into. For example, for a dataset of percentages with values ranging between 0 and 100, specifying <code>number of bins</code> to 5 would mean creating 5 equal interval groupings - <code>[0,20)</code>, <code>[20, 40)</code>, <code>[40,60)</code>, <code>[60,80)</code>, <code>[80,100]</code></p>
 			
-			<br/>
-			<h4>Number of classes</h4>
+		  <br/>
+		  <h4>Number of classes</h4>
 			<p><em>For quantile method.</em> Select number of quantiles to divide dataset into.</p>
 		  ")))                       
   })
@@ -4233,12 +4685,21 @@ function(input, output, session) {
          #
          #
          withMathJax(),
-		   title = "City map data input",
-		   size = "l",
-		   HTML("
-			 <h4>Upload map of citywide survey area</h4>
+		 #
+		 #
+		 #  
+		 title = "City map data input",
+		 #
+		 #
+		 #
+		 size = "l",
+		 #
+		 #
+		 #
+		 HTML("
+		   <h4>Upload map of citywide survey area</h4>
 			 <p>The map should be in ESRI Shapefile format (SHP). This file format requires a minimum of 3 related files in order to be readable. These files are the <code>.SHP</code>, <code>.SHX</code> and <code>.DBF</code>. Hence, these three files should be uploaded all at the same time by clicking on CTRL and then selecting at least the three files for upload. A warning will pop out if the incorrect file formats and/or incomplete number of files are uploaded. Once the files have been uploaded, two new options come out. First, the app asks for the vaiable name in the map files that contains the stratifying variable. This would be the variable name of a geographic subdivision by which you decided to divide the city. Second, a prompt for the number of primary sampilng units or <code>PSU</code> comes to view. This is set at a default of 30. Once you have specified these parameters, you can click on <code>Sample</code> and corresponding sampling maps will be produced on the main panel and corresponding sampling lists on the appropriate sampling tabs.</p>
-		   ")))
+	     ")))
   })
   #
   #
@@ -4256,20 +4717,29 @@ function(input, output, session) {
          #
          #
          withMathJax(),
-		   title = "Slum map data input",
-		   size = "l",
-		   HTML("
-			 <h4>Available slum area sampling information</h4>
+		 #
+		 #
+         #  
+		 title = "Slum map data input",
+		 #
+		 #
+		 #
+		 size = "l",
+		 #
+		 #
+		 #
+		 HTML("
+		   <h4>Available slum area sampling information</h4>
 			 <p>For slum areas, you are first asked what information you have on slums that can be used for sampling: <code>slum maps</code> or <code>slum lists</code>. If you have slum maps, then you are given the options for sampling with slum maps (below). If you have lists, then you are given the option for sampling with slum lists (below).</p>
 			 
-			 <br/>
-			 <h4>Upload map of slum survey area</h4>
+		   <br/>
+		   <h4>Upload map of slum survey area</h4>
 			 <p>The map should be in ESRI Shapefile format (SHP). This file format requires a minimum of 3 related files in order to be readable. These files are the <code>.SHP</code>, <code>.SHX</code> and <code>.DBF</code>. Hence, these three files should be uploaded all at the same time by clicking on CTRL and then selecting at least the three files for upload. A warning will pop out if the incorrect file formats and/or incomplete number of files are uploaded. Once the files have been uploaded, two new options come out. First, the app asks for the vaiable name in the map files that contains the stratifying variable. This would be the variable name of a geographic subdivision by which you decided to divide the city. Second, a prompt for the number of primary sampilng units or <code>PSU</code> comes to view. This is set at a default of 30. Once you have specified these parameters, you can click on <code>Sample</code> and corresponding sampling maps will be produced on the main panel and corresponding sampling lists on the appropriate sampling tabs.</p>
 
-			 <br/>
-			 <h4>Upload list of slum areas</h4>
+		   <br/>
+		   <h4>Upload list of slum areas</h4>
 			 <p>The list of slum areas should be in CSV format. The list should be organised and sorted along the stratifying variable for survey areas. Once the list has been uploaded, you will need to specify how many <code>PSUs</code> will be survyed. Then press on <code>Sample</code>. A sample list from the complete list is now available on the <code>Slum Lists</code> tab.</p>
-		   ")))
+		 ")))
   })
   #
   #
@@ -4287,24 +4757,33 @@ function(input, output, session) {
          #
          #
          withMathJax(),
-		   title = "Statistical Tests",
-		   size = "l",
-		   HTML("
-			 <h4>Correlation</h4>
+		 #
+		 #
+		 #
+		 title = "Statistical Tests",
+		 #
+		 #
+		 #
+		 size = "l",
+		 #
+		 #
+		 #
+		 HTML("
+		   <h4>Correlation</h4>
 			 <p>This is a test for association between paired samples, using one of <code>Pearson's</code> product moment correlation coefficient, <code>Kendall's tau</code> or <code>Spearman's rho</code>.</p>
 			 
-			 <br/>
-			 <h4>Variance</h4>
+		   <br/>
+		   <h4>Variance</h4>
 			 <p>This is a test for variance, using <code>Student's t-test</code>, <code>Wilcoxon Rank Summ and Signed Rank Tests</code>, or <code>Kruskal-Wallis Rank Sum Test</code>.</p>
 
-			 <br/>
-			 <h4>Odds ratio</h4>
+		   <br/>
+		   <h4>Odds ratio</h4>
 			 <p>Performs <code>Fisher's exact test</code> for testing the null of independence of rows and columns in a contingency table or 2 x 2 table.</p>
 
-			 <br/>
-			 <h4>Risk ratio</h4>
+		   <br/>
+		   <h4>Risk ratio</h4>
 			 <p>Calculates risk ratio by unconditional <code>maximum likelihood estimation (Wald)</code>, and <code>small sample adjustment (small)</code>. Confidence intervals are calculated using <code>normal approximation (Wald)</code>, and <code>normal approximation with small sample adjustment (small)</code>, and <code>bootstrap method (boot)</code>.</p>
-		   ")))
+		 ")))
   })
   #
   #
@@ -4322,24 +4801,33 @@ function(input, output, session) {
          #
          #
          withMathJax(),
-		   title = "Correlation test parameters",
-		   size = "l",
-		   HTML("
-			 <h4>Independent variable</h4>
-			 <p>The <code>independent variable</code> represents inputs or causes or the potential reasons for variation in the <code>dependent variable</code>.</p>
+         #
+         #
+         #
+		 title = "Correlation test parameters",
+		 #
+		 #
+		 #
+		 size = "l",
+		 #
+		 #
+		 #
+		 HTML("
+		   <h4>Independent variable</h4>
+		     <p>The <code>independent variable</code> represents inputs or causes or the potential reasons for variation in the <code>dependent variable</code>.</p>
 			 
-			 <br/>
-			 <h4>Dependent variable</h4>
+		   <br/>
+		   <h4>Dependent variable</h4>
 			 <p>The <code>dependent variable</code> responds to the <code>independent variable</code>. It is called <code>dependent</code> because it <em>depends</em> on the <code>independent variable</code>.</p>
 
-			 <br/>
-			 <h4>Type of correlation coefficient</h4>
-			   <ul>
-			     <li><code>Pearson's <em>r</em></code> : Applies <strong>Pearson's product moment correlation coefficient</strong> calculations. It is a measure of the linear correlation between two variables. It has a value between +1 and −1, where 1 is total positive linear correlation, 0 is no linear correlation, and −1 is total negative linear correlation.</li>
-			     <li><code>Kendall's tau</code> : <strong>Kendall's tau</strong> is a statistic used to measure the ordinal association between two measured quantities. A <code>tau test</code> is a non-parametric hypothesis test for statistical dependence based on the <code>tau</code> coefficient. It is a measure of rank correlation: the similarity of the orderings of the data when ranked by each of the quantities. The coefficient must be in the range −1 ≤ tau ≤ 1. If the agreement between the two rankings is perfect (i.e., the two rankings are the same) the coefficient has value 1. If the disagreement between the two rankings is perfect (i.e., one ranking is the reverse of the other) the coefficient has value −1. If X and Y are independent, then we would expect the coefficient to be approximately zero.</li>
-			     <li><code>Spearman's rho</code> : <strong>Spearman's rho</strong> is a nonparametric measure of rank correlation (statistical dependence between the ranking of two variables). It assesses how well the relationship between two variables can be described using a monotonic function. The Spearman correlation between two variables will be high when observations have a similar (or identical for a correlation of 1) rank (i.e. relative position label of the observations within the variable: 1st, 2nd, 3rd, etc.) between the two variables, and low when observations have a dissimilar (or fully opposed for a correlation of −1) rank between the two variables. Spearman's coefficient is appropriate for both continuous and discrete variables, including ordinal variables.</li>
-			   </ul>
-		   ")))
+		   <br/>
+		   <h4>Type of correlation coefficient</h4>
+			 <ul>
+			   <li><code>Pearson's <em>r</em></code> : Applies <strong>Pearson's product moment correlation coefficient</strong> calculations. It is a measure of the linear correlation between two variables. It has a value between +1 and −1, where 1 is total positive linear correlation, 0 is no linear correlation, and −1 is total negative linear correlation.</li>
+			   <li><code>Kendall's tau</code> : <strong>Kendall's tau</strong> is a statistic used to measure the ordinal association between two measured quantities. A <code>tau test</code> is a non-parametric hypothesis test for statistical dependence based on the <code>tau</code> coefficient. It is a measure of rank correlation: the similarity of the orderings of the data when ranked by each of the quantities. The coefficient must be in the range −1 ≤ tau ≤ 1. If the agreement between the two rankings is perfect (i.e., the two rankings are the same) the coefficient has value 1. If the disagreement between the two rankings is perfect (i.e., one ranking is the reverse of the other) the coefficient has value −1. If X and Y are independent, then we would expect the coefficient to be approximately zero.</li>
+			   <li><code>Spearman's rho</code> : <strong>Spearman's rho</strong> is a nonparametric measure of rank correlation (statistical dependence between the ranking of two variables). It assesses how well the relationship between two variables can be described using a monotonic function. The Spearman correlation between two variables will be high when observations have a similar (or identical for a correlation of 1) rank (i.e. relative position label of the observations within the variable: 1st, 2nd, 3rd, etc.) between the two variables, and low when observations have a dissimilar (or fully opposed for a correlation of −1) rank between the two variables. Spearman's coefficient is appropriate for both continuous and discrete variables, including ordinal variables.</li>
+			 </ul>
+		 ")))
   })
   #
   #
@@ -4357,24 +4845,33 @@ function(input, output, session) {
          #
          #
          withMathJax(),
-		   title = "Variance test parameters",
-		   size = "l",
-		   HTML("
-			 <h4>Independent variable</h4>
+         #
+         #
+         #
+		 title = "Variance test parameters",
+		 #
+		 #
+		 #
+		 size = "l",
+		 #
+		 #
+		 #
+		 HTML("
+		   <h4>Independent variable</h4>
 			 <p>The <code>independent variable</code> represents inputs or causes or the potential reasons for variation in the <code>dependent variable</code>.</p>
 			 
-			 <br/>
-			 <h4>Dependent variable</h4>
+		   <br/>
+		   <h4>Dependent variable</h4>
 			 <p>The <code>dependent variable</code> responds to the <code>independent variable</code>. It is called <code>dependent</code> because it <em>depends</em> on the <code>independent variable</code>.</p>
 
-			 <br/>
-			 <h4>Type of variance testing</h4>
-			   <ul>
-			     <li><code>t-test</code> : A <strong>t-test</strong> is most commonly applied when the test statistic would follow a normal distribution. The t-test can be used, for example, to determine if two sets of data are significantly different from each other.</li>
-			     <li><code>Wilcoxon test</code> : The <strong>Wilcoxon signed-rank test</strong> is a non-parametric statistical hypothesis test used when comparing two related samples, matched samples, or repeated measurements on a single sample to assess whether their population mean ranks differ (i.e. it is a paired difference test). It can be used as an alternative to the paired Student's t-test, t-test for matched pairs, or the t-test for dependent samples when the population cannot be assumed to be normally distributed. A Wilcoxon signed-rank test is a nonparametric test that can be used to determine whether two dependent samples were selected from populations having the same distribution.</li>
-			     <li><code>Kruskal-Walis test</code> : <strong>Kruskal-Walis test</strong> is a non-parametric method for testing whether samples originate from the same distribution. Since it is a non-parametric method, the Kruskal–Wallis test does not assume a normal distribution of the residuals.</li>
-			   </ul>
-		   ")))
+		   <br/>
+		   <h4>Type of variance testing</h4>
+		     <ul>
+			   <li><code>t-test</code> : A <strong>t-test</strong> is most commonly applied when the test statistic would follow a normal distribution. The t-test can be used, for example, to determine if two sets of data are significantly different from each other.</li>
+			   <li><code>Wilcoxon test</code> : The <strong>Wilcoxon signed-rank test</strong> is a non-parametric statistical hypothesis test used when comparing two related samples, matched samples, or repeated measurements on a single sample to assess whether their population mean ranks differ (i.e. it is a paired difference test). It can be used as an alternative to the paired Student's t-test, t-test for matched pairs, or the t-test for dependent samples when the population cannot be assumed to be normally distributed. A Wilcoxon signed-rank test is a nonparametric test that can be used to determine whether two dependent samples were selected from populations having the same distribution.</li>
+			   <li><code>Kruskal-Walis test</code> : <strong>Kruskal-Walis test</strong> is a non-parametric method for testing whether samples originate from the same distribution. Since it is a non-parametric method, the Kruskal–Wallis test does not assume a normal distribution of the residuals.</li>
+		     </ul>
+		 ")))
   })
   #
   #
@@ -4392,11 +4889,20 @@ function(input, output, session) {
          #
          #
          withMathJax(),
-		   title = "Odds ratio calculation parameters",
-		   size = "l",
-		   HTML("
-			 <h4>Exposure / predictor</h4>
-			 <p>The term <strong>exposure</strong> can be broadly applied to any factor that may be associated with an outcome of interest. When using observational data sources, researchers often rely on readily available (existing) data elements to identify whether individuals have been exposed to a factor of interest.</p>
+         #
+         #
+         #
+		 title = "Odds ratio calculation parameters",
+		 #
+		 #
+         #
+         size = "l",
+		 #
+		 #
+         #  
+		 HTML("
+		   <h4>Exposure / predictor</h4>
+		     <p>The term <strong>exposure</strong> can be broadly applied to any factor that may be associated with an outcome of interest. When using observational data sources, researchers often rely on readily available (existing) data elements to identify whether individuals have been exposed to a factor of interest.</p>
 			 
 			 <br/>
 			 <h4>Outcome</h4>
@@ -4428,31 +4934,41 @@ function(input, output, session) {
          #
          #
          withMathJax(),
-		   title = "Risk ratio calculation parameters",
-		   size = "l",
-		   HTML("
-			 <h4>Exposure / predictor</h4>
-			 <p>The term <strong>exposure</strong> can be broadly applied to any factor that may be associated with an outcome of interest. When using observational data sources, researchers often rely on readily available (existing) data elements to identify whether individuals have been exposed to a factor of interest.</p>
+         #
+         #
+         #
+		 title = "Risk ratio calculation parameters",
+		 #
+		 #
+		 #
+		 size = "l",
+		 #
+		 #
+		 #
+		 HTML("
+		   <h4>Exposure / predictor</h4>
+		     <p>The term <strong>exposure</strong> can be broadly applied to any factor that may be associated with an outcome of interest. When using observational data sources, researchers often rely on readily available (existing) data elements to identify whether individuals have been exposed to a factor of interest.</p>
 			 
-			 <br/>
-			 <h4>Outcome</h4>
-			 <p>The <strong>outcome</strong> is the effect or end result or end point caused and/or contributed to by the exposure or predictor. </p>
+		   <br/>
+		   <h4>Outcome</h4>
+		     <p>The <strong>outcome</strong> is the effect or end result or end point caused and/or contributed to by the exposure or predictor. </p>
 
-			 <br/>
-			 <h4>About Risk Ratio</h4>
-			   <p><strongRisk ratio</strong> is the ratio of the probability of an event occurring (for example, developing a disease, being injured) in an exposed group to the probability of the event occurring in a comparison, non-exposed group. Relative risk includes two important features:</p> 
-			     <ul>
-			       <li>a comparison of risk between two exposures puts risks in context, and;</li>
-			       <li>exposure is ensured by having proper denominators for each group representing the exposure</li>
-			     </ul>
-			   <p>Risk ratio is used frequently in the statistical analysis of binary outcomes where the outcome of interest has relatively low probability. It is thus often suited to clinical trial data, where it is used to compare the risk of developing a disease, in people not receiving the new medical treatment (or receiving a placebo) versus people who are receiving an established (standard of care) treatment.</p>
+		   <br/>
+		   <h4>About Risk Ratio</h4>
+		     <p><strongRisk ratio</strong> is the ratio of the probability of an event occurring (for example, developing a disease, being injured) in an exposed group to the probability of the event occurring in a comparison, non-exposed group. Relative risk includes two important features:</p> 
+		       <ul>
+		        <li>a comparison of risk between two exposures puts risks in context, and;</li>
+			    <li>exposure is ensured by having proper denominators for each group representing the exposure</li>
+		       </ul>
+		   
+		     <p>Risk ratio is used frequently in the statistical analysis of binary outcomes where the outcome of interest has relatively low probability. It is thus often suited to clinical trial data, where it is used to compare the risk of developing a disease, in people not receiving the new medical treatment (or receiving a placebo) versus people who are receiving an established (standard of care) treatment.</p>
 			   			   
-			   <p>In a simple comparison between an experimental group and a control group:</p>
-                 <ul>
-                   <li>A relative risk of 1 means there is no difference in risk between the two groups.</li>
-                   <li>An RR of < 1 means the event is less likely to occur in the experimental group than in the control group.</li>
-                   <li>An RR of > 1 means the event is more likely to occur in the experimental group than in the control group.</li>
-                 </ul>
+		     <p>In a simple comparison between an experimental group and a control group:</p>
+               <ul>
+                 <li>A relative risk of 1 means there is no difference in risk between the two groups.</li>
+                 <li>An RR of < 1 means the event is less likely to occur in the experimental group than in the control group.</li>
+                 <li>An RR of > 1 means the event is more likely to occur in the experimental group than in the control group.</li>
+               </ul>
 		   ")))
   })
   #
@@ -4474,7 +4990,7 @@ function(input, output, session) {
          #
          #
          #
-         title = paste(input$country, ", ", input$city, " (", year.header(), "): ", steer.indicators()$varNames[steer.indicators()$varList == input$varList], sep = ""),
+         title = paste(input$city, ", ", input$country, " (", year.header(), "): ", steer.indicators()$varNames[steer.indicators()$varList == input$varList], sep = ""),
          #
          #
          #
@@ -4482,7 +4998,23 @@ function(input, output, session) {
          #
          #
          #
-         DT::dataTableOutput("current.sub.table")
+         if(!input$varList %in% c("waterSource", "water9", "water10", "water11b", "san1", "san8", "san20", "san22", "san24", "san35a", "san28a"))
+           {
+           #
+           #
+           #
+           DT::dataTableOutput("current.sub.table")
+           }
+         #
+         #
+         #
+         else
+           {
+           #
+           #
+           #
+           DT::dataTableOutput("current.sub.indicators")           
+           }
        )
      )         
   })
