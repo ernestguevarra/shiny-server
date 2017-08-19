@@ -28,6 +28,13 @@ library(gstat)
 library(shinyjs)
 library(epitools)
 #
+#
+#
+CairoFonts(regular = "FreeSans:style = Medium",
+           bold = "FreeSans:style = Bold",
+           italic = "FreeSans:style = Oblique",
+           bolditalic = "FreeSans:style = BoldOblique")
+#
 # Create Mapbox base layer objects for leaflet mapping
 #
 mapbox.satellite <- "https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
