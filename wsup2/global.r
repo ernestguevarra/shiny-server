@@ -7,6 +7,7 @@
 # Load libraries
 #
 library(shiny)
+library(Cairo)
 library(ggplot2)
 library(ggmap)
 library(stringr)

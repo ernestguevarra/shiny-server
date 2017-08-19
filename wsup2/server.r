@@ -5,6 +5,7 @@
 ################################################################################
 
 options(shiny.maxRequestSize = 70 * 1024 ^ 2)
+options(shiny.usecairo = FALSE)
 
 function(input, output, session) {
   #
