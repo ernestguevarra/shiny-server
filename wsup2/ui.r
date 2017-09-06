@@ -164,12 +164,6 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                            icon = icon(name = "eye", class = "fa-lg"))
             )
           )         
-          #
-          # Reset button for chart settings
-          #
-          #actionButton(inputId = "refresh.chart.settings",
-          #             label = "Reset",
-          #             icon = icon(name = "refresh", class = "fa-lg"))
         ),
         #
         # If map settings selected...
@@ -261,12 +255,6 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                         label = "Number of quantiles",
                         min = 3, max = 7, value = 5, step = 1)      
           )
-          #
-          # Add reset button for map settings
-          #
-          #actionButton(inputId = "refresh.map.settings",
-          #             label = "Reset",
-          #             icon = icon(name = "refresh", class = "fa-lg"))          
         )
       ), 
       #
@@ -302,11 +290,11 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
       #
       tags$div(id = "cite",
         "Survey design and analysis by ", 
-        tags$a(href = 'http://www.validinternational.org/', 
-        'Valid International'), 
+        tags$a(href = "http://www.validinternational.org/", target = "_blank",
+        "Valid International"), 
         "| Survey data collected by ", 
-        tags$a(href = 'http://www.wsup.com', 
-        'Water and Sanitation for the Urban Poor')
+        tags$a(href = "http://www.wsup.com", target = "_blank",
+        "Water and Sanitation for the Urban Poor")
       )
     )
   ),
@@ -385,6 +373,22 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                         label = "Level of precision ( c )",
                         min = 3, max = 10, value = 5),
             #
+            #
+            #
+            hr(), br(),
+            #
+            # Header for sample size calculation results
+            #
+            h4(textOutput("sample.header")),
+            #
+            # Add table of sample size calculation results
+            #
+            tableOutput("sample"),
+            #
+            #
+            #
+            br(),
+            #
             # Action button
             #
             actionButton(inputId = "calculate1",
@@ -397,19 +401,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             actionButton(inputId = "reset1",
                          label = "Reset",
                          class = "btn-primary",
-                         icon = icon(name = "refresh", class = "fa-lg")),
-          #
-          # Add whitespace
-          #
-          br(), hr(),
-          #
-          # Header for sample size calculation results
-          #
-          h4(textOutput("sample.header")),
-          #
-          # Add table of sample size calculation results
-          #
-          tableOutput("sample")
+                         icon = icon(name = "refresh", class = "fa-lg"))
           ),
           #
           # Show if survey design is cluster
@@ -478,6 +470,22 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                         label = "Number of samples per cluster planned for survey",
                         min = 0, max = 30, step = 1, value = 10), 
             #
+            # Add whitespace
+            #
+            hr(), br(),
+            #
+            # Header for DEFF and ICC calculation results
+            #
+            h4(textOutput("deff.header")),
+            #
+            # Add table of DEFF and ICC calculation results
+            #
+            tableOutput("deff"),
+            #
+            #
+            #
+            br(),         
+            #
             # Action button - Calculate
             #
             actionButton(inputId = "calculate2",
@@ -490,24 +498,12 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             actionButton(inputId = "reset2",
                          label = "Reset",
                          class = "btn-primary",
-                         icon = icon(name = "refresh", class = "fa-lg")),
-            #
-            # Add whitespace
-            #
-            br(), hr(),
-            #
-            # Header for DEFF and ICC calculation results
-            #
-            h4(textOutput("deff.header")),
-            #
-            # Add table of DEFF and ICC calculation results
-            #
-            tableOutput("deff")         
+                         icon = icon(name = "refresh", class = "fa-lg"))
           ),  
         #
         # Add whitespace
         #
-        br(),
+        #br(),
         #
         # Set width of sidebar panel
         #
@@ -875,8 +871,8 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
         #
         tags$div(id = "citeReverse",
           "Spatial sampling app designed and developed by ", 
-          tags$a(href = 'http://www.validinternational.org/', 
-          'Valid International')
+          tags$a(href = "http://www.validinternational.org/", target = "_blank",
+          "Valid International")
         )          
       )
     ),
@@ -1432,11 +1428,10 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                 #
                 #
                 #
-                radioButtons(inputId = "data.settings",
-                             label = "",
-                             inline = TRUE,
-                             choices = c("Results dataset" = "results",
-                                         "Indicators dataset" = "indicators")),
+                selectInput(inputId = "data.settings",
+                            label = "",
+                            choices = c("Results dataset" = "results",
+                                        "Indicators dataset" = "indicators")),
                 #
                 #
                 #
@@ -1670,18 +1665,6 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 				uiOutput("select.maputo.id"),
 				uiOutput("select.lusaka.id"),
 				#
-				#
-				#
-				#conditionalPanel(condition = "input['map.settings'] != '.'",
-				  #
-				  #
-				  #
-                #  actionButton(inputId = "use.map",
-                #               label = "Use Map",
-                #               class = "btn-primary",
-                #               icon = icon(name = "location-arrow", clas = "fa-lg"))
-                #),
-				#
 				# Add horizontal line
 				#
 				hr(),
@@ -1711,7 +1694,289 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             )             
           )
         )
-      )
+      ),
+      #
+      # Add tab for maps settings
+      #
+      tabPanel(title = "General",
+        #
+        # Add fluid page
+        #
+        fluidPage(
+          #
+          # Add fluid row
+          #
+          fluidRow(
+            #
+            # Add blank column to layout
+            #
+            column(width = 12, br())
+          ),
+          #
+          # Add fluid row
+          #
+          fluidRow(
+            #
+            # Create column for uploading maps
+            #
+            column(
+              #
+              # Create well panel
+              #
+              wellPanel(
+                #
+                #
+                #
+                id = "colours.panel",
+                #
+                # Include shinyjs for additional javascript functionalities
+                #
+                shinyjs::useShinyjs(),
+                #
+                # Header
+                #
+                h4("Colours"),
+                #
+                #
+                #
+                hr(),
+                #
+                #
+                #
+                colourInput(inputId = "chart.colour",
+                  label = "Select chart colour",
+                  value = wsupColour,
+                  allowTransparent = TRUE,
+                  transparentText = "None",
+                  returnName = TRUE),
+                #
+                #
+                #
+                colourInput(inputId = "error.colour",
+                  label = "Select error bar colour",
+                  value = errorColour,
+                  allowTransparent = TRUE,
+                  transparentText = "None",
+                  returnName = TRUE),
+		        #
+		        #
+                #
+                br(),
+		        #
+		        #
+                #
+                br(),
+                #
+                #
+                #
+                br(),
+		        #
+		        #
+                #
+                br(),
+                #
+                #
+                #
+                br(),
+		        #
+		        #
+                #
+                br(),
+                #
+                #
+                #
+                br(),
+                #
+                #
+                #
+                br(),
+                #
+                #
+                #
+                br(),                
+                #
+                #
+                #
+                br(),                
+                #
+                #
+                #
+                br(),                
+                #
+                #
+                #
+                hr(),
+                #
+                #
+                #
+                div(style="display: inline-block;vertical-align:middle;",                
+                  actionButton(inputId = "reset.colours",
+                    label = "Reset",
+                    class = "btn-primary",
+                    icon = icon(name = "refresh", class = "fa-lg")
+                  )
+                ),
+                #
+                #
+                #
+                div(style="display: inline-block;vertical-align:middle;",
+                  #
+                  #
+                  #
+                  actionButton(inputId = "set.colours.ok",
+                    label = "OK",
+                    class = "btn-success",
+                    icon = icon(name = "check", class = "fa-lg"))
+                ),
+                #
+                #
+                #
+                div(style="display: inline-block;vertical-align:middle;",                
+                  conditionalPanel(condition = "input['set.colours.ok']",
+                    #
+                    #
+                    #
+                    actionLink(inputId = "set.colours.info",
+                      label = "Default colours set",
+                      icon = icon(name = "exclamation-sign", lib = "glyphicon")
+                    )
+                  )
+                )
+              ),
+            #
+            #
+            #
+            width = 4
+            ),
+            #
+            # Create column for uploading maps
+            #
+            column(
+              #
+              # Create well panel
+              #
+              wellPanel(
+                #
+                #
+                #
+                id = "maps.panel",
+                #
+                # Include shinyjs for additional javascript functionalities
+                #
+                shinyjs::useShinyjs(),
+                #
+                # Header
+                #
+                h4("Maps"),
+                #
+                #
+                #
+                hr(),
+                #
+                #
+                #
+                selectInput(inputId = "map.page",
+                  label = "Select map settings for",
+                  choices = c("Home page" = "home",
+                              "Settings page" = "settings"),
+                  selected = "home"),
+                #
+                #
+                #
+                conditionalPanel(condition = "input['map.page'] == 'home'",
+                  #
+                  #
+                  #
+                  selectInput(inputId = "mapbox.home",
+                    label = "Select base map for home page",
+                    choices = c("Satellite" = "mapbox.satellite",
+                                "Street" = "mapbox.street",
+                                "Dark" = "mapbox.dark",
+                                "Light" = "mapbox.light",
+                                "Moonlight" = "mapbox.moonlight",
+                                "Northstar" = "mapbox.northstar",
+                                "Standard" = "mapbox.standard",
+                                "Decimal" = "mapbox.decimal",
+                                "Terminal" = "mapbox.terminal"),
+                    selected = "mapbox.standard")
+                ),
+                #
+                #
+                #
+                conditionalPanel(condition = "input['map.page'] == 'settings'",
+                  #
+                  #
+                  #
+                  selectInput(inputId = "mapbox.settings",
+                    label = "Select base map for settings page",
+                    choices = c("Satellite" = "mapbox.satellite",
+                                "Street" = "mapbox.street",
+                                "Dark" = "mapbox.dark",
+                                "Light" = "mapbox.light",
+                                "Moonlight" = "mapbox.moonlight",
+                                "Northstar" = "mapbox.northstar",
+                                "Standard" = "mapbox.standard",
+                                "Decimal" = "mapbox.decimal",
+                                "Terminal" = "mapbox.terminal"),
+                    selected = "mapbox.northstar")
+                ),
+                #
+                #
+                #  
+                leafletOutput("map.selected", height = 200),
+                #
+                #
+                #
+                br(),
+                #
+                #
+                #
+                hr(),
+                #
+                #
+                #
+                div(style="display: inline-block;vertical-align:middle;",                
+                  actionButton(inputId = "reset.maps",
+                    label = "Reset",
+                    class = "btn-primary",
+                    icon = icon(name = "refresh", class = "fa-lg")
+                  )
+                ),
+                #
+                #
+                #
+                div(style="display: inline-block;vertical-align:middle;",
+                  #
+                  #
+                  #
+                  actionButton(inputId = "set.maps.ok",
+                    label = "OK",
+                    class = "btn-success",
+                    icon = icon(name = "check", class = "fa-lg"))
+                ),
+                #
+                #
+                #
+                div(style="display: inline-block;vertical-align:middle;",                
+                  conditionalPanel(condition = "input['set.maps.ok']",
+                    #
+                    #
+                    #
+                    actionLink(inputId = "set.maps.info",
+                      label = "Base maps set",
+                      icon = icon(name = "exclamation-sign", lib = "glyphicon")
+                    )
+                  )
+                )                                  
+              ),
+            #
+            #
+            #
+            width = 4
+            )
+          )
+        )
+      )      
     )        
   )
 )

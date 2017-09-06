@@ -1,10 +1,6 @@
-input[type="number"] {
-  max-width: 80%;
-}
-
 div.outer {
   position: fixed;
-  top: 41px;
+  top: 50px;
   left: 0;
   right: 0;
   bottom: 0;

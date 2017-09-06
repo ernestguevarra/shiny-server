@@ -3,10 +3,14 @@
 # Server function
 #
 ################################################################################
-
+#
+# Set Shiny options
+#
 options(shiny.maxRequestSize = 70 * 1024 ^ 2)
 options(shiny.usecairo = FALSE)
-
+#
+#
+#
 function(input, output, session) {
   #
   # Read uploaded data
@@ -350,7 +354,7 @@ function(input, output, session) {
 	#
 	#
     #
-	if(input$varList %in% c("waterSource", "water10", "water11b", "san1", "san35a", "san28a"))
+	if(input$varList %in% c("waterSource", "water10", "water11b", "san1", "san3", "san35a", "san28a"))
 	  {
 	  #
 	  #
@@ -576,7 +580,7 @@ function(input, output, session) {
     #
     #
     if(input$varList != "." & 
-       !input$varList %in% c("waterSource", "water9", "water10", "water11b", "san1", "san8", "san20", "san22", "san24", "san35a", "san28a") & 
+       !input$varList %in% c("waterSource", "water9", "water10", "water11b", "san1", "san3", "san8", "san20", "san22", "san24", "san35a", "san28a") & 
        input$group.by != "." | input$facet.by != ".")
       {
       #
@@ -723,8 +727,8 @@ function(input, output, session) {
     barPlot <- geom_bar(stat = "identity", 
                         position = "dodge",
                         alpha = 0.6,
-                        fill = wsupColour,
-                        colour = wsupColour)
+                        fill = input$chart.colour,
+                        colour = input$chart.colour)
     #
     #
     #
@@ -732,7 +736,7 @@ function(input, output, session) {
                            width = 0.5, 
                            size = 0.75, 
                            fatten = 3, 
-                           colour = errorColour)
+                           colour = input$error.colour)
     #
     #
     #
@@ -783,14 +787,14 @@ function(input, output, session) {
                                 width = 0.25,
                                 size = 0.5,
                                 fatten = 5,
-                                colour = wsupColour)
+                                colour = input$chart.colour)
       #
       #
       #
       pointBar <- geom_pointrange(mapping = aes(ymin = LCL, ymax = UCL),
                                   size = 2,
                                   fatten = 5,
-                                  colour = wsupColour)
+                                  colour = input$chart.colour)
       #
       #
       #
@@ -1279,7 +1283,7 @@ function(input, output, session) {
   #
   #
   #
-  if(input$varList %in% c("waterSource", "water10", "water11b", "san1", "san35a", "san28a"))
+  if(input$varList %in% c("waterSource", "water10", "water11b", "san1", "san3", "san35a", "san28a"))
     {
     #
     #
@@ -1629,15 +1633,14 @@ function(input, output, session) {
                         selected = "interval")
   })
   #
-  # Map baselayer
+  # Map base layer
   #  
   output$map <- renderLeaflet({
     leaflet() %>%
       addTiles(
-        urlTemplate = mapbox.standard,
+        urlTemplate = get(input$mapbox.home),
         attribution = "Map by <a href = 'http://www.mapbox.com/'>Mapbox</a>"
       ) %>%
-      #addProviderTiles(providers$Esri.NatGeoWorldMap) %>%
       setView(lng = 20, lat = 20, zoom = 3)
   })
   #
@@ -1766,7 +1769,9 @@ function(input, output, session) {
   #
   # Clear maps when specific set of indicators are selected
   #
-  observeEvent(input$varList %in% c("waterSource", "water9", "water10", "water11b", "san1", "san8", "san20", "san22", "san24", "san35a", "san28a"), {
+  observeEvent(input$varList %in% c("waterSource", "water9", "water10", 
+                                    "water11b", "san1", "san3", "san8", "san20", 
+                                    "san22", "san24", "san35a", "san28a"), {
     #
     #
     #
@@ -1791,7 +1796,9 @@ function(input, output, session) {
     #
     #
     #
-    if(input$varList != "." & !input$varList %in% c("waterSource", "water9", "water10", "water11b", "san1", "san8", "san20", "san22", "san24", "san35a", "san28a"))
+    if(input$varList != "." & !input$varList %in% c("waterSource", "water9", "water10", 
+                                                    "water11b", "san1", "san3", "san8", "san20", 
+                                                    "san22", "san24", "san35a", "san28a"))
       {
 	  #
 	  # 
@@ -1852,7 +1859,6 @@ function(input, output, session) {
 	  #
 	  #
 	  #
-	  #if(input$varList %in% c("water12", "san13", "san14", "acceptScore", "overallSpend", "ppi", "pQuintile", "nMembers"))
 	  if(input$varList %in% steer.indicators()$varList[steer.indicators()$varFunction != "proportion"])
 	    {
 	    #
@@ -2149,9 +2155,31 @@ function(input, output, session) {
       #
       #
       output$deff <- renderTable({NULL})
+      #
+      #
+      #
+      shinyjs::reset("sample-size")
   })
-  
-  
+  #
+  #
+  #
+  observeEvent(input$reset.colours, {
+      #
+      #
+      #
+      shinyjs::reset("colours.panel")
+  })
+  #
+  #
+  #
+  observeEvent(input$reset.maps, {
+      #
+      #
+      #
+      shinyjs::reset("maps.panel")
+  })
+
+    
 ################################################################################
 #
 # Spatial sampling
@@ -2162,10 +2190,6 @@ function(input, output, session) {
   #
   output$map.sampling <- renderLeaflet({
     leaflet() %>%
-      #addTiles(
-      #  urlTemplate = mapbox.northstar,
-      #  attribution = "Maps by <a href='http://www.mapbox.com/'>Mapbox</a>"
-      #) %>%
       addProviderTiles(providers$Esri.NatGeoWorldMap) %>%      
       setView(lng = 20, lat = 20, zoom = 3)
   })
@@ -2626,9 +2650,6 @@ function(input, output, session) {
        #
        #
        #
-       #setView(lng = mean(coordinates(xGrid())[,1]), 
-       #        lat = mean(coordinates(xGrid())[,2]), 
-       #        zoom = 13) %>%
       fitBounds(lng1 = bbox(xGrid())[1,1], 
                 lat1 = bbox(xGrid())[2,1], 
                 lng2 = bbox(xGrid())[1,2], 
@@ -3095,7 +3116,9 @@ function(input, output, session) {
     updateSelectInput(session = session,
                       inputId = "country.corr",
                       label = "Subset data to selected city",
-                      choices = c("Select" = ".", "All" = "all", unique(as.character(temp()$country))))
+                      choices = c("Select" = ".", 
+                                  "All" = "all", 
+                                  unique(as.character(temp()$country))))
   })
   #
   #
@@ -3797,7 +3820,7 @@ function(input, output, session) {
   output$map.upload <- renderLeaflet({
     leaflet() %>%
       addTiles(
-        urlTemplate = mapbox.northstar,
+        urlTemplate = get(input$mapbox.settings),
         attribution = "Maps by <a href='http://www.mapbox.com/'>Mapbox</a>"
       ) %>%
       setView(lng = 20, lat = 20, zoom = 3)
@@ -3820,6 +3843,20 @@ function(input, output, session) {
   # Zoom in to selected city
   #
   observe({
+    #
+    #
+    #
+    leafletProxy("map.upload") %>%
+    #
+    #
+    #
+    fitBounds(lng1 = survey.upload()$east, lat1 = survey.upload()$north,
+  		      lng2 = survey.upload()$west, lat2 = survey.upload()$south)
+  })  
+  #
+  # Zoom in to selected city
+  #
+  observeEvent(input$mapbox.settings != "mapbox.northstar", {
     #
     #
     #
@@ -4132,6 +4169,13 @@ function(input, output, session) {
       #
       #
       #
+      addTiles(
+        urlTemplate = get(input$mapbox.settings),
+        attribution = "Maps by <a href = 'http://www.mapbox.com/'>Mapbox</a>"
+      ) %>%      
+      #
+      #
+      #
       fitBounds(lng1 = bbox(survey.upload.dhaka())[1,1], 
                 lat1 = bbox(survey.upload.dhaka())[2,1],
   	  	        lng2 = bbox(survey.upload.dhaka())[1,2], 
@@ -4166,6 +4210,13 @@ function(input, output, session) {
       #
       #
       clearShapes() %>%
+      #
+      #
+      #
+      addTiles(
+        urlTemplate = get(input$mapbox.settings),
+        attribution = "Maps by <a href = 'http://www.mapbox.com/'>Mapbox</a>"
+      ) %>%      
       #
       #
       #
@@ -4206,6 +4257,13 @@ function(input, output, session) {
       #
       #
       #
+      addTiles(
+        urlTemplate = get(input$mapbox.settings),
+        attribution = "Maps by <a href = 'http://www.mapbox.com/'>Mapbox</a>"
+      ) %>%      
+      #
+      #
+      #
       fitBounds(lng1 = bbox(survey.upload.nakuru())[1,1], 
                 lat1 = bbox(survey.upload.nakuru())[2,1],
   	  	        lng2 = bbox(survey.upload.nakuru())[1,2], 
@@ -4240,6 +4298,13 @@ function(input, output, session) {
       #
       #
       clearShapes() %>%
+      #
+      #
+      #
+      addTiles(
+        urlTemplate = get(input$mapbox.settings),
+        attribution = "Maps by <a href = 'http://www.mapbox.com/'>Mapbox</a>"
+      ) %>%      
       #
       #
       #
@@ -4280,6 +4345,13 @@ function(input, output, session) {
       #
       #
       #
+      addTiles(
+        urlTemplate = get(input$mapbox.settings),
+        attribution = "Maps by <a href = 'http://www.mapbox.com/'>Mapbox</a>"
+      ) %>%      
+      #
+      #
+      #
       fitBounds(lng1 = bbox(survey.upload.maputo())[1,1], 
                 lat1 = bbox(survey.upload.maputo())[2,1],
   	  	        lng2 = bbox(survey.upload.maputo())[1,2], 
@@ -4314,6 +4386,13 @@ function(input, output, session) {
       #
       #
       clearShapes() %>%
+      #
+      #
+      #
+      addTiles(
+        urlTemplate = get(input$mapbox.settings),
+        attribution = "Maps by <a href = 'http://www.mapbox.com/'>Mapbox</a>"
+      ) %>%      
       #
       #
       #
@@ -4459,6 +4538,18 @@ function(input, output, session) {
                   width = "100%")
       }
   })  
+  #
+  #
+  #
+  output$map.selected <- renderLeaflet({
+    leaflet(options = leafletOptions(zoomControl = FALSE, dragging = FALSE)) %>%
+      addTiles(
+        urlTemplate = ifelse(input$map.page == "home", get(input$mapbox.home), get(input$mapbox.settings)),
+        attribution = "Maps by <a href='http://www.mapbox.com/' target = '_blank'>Mapbox</a>"
+      ) %>%
+      setView(lng = 20, lat = 20, zoom = 2)
+  })
+
 
 ################################################################################
 #
@@ -4526,7 +4617,7 @@ function(input, output, session) {
 
 			<br/>
 			<p><strong>Access to sufficient and sustained drinking water</strong></p>
-			<p><code>Percentage of households with access to sufficient and sustained drinking water</code>: Sufficient is defined as <code>>50 litres per person per day</code>. Sustained is defined as drinking water available <code>24 hours per day</code>, <code>7 days a week</code> and <code>throughout the year</code>.</p>
+			<p><code>Percentage of households with access to sufficient and sustained drinking water</code>: Sufficient is defined as <code>50 litres per person per day</code>. Sustained is defined as drinking water available <code>24 hours per day</code>, <code>7 days a week</code> and <code>throughout the year</code>.</p>
 
 			<br/>                                                          
 			<p><strong>Access to safe and acceptable drinking water for all</strong></p>
@@ -4553,28 +4644,6 @@ function(input, output, session) {
 			<p><code>Limited:</code> Use of improved facilities shared between two or more households.</p>
 			<p><code>Unimproved:</code> Use of pit latrines wihtout a slab or platform, hanging latrines and bucket latrines</p>
 			<p><code>Open defecation:</code> Disposal of human faeces in fields, forest, bushes, open bodies of water, beaches or other open spaces or with solid waste.</p>
-
-			<br/>
-			<p><strong>Access to sufficient and sustained drinking water</strong></p>
-			<p><code>Percentage of households with access to sufficient and sustained drinking water</code>: Sufficient is defined as <code>>50 litres per person per day</code>. Sustained is defined as drinking water available <code>24 hours per day</code>, <code>7 days a week</code> and <code>throughout the year</code>.</p>
-			 
-			<br/> 
-			<p><strong>Access to safe and acceptable drinking water for all</strong></p>
-			<p><code>Percentage of households with good self-reported quality of drinking water:</code> No objective water quality assessment was performed during the survey. This indicator, as stated, is based on self-reported perception of water quality.</p>
-			<p><code>Percentage of households that are safely storing drinking water:</code> Safe storage is defined as drinking water stored in a clean container with lid only.</p>
-
-			<br/>
-			<p><strong>Access to affordable drinking water</strong></p>
-			<p><code>Mean expenditure in drinking water by wealth quintile:</code> mean expenditure in drinking water per household per year by wealth quintile. It should be noted that expenditure alone does not indicate affordable access to drinking water. The ideal and recommened indicator is yearly expenditure on water as a fraction of annual income i.e., \\(\\frac{\\mu_\\text{Household yearly expenditure on water}}{\\text{Household annual income}}\\). However, the surveys did not collect data on household income hence this recommended indicator cannot be calculated.</p>
-			 
-			<br/>
-			<p><strong>Physical access to drinking water</strong></p>                             
-			<p><code>Percentage of households with adequate physical access to drinking water:</code> Adequate physical access is defined as source of drinking water is located within <code>30 minutes</code> from home</p>
-			 
-			<br/>
-			<p><strong>Formal water service provision</strong></p>
-			<p><code>Percentage of households with formal drinking water service provision:</code> Formal drinking water service provision is defined as drinking water provided by a formal service according to interviewer asessment.</p>
-			<p><code>Percentage of households relying on formal provider for service supply maintenance:</code> Formal provider for service supply maintenance is defined as a household with a formal service provider contact person in case of problems with water supply.</p>
 
 			<br/>
 			<p><strong>Use of adequate hygienic materials for menstrual hygiene management</strong></p>
@@ -4775,7 +4844,7 @@ function(input, output, session) {
 			 
 		   <br/>
 		   <h4>Variance</h4>
-			 <p>This is a test for variance, using <code>Student's t-test</code>, <code>Wilcoxon Rank Summ and Signed Rank Tests</code>, or <code>Kruskal-Wallis Rank Sum Test</code>.</p>
+			 <p>This is a test for variance, using <code>Student's t-test</code>, <code>Wilcoxon Rank Sum and Signed Rank Tests</code>, or <code>Kruskal-Wallis Rank Sum Test</code>.</p>
 
 		   <br/>
 		   <h4>Odds ratio</h4>
@@ -4999,7 +5068,7 @@ function(input, output, session) {
          #
          #
          #
-         if(!input$varList %in% c("waterSource", "water9", "water10", "water11b", "san1", "san8", "san20", "san22", "san24", "san35a", "san28a"))
+         if(!input$varList %in% c("waterSource", "water9", "water10", "water11b", "san1", "san3", "san8", "san20", "san22", "san24", "san35a", "san28a"))
            {
            #
            #

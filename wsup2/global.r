@@ -27,6 +27,7 @@ library(purrr)
 library(gstat)
 library(shinyjs)
 library(epitools)
+library(colourpicker)
 #
 #
 #
@@ -45,6 +46,7 @@ mapbox.moonlight <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj3nban3000
 mapbox.northstar <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj4ke832y4sng2spe2ds4fs55/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
 mapbox.standard  <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj5di36jn0gxg2rphjn3yetpt/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
 mapbox.decimal   <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj5ms1akt3pbi2smtcewsex9m/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
+mapbox.terminal  <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj6g0tzbd30kc2sph2wyh666m/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
 #
 # Read steering file
 #
@@ -58,20 +60,6 @@ names(vars) <- steerIndicators$varShort
 sets <- as.character(unique(steerIndicators$varSet))
 names(sets) <- unique(steerIndicators$varTitle)
 
-varSet1  <- c(vars[steerIndicators$varSet == "demographics"])
-varSet2  <- c(vars[steerIndicators$varSet == "poverty"])
-varSet3  <- c(vars[steerIndicators$varSet == "waterSet1"])
-varSet4  <- c(vars[steerIndicators$varSet == "waterSet2"])
-varSet5  <- c(vars[steerIndicators$varSet == "waterSet3"])
-varSet6  <- c(vars[steerIndicators$varSet == "sanSet1"])
-varSet7  <- c(vars[steerIndicators$varSet == "sanSet2"])
-varSet8  <- c(vars[steerIndicators$varSet == "sanSet3"])
-varSet9  <- c(vars[steerIndicators$varSet == "sanSet4"])
-varSet10 <- c(vars[steerIndicators$varSet == "handSet"])
-varSet11 <- c(vars[steerIndicators$varSet == "hygieneSet"])
-varSet12 <- c(vars[steerIndicators$varSet == "overallSet1"])
-varSet13 <- c(vars[steerIndicators$varSet == "overallSet2"])
-
 
 ################################################################################
 #
@@ -79,12 +67,12 @@ varSet13 <- c(vars[steerIndicators$varSet == "overallSet2"])
 #
 ################################################################################
 #
-# Pre-load data
+# Pre-load data - estimate results
 #
 current.data <- read.csv(file = "surveyResultsAll.csv", header = TRUE, sep = ",")
 current.data <- current.data[order(current.data$indicatorCode), ]
 #
-#
+# Pre-load data - indicator data
 #
 current.indicators <- read.csv("indicatorsDataAll.csv", header = TRUE, sep = ",")
 
@@ -105,7 +93,7 @@ dhaka.map <- readOGR(dsn = "dhaka",
                      layer = "dhaka",
                      verbose = FALSE)
 #
-#
+# Convert CRS to longlat format
 #
 dhaka.map <- spTransform(dhaka.map, CRSobj = CRS(long.lat.crs))
 #
@@ -139,9 +127,10 @@ lusaka.map <- readOGR(dsn = "lusaka",
                       layer = "lusaka",
                       verbose = FALSE)
 #
-#
+# Convert CRS to longlat format
 #
 lusaka.map <- spTransform(lusaka.map, CRSobj = CRS(long.lat.crs))
+   
                                       
 ################################################################################
 #
@@ -150,11 +139,11 @@ lusaka.map <- spTransform(lusaka.map, CRSobj = CRS(long.lat.crs))
 ################################################################################
 
 legend.format <- function (prefix = "", suffix = "", between = " &ndash; ", digits = 3, 
-    big.mark = ",", transform = identity) 
-{
-    formatNum <- function(x) {
-        format(round(transform(x), digits), trim = TRUE, scientific = FALSE, 
-            big.mark = big.mark)
+                           big.mark = ",", transform = identity) 
+  {
+  formatNum <- function(x) 
+    {
+    format(round(transform(x), digits), trim = TRUE, scientific = FALSE, big.mark = big.mark)
     }
     function(type, ...) {
         switch(type, numeric = (function(cuts) {
@@ -171,7 +160,7 @@ legend.format <- function (prefix = "", suffix = "", between = " &ndash; ", digi
             paste0(prefix, as.character(transform(cuts)), suffix)
         })(...))
     }
-}
+  }
 
 
 ################################################################################
@@ -252,10 +241,6 @@ wsupColour <- "#3182bd"
 # Error bar colour
 #
 errorColour <- "#e41a1c" #"#99000d"
-#
-# Spinner colour
-#
-options(spinner.color = wsupColour)
 #
 # WASH ladder indicators colour schemes
 #
