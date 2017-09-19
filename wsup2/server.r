@@ -2105,7 +2105,7 @@ function(input, output, session) {
 	  #
 	  # Calculate sample size
 	  #
-	  sample.size2 <- design.effect * (as.numeric(input$z.ci) ^ 2) * (((input$proportion / 100) * (1 - (input$proportion / 100))) / ((input$precision / 100) ^ 2))
+	  sample.size2 <- design.effect * (as.numeric(input$z.ci.cluster) ^ 2) * (((input$proportion.cluster / 100) * (1 - (input$proportion.cluster / 100))) / ((input$precision.cluster / 100) ^ 2))
 	  #    
 	  # Compose data frame
 	  #
@@ -2116,9 +2116,9 @@ function(input, output, session) {
 												   "ICC",
 												   "Design effect of planned survey",
 												   "Sample size"),
-									Value = as.character(c(paste(input$z.ci, " (", z.value, ")", sep = "") , 
-										 				   paste(input$proportion, "%", sep = ""),
-														   paste(input$precision, "%", sep = ""),
+									Value = as.character(c(paste(input$z.ci.cluster, " (", z.value, ")", sep = "") , 
+										 				   paste(input$proportion.cluster, "%", sep = ""),
+														   paste(input$precision.cluster, "%", sep = ""),
 									                       paste(input$cluster.size, "samples per cluster", sep = " "),
 									                       ifelse(is.null(input$file2), "No data", round(icc, digits = 4)), 
 								                           ifelse(is.null(input$file2), paste(design.effect, "(assumed)", sep = " "), paste(round(design.effect, digits = 4), "(based on data)", sep = " ")),

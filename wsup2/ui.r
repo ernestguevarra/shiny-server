@@ -418,7 +418,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             #
             # Select z-value for CI
             #
-            selectInput(inputId = "z.ci",
+            selectInput(inputId = "z.ci.cluster",
                         label = "Select z-value ( z )",
                         choices = list("96% CI ( z-value: 2.05 )" = "2.05",
                                        "95% CI ( z-value: 1.96 )" = "1.96",
@@ -428,13 +428,13 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             #
             # Select expected proportion/prevalence
             #
-            sliderInput(inputId = "proportion",
+            sliderInput(inputId = "proportion.cluster",
                         label = "Proportion/prevalence ( p )",
                         min = 0, max = 100, value = 50, step = 1),
             #
             # Select level of precision
             #
-            sliderInput(inputId = "precision",
+            sliderInput(inputId = "precision.cluster",
                         label = "Level of precision ( c )",
                         min = 3, max = 10, value = 5),
             #
