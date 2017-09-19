@@ -4,7 +4,7 @@ jmpWater1,proportion,oneMean,Households using surface water as source of drinkin
 jmpWater2,proportion,oneMean,Households using unimproved source of drinking water,Unimproved,waterSet1,Types of Water Sources,1,1,1,1,1,1
 jmpWater3,proportion,oneMean,Households using an improved source of drinking water that takes more than 30 minutes to collect from,Limited,waterSet1,Types of Water Sources,1,1,1,1,1,1
 jmpWater4,proportion,oneMean,Households using an improved source of drinking water that takes 30 minutes or less to collect from,Basic,waterSet1,Types of Water Sources,1,1,1,1,1,1
-jmpWater5,proportion,oneMean,Households using an improved source of drinking water that is located on premises and is available when needed and free of faecal and priority contamination,Safely-managed,waterSet1,Types of Water Sources,1,1,1,1,1,1
+jmpWater5,proportion,oneMean,Households using an improved source of drinking water that is located on premises and is available when needed,Basic Plus,waterSet1,Types of Water Sources,1,1,1,1,1,1
 accessWater,proportion,oneMean,Households with access to sufficient and sustained drinking water,Sufficient and sustained access,waterSet2,Access to Water Sources,1,1,1,1,1,1
 water14a,proportion,oneMean,Households with good self-perceived quality of drinking water,Self-perceived quality of water,waterSet3,Other Water Indicators,1,1,1,1,1,1
 water18,proportion,oneMean,Households safely storing drinking water,Safe water storage,waterSet3,Other Water Indicators,1,1,1,1,1,1
