@@ -188,6 +188,15 @@
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","Survey Area 7","Slum",0.0152,0,0.0606
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","Survey Area 8","Slum",0.069,0,0.1897
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","Survey Area 9","Slum",0,0,0.027
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 1","Slum",0.0441,0,0.1176
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 2","Slum",0.0188,0,0.0438
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 3","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 4","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 5","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 6","Slum",0.0303,0,0.0909
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 7","Slum",0.0152,0,0.0606
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 8","Slum",0,0,0.069
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 9","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Survey Area 1","Slum",0.0441,0,0.1176
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Survey Area 2","Slum",0.25,0.1688,0.3566
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Survey Area 3","Slum",0.0469,0,0.125
@@ -197,15 +206,24 @@
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Survey Area 7","Slum",0,0,0.0606
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Survey Area 8","Slum",0.2069,0.069,0.3448
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Survey Area 9","Slum",0.1351,0.027,0.2432
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 1","Slum",0.1176,0.0294,0.2059
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 2","Slum",0.0312,0.0062,0.0688
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 3","Slum",0,0,0.0312
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 4","Slum",0.1212,0.0455,0.2273
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 5","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 6","Slum",0.0152,0,0.0758
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 7","Slum",0.0152,0,0.0758
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 8","Slum",0,0,0.069
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 9","Slum",0,0,0.027
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 1","Slum",0.4265,0.264,0.5882
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 2","Slum",0.3625,0.2684,0.4625
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 3","Slum",0.2188,0.0938,0.3445
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 4","Slum",0.5152,0.3333,0.6818
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 5","Slum",0.6667,0.4848,0.8182
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 6","Slum",0.6818,0.5,0.8182
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 7","Slum",0.4545,0.3023,0.6212
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 8","Slum",0.7931,0.6207,0.931
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 9","Slum",0.4324,0.2966,0.5946
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 1","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 2","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 3","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 4","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 5","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 6","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 7","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 8","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 9","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using improved source of drinking water that takes 30 minutes or less to collect from","jmpWater4","Survey Area 1","Slum",0.9559,0.8676,1
 "Bangladesh","BGD","Mar",2017,"Households using improved source of drinking water that takes 30 minutes or less to collect from","jmpWater4","Survey Area 2","Slum",0.7188,0.6188,0.8062
 "Bangladesh","BGD","Mar",2017,"Households using improved source of drinking water that takes 30 minutes or less to collect from","jmpWater4","Survey Area 3","Slum",0.9219,0.8281,1
@@ -224,33 +242,15 @@
 "Bangladesh","BGD","Mar",2017,"Households using improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","Survey Area 7","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","Survey Area 8","Slum",0,0,0.069
 "Bangladesh","BGD","Mar",2017,"Households using improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","Survey Area 9","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 1","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 2","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 3","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 4","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 5","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 6","Slum",0.0303,0,0.0909
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 7","Slum",0.0303,0,0.1212
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 8","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 9","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 1","Slum",0.0735,0.0147,0.1765
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 2","Slum",0.0125,0,0.0438
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 3","Slum",0,0,0.0469
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 4","Slum",0.1212,0.0455,0.2273
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 5","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 6","Slum",0.0303,0,0.0909
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 7","Slum",0.0152,0,0.0765
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 8","Slum",0,0,0.069
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 9","Slum",0,0,0.027
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 1","Slum",0.7647,0.6324,0.8971
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 2","Slum",0.9062,0.8438,0.9625
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 3","Slum",0.8281,0.6719,0.9375
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 4","Slum",0.7576,0.6061,0.8788
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 5","Slum",1,1,1
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 6","Slum",0.8636,0.7576,0.9697
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 7","Slum",0.8939,0.7727,0.9697
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 8","Slum",1,0.931,1
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 9","Slum",0.9865,0.9324,1
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 1","Slum",0.4118,0.2647,0.5735
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 2","Slum",0.5562,0.4622,0.6691
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 3","Slum",0.5938,0.4375,0.75
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 4","Slum",0.3636,0.197,0.5303
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 5","Slum",0.3636,0.2106,0.5152
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 6","Slum",0.2273,0.0909,0.3636
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 7","Slum",0.4848,0.303,0.6364
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 8","Slum",0.1724,0.069,0.3448
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 9","Slum",0.5405,0.3784,0.7027
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Survey Area 1","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Survey Area 2","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Survey Area 3","Slum",0,0,0
@@ -260,15 +260,15 @@
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Survey Area 7","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Survey Area 8","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Survey Area 9","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 1","Slum",0.0882,0.0147,0.1919
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 2","Slum",0.0562,0.0125,0.1188
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 3","Slum",0.1406,0.0312,0.2812
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 4","Slum",0.1212,0.0447,0.2273
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 1","Slum",0.1029,0.0294,0.2206
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 2","Slum",0.0562,0.0125,0.1125
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 3","Slum",0.1562,0.0625,0.3125
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 4","Slum",0.1212,0.0303,0.2129
 "Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 5","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 6","Slum",0.0303,0,0.1061
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 7","Slum",0,0,0.0606
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 6","Slum",0.0606,0,0.1667
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 7","Slum",0.0455,0,0.1212
 "Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 8","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 9","Slum",0,0,0.0541
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 9","Slum",0.0135,0,0.0547
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","Survey Area 1","Slum",0,0,0.0441
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","Survey Area 2","Slum",0,0,0.025
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","Survey Area 3","Slum",0.0312,0,0.0938
@@ -807,24 +807,24 @@
 "Bangladesh","BGD","Mar",2017,"Households that have invested in improving water source","water13a","South City Corporation","Slum",0.2324,0.1913,0.2804
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","North City Corporation","Slum",0.3012,0.2572,0.347
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","South City Corporation","Slum",0.0201,0.0084,0.0369
-"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","North City Corporation","Slum",0.0249,0.0117,0.0423
-"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","South City Corporation","Slum",0.0067,0,0.0184
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","North City Corporation","Slum",0.0159,0.0058,0.0289
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","South City Corporation","Slum",0.005,0,0.015
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed and free of faecal and priority contamination","jmpWater5","North City Corporation","Slum",0.2172,0.1778,0.2621
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed and free of faecal and priority contamination","jmpWater5","South City Corporation","Slum",0.2781,0.2244,0.3278
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes 30 minutes or less to collect from","jmpWater4","North City Corporation","Slum",0.7566,0.7117,0.8015
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes 30 minutes or less to collect from","jmpWater4","South City Corporation","Slum",0.6879,0.6347,0.7372
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","North City Corporation","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","South City Corporation","Slum",0.0067,0,0.0151
-"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","North City Corporation","Slum",0.907,0.8803,0.9374
-"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","South City Corporation","Slum",0.9682,0.9479,0.9849
-"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","North City Corporation","Slum",0,0,0.0044
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","North City Corporation","Slum",0.3772,0.3295,0.4278
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","South City Corporation","Slum",0.5617,0.5115,0.6117
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","North City Corporation","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","South City Corporation","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","North City Corporation","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","South City Corporation","Slum",0.0067,0,0.0168
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","North City Corporation","Slum",0.5318,0.4826,0.5824
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","South City Corporation","Slum",0.4083,0.3549,0.4734
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","North City Corporation","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","South City Corporation","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","North City Corporation","Slum",0.0642,0.041,0.0893
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","South City Corporation","Slum",0.0184,0.0066,0.0351
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","North City Corporation","Slum",0.0694,0.0462,0.0983
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","South City Corporation","Slum",0.0183,0.005,0.0333
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","North City Corporation","Slum",0.022,0.0088,0.0382
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","South City Corporation","Slum",0.0285,0.0134,0.047
 "Bangladesh","BGD","Mar",2017,"Households whose members are all able to get to sanitation facility","san21","North City Corporation","Slum",0.8703,0.8413,0.8983
@@ -1027,6 +1027,11 @@
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","Wealth Quintile 3","Slum",0.2303,0.1647,0.3077
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","Wealth Quintile 4","Slum",0.1053,0.0351,0.2107
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","Wealth Quintile 5","Slum",0.125,0,0.2667
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Wealth Quintile 1","Slum",0.0255,0.0044,0.0507
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Wealth Quintile 2","Slum",0,0,0.0049
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Wealth Quintile 3","Slum",0.0059,0,0.0186
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Wealth Quintile 4","Slum",0.0169,0,0.0679
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Wealth Quintile 5","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Wealth Quintile 1","Slum",0.2771,0.2106,0.3462
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Wealth Quintile 2","Slum",0.1505,0.0909,0.2156
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Wealth Quintile 3","Slum",0.3293,0.2452,0.4153
@@ -1042,35 +1047,30 @@
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","Wealth Quintile 3","Slum",0,0,0.0123
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","Wealth Quintile 4","Slum",0.0167,0,0.068
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","Wealth Quintile 5","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Wealth Quintile 1","Slum",0.0258,0.0044,0.0559
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Wealth Quintile 2","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Wealth Quintile 3","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Wealth Quintile 4","Slum",0,0,0.0334
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Wealth Quintile 5","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 1","Slum",0,0,0.0134
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 2","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 3","Slum",0,0,0.0181
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 4","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 5","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Wealth Quintile 1","Slum",0,0,0.0085
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Wealth Quintile 2","Slum",0.032,0.0096,0.0562
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Wealth Quintile 3","Slum",0.0424,0.0125,0.0813
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Wealth Quintile 4","Slum",0.0164,0,0.0492
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Wealth Quintile 5","Slum",0,0,0.0667
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Wealth Quintile 1","Slum",0.9025,0.8512,0.9455
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Wealth Quintile 2","Slum",0.9091,0.8673,0.9503
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Wealth Quintile 3","Slum",0.9191,0.8623,0.9573
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Wealth Quintile 4","Slum",0.9286,0.8306,1
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Wealth Quintile 5","Slum",1,0.9333,1
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Wealth Quintile 1","Slum",0.3875,0.314,0.461
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Wealth Quintile 2","Slum",0.345,0.2796,0.4211
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Wealth Quintile 3","Slum",0.5513,0.46,0.6349
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Wealth Quintile 4","Slum",0.807,0.6842,0.9124
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Wealth Quintile 5","Slum",0.4667,0.2667,0.7333
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Wealth Quintile 1","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Wealth Quintile 2","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Wealth Quintile 3","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Wealth Quintile 4","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Wealth Quintile 5","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 1","Slum",0.525,0.452,0.6
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 2","Slum",0.5935,0.5094,0.6635
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 3","Slum",0.4125,0.3232,0.4941
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 4","Slum",0.1071,0.0333,0.2167
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 5","Slum",0.5333,0.2658,0.7333
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Wealth Quintile 1","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Wealth Quintile 2","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Wealth Quintile 3","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Wealth Quintile 4","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Wealth Quintile 5","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 1","Slum",0.0638,0.0308,0.1039
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 2","Slum",0.0566,0.0271,0.0905
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 3","Slum",0.0241,0,0.0543
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 4","Slum",0.0645,0,0.15
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 1","Slum",0.067,0.0335,0.1017
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 2","Slum",0.0605,0.0293,0.0987
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 3","Slum",0.0307,0.006,0.0692
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 4","Slum",0.0656,0,0.1564
 "Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 5","Slum",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","Wealth Quintile 1","Slum",0.0086,0,0.03
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","Wealth Quintile 2","Slum",0.029,0.0098,0.0545
@@ -1359,15 +1359,15 @@
 "Bangladesh","BGD","Mar",2017,"Households satisfied with water pressure","water16a","Overall","Slum",0.656,0.6087,0.702
 "Bangladesh","BGD","Mar",2017,"Households that have invested in improving water source","water13a","Overall","Slum",0.1775,0.1405,0.2158
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","Overall","Slum",0.234,0.1962,0.2747
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Overall","Slum",0.0131,0.0044,0.0247
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Overall","Slum",0.2384,0.1947,0.2777
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes 30 minutes or less to collect from","jmpWater4","Overall","Slum",0.718,0.6744,0.7544
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","Overall","Slum",0.0116,0.0029,0.0233
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Overall","Slum",0.0116,0.0015,0.0233
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Overall","Slum",0,0,0.0058
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Overall","Slum",0.0189,0.0087,0.0363
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Overall","Slum",0.9113,0.8823,0.9419
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Overall","Slum",0.4302,0.3808,0.4812
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Overall","Slum",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Overall","Slum",0.5015,0.4476,0.5538
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Overall","Slum",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Overall","Slum",0.0538,0.0363,0.0786
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Overall","Slum",0.0567,0.0334,0.0814
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","Overall","Slum",0.0233,0.0087,0.0392
 "Bangladesh","BGD","Mar",2017,"Households whose members are all able to get to sanitation facility","san21","Overall","Slum",0.8721,0.8387,0.9026
 "Bangladesh","BGD","Mar",2017,"Households whose members are all usually able to use the sanitation facility","san23","Overall","Slum",0.907,0.8791,0.933
@@ -1610,6 +1610,15 @@
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","Survey Area 7","Citywide",0.0833,0.0303,0.1439
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","Survey Area 8","Citywide",0.1746,0.0952,0.2702
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","Survey Area 9","Citywide",0.0942,0.0435,0.1812
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 1","Citywide",0.4179,0.2985,0.5224
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 2","Citywide",0.0929,0.0442,0.1504
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 3","Citywide",0.3692,0.2462,0.4846
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 4","Citywide",0.5606,0.439,0.6519
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 5","Citywide",0.5076,0.3939,0.6212
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 6","Citywide",0.3939,0.2875,0.5076
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 7","Citywide",0.4318,0.3333,0.5455
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 8","Citywide",0.6825,0.5714,0.7702
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Survey Area 9","Citywide",0.2826,0.1884,0.3841
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Survey Area 1","Citywide",0.0896,0.0299,0.1571
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Survey Area 2","Citywide",0.2212,0.1504,0.292
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Survey Area 3","Citywide",0.0385,0,0.0923
@@ -1619,15 +1628,24 @@
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Survey Area 7","Citywide",0.1212,0.053,0.197
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Survey Area 8","Citywide",0.1429,0.0714,0.2222
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Survey Area 9","Citywide",0.1449,0.0652,0.2391
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 1","Citywide",0.5224,0.4179,0.6347
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 2","Citywide",0.1106,0.0664,0.1681
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 3","Citywide",0.4308,0.3304,0.5462
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 4","Citywide",0.6136,0.5076,0.7273
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 5","Citywide",0.5985,0.4845,0.7125
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 6","Citywide",0.6515,0.5303,0.7727
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 7","Citywide",0.5985,0.492,0.697
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 8","Citywide",0.8651,0.7857,0.9365
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Survey Area 9","Citywide",0.3406,0.2246,0.442
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 1","Citywide",0.209,0.1194,0.2985
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 2","Citywide",0.354,0.2697,0.4425
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 3","Citywide",0.3,0.2073,0.3923
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 4","Citywide",0.3106,0.2045,0.4091
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 5","Citywide",0.25,0.1587,0.372
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 6","Citywide",0.25,0.1515,0.3485
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 7","Citywide",0.3182,0.2121,0.4246
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 8","Citywide",0.119,0.0635,0.1984
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Survey Area 9","Citywide",0.4058,0.304,0.5149
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 1","Citywide",0.0896,0.0373,0.1493
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 2","Citywide",0.0044,0,0.0177
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 3","Citywide",0.0615,0.015,0.1235
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 4","Citywide",0.0379,0,0.0837
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 5","Citywide",0.0152,0,0.0455
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 6","Citywide",0.0303,0,0.0758
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 7","Citywide",0.0227,0,0.0606
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 8","Citywide",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Survey Area 9","Citywide",0.0072,0,0.0366
 "Bangladesh","BGD","Mar",2017,"Households using improved source of drinking water that takes 30 minutes or less to collect from","jmpWater4","Survey Area 1","Citywide",0.7687,0.6642,0.8582
 "Bangladesh","BGD","Mar",2017,"Households using improved source of drinking water that takes 30 minutes or less to collect from","jmpWater4","Survey Area 2","Citywide",0.7212,0.6416,0.7876
 "Bangladesh","BGD","Mar",2017,"Households using improved source of drinking water that takes 30 minutes or less to collect from","jmpWater4","Survey Area 3","Citywide",0.8846,0.815,0.9538
@@ -1646,33 +1664,15 @@
 "Bangladesh","BGD","Mar",2017,"Households using improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","Survey Area 7","Citywide",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","Survey Area 8","Citywide",0,0,0.0159
 "Bangladesh","BGD","Mar",2017,"Households using improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","Survey Area 9","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 1","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 2","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 3","Citywide",0,0,0.0154
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 4","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 5","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 6","Citywide",0,0,0.0227
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 7","Citywide",0,0,0.0152
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 8","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 9","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 1","Citywide",0.5075,0.403,0.6194
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 2","Citywide",0.0885,0.0442,0.1374
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 3","Citywide",0.4231,0.3077,0.5615
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 4","Citywide",0.6212,0.5152,0.7197
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 5","Citywide",0.6061,0.4848,0.7121
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 6","Citywide",0.6364,0.5148,0.7424
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 7","Citywide",0.5985,0.4924,0.6894
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 8","Citywide",0.8651,0.7778,0.9365
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Survey Area 9","Citywide",0.3406,0.2533,0.4569
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 1","Citywide",0.3507,0.2463,0.4627
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 2","Citywide",0.8186,0.7564,0.8805
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 3","Citywide",0.4538,0.3462,0.5615
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 4","Citywide",0.3561,0.2496,0.4621
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 5","Citywide",0.3939,0.2727,0.5152
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 6","Citywide",0.2803,0.1818,0.3867
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 7","Citywide",0.3788,0.2727,0.4773
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 8","Citywide",0.1349,0.0556,0.2222
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Survey Area 9","Citywide",0.6522,0.5435,0.7464
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 1","Citywide",0.1567,0.0817,0.2392
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 2","Citywide",0.4779,0.3894,0.5708
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 3","Citywide",0.1692,0.0923,0.2696
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 4","Citywide",0.0758,0.0303,0.1443
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 5","Citywide",0.2121,0.1364,0.3182
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 6","Citywide",0.2879,0.1894,0.4019
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 7","Citywide",0.197,0.1061,0.303
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 8","Citywide",0.1984,0.1111,0.3016
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Survey Area 9","Citywide",0.2826,0.1884,0.3917
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Survey Area 1","Citywide",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Survey Area 2","Citywide",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Survey Area 3","Citywide",0,0,0
@@ -1682,13 +1682,13 @@
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Survey Area 7","Citywide",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Survey Area 8","Citywide",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Survey Area 9","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 1","Citywide",0.1119,0.0444,0.194
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 2","Citywide",0.0708,0.031,0.1195
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 3","Citywide",0.0923,0.0308,0.1696
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 4","Citywide",0.0227,0,0.053
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 1","Citywide",0.1194,0.0522,0.194
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 2","Citywide",0.0664,0.031,0.1195
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 3","Citywide",0.1,0.0381,0.1927
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 4","Citywide",0.0227,0,0.0606
 "Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 5","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 6","Citywide",0.0227,0,0.0682
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 7","Citywide",0.0227,0,0.0606
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 6","Citywide",0.053,0.0076,0.0985
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 7","Citywide",0.0227,0,0.0682
 "Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 8","Citywide",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Survey Area 9","Citywide",0.0145,0,0.0435
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","Survey Area 1","Citywide",0.0896,0.0373,0.1567
@@ -2229,24 +2229,24 @@
 "Bangladesh","BGD","Mar",2017,"Households that have invested in improving water source","water13a","South City Corporation","Citywide",0.245,0.2164,0.2745
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","North City Corporation","Citywide",0.2498,0.2158,0.2792
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","South City Corporation","Citywide",0.1527,0.1279,0.1805
-"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","North City Corporation","Citywide",0.286,0.2488,0.3206
-"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","South City Corporation","Citywide",0.6733,0.6398,0.7075
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","North City Corporation","Citywide",0.2558,0.2235,0.2889
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","South City Corporation","Citywide",0.5206,0.4833,0.5516
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed and free of faecal and priority contamination","jmpWater5","North City Corporation","Citywide",0.2115,0.1813,0.2403
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed and free of faecal and priority contamination","jmpWater5","South City Corporation","Citywide",0.2766,0.2442,0.3127
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes 30 minutes or less to collect from","jmpWater4","North City Corporation","Citywide",0.751,0.7212,0.7841
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes 30 minutes or less to collect from","jmpWater4","South City Corporation","Citywide",0.7027,0.6621,0.736
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","North City Corporation","Citywide",0,0,0.0017
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","South City Corporation","Citywide",8e-04,0,0.004
-"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","North City Corporation","Citywide",0.6453,0.6096,0.6853
-"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","South City Corporation","Citywide",0.3084,0.2749,0.3421
-"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","North City Corporation","Citywide",0.0058,8e-04,0.0125
-"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","South City Corporation","Citywide",0.0032,0,0.0087
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","North City Corporation","Citywide",0,0,0.0017
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","South City Corporation","Citywide",8e-04,0,0.004
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","North City Corporation","Citywide",0.3311,0.2947,0.3701
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","South City Corporation","Citywide",0.2278,0.1929,0.258
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","North City Corporation","Citywide",0.0215,0.0124,0.0323
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","South City Corporation","Citywide",0.0143,0.0071,0.0238
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","North City Corporation","Citywide",0.3237,0.2922,0.3577
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","South City Corporation","Citywide",0.2238,0.196,0.2556
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","North City Corporation","Citywide",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","South City Corporation","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","North City Corporation","Citywide",0.0618,0.045,0.0793
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","South City Corporation","Citywide",0.0119,0.0063,0.0207
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","North City Corporation","Citywide",0.0654,0.0472,0.0828
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","South City Corporation","Citywide",0.0127,0.0056,0.0222
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","North City Corporation","Citywide",0.0375,0.0241,0.0525
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","South City Corporation","Citywide",0.0183,0.0088,0.0302
 "Bangladesh","BGD","Mar",2017,"Households whose members are all able to get to sanitation facility","san21","North City Corporation","Citywide",0.8985,0.877,0.9168
@@ -2449,6 +2449,11 @@
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","Wealth Quintile 3","Citywide",0.2252,0.1755,0.275
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","Wealth Quintile 4","Citywide",0.1526,0.1057,0.2043
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","Wealth Quintile 5","Citywide",0.209,0.1578,0.2716
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Wealth Quintile 1","Citywide",0.027,0.0075,0.0571
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Wealth Quintile 2","Citywide",0.041,0.0195,0.0691
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Wealth Quintile 3","Citywide",0.2902,0.2277,0.3597
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Wealth Quintile 4","Citywide",0.5437,0.4781,0.6089
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Wealth Quintile 5","Citywide",0.75,0.6887,0.8075
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Wealth Quintile 1","Citywide",0.2566,0.1954,0.3174
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Wealth Quintile 2","Citywide",0.1734,0.1216,0.2271
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Wealth Quintile 3","Citywide",0.2745,0.217,0.3398
@@ -2464,36 +2469,31 @@
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","Wealth Quintile 3","Citywide",0,0,0.004
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","Wealth Quintile 4","Citywide",0,0,0.0118
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","Wealth Quintile 5","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Wealth Quintile 1","Citywide",0.0255,0.0072,0.0515
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Wealth Quintile 2","Citywide",0.0039,0,0.0123
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Wealth Quintile 3","Citywide",0,0,0.0081
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Wealth Quintile 4","Citywide",0.012,0,0.0334
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Wealth Quintile 5","Citywide",0,0,0.0123
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 1","Citywide",0,0,0.0143
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 2","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 3","Citywide",0,0,0.008
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 4","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 5","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Wealth Quintile 1","Citywide",0.0038,0,0.0154
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Wealth Quintile 2","Citywide",0.0795,0.046,0.1129
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Wealth Quintile 3","Citywide",0.3822,0.3133,0.4413
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Wealth Quintile 4","Citywide",0.7302,0.6666,0.7977
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Wealth Quintile 5","Citywide",0.876,0.8291,0.918
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Wealth Quintile 1","Citywide",0.8801,0.8253,0.9254
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Wealth Quintile 2","Citywide",0.8508,0.8042,0.8948
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Wealth Quintile 3","Citywide",0.5889,0.5292,0.6607
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Wealth Quintile 4","Citywide",0.241,0.1885,0.3096
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Wealth Quintile 5","Citywide",0.112,0.0714,0.1607
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Wealth Quintile 1","Citywide",0.4139,0.353,0.485
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Wealth Quintile 2","Citywide",0.3992,0.3318,0.4616
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Wealth Quintile 3","Citywide",0.4419,0.3678,0.5115
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Wealth Quintile 4","Citywide",0.219,0.1615,0.2812
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Wealth Quintile 5","Citywide",0.0816,0.045,0.1221
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Wealth Quintile 1","Citywide",0,0,0
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Wealth Quintile 2","Citywide",0.0081,0,0.0202
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Wealth Quintile 3","Citywide",0.0038,0,0.0116
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Wealth Quintile 4","Citywide",0.0349,0.0125,0.0603
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Wealth Quintile 5","Citywide",0.0282,0.0081,0.0556
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 1","Citywide",0.4667,0.3926,0.5322
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 2","Citywide",0.4819,0.4138,0.548
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 3","Citywide",0.2368,0.1744,0.2951
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 4","Citywide",0.1847,0.137,0.245
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Wealth Quintile 5","Citywide",0.1286,0.0847,0.1769
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Wealth Quintile 1","Citywide",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Wealth Quintile 2","Citywide",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Wealth Quintile 3","Citywide",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Wealth Quintile 4","Citywide",0,0,0
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Wealth Quintile 5","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 1","Citywide",0.0858,0.0494,0.1298
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 2","Citywide",0.062,0.0328,0.0939
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 3","Citywide",0.0233,0.0077,0.0467
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 4","Citywide",0.0158,0,0.037
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 5","Citywide",0.0079,0,0.0243
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 1","Citywide",0.0881,0.0499,0.1354
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 2","Citywide",0.0675,0.0364,0.0984
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 3","Citywide",0.0267,0.0078,0.0491
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 4","Citywide",0.0124,0,0.0366
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Wealth Quintile 5","Citywide",0.0081,0,0.0251
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","Wealth Quintile 1","Citywide",0.0153,0,0.0409
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","Wealth Quintile 2","Citywide",0.0455,0.0204,0.0744
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","Wealth Quintile 3","Citywide",0.0241,0.0078,0.048
@@ -2781,15 +2781,15 @@
 "Bangladesh","BGD","Mar",2017,"Households satisfied with water pressure","water16a","Overall","Citywide",0.7809,0.7519,0.8145
 "Bangladesh","BGD","Mar",2017,"Households that have invested in improving water source","water13a","Overall","Citywide",0.2113,0.1813,0.2378
 "Bangladesh","BGD","Mar",2017,"Households that made an initial investment in sanitaiton facility","san16","Overall","Citywide",0.1989,0.1724,0.2309
+"Bangladesh","BGD","Mar",2017,"Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site","jmpSan5","Overall","Citywide",0.3978,0.3603,0.433
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that is located on premises and is available when needed","jmpWater5","Overall","Citywide",0.252,0.2184,0.2871
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes 30 minutes or less to collect from","jmpWater4","Overall","Citywide",0.7036,0.6707,0.7379
 "Bangladesh","BGD","Mar",2017,"Households using an improved source of drinking water that takes more than 30 minutes to collect from","jmpWater3","Overall","Citywide",0.0047,8e-04,0.0094
-"Bangladesh","BGD","Mar",2017,"Households using improved sanitation facility not shared with others","jmpSan4","Overall","Citywide",0.0086,0.0031,0.0164
-"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Overall","Citywide",0,0,0.0031
-"Bangladesh","BGD","Mar",2017,"Households using safely managed sanitaion facility","jmpSan5","Overall","Citywide",0.4906,0.4524,0.5266
-"Bangladesh","BGD","Mar",2017,"Households using shared improved sanitation facility","jmpSan3","Overall","Citywide",0.4618,0.4266,0.4978
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities shared between two or more households","jmpSan3","Overall","Citywide",0.2777,0.2457,0.3136
+"Bangladesh","BGD","Mar",2017,"Households using improved facilities which are not shared with other households","jmpSan4","Overall","Citywide",0.0179,0.0093,0.0289
+"Bangladesh","BGD","Mar",2017,"Households using open defecation","jmpSan1","Overall","Citywide",0.2707,0.2356,0.3019
 "Bangladesh","BGD","Mar",2017,"Households using surface water as source of drinking water","jmpWater1","Overall","Citywide",0,0,0
-"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Overall","Citywide",0.0367,0.0226,0.0507
+"Bangladesh","BGD","Mar",2017,"Households using unimproved sanitation facility","jmpSan2","Overall","Citywide",0.0367,0.0234,0.0515
 "Bangladesh","BGD","Mar",2017,"Households using unimproved source of drinking water","jmpWater2","Overall","Citywide",0.0273,0.0164,0.039
 "Bangladesh","BGD","Mar",2017,"Households whose members are all able to get to sanitation facility","san21","Overall","Citywide",0.9103,0.8892,0.9298
 "Bangladesh","BGD","Mar",2017,"Households whose members are all usually able to use the sanitation facility","san23","Overall","Citywide",0.9555,0.9399,0.9688
