@@ -415,7 +415,7 @@ function(input, output, session) {
 	  #
 	  #
 	  #
-	  paretoDF$type <- ifelse(paretoDF$type == 1, "Slum", "Citwyide")
+	  paretoDF$type <- ifelse(paretoDF$type == 1, "Low Income Area", "Citwyide")
 	  #
 	  #
 	  #
@@ -1304,7 +1304,7 @@ function(input, output, session) {
     #
     #
     #
-    temp$type <- ifelse(temp$type == 1, "Slum", "Citywide")
+    temp$type <- ifelse(temp$type == 1, "Low Income Area", "Citywide")
     #
     #
     #
@@ -1541,7 +1541,7 @@ function(input, output, session) {
     #
     #
     temp <- subset(sub.data(), 
-                   type == "Slum" &
+                   type == "Low Income Area" &
                    !strata %in% c(paste("Wealth Quintile ", 1:5, sep = ""), "Overall"))
     #
     #

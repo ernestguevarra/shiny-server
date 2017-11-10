@@ -50,7 +50,7 @@ mapbox.terminal  <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj6g0tzbd30
 #
 # Read steering file
 #
-steerIndicators <- read.csv("steerIndicatorsV9.csv", header = TRUE, sep = ",")
+steerIndicators <- read.csv("steerIndicators.csv", header = TRUE, sep = ",")
 #
 # Create indicator choices for dropdown
 #
