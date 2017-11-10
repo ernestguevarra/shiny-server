@@ -1162,7 +1162,7 @@ function(input, output, session) {
     #
     #
     #
-    paretoDF$type <- ifelse(paretoDF$type == 1, "Slum", "Citwyide")
+    paretoDF$type <- ifelse(paretoDF$type == 1, "Low Income Area", "Citwyide")
     #
     #
     #
@@ -1904,7 +1904,7 @@ function(input, output, session) {
 		  style = list("font-weight" = "normal", padding = "3px 8px"),
 		  textsize = "12px",
 		  direction = "auto"),
-	    group = "Slum") %>%
+	    group = "Low income area") %>%
 	  #
 	  # Citywide polygon
 	  #
@@ -1941,7 +1941,7 @@ function(input, output, session) {
 	  #
 	  #
 	  addLayersControl(
-		baseGroups = c("Slum", "Citywide"),
+		baseGroups = c("Low income area", "Citywide"),
 		position = "topleft",
 		options = layersControlOptions(collapsed = FALSE, autoZIndex = TRUE)) #%>%
 	  #
@@ -2415,7 +2415,7 @@ function(input, output, session) {
         # Add layer control
         #
         addLayersControl(
-          baseGroups = c("Slum Areas"),
+          baseGroups = c("Low Income Areas"),
           position = "topleft",
           options = layersControlOptions(collapsed = FALSE)) %>%
         #
@@ -2486,7 +2486,7 @@ function(input, output, session) {
     #
     updateSelectInput(session = session,
                       inputId = "slum.area.name1",
-                      label = "Select slum area",
+                      label = "Select low income area",
                       choices = levels(slum.map()[[input$var.slum.area1]]))
   })
   #
@@ -2498,7 +2498,7 @@ function(input, output, session) {
     #
     updateSelectInput(session = session,
                       inputId = "slum.area.name2",
-                      label = "Select slum area",
+                      label = "Select low income area",
                       choices = levels(sample.list.df()[[input$var.slum.area2]]))
   })
   #
@@ -2782,7 +2782,7 @@ function(input, output, session) {
       #
       #
       #
-      paste("slumList", input$slum.area.name1, ".csv", sep= "")
+      paste("liaList", input$slum.area.name1, ".csv", sep= "")
     },
     #
     #
@@ -2974,7 +2974,7 @@ function(input, output, session) {
       #
       #
       #
-      paste("slumList", input$slum.area.name2, ".csv", sep= "")
+      paste("liaList", input$slum.area.name2, ".csv", sep= "")
     },
     #
     #
@@ -4790,7 +4790,7 @@ function(input, output, session) {
 		 #
 		 #
          #  
-		 title = "Slum map data input",
+		 title = "Low income area map data input",
 		 #
 		 #
 		 #
@@ -4799,16 +4799,16 @@ function(input, output, session) {
 		 #
 		 #
 		 HTML("
-		   <h4>Available slum area sampling information</h4>
-			 <p>For slum areas, you are first asked what information you have on slums that can be used for sampling: <code>slum maps</code> or <code>slum lists</code>. If you have slum maps, then you are given the options for sampling with slum maps (below). If you have lists, then you are given the option for sampling with slum lists (below).</p>
+		   <h4>Available low income area sampling information</h4>
+			 <p>For low income areas, you are first asked what information you have on low income areas that can be used for sampling: <code>low income area maps</code> or <code>low income area lists</code>. If you have low income area maps, then you are given the options for sampling with low income area maps (below). If you have lists, then you are given the option for sampling with low income area lists (below).</p>
 			 
 		   <br/>
-		   <h4>Upload map of slum survey area</h4>
+		   <h4>Upload map of low income survey area</h4>
 			 <p>The map should be in ESRI Shapefile format (SHP). This file format requires a minimum of 3 related files in order to be readable. These files are the <code>.SHP</code>, <code>.SHX</code> and <code>.DBF</code>. Hence, these three files should be uploaded all at the same time by clicking on CTRL and then selecting at least the three files for upload. A warning will pop out if the incorrect file formats and/or incomplete number of files are uploaded. Once the files have been uploaded, two new options come out. First, the app asks for the vaiable name in the map files that contains the stratifying variable. This would be the variable name of a geographic subdivision by which you decided to divide the city. Second, a prompt for the number of primary sampilng units or <code>PSU</code> comes to view. This is set at a default of 30. Once you have specified these parameters, you can click on <code>Sample</code> and corresponding sampling maps will be produced on the main panel and corresponding sampling lists on the appropriate sampling tabs.</p>
 
 		   <br/>
-		   <h4>Upload list of slum areas</h4>
-			 <p>The list of slum areas should be in CSV format. The list should be organised and sorted along the stratifying variable for survey areas. Once the list has been uploaded, you will need to specify how many <code>PSUs</code> will be survyed. Then press on <code>Sample</code>. A sample list from the complete list is now available on the <code>Slum Lists</code> tab.</p>
+		   <h4>Upload list of low income areas</h4>
+			 <p>The list of low income areas should be in CSV format. The list should be organised and sorted along the stratifying variable for survey areas. Once the list has been uploaded, you will need to specify how many <code>PSUs</code> will be survyed. Then press on <code>Sample</code>. A sample list from the complete list is now available on the <code>Low Income Area Lists</code> tab.</p>
 		 ")))
   })
   #

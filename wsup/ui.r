@@ -593,8 +593,8 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           radioButtons(inputId = "map.controls",
             label = "",
             inline = TRUE,
-            choices = c("Citywide Sample" = "city",
-                        "Slum Sample" = "slum"),
+            choices = c("Citywide" = "city",
+                        "Low Income Area" = "slum"),
             selected = "city"),
           #
           # If city settings selected...
@@ -668,7 +668,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             # Sub-sub-header
             #
             div(style="display: inline-block;vertical-align:middle;", 
-                  h5("Slum map data input")),
+                  h5("Low income area map data input")),
             #
             # Action link 'Info' for uploading survey area map
             #
@@ -680,9 +680,9 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
             # Add radio buttons to select map or list-based sampling
             #
             radioButtons(inputId = "slumInfo",
-                         label = "Available slum area sampling information",
-                         choices = list("Slum maps" = "slum.map",
-                                        "Slum lists" = "slum.list"),
+                         label = "Available low income area sampling information",
+                         choices = list("Low income area maps" = "slum.map",
+                                        "Low income area lists" = "slum.list"),
                          inline = TRUE,
                          selected = "."),
             #
@@ -693,7 +693,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
               # Upload slum shapefile
               #
               fileInput(inputId = "shp2",
-                        label = "Upload map of slums in survey area",
+                        label = "Upload map of low income areas in survey area",
                         accept = c(".shp",".dbf",".sbn",".sbx",".shx",".prj"),
                         multiple = TRUE),
               #
@@ -713,13 +713,13 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                 # Select slum survey area identifier
                 #
                 selectInput(inputId = "var.slum.area1",
-                            label = "Select map data identifier for slum survey areas",
+                            label = "Select map data identifier for low income survey areas",
                             choices = list(None = ".")),
                 #
                 # Select slum area to sample
                 #
                 selectInput(inputId = "slum.area.name1",
-                            label = "Select slum survey area to sample",
+                            label = "Select low income survey area to sample",
                             choices = list(None = ".")),
                 #
                 # Add action button to initiate sampling
@@ -743,19 +743,19 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
               # Upload slum area list
               #
               fileInput(inputId = "list1",
-                        label = "Upload list of slum areas",
+                        label = "Upload list of low income areas",
                         accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
               #
               # Select survey area identifier
               #
               selectInput(inputId = "var.slum.area2",
-                          label = "Select map data identifier for slum survey areas",
+                          label = "Select map data identifier for low income survey areas",
                           choices = list(None = ".")),
               #
               # Select survey area to sample
               #  
               selectInput(inputId = "slum.area.name2",
-                          label = "Select slum survey area to sample",
+                          label = "Select low income survey area to sample",
                           choices = list(None = ".")),
               #
               # Select number of clusters to sample
@@ -1761,47 +1761,8 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
 		        #
 		        #
                 #
-                br(),
-		        #
-		        #
-                #
-                br(),
-                #
-                #
-                #
-                br(),
-		        #
-		        #
-                #
-                br(),
-                #
-                #
-                #
-                br(),
-		        #
-		        #
-                #
-                br(),
-                #
-                #
-                #
-                br(),
-                #
-                #
-                #
-                br(),
-                #
-                #
-                #
-                br(),                
-                #
-                #
-                #
-                br(),                
-                #
-                #
-                #
-                br(),                
+                br(), br(), br(), br(), br(), br(), 
+                br(), br(), br(), br(), br(),                
                 #
                 #
                 #
