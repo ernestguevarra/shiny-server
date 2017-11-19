@@ -997,7 +997,7 @@ function(input, output, session) {
     #
     #
     #
-    if(input$varSet == "waterSet1")
+    if(input$varSet == "waterSet1" & !is.null(ladder.data()$jmpWater5))
       {
       #
       #
@@ -1013,7 +1013,22 @@ function(input, output, session) {
     #
     #
     #
-    if(input$varSet == "sanSet1")
+    if(input$varSet == "waterSet1" & is.null(ladder.data()$jmpWater5))
+      {
+      #
+      #
+      #
+      barFill <- scale_fill_manual(name = "Drinking Water Ladder",
+                                   labels = c("Basic",
+                                              "Limited",
+                                              "Unimproved",
+                                              "Surface Water"),
+                                   values = waterLadder[2:5])
+      }
+    #
+    #
+    #
+    if(input$varSet == "sanSet1" & !is.null(ladder.data()$jmpSan5))
       {
       #
       #
@@ -1025,6 +1040,21 @@ function(input, output, session) {
                                               "Unimproved",
                                               "Open defecation"),
                                    values = sanitationLadder)
+      }
+    #
+    #
+    #
+    if(input$varSet == "sanSet1" & is.null(ladder.data()$jmpSan5))
+      {
+      #
+      #
+      #
+      barFill <- scale_fill_manual(name = "Sanitation Ladder",
+                                   labels = c("Basic",
+                                              "Limited",
+                                              "Unimproved",
+                                              "Open defecation"),
+                                   values = sanitationLadder[2:5])
       }
     #
     #

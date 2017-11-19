@@ -1,10 +1,10 @@
 varList,varFunction,varStatistic,varNames,varShort,varSet,varTitle,Bangladesh,Ghana,Mozambique,Madagascar,Kenya,Zambia
 nMembers,histogram,oneMean,Mean number of household members,Household members,demographics,Demographics,1,1,1,1,1,1
 jmpWater1,proportion,oneMean,Households using surface water as source of drinking water,Surface water,waterSet1,Types of Water Sources,1,1,1,1,1,1
-jmpWater2,proportion,oneMean,Households using unimproved source of drinking water,Unimproved,waterSet1,Types of Water Sources,1,1,1,1,1,1
-jmpWater3,proportion,oneMean,Households using an improved source of drinking water that takes more than 30 minutes to collect from,Limited,waterSet1,Types of Water Sources,1,1,1,1,1,1
-jmpWater4,proportion,oneMean,Households using an improved source of drinking water that takes 30 minutes or less to collect from,Basic,waterSet1,Types of Water Sources,1,1,1,1,1,1
-jmpWater5,proportion,oneMean,Households using an improved source of drinking water that is located on premises and is available when needed,Basic Plus,waterSet1,Types of Water Sources,1,1,1,1,1,1
+jmpWater2,proportion,oneMean,Households using unimproved source of drinking water,Unimproved water,waterSet1,Types of Water Sources,1,1,1,1,1,1
+jmpWater3,proportion,oneMean,Households using an improved source of drinking water that takes more than 30 minutes to collect from,Limited water source,waterSet1,Types of Water Sources,1,1,1,1,1,1
+jmpWater4,proportion,oneMean,Households using an improved source of drinking water that takes 30 minutes or less to collect from,Basic water,waterSet1,Types of Water Sources,1,1,1,1,1,1
+jmpWater5,proportion,oneMean,Households using an improved source of drinking water that is located on premises and is available when needed,Safely-managed water,waterSet1,Types of Water Sources,1,1,1,1,1,1
 accessWater,proportion,oneMean,Households with access to sufficient and sustained drinking water,Sufficient and sustained access,waterSet2,Access to Water Sources,1,1,1,1,1,1
 water14a,proportion,oneMean,Households with good self-perceived quality of drinking water,Self-perceived quality of water,waterSet3,Other Water Indicators,1,1,1,1,1,1
 water18,proportion,oneMean,Households safely storing drinking water,Safe water storage,waterSet3,Other Water Indicators,1,1,1,1,1,1
@@ -13,10 +13,10 @@ water7a,proportion,oneMean,Households with adequate physical access to drinking 
 water2a,proportion,oneMean,Households with formal drinking water service provision,Formal service provision,waterSet3,Other Water Indicators,1,1,1,1,1,1
 water17,proportion,oneMean,Households relying on formal provider for service supply maintenance,Formal service maintenance,waterSet3,Other Water Indicators,1,1,1,1,1,1
 jmpSan1,proportion,oneMean,Households using open defecation,Open defecation,sanSet1,Types of Sanitation Facilities,1,1,1,1,1,1
-jmpSan2,proportion,oneMean,Households using unimproved sanitation facility,Unimproved,sanSet1,Types of Sanitation Facilities,1,1,1,1,1,1
-jmpSan3,proportion,oneMean,Households using improved facilities shared between two or more households,Limited,sanSet1,Types of Sanitation Facilities,1,1,1,1,1,1
-jmpSan4,proportion,oneMean,Households using improved facilities which are not shared with other households,Basic,sanSet1,Types of Sanitation Facilities,1,1,1,1,1,1
-jmpSan5,proportion,oneMean,Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site,Safely-managed,sanSet1,Types of Sanitation Facilities,1,1,1,1,1,1
+jmpSan2,proportion,oneMean,Households using unimproved sanitation facility,Unimproved sanitation,sanSet1,Types of Sanitation Facilities,1,1,1,1,1,1
+jmpSan3,proportion,oneMean,Households using improved facilities shared between two or more households,Limited sanitation,sanSet1,Types of Sanitation Facilities,1,1,1,1,1,1
+jmpSan4,proportion,oneMean,Households using improved facilities which are not shared with other households,Basic sanitation,sanSet1,Types of Sanitation Facilities,1,1,1,1,1,1
+jmpSan5,proportion,oneMean,Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site,Safely-managed sanitation,sanSet1,Types of Sanitation Facilities,1,1,1,1,1,1
 adequateSan,proportion,oneMean,Households with adequate sanitation facility,Adequate facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
 accessSan,proportion,oneMean,Households in which every member is able to use and actually use sanitation facility,Access to facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
 san13,histogram,oneMean,Household mean number of minutes to sanitation facilities,Time to facility (minutes),sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
