@@ -1132,7 +1132,9 @@ function(input, output, session) {
     #
     #
     #
-    print(indicator.plot)
+    indicator.plot <- ggplotly(indicator.plot)
+    indicator.plot$elementId <- NULL
+    indicator.plot
     }
   #
   #
@@ -1308,7 +1310,9 @@ function(input, output, session) {
     #
     #
     #
-    print(indicator.plot)    
+    indicator.plot <- ggplotly(indicator.plot)
+    indicator.plot$elementId <- NULL
+    indicator.plot
     }
   #
   #
@@ -1436,15 +1440,16 @@ function(input, output, session) {
     #
     #
     #
-    ggplotly(indicator.plot)
+    indicator.plot <- ggplotly(indicator.plot)
+    indicator.plot$elementId <- NULL
+    indicator.plot
     }  
   #
   #
   #
-  ggplotly(indicator.plot)
-  #
-  #
-  #
+  indicator.plot <- ggplotly(indicator.plot)
+  indicator.plot$elementId <- NULL
+  indicator.plot
   })                    
   #
   #
