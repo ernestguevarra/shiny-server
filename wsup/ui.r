@@ -282,7 +282,7 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
           #
           # Output bar plot
           #
-          plotlyOutput("bar.plot")
+          plotlyOutput("bar.plot", height = "350px")
         )
       ),
       #
