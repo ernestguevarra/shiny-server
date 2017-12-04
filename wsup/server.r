@@ -628,7 +628,7 @@ function(input, output, session) {
   #
   #
   #
-  output$bar.plot <- renderPlot({
+  output$bar.plot <- renderPlotly({
     #
     #
     #
@@ -1436,16 +1436,16 @@ function(input, output, session) {
     #
     #
     #
-    print(indicator.plot)
+    ggplotly(indicator.plot)
     }  
   #
   #
   #
-  print(indicator.plot)
+  ggplotly(indicator.plot)
   #
   #
   #
-  }, height = 320)                    
+  })                    
   #
   #
   #

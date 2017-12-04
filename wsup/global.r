@@ -28,6 +28,7 @@ library(gstat)
 library(shinyjs)
 library(epitools)
 library(colourpicker)
+library(plotly)
 #
 #
 #
