@@ -1129,12 +1129,6 @@ function(input, output, session) {
       #
       indicator.plot <- indicator.plot + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
       }
-    #
-    #
-    #
-    indicator.plot <- ggplotly(indicator.plot)
-    indicator.plot$elementId <- NULL
-    indicator.plot
     }
   #
   #
@@ -1307,12 +1301,6 @@ function(input, output, session) {
 	  #
 	  indicator.plot <- indicator.plot + barFacet
 	  }
-    #
-    #
-    #
-    indicator.plot <- ggplotly(indicator.plot)
-    indicator.plot$elementId <- NULL
-    indicator.plot
     }
   #
   #
@@ -1437,19 +1425,20 @@ function(input, output, session) {
       #
       indicator.plot <- indicator.plot + barFacet
       }
-    #
-    #
-    #
-    indicator.plot <- ggplotly(indicator.plot)
-    indicator.plot$elementId <- NULL
-    indicator.plot
     }  
   #
   #
   #
-  indicator.plot <- ggplotly(indicator.plot)
-  indicator.plot$elementId <- NULL
-  indicator.plot
+  if(exists("indicator.plot"))
+    {
+    ggplotly(indicator.plot)
+    }
+  #if(exists("indicator.plot"))
+  #  {
+  #  indicator.plot <- ggplotly(indicator.plot)
+  #  indicator.plot$elementId <- NULL
+  #  indicator.plot
+  #  }
   })                    
   #
   #
