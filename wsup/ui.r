@@ -1747,7 +1747,6 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                   label = "Select chart colour",
                   value = wsupColour,
                   allowTransparent = TRUE,
-                  transparentText = "None",
                   returnName = TRUE),
                 #
                 #
@@ -1756,7 +1755,6 @@ navbarPage(title = "Urban Water and Sanitation Survey", id = "chosenTab",
                   label = "Select error bar colour",
                   value = errorColour,
                   allowTransparent = TRUE,
-                  transparentText = "None",
                   returnName = TRUE),
 		        #
 		        #
