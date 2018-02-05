@@ -1,0 +1,116 @@
+varList,varFunction,varStatistic,varNames,varShort,varSet,varTitle,Bangladesh,Ghana,Mozambique,Madagascar,Kenya,Zambia
+nMembers,histogram,oneMean,Mean number of household members,Household members,demographics,Demographics,1,1,1,1,1,1
+jmpWater1,proportion,oneMean,Households using surface water as source of drinking water,Surface water,waterSet1,Types of Water Sources,1,1,1,1,1,1
+jmpWater2,proportion,oneMean,Households using unimproved source of drinking water,Unimproved water,waterSet1,Types of Water Sources,1,1,1,1,1,1
+jmpWater3,proportion,oneMean,Households using an improved source of drinking water that takes more than 30 minutes to collect from,Limited water source,waterSet1,Types of Water Sources,1,1,1,1,1,1
+jmpWater4,proportion,oneMean,Households using an improved source of drinking water that takes 30 minutes or less to collect from,Basic water,waterSet1,Types of Water Sources,1,1,1,1,1,1
+jmpWater5,proportion,oneMean,Households using an improved source of drinking water that is located on premises and is available when needed,Safely-managed water,waterSet1,Types of Water Sources,1,1,1,1,1,1
+accessWater,proportion,oneMean,Households with access to sufficient and sustained drinking water,Sufficient and sustained access,waterSet2,Access to Water Sources,1,1,1,1,1,1
+water14a,proportion,oneMean,Households with good self-perceived quality of drinking water,Self-perceived quality of water,waterSet3,Other Water Indicators,1,1,1,1,1,1
+water18,proportion,oneMean,Households safely storing drinking water,Safe water storage,waterSet3,Other Water Indicators,1,1,1,1,1,1
+water12,histogram,oneMean,Household mean expenditure in drinking water,Water expenditure,waterSet2,Access to Water Sources,1,1,1,1,1,1
+water7a,proportion,oneMean,Households with adequate physical access to drinking water,Adequate physical access,waterSet2,Access to Water Sources,1,1,1,1,1,1
+water2a,proportion,oneMean,Households with formal drinking water service provision,Formal service provision,waterSet3,Other Water Indicators,1,1,1,1,1,1
+water17,proportion,oneMean,Households relying on formal provider for service supply maintenance,Formal service maintenance,waterSet3,Other Water Indicators,1,1,1,1,1,1
+jmpSan1,proportion,oneMean,Households using open defecation,Open defecation,sanSet1,Types of Sanitation Facilities,1,1,1,1,1,1
+jmpSan2,proportion,oneMean,Households using unimproved sanitation facility,Unimproved sanitation,sanSet1,Types of Sanitation Facilities,1,1,1,1,1,1
+jmpSan3,proportion,oneMean,Households using improved facilities shared between two or more households,Limited sanitation,sanSet1,Types of Sanitation Facilities,1,1,1,1,1,1
+jmpSan4,proportion,oneMean,Households using improved facilities which are not shared with other households,Basic sanitation,sanSet1,Types of Sanitation Facilities,1,1,1,1,1,1
+jmpSan5,proportion,oneMean,Households using an improved sanitation facility which is not shared with other households and where excreta are safely disposed in situ or transported and treated off-site,Safely-managed sanitation,sanSet1,Types of Sanitation Facilities,1,1,1,1,1,1
+adequateSan,proportion,oneMean,Households with adequate sanitation facility,Adequate facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
+accessSan,proportion,oneMean,Households in which every member is able to use and actually use sanitation facility,Access to facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
+san13,histogram,oneMean,Household mean number of minutes to sanitation facilities,Time to facility (minutes),sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
+san13a,proportion,oneMean,Households with adequate physical access to sanitation facilities,Adequate physical access,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
+san14,histogram,oneMean,Household mean expenditure in sanitation facility,Sanitation expenditure,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
+acceptSan,proportion,oneMean,Households with appropriate / acceptable sanitation facilities,Appropriate facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
+acceptScore,histogram,oneMean,Household acceptable sanitation score,Acceptable sanitation score,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
+san12,proportion,oneMean,Households practicing sanitary disposal of child's faeces,Sanitary disposal of child's faeces,sanSet3,Sanitation Practices and Behaviours,1,1,1,1,1,1
+san25,proportion,oneMean,Households relying on formal operators to maintain facility,Formal service provision,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+jmpWomenHygiene,proportion,oneMean,Households whose women practice good menstrual hygiene behaviour,Good menstrual hygiene behaviour,hygieneSet,Women's Hygiene,1,1,1,1,1,1
+jmpWoman,proportion,oneMean,Households whose women are comfortable using sanitation facility during menstruation,Use of facility during menstruation,hygieneSet,Women's Hygiene,1,1,1,1,1,1
+jmpHand1,proportion,oneMean,Households with no handwashing facility,No handwashing facility,handSet,Handwashing,1,1,1,1,1,1
+jmpHand2,proportion,oneMean,Households with handwashing facility with water only,Water only,handSet,Handwashing,1,1,1,1,1,1
+jmpHand3,proportion,oneMean,Households with handwashing facility with clean water and soap,Clean water and soap,handSet,Handwashing,1,1,1,1,1,1
+overall1,proportion,oneMean,Households with no adequate water services and no adequate sanitation services,No adequate services,overallSet1,Access to All Services,1,1,1,1,1,1
+overall2,proportion,oneMean,Households with adequate water services only,Adequate water services,overallSet1,Access to All Services,1,1,1,1,1,1
+overall3,proportion,oneMean,Households with adequate sanitation services only,Adequate sanitation services,overallSet1,Access to All Services,1,1,1,1,1,1
+overall4,proportion,oneMean,Households with adequate water services and adequate sanitation services,Adequate water and sanitation,overallSet1,Access to All Services,1,1,1,1,1,1
+overallSpend,histogram,oneMean,Household mean household expenditure in water and sanitation services,Overall expenditure,overallSet2,Overall Expenditure,1,1,1,1,1,1
+ppi,histogram,oneMean,Household mean poverty score,PPI Score,poverty,Poverty Rates,1,1,1,1,1,1
+pQuintile,histogram,oneMean,Household mean wealth index,Wealth Index,poverty,Poverty Rates,1,1,1,1,1,1
+nl,proportion,oneMean,Mean likelihood of household being below the Bangladesh lower national poverty line,Below Bangladesh lower national poverty line,poverty,Poverty Rates,1,0,0,0,0,0
+nu100,proportion,oneMean,Mean likelihood of household being below 100% of the Bangladesh upper national poverty line,Below 100% of Bangladesh upper national line,poverty,Poverty Rates,1,0,0,0,0,0
+nu150,proportion,oneMean,Mean likelihood of household being below 150% of the Bangladesh upper national poverty line,Below 150% of Bangladesh upper national poverty line,poverty,Poverty Rates,1,0,0,0,0,0
+nu200,proportion,oneMean,Mean likelihood of household being below 200% of the Bangladesh upper national poverty line,Below 200% of Bangaldesh upper national poverty line,poverty,Poverty Rates,1,0,0,0,0,0
+extreme,proportion,oneMean,Mean likelihood of household being below the USAID extreme poverty line,Below USAID extreme poverty line,poverty,Poverty Rates,1,0,1,0,1,1
+ppp125,proportion,oneMean,Mean likelihood of household being below the $1.25/day 2005 PPP poverty line,Below $1.25/day,poverty,Poverty Rates,1,1,1,1,1,1
+ppp175,proportion,oneMean,Mean likelihood of household being below the $1.75/day 2005 PPP poverty line,Below $1.75/day,poverty,Poverty Rates,1,0,0,0,0,0
+ppp200,proportion,oneMean,Mean likelihood of household being below the $2.00/day 2005 PPP poverty line,Below $2.00/day,poverty,Poverty Rates,1,0,0,1,0,1
+ppp250,proportion,oneMean,Mean likelihood of household being below the $2.50/day 2005 PPP poverty line,Below $2.50/day,poverty,Poverty Rates,1,1,1,1,1,1
+nlFood,proportion,oneMean,Mean likelihood of household being below the Ghana food national poverty line,Below Ghana food national poverty line,poverty,Poverty Rates,0,1,0,0,0,0
+nl100,proportion,oneMean,Mean likelihood of household being below 100% of the Ghana national poverty line,Below 100% of Ghana national poverty line,poverty,Poverty Rates,0,1,0,0,0,0
+nl150,proportion,oneMean,Mean likelihood of household being below 150% of the Ghana national poverty line,Below 150% of Ghana national poverty line,poverty,Poverty Rates,0,1,0,0,0,0
+nl200,proportion,oneMean,Mean likelihood of household being below 200% of the Ghana national poverty line,Below 200% of Ghana national poverty line,poverty,Poverty Rates,0,1,0,0,0,0
+ppp375,proportion,oneMean,Mean likelihood of household being below the $3.75/day 2005 PPP poverty line,Below $3.75/day,poverty,Poverty Rates,0,1,0,0,0,0
+nlFood,proportion,oneMean,Mean likelihood of household being below the Madagascar food national poverty line,Below Madagascar food national poverty line,poverty,Poverty Rates,0,0,0,1,0,0
+nl100,proportion,oneMean,Mean likelihood of household being below 100% of the Madagascar national poverty line,Below 100% of Madagascar national poverty line,poverty,Poverty Rates,0,0,0,1,0,0
+nl150,proportion,oneMean,Mean likelihood of household being below 150% of the Madagascar national poverty line,Below 150% of Madagascar national  poverty line,poverty,Poverty Rates,0,0,0,1,0,0
+nl200,proportion,oneMean,Mean likelihood of household being below 200% of the Madagascar national poverty line,Below 200% of Madagascar national poverty line,poverty,Poverty Rates,0,0,0,1,0,0
+nlPoor,proportion,oneMean,Mean likelihood of household being below 100% of the Madagascar poorest half,Below 100% of Madagascar poorest half,poverty,Poverty Rates,0,0,0,1,0,0
+ppp500,proportion,oneMean,Mean likelihood of household being below the $5.00/day 2005 PPP poverty line,Below $5.00/day,poverty,Poverty Rates,0,0,0,1,0,0
+nl100,proportion,oneMean,Mean likelihood of household being below 100% of the Mozambique national poverty line,Below 100% of Mozambique national poverty line,poverty,Poverty Rates,0,0,1,0,0,0
+nl150,proportion,oneMean,Mean likelihood of household being below 150% of the Mozambique national poverty line,Below 150% of Mozambique national poverty line,poverty,Poverty Rates,0,0,1,0,0,0
+nl200,proportion,oneMean,Mean likelihood of household being below 200% of the Mozambique national poverty line,Below 200% of Mozambique national poverty line,poverty,Poverty Rates,0,0,1,0,0,0
+nlFood,proportion,oneMean,Mean likelihood of household being below the Zambia food national poverty line,Below Zambia food national poverty line,poverty,Poverty Rates,0,0,0,0,0,1
+nl100,proportion,oneMean,Mean likelihood of household being below 100% of the Zambia national poverty line,Below 100% of Zambia national poverty line,poverty,Poverty Rates,0,0,0,0,0,1
+nl150,proportion,oneMean,Mean likelihood of household being below 150% of the Zambia national poverty line,Below 150% of Zambia national  poverty line,poverty,Poverty Rates,0,0,0,0,0,1
+nl200,proportion,oneMean,Mean likelihood of household being below 200% of the Zambia national poverty line,Below 200% of Zambia national poverty line,poverty,Poverty Rates,0,0,0,0,0,1
+nlFood,proportion,oneMean,Mean likelihood of household being below the Kenya food national poverty line,Below Kenya food national poverty line,poverty,Poverty Rates,0,0,0,0,1,0
+nl150,proportion,oneMean,Mean likelihood of household being below 150% of the Kenya national poverty line,Below 150% of Kenya national  poverty line,poverty,Poverty Rates,0,0,0,0,1,0
+water3a,proportion,oneMean,Households with a WSUP-supported source of drinking water,WSUP-supported drinking water,waterSet3,Other Water Indicators,1,1,1,1,1,1
+water4,histogram,oneMean,Household mean number of hours per day drinking water is available from source,Hours per day water is available,waterSet2,Access to Water Sources,1,1,1,1,1,1
+water5,histogram,oneMean,Household mean number of days per week drinking water is available from source,Days per week water is available,waterSet2,Access to Water Sources,1,1,1,1,1,1
+water6a,proportion,oneMean,Households with drinking water available from source for the whole year,Whole year water is available,waterSet2,Access to Water Sources,1,1,1,1,1,1
+water7,histogram,oneMean,Household mean number of minutes to collect water from source,Time to collect water (minutes),waterSet2,Access to Water Sources,1,1,1,1,1,1
+water7c,proportion,oneMean,Households satisfied with distance from drinking water source,Satisfied with distance from drinking water source,waterSet2,Access to Water Sources,1,1,1,1,1,1
+water8a,proportion,oneMean,Households satisfied with water collection queuing time,Satisfied with water collection queuing time,waterSet2,Access to Water Sources,1,1,1,1,1,1
+water10b,proportion,oneMean,Households with sufficient self-perceived amount of water,Sufficient amount of water,waterSet2,Access to Water Sources,1,1,1,1,1,1
+water11d,proportion,oneMean,Households with an improved secondary source of drinking water,Improved secondary source of drinking water,waterSet2,Access to Water Sources,1,1,1,1,1,1
+water13a,proportion,oneMean,Households willing to make an investment in drinking water source,Willing to make an investment in water source improvement,waterSet3,Other Water Indicators,1,1,1,1,1,1
+water16a,proportion,oneMean,Households satisfied with water pressure,Satisfied with water pressure,waterSet3,Other Water Indicators,1,1,1,1,1,1
+san1a,proportion,oneMean,Households with shared sanitation facility,Shared sanitaiton facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
+san2,histogram,oneMean,Mean number of people sharing sanitation facility,Number of people sharing sanitation facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
+san5,proportion,oneMean,Households with a WSUP-supported sanitation facility,WSUP-supported sanitation facility,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san6,proportion,oneMean,Households whose sanitation facility has water,Water in sanitation facility,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san7,proportion,oneMean,Households satisfied with handwashing facility in sanitation facility,Satisfied with handwashing facility in sanitation facility,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san9,proportion,oneMean,Households whose sanitation facility has lights,Lights in sanitation facility,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san10,proportion,oneMean,Households whose sanitation facility has lockable doors,Lockable doors in sanitation facility,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san11,proportion,oneMean,Households whose sanitation facility has a container for menstrual hygiene management,Container for menstrual hygiene management,hygieneSet,Women's Hygiene,1,1,1,1,1,1
+san15,proportion,oneMean,Households satisfied with amount of spending on sanitation facility,Satisfied with spending on sanitation facility,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san17,histogram,oneMean,Household mean amount of initial investment in sanitation facility,Mean amount of initial investment in toilet facility,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san16,proportion,oneMean,Households that made an initial investment in sanitaiton facility,Initial investment in sanitation facility,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san18,proportion,oneMean,Households willing to make an investment in sanitation facility,Willing to make an investment in sanitation facility,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san19,proportion,oneMean,Households satisfied with cleanliness of sanitation facility,Satisfied with cleanliness of sanitation facility,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san21,proportion,oneMean,Households whose members are all able to get to sanitation facility,Ability to get to sanitation facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
+san23,proportion,oneMean,Households whose members are all usually able to use the sanitation facility,Actual use of sanitation facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
+san34,histogram,oneMean,Household mean cost of sanitation facility emptying,Cost of sanitation facility emptying,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san35,proportion,oneMean,Households with a formal sanitation facility emptier,Formal sanitation facility emptier,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san26,proportion,oneMean,Households whose women feel safe using sanitation facility,Women feel safe using sanitation facility,hygieneSet,Women's Hygiene,1,1,1,1,1,1
+san27,proportion,oneMean,Households whose women feel safe using sanitation facility during menstruation,Women feel safe using sanitation facility during menstruation,hygieneSet,Women's Hygiene,1,1,1,1,1,1
+san28,proportion,oneMean,Households whose women use clean menstrual management material,Women use clean menstrual management material,hygieneSet,Women's Hygiene,1,1,1,1,1,1
+san29,proportion,oneMean,Households whose women cleanse menstrual cloth appropriately,Women cleansing menstrual cloth appropriately,hygieneSet,Women's Hygiene,1,1,1,1,1,1
+san30,proportion,oneMean,Households whose women dispose of sanitary napkins appropriately,Women disposing of sanitary napkins appropriately,hygieneSet,Women's Hygiene,1,1,1,1,1,1
+waterSource,pareto,barplot,Household main source of water,Main source of water,waterSet2,Access to Water Sources,1,1,1,1,1,1
+water9,pareto,barplot,Household member responsible for water collection,Responsible for water collection,waterSet3,Other Water Indicators,1,1,1,1,1,1
+water10,pareto,barplot,Household amount of daily usage of water,Amount of daily usage of water,waterSet2,Access to Water Sources,1,1,1,1,1,1
+water11a,proportion,oneMean,Households with a secondary water source,Use secondary source of water,waterSet2,Access to Water Sources,1,1,1,1,1,1
+water11b,pareto,barplot,Household secondary sources of water,Secondary source of water,waterSet2,Access to Water Sources,1,1,1,1,1,1
+water12b,proportion,oneMean,Households satisfied with expenditure on drinking water,Satisfied with spending on drinking water,waterSet3,Other Water Indicators,1,1,1,1,1,1
+san1,pareto,barplot,User arrangements for sanitation facility,Sanitation facility user arrangements,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
+san20,pareto,barplot,Factors that would improve satisfaction with sanitation facility,Improvements to sanitation facility,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san35a,pareto,barplot,Person who pays for pit emptying,Person who pays for pit emptying,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san22,pareto,barplot,Which household members are not able to use the sanitation facilities,Household members not able to use sanitation facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
+san24,pareto,barplot,Which household members are not using the sanitation facilities,Household members not using sanitation facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
+san37,proportion,oneMean,Household satisfied with pit emptying service,Satisfied with pit emptying service,sanSet4,Other Sanitation Indicators,1,1,1,1,1,1
+san28a,pareto,oneMean,Main menstrual hygiene management materials used during menstruation,Menstrual hygiene management materials,hygieneSet,Women's Hygiene,1,1,1,1,1,1
+san3,pareto,barplot,Household type of toilet facility,Type of toilet facility,sanSet2,Access to Sanitation Facilities,1,1,1,1,1,1
