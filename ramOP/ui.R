@@ -97,69 +97,71 @@ ui <- dashboardPage(
               solidHeader = TRUE,
               status = "danger",
               width = 4,
-              shinyjs::useShinyjs(),
+
               selectInput(inputId = "mapSamplingLevel0",
                           label = "Select country",
                           choices = c("Select country" = "", countries),
                           selected = NULL),
               conditionalPanel(condition = "input.mapSamplingLevel0 != ''",
-                selectInput(inputId = "mapSamplingLevel1",
-                            label = "Select region/province",
-                            choices = c("Select region/province" = ""))
+                div(style="display: inline-block;vertical-align:middle;",
+                  selectInput(inputId = "mapSamplingLevel1",
+                              label = "Select region/province",
+                              width = "250px",
+                              choices = c("Select region/province" = "")
+                  )
+                ),
+                div(style="display: inline-block;vertical-align:middle;",
+                  actionLink(inputId = "regionSelectInfo",
+                             label = "",
+                             icon = icon(name = "info-circle",
+                                         lib = "font-awesome")
+                  )
+                )
               ),
               conditionalPanel(condition = "input.mapSamplingLevel1 != ''",
-                               selectInput(inputId = "mapSamplingLevel2",
-                                           label = "Select district/locality",
-                                           choices = c("Select district/locality" = ""))
+                div(style="display: inline-block;vertical-align:middle;",
+                  selectInput(inputId = "mapSamplingLevel2",
+                              label = "Select district/locality",
+                              width = "250px",
+                              choices = c("Select district/locality" = "")
+                  )
+                ),
+                div(style="display: inline-block;vertical-align:middle;",
+                  actionLink(inputId = "districtSelectInfo",
+                             label = "",
+                             icon = icon(name = "info-circle",
+                                         lib = "font-awesome")
+                  )
+                )
               ),
               conditionalPanel(condition = "input.mapSamplingLevel0 != ''",
                 fileInput(inputId = "settlementsData1",
                           label = "Upload settlements/village locations dataset",
                           accept = c("text/csv",
                                      "text/comma-separated-values,text/plain",
-                                     ".csv"))
+                                     ".csv")
+                )
               ),
-              conditionalPanel(condition = "input.mapSamplingLevel0 != ''",
-                hr(),
-                h5("Spatial sample settings"),
-                selectInput(inputId = "mapSamplingSpec",
-                            label = "Specify spatial grid parameter to use",
-                            choices = c("Grid area" = "area",
-                                        "Number of grids" = "n",
-                                        "Max distance to sampling point" = "d"),
-                            selected = "area"),
-                conditionalPanel(condition = "input.mapSamplingSpec == 'area'",
-                  numericInput(inputId = "mapSamplingGridArea",
-                               label = "Set grid area size (in sq kms)",
-                               value = 100, min = 5, max = 500, step = 5)
+              conditionalPanel(condition = "output.fileUploaded1",
+                selectInput(inputId = "longitude",
+                            label = "Select longitude variable",
+                            selected = "",
+                            choices = c("Select longitude variable" = "")
                 ),
-                conditionalPanel(condition = "input.mapSamplingSpec == 'n'",
-                  numericInput(inputId = "mapSamplingGridNumber",
-                               label = "Set grid number",
-                               value = 20, min = 16, max = 30, step = 1)
+                selectInput(inputId = "latitude",
+                            label = "Select latitude variable",
+                            selected = "",
+                            choices = c("Select latitude variable" = "")
                 ),
-                conditionalPanel(condition = "input.mapSamplingSpec == 'd'",
-                  numericInput(inputId = "mapSamplingGridDist",
-                               label = "Set max distance to sampling point (in kms)",
-                               value = 10, min = 5, max = 30, step = 1)
+                actionButton(inputId = "mapSamplingPlot",
+                             label = "Sample",
+                             icon = icon(name = "th",
+                                         lib = "font-awesome")
                 ),
-                numericInput(inputId = "mapSamplingSettlementsNumber",
-                             label = "No. of settlements per sampling point",
-                             value = 1, min = 1, max = 10, step = 1),
-                br(),
-                conditionalPanel(condition = "input.mapSamplingLevel0 != '' & input.settlementsData1 != null",
-                  actionButton(inputId = "mapSamplingPlot",
-                               label = "Sample",
-                               icon = icon(name = "th",
-                               lib = "font-awesome",
-                               class = "fa-lg")
-                  ),
-                  downloadButton(outputId = "samplingListDownload1",
-                                 label = "Download",
-                                 icon = icon(name = "download",
-                                 lib = "font-awesome",
-                                 class = "fa-lg")
-                  )
+                downloadButton(outputId = "samplingListDownload1",
+                               label = "Download",
+                               icon = icon(name = "download",
+                                           lib = "font-awesome")
                 )
               )
             )
@@ -425,35 +427,584 @@ ui <- dashboardPage(
             width = 8,
             side = "right",
             tabPanel(title = "Misc",
-                     value = "misc",
-                     h4("Miscellaneous Indicators")),
+              value = "misc",
+              br(),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Problems chewing food (self-report)",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "chewPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewChewTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorChew",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              ),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Anyone in household receiving food ration",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "foodPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewFoodTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorFood",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              ),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Received non-food relief items in the past month",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "nfriPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewNFRITable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorNFRI",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              )
+            ),
             tabPanel(title = "Visual",
-                     value = "visual",
-                     h4("Visual Impairment")),
+              value = "visual",
+              br(),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Poorn visual acuity",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "visualPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewVisualTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorVisual",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              )
+            ),
             tabPanel(title = "Screening",
-                     value = "screening",
-                     h4("Screening Coverage")),
+              value = "screening",
+              br(),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Anthropometric screening coverage",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "screenPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewScreenTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorScreen",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              )
+            ),
             tabPanel(title = "Oedema",
-                     value = "oedema",
-                     h4("Oedema Prevalence")),
+              value = "oedema",
+              br(),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Nutritional oedema prevalence",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "oedemaPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewOedemaTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorOedema",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              )
+            ),
             tabPanel(title = "Anthropometry",
-                     value = "anthro",
-                     h4("Anthropometry")),
+              value = "anthro",
+              br(),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Mean mid-upper arm circumference (mm)",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "meanMUACPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewMeanMUACTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorMeanMUAC",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              ),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Mid-upper arm circumference (MUAC) distribution",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "histMUACPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      selectInput(inputId = "groupHistMUAC",
+                                  label = "",
+                                  selected = "",
+                                  width = "200px",
+                                  choices = c("Stratify by" = "",
+                                              "No stratification" = "no",
+                                              "Sex" = "sex")
+                      )
+                    )
+                  )
+                )
+              ),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Acute undernutrition prevalence",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "muacPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewMUACTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      selectInput(inputId = "groupMUAC",
+                                  label = "",
+                                  selected = "",
+                                  width = "200px",
+                                  choices = c("Stratify by" = "",
+                                              "No stratification" = "no",
+                                              "Sex" = "sex",
+                                              "Indicator" = "indicator")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorMUAC",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              )
+            ),
             tabPanel(title = "WASH",
-                     value = "wash",
-                     h4("Water, Sanitation and Hygiene")),
+              value = "wash",
+              br(),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Water, sanitation and hygiene services access",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "washPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewWASHTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      selectInput(inputId = "groupWASH",
+                                  label = "",
+                                  selected = "",
+                                  width = "200px",
+                                  choices = c("Stratify by" = "",
+                                              "No stratification" = "no",
+                                              "Sex" = "sex",
+                                              "Indicator" = "indicator")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorWASH",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              )
+            ),
             tabPanel(title = "Income",
-                     value = "income",
-                     h4("Sources of Income")),
+              value = "income",
+              br(),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Has personal income",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "incomePlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewIncomeTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorIncome",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              ),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Sources of income",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "incomeSourcePlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewIncomeSourceTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      selectInput(inputId = "groupIncomeSource",
+                                  label = "",
+                                  selected = "",
+                                  width = "200px",
+                                  choices = c("Stratify by" = "",
+                                              "No stratification" = "no",
+                                              "Sex" = "sex",
+                                              "Indicator" = "indicator")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorIncomeSource",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              )
+            ),
             tabPanel(title = "Health",
-                     value = "health",
-                     h4("Health and Health-Seeking Behaviour")),
+              value = "health",
+              br(),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Health-seeking behaviour for a long-term illness",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "healthPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewHealthTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      selectInput(inputId = "groupHealth",
+                                  label = "",
+                                  selected = "",
+                                  width = "200px",
+                                  choices = c("Stratify by" = "",
+                                              "No stratification" = "no",
+                                              "Sex" = "sex",
+                                              "Indicator" = "indicator")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorHealth",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              ),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Reasons for not taking medication for long-term illness requiring regular medication",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "reasonsPlot1"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewReasonsTable1",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      selectInput(inputId = "groupReasons1",
+                                  label = "",
+                                  selected = "",
+                                  width = "200px",
+                                  choices = c("Stratify by" = "",
+                                              "No stratification" = "no",
+                                              "Sex" = "sex",
+                                              "Indicator" = "indicator")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorReasons1",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              ),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Health-seeking behaviour for a recent illness",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "recentPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewRecentTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      selectInput(inputId = "groupRecent",
+                                  label = "",
+                                  selected = "",
+                                  width = "200px",
+                                  choices = c("Stratify by" = "",
+                                              "No stratification" = "no",
+                                              "Sex" = "sex",
+                                              "Indicator" = "indicator")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorRecent",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              ),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Reasons for not accessing care for recent illness",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "reasonsPlot2"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewReasonsTable2",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      selectInput(inputId = "groupReasons2",
+                                  label = "",
+                                  selected = "",
+                                  width = "200px",
+                                  choices = c("Stratify by" = "",
+                                              "No stratification" = "no",
+                                              "Sex" = "sex",
+                                              "Indicator" = "indicator")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorReasons2",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              )
+            ),
             tabPanel(title = "Dementia",
-                     value = "dementia",
-                     h4("Dementia")),
+              value = "dementia",
+              br(),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Probable dementia by brief CSID screen",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "dsPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewDSTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorDS",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              )
+            ),
             tabPanel(title = "Mental",
-                     value = "mental",
-                     h4("Mental Health")),
+              value = "mental",
+              br(),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Kessler-6 psychological distress score",
+                    status = "danger",
+                    solidHeader = TRUE, width = 12,
+                    plotOutput(outputId = "kesslerPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewKesslerTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorKessler",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              ),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Kessler-6 psychological distress score distribution",
+                    status = "danger",
+                    solidHeader = TRUE, width = 12,
+                    plotOutput(outputId = "kesslerHist"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      selectInput(inputId = "groupKessler",
+                                  label = "",
+                                  selected = "",
+                                  width = "200px",
+                                  choices = c("Stratify by" = "",
+                                              "No stratification" = "no",
+                                              "Sex" = "sex")
+                      )
+                    )
+                  )
+                )
+              ),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Kessler-6 psychological distress score boxplot",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "kesslerBoxplot")
+                  )
+                )
+              ),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Severe psychological distress",
+                    status = "danger",
+                    solidHeader = TRUE,
+                    width = 12,
+                    plotOutput(outputId = "severeDistressPlot"),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      actionButton(inputId = "viewDistressTable",
+                                   label = "View Data Table",
+                                   icon = icon(name = "eye",
+                                               lib = "font-awesome")
+                      )
+                    ),
+                    div(style="display: inline-block;vertical-align:middle;",
+                      checkboxInput(inputId = "errorDistress",
+                                    label = "Confidence interval",
+                                    value = FALSE,
+                                    width = "200px")
+                    )
+                  )
+                )
+              )
+            ),
             tabPanel(title = "ADL",
               value = "adl",
               br(),
@@ -520,6 +1071,24 @@ ui <- dashboardPage(
                                  label = "View Data Table",
                                  icon = icon(name = "eye",
                                              lib = "font-awesome")
+                    )
+                  )
+                )
+              ),
+              fluidRow(
+                conditionalPanel(condition = "input.analysisAction > 0",
+                  box(title = "Katz ADL score histogram", status = "danger",
+                    solidHeader = TRUE, width = 12,
+                    plotOutput(outputId = "adlHistPlot"),
+                    div(style="display: inline-block;vertical-align:middle",
+                      selectInput(inputId = "groupADLhist",
+                                  label = "",
+                                  selected = "",
+                                  width = "200px",
+                                  choices = c("Stratify by" = "",
+                                              "No stratification" = "no",
+                                              "Sex" = "sex")
+                      )
                     )
                   )
                 )

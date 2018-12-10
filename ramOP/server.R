@@ -27,26 +27,29 @@ server <- function(input, output, session) {
   #
   # Create area map objects - level 0
   #
-  mapCountry <- reactive({
-    if(input$mapSamplingLevel0 != "") {
-
-      progress <- Progress$new()
-      on.exit(progress$close())
-      progress$set(message = paste("Retrieving map of ", list_countries$country[list_countries$iso3code == input$mapSamplingLevel0], sep = ""), value = 0.7)
-
-      gadmr::get_map(format = "gpkg",
-                     country = input$mapSamplingLevel0,
-                     layer = 1)
-    }
-  })
+  #mapCountry <- reactive({
+  #  if(input$mapSamplingLevel0 != "") {
+  #    progress <- Progress$new()
+  #    on.exit(progress$close())
+  #    progress$set(message = paste("Retrieving map of ", list_countries$country[list_countries$iso3code == input$mapSamplingLevel0], sep = ""), value = 0.7)
+  #    gadmr::get_map(format = "gpkg",
+  #                   country = input$mapSamplingLevel0,
+  #                   layer = 2)
+  #  }
+  #})
   #
   # Create area map objects - level 1
   #
   mapRegion <- reactive({
     if(input$mapSamplingLevel0 != "") {
-      regionMap <- gadmr::get_map(format = "gpkg",
-                                  country = input$mapSamplingLevel0,
-                                  layer = 2)
+      ##
+      progress <- Progress$new()
+      on.exit(progress$close())
+      progress$set(message = paste("Retrieving map of ", list_countries$country[list_countries$iso3code == input$mapSamplingLevel0], sep = ""), value = 0.7)
+      ##
+      gadmr::get_map(format = "gpkg",
+                     country = input$mapSamplingLevel0,
+                     layer = 2)
     }
   })
   #
@@ -115,6 +118,28 @@ server <- function(input, output, session) {
                       selected = "")
   })
   #
+  # Update longitude selection
+  #
+  observeEvent(settlements1(), {
+    updateSelectInput(session,
+                      inputId = "longitude",
+                      label = "Select longitude variable",
+                      choices = c("Select longitude variable" = "",
+                                  names(settlements1())),
+                      selected = names(settlements1())[names(settlements1()) %in% c("longitude", "Longitude", "LONGITUDE", "x", "X", "coord_x", "COORD_X")])
+  })
+  #
+  # Update latitude selection
+  #
+  observeEvent(settlements1(), {
+    updateSelectInput(session,
+                      inputId = "latitude",
+                      label = "Select latitude variable",
+                      choices = c("Select latitude variable" = "",
+                                  names(settlements1())),
+                      selected = names(settlements1())[names(settlements1()) %in% c("latitude", "Latitude", "LATITUDE", "y", "Y", "coord_y", "COORD_Y")])
+  })
+  #
   ##############################################################################
   #
   # Spatial sampling
@@ -131,16 +156,16 @@ server <- function(input, output, session) {
   #
   # Country borders
   #
-  observeEvent(mapCountry(), {
+  observeEvent(mapRegion(), {
     leafletProxy("mapSampling") %>%
       clearShapes() %>%
       clearMarkers() %>%
       clearControls() %>%
-      fitBounds(lng1 = bbox(mapCountry())[1,1],
-                lat1 = bbox(mapCountry())[2,1],
-                lng2 = bbox(mapCountry())[1,2],
-                lat2 = bbox(mapCountry())[2,2]) %>%
-      addPolygons(data = mapCountry(),
+      fitBounds(lng1 = bbox(mapRegion())[1,1],
+                lat1 = bbox(mapRegion())[2,1],
+                lng2 = bbox(mapRegion())[1,2],
+                lat2 = bbox(mapRegion())[2,2]) %>%
+      addPolygons(data = mapRegion(),
                   color = "yellow",
                   weight = 6,
                   fill = FALSE)
@@ -159,7 +184,7 @@ server <- function(input, output, session) {
                 lat2 = bbox(selectedRegion())[2,2]) %>%
       addPolygons(data = selectedRegion(),
                   color = "yellow",
-                  weight = 6,
+                  weight = 4,
                   fill = FALSE)
   })
   #
@@ -188,6 +213,26 @@ server <- function(input, output, session) {
       return(NULL)
     }
     read.csv(file = inputFile$datapath, header = TRUE, sep = ",")
+  })
+  ##
+  output$fileUploaded1 <- reactive({
+    return(!is.null(settlements1()))
+  })
+  ##
+  outputOptions(x = output, name = "fileUploaded1", suspendWhenHidden = FALSE)
+  #
+  #
+  #
+  observeEvent(input$longitude != "" & input$latitude != "", {
+    leafletProxy("mapSampling") %>%
+      clearMarkers() %>%
+      clearControls() %>%
+      addCircles(lng = settlements1()[ , req(input$longitude)],
+                 lat = settlements1()[ , req(input$latitude)],
+                 radius = 2,
+                 color = "darkgreen",
+                 fill = TRUE,
+                 weight = 1)
   })
   #
   # Input - village data
@@ -251,16 +296,50 @@ server <- function(input, output, session) {
   # Plot country sampling grid
   #
   observeEvent(input$mapSamplingPlot, {
-    mapSamplingPoint <- create_sp_grid(x = mapCountry(),
+    mapSamplingPoint <- create_sp_grid(x = mapRegion(),
                                        n = 16,
-                                       country = input$mapSamplingLevel0,
-                                       buffer = 2,
-                                       n.factor = 5,
+                                       country = list_countries$country[list_countries$iso3code == input$mapSamplingLevel0],
+                                       buffer = 5,
+                                       n.factor = 2,
+                                       type = "csas",
                                        fixed = TRUE)
     #
     #
     #
-    output$samplingListDownload <- downloadHandler(
+    mapSamplingGrid <- as(as(mapSamplingPoint, "SpatialPixels"), "SpatialPolygons")
+    #
+    #
+    #
+    mapSamplingSettlements <- get_nearest_point(data = settlements1(),
+                                                data.x = input$longitude,
+                                                data.y = input$latitude,
+                                                query = mapSamplingPoint,
+                                                n = 1)
+    #
+    #
+    #
+    leafletProxy("mapSampling") %>%
+      clearShapes() %>%
+      addCircles(lng = mapSamplingPoint@coords[ , "x1"],
+                 lat = mapSamplingPoint@coords[ , "x2"],
+                 radius = 30,
+                 weight = 5,
+                 color = "red",
+                 fill = TRUE) %>%
+      addCircles(lng = mapSamplingSettlements[ , input$longitude],
+                 lat = mapSamplingSettlements[ , input$latitude],
+                 radius = 30,
+                 weight = 5,
+                 color = "darkgreen",
+                 fill = TRUE) %>%
+      addPolygons(data = mapSamplingGrid,
+                  color = "blue",
+                  fill = FALSE,
+                  weight = 4)
+    #
+    #
+    #
+    output$samplingListDownload1 <- downloadHandler(
       filename = function() {
         "samplingList.csv"
       },
@@ -860,7 +939,8 @@ server <- function(input, output, session) {
         geom_col(width = 0.7, fill = "white", colour = "gray70") +
         labs(x = "", y = "Proportion") +
         scale_y_continuous(limits = c(0, 1),
-                           breaks = seq(from = 0, to = 1, by = 0.2))
+                           breaks = seq(from = 0, to = 1, by = 0.2)) +
+        theme_ram
 
       if(input$groupFG == "sex") {
         chartPlot <- ggplot(x[x$SET != "All", ], aes(x = INDICATOR, y = EST)) +
@@ -868,7 +948,9 @@ server <- function(input, output, session) {
           labs(x = "", y = "Proportion") +
           scale_y_continuous(limits = c(0, 1),
                              breaks = seq(from = 0, to = 1, by = 0.2)) +
-          facet_wrap( ~ SET)
+          facet_wrap( ~ SET) +
+          theme_ram +
+          theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
       }
 
       if(input$groupFG == "indicator") {
@@ -877,7 +959,8 @@ server <- function(input, output, session) {
           labs(x = "", y = "Proportion") +
           scale_y_continuous(limits = c(0, 1),
                              breaks = seq(from = 0, to = 1, by = 0.2)) +
-          facet_wrap( ~ INDICATOR)
+          facet_wrap( ~ INDICATOR) +
+          theme_ram
       }
 
       if(input$groupFG == "no") {
@@ -885,7 +968,8 @@ server <- function(input, output, session) {
           geom_col(width = 0.7, fill = "white", colour = "gray70") +
           labs(x = "", y = "Proportion") +
           scale_y_continuous(limits = c(0, 1),
-                             breaks = seq(from = 0, to = 1, by = 0.2))
+                             breaks = seq(from = 0, to = 1, by = 0.2)) +
+          theme_ram
       }
 
       if(input$errorFG) {
@@ -893,7 +977,7 @@ server <- function(input, output, session) {
           geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
       }
 
-      chartPlot + theme_ram
+      chartPlot
     })
     #
     # Food group consumption results
@@ -977,8 +1061,8 @@ server <- function(input, output, session) {
         chartPlot <- ggplot(data = x, aes(x = DDS)) +
           geom_bar(width = 0.7, fill = "white", colour = "gray50") +
           labs(x = "Dietary Diversity Score", y = "Frequency") +
-          scale_x_continuous(limits = c(0, 11),
-                             breaks = seq(from = 0, to = 11, by = 1)) +
+          scale_x_discrete(limits = 0:11,
+                           breaks = seq(from = 0, to = 11, by = 1)) +
           facet_wrap( ~ sex1)
       }
 
@@ -1029,18 +1113,16 @@ server <- function(input, output, session) {
 
       x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
 
-      x$INDICATOR <- ifelse(x$INDICATOR == "pProtein", "Plant sources\nof protein",
-                       ifelse(x$INDICATOR == "aProtein", "Animal sources\nof protein", "Protein-rich\nfoods consumption"))
+      x$INDICATOR <- ifelse(x$INDICATOR == "pProtein", "Plant\nsources\nof protein",
+                       ifelse(x$INDICATOR == "aProtein", "Animal\nsources\nof protein", "Protein-rich\nfoods\nconsumption"))
 
-      x$INDICATOR <- factor(x$INDICATOR, levels = c("Animal sources\nof protein",
-                                                    "Plant sources\nof protein",
-                                                    "Protein-rich\nfoods consumption"))
+      x$INDICATOR <- factor(x$INDICATOR, levels = c("Animal\nsources\nof protein",
+                                                    "Plant\nsources\nof protein",
+                                                    "Protein-rich\nfoods\nconsumption"))
 
       chartPlot <- ggplot(x[x$SET == "All", ], aes(x = INDICATOR, y = EST)) +
         geom_col(width = 0.7, fill = "white", colour = "gray70") +
         labs(x = "", y = "Proportion") +
-        #facet_wrap( ~ INDICATOR) +
-        #scale_x_discrete(labels = c("All", "Males", "Females")) +
         scale_y_continuous(limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2))
 
       if(input$groupProtein == "sex") {
@@ -1097,18 +1179,16 @@ server <- function(input, output, session) {
 
       x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
 
-      x$INDICATOR <- ifelse(x$INDICATOR == "pVitA", "Plant sources\nof vitamin A",
-                            ifelse(x$INDICATOR == "aVitA", "Animal sources\nof vitamin A", "Vitamin A-rich\nfoods consumption"))
+      x$INDICATOR <- ifelse(x$INDICATOR == "pVitA", "Plant\nsources of\nvitamin A",
+                            ifelse(x$INDICATOR == "aVitA", "Animal\nsources of\nvitamin A", "Vitamin A-rich\nfoods\nconsumption"))
 
-      x$INDICATOR <- factor(x$INDICATOR, levels = c("Animal sources\nof vitamin A",
-                                                    "Plant sources\nof vitamin A",
-                                                    "Vitamin A-rich\nfoods consumption"))
+      x$INDICATOR <- factor(x$INDICATOR, levels = c("Animal\nsources of\nvitamin A",
+                                                    "Plant\nsources of\nvitamin A",
+                                                    "Vitamin A-rich\nfoods\nconsumption"))
 
       chartPlot <- ggplot(x[x$SET == "All", ], aes(x = INDICATOR, y = EST)) +
         geom_col(width = 0.7, fill = "white", colour = "gray70") +
         labs(x = "", y = "Proportion") +
-        #facet_wrap( ~ INDICATOR) +
-        #scale_x_discrete(labels = c("All", "Males", "Females")) +
         scale_y_continuous(limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2))
 
       if(input$groupVitA == "sex") {
@@ -1398,7 +1478,8 @@ server <- function(input, output, session) {
         geom_col(width = 0.7, fill = "white", colour = "gray70") +
         labs(x = "", y = "Proportion") +
         scale_y_continuous(limits = c(0, 1),
-                           breaks = seq(from = 0, to = 1, by = 0.2))
+                           breaks = seq(from = 0, to = 1, by = 0.2)) +
+        theme_ram
 
       if(input$groupADL == "sex") {
         chartPlot <- ggplot(x[x$SET != "All", ], aes(x = INDICATOR, y = EST)) +
@@ -1406,7 +1487,9 @@ server <- function(input, output, session) {
           labs(x = "", y = "Proportion") +
           scale_y_continuous(limits = c(0, 1),
                              breaks = seq(from = 0, to = 1, by = 0.2)) +
-          facet_wrap( ~ SET)
+          facet_wrap( ~ SET) +
+          theme_ram +
+          theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
       }
 
       if(input$groupADL == "indicator") {
@@ -1415,7 +1498,8 @@ server <- function(input, output, session) {
           labs(x = "", y = "Proportion") +
           scale_y_continuous(limits = c(0, 1),
                              breaks = seq(from = 0, to = 1, by = 0.2)) +
-          facet_wrap( ~ INDICATOR)
+          facet_wrap( ~ INDICATOR) +
+          theme_ram
       }
 
       if(input$errorADL) {
@@ -1423,8 +1507,7 @@ server <- function(input, output, session) {
           geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
       }
 
-      chartPlot +
-        theme_ram
+      chartPlot
     })
     #
     # ADL score
@@ -1452,7 +1535,7 @@ server <- function(input, output, session) {
       x <- prettyResultsLong()[prettyResultsLong()$INDICATOR == "scoreADL", ]
 
       x$SET <- ifelse(x$SET == "EST.ALL", "All",
-                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+                 ifelse(x$SET == "EST.MALES", "Males", "Females"))
 
       x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
 
@@ -1512,6 +1595,1102 @@ server <- function(input, output, session) {
         labs(x = "", y = "Proportion") +
         scale_y_continuous(limits = c(0, 1),
                            breaks = seq(from = 0, to = 1, by = 0.2))
+
+      chartPlot +
+        theme_ram
+    })
+    #
+    # ADL histogram
+    #
+    output$adlHistPlot <- renderPlot({
+      x <- indicatorsDF()
+
+      x$sex1 <- ifelse(x$sex1 == 1, "Males", "Females")
+
+      x$sex1 <- factor(x$sex1, levels = c("Males", "Females"))
+
+      chartPlot <- ggplot(data = x, aes(x = scoreADL)) +
+        geom_bar(width = 0.7, fill = "white", colour = "gray70") +
+        scale_y_continuous(breaks = seq(from = 0, to = max(table(x$scoreADL)), by = 20)) +
+        scale_x_continuous(breaks = seq(from = 0, to = 6, by = 1)) +
+        labs(x = "ADL Score", y = "Frequency")
+
+      if(input$groupADLhist == "sex") {
+        chartPlot <- chartPlot + facet_wrap( ~ sex1)
+      }
+
+      chartPlot +
+        theme_ram
+    })
+    #
+    # Kessler 6 table
+    #
+    output$kesslerTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR == "K6", c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 20)
+    )
+    #
+    # Kessler 6 modal
+    #
+    observeEvent(input$viewKesslerTable, {
+      showModal(
+        modalDialog(
+          title = "Kessler-6 psychological distress score",
+          DT::dataTableOutput("kesslerTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # Kessler 6 plot
+    #
+    output$kesslerPlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR == "K6", ]
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x, aes(x = SET, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Mean Kessler-6 score") +
+        scale_y_continuous(limits = c(0, 24),
+                           breaks = seq(from = 0, to = 24, by = 2))
+
+      if(input$errorKessler) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot +
+        theme_ram
+    })
+    #
+    # Kessler 6 histogram
+    #
+    output$kesslerHist <- renderPlot({
+      x <- indicatorsDF()
+
+      x$sex1 <- ifelse(x$sex1 == 1, "Males", "Females")
+
+      x$sex1 <- factor(x$sex1, levels = c("Males", "Females"))
+
+      chartPlot <- ggplot(data = x, aes(x = K6)) +
+        geom_bar(width = 0.7, fill = "white", colour = "gray70") +
+        scale_x_discrete(limits = 0:24,
+                         breaks = seq(from = 0, to = 24, by = 2)) +
+        labs(x = "Kessler-6 Pyschological Distress Score", y = "Frequency") +
+        theme_ram
+
+      if(input$groupKessler == "sex") {
+        chartPlot <- ggplot(data = x, aes(x = K6)) +
+          geom_bar(width = 0.7, fill = "white", colour = "gray70") +
+          scale_x_discrete(limits = 0:24,
+                           breaks = seq(from = 0, to = 24, by = 2)) +
+          labs(x = "Kessler-6 Pyschological Distress Score", y = "Frequency") +
+          facet_wrap( ~ sex1) +
+          theme_ram
+      }
+
+      chartPlot
+    })
+    #
+    #
+    #
+    output$kesslerBoxplot<- renderPlot({
+      x <- indicatorsDF()
+
+      x$sex1 <- ifelse(x$sex1 == 1, "Males", "Females")
+
+      x$sex1 <- factor(x$sex1, levels = c("Males", "Females"))
+
+      chartPlot <- ggplot(data = x, aes(x = sex1, y = K6)) +
+        geom_boxplot(notch = TRUE, width = 0.3, colour = "gray70", size = 1) +
+        labs(x = "", y = "Kessler-6 Pyschological Distress Score") +
+        scale_y_continuous(limits = c(0, 24), breaks = seq(from = 0, to = 24, by = 2)) +
+        theme_ram
+
+      chartPlot
+    })
+    #
+    # Severe psychological distress
+    #
+    output$severeDistressPlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR == "K6Case", ]
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x, aes(x = SET, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 1),
+                           breaks = seq(from = 0, to = 1, by = 0.2))
+
+      if(input$errorDistress) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot +
+        theme_ram
+    })
+    #
+    # Dementia table
+    #
+    output$dsTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR == "DS", c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 20)
+    )
+    #
+    # Dementia modal
+    #
+    observeEvent(input$viewDSTable, {
+      showModal(
+        modalDialog(
+          title = "Probable dementia by brief CSID screen",
+          DT::dataTableOutput("dsTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # Dementia plot
+    #
+    output$dsPlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR == "DS", ]
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x, aes(x = SET, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 1),
+                           breaks = seq(from = 0, to = 1, by = 0.2))
+
+      if(input$errorDS) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot +
+        theme_ram
+    })
+    #
+    # Health-seeking for long-term illness table
+    #
+    output$healthTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR %in% c("H1", "H2"), c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 20)
+    )
+    #
+    # Health-seeking for long-termm illness modal
+    #
+    observeEvent(input$viewHealthTable, {
+      showModal(
+        modalDialog(
+          title = "Health-seeking behaviour for a long-term illness",
+          DT::dataTableOutput("healthTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # Health-seeking for long-term illness plot
+    #
+    output$healthPlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR %in% c("H1", "H2"), ]
+
+      x$INDICATOR <- ifelse(x$INDICATOR == "H1", "Long term disease\nrequiring regular medication", "Takes medication for\nlong term disease\nrequiring regular medication")
+
+      x$INDICATOR <- factor(x$INDICATOR, levels = c("Long term disease\nrequiring regular medication",
+                                                    "Takes medication for\nlong term disease\nrequiring regular medication"))
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x[x$SET == "All", ], aes(x = INDICATOR, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 1),
+                           breaks = seq(from = 0, to = 1, by = 0.2)) +
+        theme_ram
+
+      if(input$groupHealth == "sex") {
+        chartPlot <- ggplot(x[x$SET != "All", ], aes(x = INDICATOR, y = EST)) +
+          geom_col(width = 0.7, fill = "white", colour = "gray70") +
+          labs(x = "", y = "Proportion") +
+          scale_y_continuous(limits = c(0, 1),
+                             breaks = seq(from = 0, to = 1, by = 0.2)) +
+          facet_wrap( ~ SET) +
+          theme_ram
+      }
+
+      if(input$groupHealth == "indicator") {
+        chartPlot <- ggplot(x[x$SET != "All", ], aes(x = SET, y = EST)) +
+          geom_col(width = 0.7, fill = "white", colour = "gray70") +
+          labs(x = "", y = "Proportion") +
+          scale_y_continuous(limits = c(0, 1),
+                             breaks = seq(from = 0, to = 1, by = 0.2)) +
+          facet_wrap( ~ INDICATOR) +
+          theme_ram
+      }
+
+      if(input$errorHealth) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot
+    })
+    #
+    # Reasons for not taking medication for long-term illness
+    #
+    output$reasonsTable1 <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR %in% c("H31", "H32", "H33", "H34", "H35", "H36", "H37", "H38", "H39"), c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 30)
+    )
+    #
+    # Reasons for not taking medication for long-term illness modal
+    #
+    observeEvent(input$viewReasonsTable1, {
+      showModal(
+        modalDialog(
+          title = "Reasons for not taking medication for long-term illness requiring regular medication",
+          DT::dataTableOutput("reasonsTable1"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # Reasons for not taking medication plot
+    #
+    output$reasonsPlot1 <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR %in% c("H31", "H32", "H33", "H34", "H35", "H36", "H37", "H38", "H39"), ]
+
+      x$INDICATOR <- ifelse(x$INDICATOR == "H31", "No drugs available",
+                       ifelse(x$INDICATOR == "H32", "Too expensive / no money",
+                         ifelse(x$INDICATOR == "H33", "Too old to look for care",
+                           ifelse(x$INDICATOR == "H34", "Use of traditional medicine",
+                              ifelse(x$INDICATOR == "H35", "Drugs don't help",
+                                ifelse(x$INDICATOR == "H36", "No one to help me",
+                                  ifelse(x$INDICATOR == "H37", "No need",
+                                    ifelse(x$INDICATOR == "H38", "Other", "No reason given"))))))))
+
+      x$INDICATOR <- factor(x$INDICATOR, levels = c("No drugs available",
+                                                    "Too expensive / no money",
+                                                    "Too old to look for care",
+                                                    "Use of traditional medicine",
+                                                    "Drugs don't help",
+                                                    "No one to help me",
+                                                    "No need",
+                                                    "Other",
+                                                    "No reason given"))
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x[x$SET == "All", ], aes(x = INDICATOR, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 1),
+                           breaks = seq(from = 0, to = 1, by = 0.2)) +
+        coord_flip() +
+        theme_ram
+
+      if(input$groupReasons1 == "sex") {
+        chartPlot <- ggplot(x[x$SET != "All", ], aes(x = INDICATOR, y = EST)) +
+          geom_col(width = 0.7, fill = "white", colour = "gray70") +
+          labs(x = "", y = "Proportion") +
+          scale_y_continuous(limits = c(0, 1),
+                             breaks = seq(from = 0, to = 1, by = 0.2)) +
+          coord_flip() +
+          facet_wrap( ~ SET) +
+          theme_ram
+      }
+
+      if(input$groupReasons1 == "indicator") {
+        chartPlot <- ggplot(x[x$SET != "All", ], aes(x = SET, y = EST)) +
+          geom_col(width = 0.7, fill = "white", colour = "gray70") +
+          labs(x = "", y = "Proportion") +
+          scale_y_continuous(limits = c(0, 1),
+                             breaks = seq(from = 0, to = 1, by = 0.2)) +
+          coord_flip() +
+          facet_wrap( ~ INDICATOR) +
+          theme_ram
+      }
+
+      if(input$errorReasons1) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot
+    })
+    #
+    # Health-seeking for recent illness illness table
+    #
+    output$recentTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR %in% c("H4", "H5"), c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 20)
+    )
+    #
+    # Health-seeking for recent illness modal
+    #
+    observeEvent(input$viewRecentTable, {
+      showModal(
+        modalDialog(
+          title = "Health-seeking behaviour for a recent illness",
+          DT::dataTableOutput("recentTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # Health-seeking for recent illness plot
+    #
+    output$recentPlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR %in% c("H4", "H5"), ]
+
+      x$INDICATOR <- ifelse(x$INDICATOR == "H4", "Illness in\nthe previous\n2 weeks)", "Accessed care\nfor\nrecent illness")
+
+      x$INDICATOR <- factor(x$INDICATOR, levels = c("Illness in\nthe previous\n2 weeks)", "Accessed care\nfor\nrecent illness"))
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x[x$SET == "All", ], aes(x = INDICATOR, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 1),
+                           breaks = seq(from = 0, to = 1, by = 0.2)) +
+        theme_ram
+
+      if(input$groupRecent == "sex") {
+        chartPlot <- ggplot(x[x$SET != "All", ], aes(x = INDICATOR, y = EST)) +
+          geom_col(width = 0.7, fill = "white", colour = "gray70") +
+          labs(x = "", y = "Proportion") +
+          scale_y_continuous(limits = c(0, 1),
+                             breaks = seq(from = 0, to = 1, by = 0.2)) +
+          facet_wrap( ~ SET) +
+          theme_ram
+      }
+
+      if(input$groupRecent == "indicator") {
+        chartPlot <- ggplot(x[x$SET != "All", ], aes(x = SET, y = EST)) +
+          geom_col(width = 0.7, fill = "white", colour = "gray70") +
+          labs(x = "", y = "Proportion") +
+          scale_y_continuous(limits = c(0, 1),
+                             breaks = seq(from = 0, to = 1, by = 0.2)) +
+          facet_wrap( ~ INDICATOR) +
+          theme_ram
+      }
+
+      if(input$errorRecent) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot
+    })
+    #
+    # Reasons for not accessing care for recent illness
+    #
+    output$reasonsTable2 <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR %in% c("H61", "H62", "H63", "H64", "H65", "H66", "H67", "H68", "H69"), c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 30)
+    )
+    #
+    # Reasons for not taking medication for long-term illness modal
+    #
+    observeEvent(input$viewReasonsTable2, {
+      showModal(
+        modalDialog(
+          title = "Reasons for not accessing care for recent illness",
+          DT::dataTableOutput("reasonsTable2"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # Reasons for not taking medication plot
+    #
+    output$reasonsPlot2 <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR %in% c("H61", "H62", "H63", "H64", "H65", "H66", "H67", "H68", "H69"), ]
+
+      x$INDICATOR <- ifelse(x$INDICATOR == "H61", "No drugs available",
+                       ifelse(x$INDICATOR == "H62", "Too expensive / no money",
+                         ifelse(x$INDICATOR == "H63", "Too old to look for care",
+                           ifelse(x$INDICATOR == "H64", "Use of traditional medicine",
+                             ifelse(x$INDICATOR == "H65", "Drugs don't help",
+                               ifelse(x$INDICATOR == "H66", "No one to help me",
+                                 ifelse(x$INDICATOR == "H67", "No need",
+                                   ifelse(x$INDICATOR == "H68", "Other", "No reason given"))))))))
+
+      x$INDICATOR <- factor(x$INDICATOR, levels = c("No drugs available",
+                                                    "Too expensive / no money",
+                                                    "Too old to look for care",
+                                                    "Use of traditional medicine",
+                                                    "Drugs don't help",
+                                                    "No one to help me",
+                                                    "No need",
+                                                    "Other",
+                                                    "No reason given"))
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x[x$SET == "All", ], aes(x = INDICATOR, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 1),
+                           breaks = seq(from = 0, to = 1, by = 0.2)) +
+        coord_flip() +
+        theme_ram
+
+      if(input$groupReasons2 == "sex") {
+        chartPlot <- ggplot(x[x$SET != "All", ], aes(x = INDICATOR, y = EST)) +
+          geom_col(width = 0.7, fill = "white", colour = "gray70") +
+          labs(x = "", y = "Proportion") +
+          scale_y_continuous(limits = c(0, 1),
+                             breaks = seq(from = 0, to = 1, by = 0.2)) +
+          coord_flip() +
+          facet_wrap( ~ SET) +
+          theme_ram
+      }
+
+      if(input$groupReasons2 == "indicator") {
+        chartPlot <- ggplot(x[x$SET != "All", ], aes(x = SET, y = EST)) +
+          geom_col(width = 0.7, fill = "white", colour = "gray70") +
+          labs(x = "", y = "Proportion") +
+          scale_y_continuous(limits = c(0, 1),
+                             breaks = seq(from = 0, to = 1, by = 0.2)) +
+          coord_flip() +
+          facet_wrap( ~ INDICATOR) +
+          theme_ram
+      }
+
+      if(input$errorReasons2) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot
+    })
+    #
+    # Has income table
+    #
+    output$incomeTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR == "M1", c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 20)
+    )
+    #
+    # Has income modal
+    #
+    observeEvent(input$viewIncomeTable, {
+      showModal(
+        modalDialog(
+          title = "Has a personal income",
+          DT::dataTableOutput("incomeTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # Income plot
+    #
+    output$incomePlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR == "M1", ]
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x, aes(x = SET, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 1),
+                           breaks = seq(from = 0, to = 1, by = 0.2))
+
+      if(input$errorIncome) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot +
+        theme_ram
+    })
+    #
+    # Sources of income table
+    #
+    output$incomeSourceTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR %in% c("M2A", "M2B", "M2C", "M2D", "M2E", "M2F", "M2G", "M2H", "M2I"), c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 30)
+    )
+    #
+    # Sources of income modal
+    #
+    observeEvent(input$viewIncomeSourceTable, {
+      showModal(
+        modalDialog(
+          title = "Source of income",
+          DT::dataTableOutput("incomeSourceTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # Sources of income plot
+    #
+    output$incomeSourcePlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR %in% c("M2A", "M2B", "M2C", "M2D", "M2E", "M2F", "M2G", "M2H", "M2I"), ]
+
+      x$INDICATOR <- ifelse(x$INDICATOR == "M2A", "Agriculture / fishing / livestock",
+                       ifelse(x$INDICATOR == "M2B", "Wages / salary",
+                         ifelse(x$INDICATOR == "M2C", "Sale of charcoal / bricks / etc.",
+                           ifelse(x$INDICATOR == "M2D", "Trading (e.g. market or shop)",
+                             ifelse(x$INDICATOR == "M2E", "Investments",
+                               ifelse(x$INDICATOR == "M2F", "Spending savings\nor sales of assets",
+                                 ifelse(x$INDICATOR == "M2G", "Charity",
+                                   ifelse(x$INDICATOR == "M2H", "Cash transfer,\nsocial security\nor welfare", "Other source(s) of income"))))))))
+
+      x$INDICATOR <- factor(x$INDICATOR, levels = c("Agriculture / fishing / livestock",
+                                                    "Wages / salary",
+                                                    "Sale of charcoal / bricks / etc.",
+                                                    "Trading (e.g. market or shop)",
+                                                    "Investments",
+                                                    "Spending savings\nor sales of assets",
+                                                    "Charity",
+                                                    "Cash transfer,\nsocial security\nor welfare",
+                                                    "Other source(s) of income"))
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x[x$SET == "All", ], aes(x = INDICATOR, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 1),
+                           breaks = seq(from = 0, to = 1, by = 0.2)) +
+        coord_flip() +
+        theme_ram
+
+      if(input$groupIncomeSource == "sex") {
+        chartPlot <- ggplot(x[x$SET != "All", ], aes(x = INDICATOR, y = EST)) +
+          geom_col(width = 0.7, fill = "white", colour = "gray70") +
+          labs(x = "", y = "Proportion") +
+          scale_y_continuous(limits = c(0, 1),
+                             breaks = seq(from = 0, to = 1, by = 0.2)) +
+          coord_flip() +
+          facet_wrap( ~ SET) +
+          theme_ram
+      }
+
+      if(input$groupIncomeSource == "indicator") {
+        chartPlot <- ggplot(x[x$SET != "All", ], aes(x = SET, y = EST)) +
+          geom_col(width = 0.7, fill = "white", colour = "gray70") +
+          labs(x = "", y = "Proportion") +
+          scale_y_continuous(limits = c(0, 1),
+                             breaks = seq(from = 0, to = 1, by = 0.2)) +
+          coord_flip() +
+          facet_wrap( ~ INDICATOR) +
+          theme_ram
+      }
+
+      if(input$errorIncomeSource) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot
+    })
+    #
+    # WASH table
+    #
+    output$washTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR %in% c("W1", "W2", "W3", "W4"), c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 20)
+    )
+    #
+    # WASH modal
+    #
+    observeEvent(input$viewWASHTable, {
+      showModal(
+        modalDialog(
+          title = "Water, sanitation and hygiene services coverage",
+          DT::dataTableOutput("washTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # WASH plot
+    #
+    output$washPlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR %in% c("W1", "W2", "W3", "W4"), ]
+
+      x$INDICATOR <- ifelse(x$INDICATOR == "W1", "Improved source\nof drinking water",
+                       ifelse(x$INDICATOR == "W2", "Safe drinking\nwater",
+                         ifelse(x$INDICATOR == "W3", "Improved\nsanitation facility", "Improved non-shared\nsanitation facility")))
+
+      x$INDICATOR <- factor(x$INDICATOR, levels = c("Improved source\nof drinking water",
+                                                    "Safe drinking\nwater",
+                                                    "Improved\nsanitation facility",
+                                                    "Improved non-shared\nsanitation facility"))
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x[x$SET == "All", ], aes(x = INDICATOR, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 1),
+                           breaks = seq(from = 0, to = 1, by = 0.2)) +
+        theme_ram
+
+      if(input$groupWASH == "sex") {
+        chartPlot <- ggplot(x[x$SET != "All", ], aes(x = INDICATOR, y = EST)) +
+          geom_col(width = 0.7, fill = "white", colour = "gray70") +
+          labs(x = "", y = "Proportion") +
+          scale_y_continuous(limits = c(0, 1),
+                             breaks = seq(from = 0, to = 1, by = 0.2)) +
+          facet_wrap( ~ SET) +
+          theme_ram +
+          theme(axis.text.x = element_text(angle = 30, vjust = 1, hjust=1))
+      }
+
+      if(input$groupWASH == "indicator") {
+        chartPlot <- ggplot(x[x$SET != "All", ], aes(x = SET, y = EST)) +
+          geom_col(width = 0.7, fill = "white", colour = "gray70") +
+          labs(x = "", y = "Proportion") +
+          scale_y_continuous(limits = c(0, 1),
+                             breaks = seq(from = 0, to = 1, by = 0.2)) +
+          facet_wrap( ~ INDICATOR) +
+          theme_ram
+      }
+
+      if(input$errorWASH) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot
+    })
+    #
+    # Mean MUAC table
+    #
+    output$meanMUACTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR == "MUAC", c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 20)
+    )
+    #
+    # Mean MUAC modal
+    #
+    observeEvent(input$viewMeanMUACTable, {
+      showModal(
+        modalDialog(
+          title = "Mean mid-upper arm circumference (mm)",
+          DT::dataTableOutput("meanMUACTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # Mean MUAC plot
+    #
+    output$meanMUACPlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR == "MUAC", ]
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x, aes(x = SET, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 300),
+                           breaks = seq(from = 0, to = 300, by = 20))
+
+      if(input$errorMeanMUAC) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot +
+        theme_ram
+    })
+    #
+    # MUAC histogram
+    #
+    output$histMUACPlot <- renderPlot({
+      x <- indicatorsDF()
+
+      x$sex1 <- ifelse(x$sex1 == 1, "Males", "Females")
+
+      x$sex1 <- factor(x$sex1, c("Males", "Females"))
+
+      chartPlot <- ggplot(data = x, aes(x = MUAC)) +
+        geom_histogram(fill = "white", colour = "gray70") +
+        labs(x = "Mid-upper arm circumference (MUAC) in mm", y = "Frequency")
+
+      if(input$groupHistMUAC == "sex") {
+        chartPlot <- chartPlot +
+          facet_wrap( ~ sex1)
+      }
+
+      chartPlot +
+        theme_ram
+    })
+    #
+    # GAM table
+    #
+    output$muacTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR %in% c("SAM", "MAM", "GAM"), c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 20)
+    )
+    #
+    # GAM modal
+    #
+    observeEvent(input$viewWASHTable, {
+      showModal(
+        modalDialog(
+          title = "Acute undernutrition prevalence",
+          DT::dataTableOutput("muacTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # WASH plot
+    #
+    output$muacPlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR %in% c("SAM", "MAM", "GAM"), ]
+
+
+      x$INDICATOR <- factor(x$INDICATOR, levels = c("SAM",
+                                                    "MAM",
+                                                    "GAM"))
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x[x$SET == "All", ], aes(x = INDICATOR, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 0.1),
+                           breaks = seq(from = 0, to = 0.1, by = 0.02)) +
+        theme_ram
+
+      if(input$groupMUAC == "sex") {
+        chartPlot <- ggplot(x[x$SET != "All", ], aes(x = INDICATOR, y = EST)) +
+          geom_col(width = 0.7, fill = "white", colour = "gray70") +
+          labs(x = "", y = "Proportion") +
+          scale_y_continuous(limits = c(0, 0.1),
+                             breaks = seq(from = 0, to = 0.1, by = 0.02)) +
+          facet_wrap( ~ SET) +
+          theme_ram +
+          theme(axis.text.x = element_text(angle = 30, vjust = 1, hjust=1))
+      }
+
+      if(input$groupMUAC == "indicator") {
+        chartPlot <- ggplot(x[x$SET != "All", ], aes(x = SET, y = EST)) +
+          geom_col(width = 0.7, fill = "white", colour = "gray70") +
+          labs(x = "", y = "Proportion") +
+          scale_y_continuous(limits = c(0, 0.1),
+                             breaks = seq(from = 0, to = 0.1, by = 0.02)) +
+          facet_wrap( ~ INDICATOR) +
+          theme_ram
+      }
+
+      if(input$errorMUAC) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot
+    })
+    #
+    # Oedema table
+    #
+    output$oedemaTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR == "oedema", c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 20)
+    )
+    #
+    # Oedema modal
+    #
+    observeEvent(input$viewOedemaTable, {
+      showModal(
+        modalDialog(
+          title = "Bilateral pitting oedema prevalence",
+          DT::dataTableOutput("oedemaTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # Income plot
+    #
+    output$oedemaPlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR == "oedema", ]
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x, aes(x = SET, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 0.1),
+                           breaks = seq(from = 0, to = 0.1, by = 0.01))
+
+      if(input$errorOedema) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot +
+        theme_ram
+    })
+    #
+    # Anthropometric screening coverage table
+    #
+    output$screenTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR == "screened", c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 20)
+    )
+    #
+    # Screening coverage modal
+    #
+    observeEvent(input$viewScreeningTable, {
+      showModal(
+        modalDialog(
+          title = "Anthropometric screening coverage",
+          DT::dataTableOutput("screenTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # Anthropometric screening coverage plot
+    #
+    output$screenPlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR == "screened", ]
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x, aes(x = SET, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 1),
+                           breaks = seq(from = 0, to = 1, by = 0.2))
+
+      if(input$errorScreen) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot +
+        theme_ram
+    })
+    #
+    # visual acuity table
+    #
+    output$visualTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR == "poorVA", c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 20)
+    )
+    #
+    # visual acuity modal
+    #
+    observeEvent(input$viewVisualTable, {
+      showModal(
+        modalDialog(
+          title = "Poor visual acuity",
+          DT::dataTableOutput("visualTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # Visual acuity plot
+    #
+    output$visualPlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR == "poorVA", ]
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x, aes(x = SET, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 1),
+                           breaks = seq(from = 0, to = 1, by = 0.2))
+
+      if(input$errorVisual) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot +
+        theme_ram
+    })
+    #
+    # Problems chewing food table
+    #
+    output$chewTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR == "chew", c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 20)
+    )
+    #
+    # problems chewing food modal
+    #
+    observeEvent(input$viewChewTable, {
+      showModal(
+        modalDialog(
+          title = "Problems chewing food (self-report)",
+          DT::dataTableOutput("chewTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # Problems chewing food plot
+    #
+    output$chewPlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR == "chew", ]
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x, aes(x = SET, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 1),
+                           breaks = seq(from = 0, to = 1, by = 0.2))
+
+      if(input$errorChew) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot +
+        theme_ram
+    })
+    #
+    # Food ration table
+    #
+    output$foodTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR == "food", c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 20)
+    )
+    #
+    # food ration modal
+    #
+    observeEvent(input$viewFoodTable, {
+      showModal(
+        modalDialog(
+          title = "Anyone in household recieves a ration",
+          DT::dataTableOutput("foodTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # food ration plot
+    #
+    output$foodPlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR == "food", ]
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x, aes(x = SET, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 1),
+                           breaks = seq(from = 0, to = 1, by = 0.2))
+
+      if(input$errorFood) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
+
+      chartPlot +
+        theme_ram
+    })
+    #
+    # NFRI table
+    #
+    output$nfriTable <- DT::renderDataTable(
+      prettyResultsLong()[prettyResultsLong()$INDICATOR == "NFRI", c("LABEL", "TYPE", "SET", "EST", "LCL", "UCL")],
+      rownames = FALSE,
+      options = list(scrollX = TRUE, pageLength = 20)
+    )
+    #
+    # NFRI modal
+    #
+    observeEvent(input$viewNFRITable, {
+      showModal(
+        modalDialog(
+          title = "Received non-food relief items in previous month",
+          DT::dataTableOutput("nfriTable"), easyClose = TRUE
+        )
+      )
+    })
+    #
+    # NFRI plot
+    #
+    output$nfriPlot <- renderPlot({
+      x <- prettyResultsLong()[prettyResultsLong()$INDICATOR == "NFRI", ]
+
+      x$SET <- ifelse(x$SET == "EST.ALL", "All",
+                      ifelse(x$SET == "EST.MALES", "Males", "Females"))
+
+      x$SET <- factor(x$SET, levels = c("All", "Males", "Females"))
+
+      chartPlot <- ggplot(x, aes(x = SET, y = EST)) +
+        geom_col(width = 0.7, fill = "white", colour = "gray70") +
+        labs(x = "", y = "Proportion") +
+        scale_y_continuous(limits = c(0, 1),
+                           breaks = seq(from = 0, to = 1, by = 0.2))
+
+      if(input$errorNFRI) {
+        chartPlot <- chartPlot +
+          geom_errorbar(aes(ymin = LCL, ymax = UCL), width = 0.1, colour = "gray70")
+      }
 
       chartPlot +
         theme_ram
