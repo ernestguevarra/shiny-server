@@ -27,7 +27,7 @@ library(purrr)
 library(gstat)
 library(shinyjs)
 library(epitools)
-library
+library(colourpicker)
 #
 #
 #
