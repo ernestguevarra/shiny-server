@@ -27,7 +27,11 @@ library(purrr)
 library(gstat)
 library(shinyjs)
 library(epitools)
-library(colourpicker)
+library
+#
+#
+#
+register_google("AIzaSyCa7K4CUhyOLBJUrLZPm4qEwv5yyP9zMKQ")
 #
 #
 #
