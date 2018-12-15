@@ -30,7 +30,7 @@ library(colourpicker)
 #
 #
 #
-ggmap::register_google(key = "AIzaSyCa7K4CUhyOLBJUrLZPm4qEwv5yyP9zMKQ")
+register_google(key = "AIzaSyCa7K4CUhyOLBJUrLZPm4qEwv5yyP9zMKQ")
 #
 #
 #
