@@ -14,7 +14,6 @@ library(stringr)
 library(leaflet)
 library(shinycssloaders)
 library(shinythemes)
-#library(geojsonio)
 library(rgdal)
 library(rgeos)
 library(raster)
@@ -31,7 +30,7 @@ library(colourpicker)
 #
 #
 #
-register_google("AIzaSyCa7K4CUhyOLBJUrLZPm4qEwv5yyP9zMKQ")
+ggmap::register_google(key = "AIzaSyCa7K4CUhyOLBJUrLZPm4qEwv5yyP9zMKQ")
 #
 #
 #
