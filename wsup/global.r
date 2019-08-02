@@ -30,7 +30,7 @@ library(colourpicker)
 #
 #
 #
-register_google(key = "AIzaSyCa7K4CUhyOLBJUrLZPm4qEwv5yyP9zMKQ")
+register_google(key = "AIzaSyCARDuQRLp07j1d2gua05uswTXp4S-qnfg")
 #
 #
 #
