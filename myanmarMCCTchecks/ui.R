@@ -96,6 +96,11 @@ ui <- dashboardPage(
               label = "ONA username",
               placeholder = "username"
             ),
+            passwordInput(inputId = "password",
+              label = "ONA password",
+              value = "",
+              placeholder = "password"
+            ),
             actionButton(inputId = "getData",
               label = "Get data",
               icon = icon(name = "database",

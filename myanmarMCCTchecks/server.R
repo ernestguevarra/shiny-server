@@ -20,6 +20,7 @@ server <- function(input, output, session) {
   surveyData <- eventReactive(input$getData, {
     get_mcct_data(id = "baseline_mcct",
                   username = input$username,
+                  password = input$password,
                   start = input$startDate,
                   end = input$endDate,
                   filename = "surveyData") %>%
