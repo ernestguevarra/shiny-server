@@ -1,0 +1,3 @@
+[submodule "liberiaCoverage"]
+	path = liberiaCoverage
+	url = https://github.com/validmeasures/liberiaCoverage
