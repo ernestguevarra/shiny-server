@@ -10,6 +10,8 @@ if(!require(shinydashboard)) install.packages("shinydashboard")
 if(!require(magrittr)) install.packages("magrittr")
 if(!require(ggplot2)) install.packages("ggplot2")
 if(!require(openxlsx)) install.packages("openxlsx")
+if(!require(DT)) install.packages("DT")
+if(!require(stringr)) install.packages("stringr")
 
 ##
 #ggmap::register_google(key = "AIzaSyCARDuQRLp07j1d2gua05uswTXp4S-qnfg")
