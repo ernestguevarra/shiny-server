@@ -9,6 +9,7 @@ if(!require(myanmarMCCTchecks)) remotes::install_github("validmeasures/myanmarMC
 if(!require(shinydashboard)) install.packages("shinydashboard")
 if(!require(magrittr)) install.packages("magrittr")
 if(!require(ggplot2)) install.packages("ggplot2")
+if(!require(openxlsx)) install.packages("openxlsx")
 
 ##
 #ggmap::register_google(key = "AIzaSyCARDuQRLp07j1d2gua05uswTXp4S-qnfg")

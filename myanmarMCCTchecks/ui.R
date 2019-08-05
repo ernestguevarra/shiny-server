@@ -10,11 +10,11 @@ ui <- dashboardPage(
   skin = "red",
   ## Header
   dashboardHeader(
-    title = "Myanmar MCCT Checks",
-    titleWidth = 300),
+    title = "Myanmar MCCT Data Checks",
+    titleWidth = 350),
   ## Sidebar
   dashboardSidebar(
-    width = 300,
+    width = 350,
     sidebarSearchForm(
       textId = "searchText",
       buttonId = "searchButton"
@@ -58,7 +58,7 @@ ui <- dashboardPage(
   dashboardBody(
     ## Specify a custom.css
     tags$head(
-      tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
+      tags$link(rel = "stylesheet", type = "text/css", href = "valid.css")
     ),
     ## Body outputs for every menu item on sidebar
     tabItems(
@@ -78,7 +78,7 @@ ui <- dashboardPage(
               value = NULL
             )
           ),
-          box(title = "Data import settings",
+          box(title = "Import data settings",
             solidHeader = TRUE,
             status = "primary",
             width = 4,
@@ -101,26 +101,40 @@ ui <- dashboardPage(
               value = "",
               placeholder = "password"
             ),
-            actionButton(inputId = "getData",
-              label = "Get data",
-              icon = icon(name = "database",
-                          lib = "font-awesome",
-                          class = "fa-lg")
+            div(style="display:inline-block; vertical-align:middle;
+                float:left; padding-left:5px; padding-right:5px;",
+              uiOutput("getDataButton")
+            ),
+            div(style="display:inline-block; vertical-align:middle;
+                float:left; padding-left:5px; padding-right:5px;",
+              uiOutput("viewDataButton")
             )
           ),
-          box(title = "Check parameters",
+          box(title = "Save data settings",
             solidHeader = TRUE,
             status = "primary",
-            width = 4
+            width = 4,
+            radioButtons(inputId = "dataFormat",
+              label = "Select data format",
+              choices = c("Excel" = "xls",
+                          "CSV" = "csv"),
+              selected = "csv",
+              inline = TRUE
+            ),
+            textInput(inputId = "fileName",
+              label = "Specify filename",
+              value = "surveyData",
+              placeholder = "Enter filename"
+            ),
+            div(style="display:inline-block;
+              vertical-align:middle;
+              float:left; padding-left:5px; padding-right:5px;",
+              uiOutput("saveDataButton")
+            )
           )
         ),
         fluidRow(
-          box(title = "Dataset for checking",
-            solidHeader = TRUE,
-            status = "primary",
-            width = 12,
-            DT::dataTableOutput("surveyDataTable")
-          )
+          uiOutput("viewDataBox")
         )
       ),
       tabItem(tabName = "track",
@@ -150,34 +164,44 @@ ui <- dashboardPage(
               choices = NULL
             )
           ),
-          box(title = "",
-            solidHeader = FALSE,
-            status = "primary",
-            width = 8,
-            height = "600px",
-            plotOutput(outputId = "trackingPlot")
-          )
+          uiOutput("plotSettings")
+        ),
+        fluidRow(
+          uiOutput("trackingPlotBox")
         )
       ),
       tabItem(tabName = "logic",
         fluidRow(
-          box(title = "Duplicates",
-            solidHeader = TRUE,
-            status = "primary",
+          tabBox(title = "Check logic",
+            id = "logicTabs",
             width = 12,
-            DT::dataTableOutput("duplicateTable")
-          ),
-          box(title = "No consent",
-            solidHeader = TRUE,
-            status = "primary",
-            width = 12,
-            DT::dataTableOutput("consentTable")
-          ),
-          box(title = "Outside survey date",
-            solidHeader = TRUE,
-            status = "primary",
-            width = 12,
-            DT::dataTableOutput("outsideTable")
+            tabPanel(title = "Duplicates",
+              fluidRow(
+                valueBoxOutput(outputId = "totalDuplicates",
+                  width = 3
+                )
+              ),
+              hr(),
+              DT::dataTableOutput("duplicateTable")
+            ),
+            tabPanel(title = "No consent",
+              fluidRow(
+                valueBoxOutput(outputId = "totalNoConsent",
+                  width = 3
+                )
+              ),
+              hr(),
+              DT::dataTableOutput("consentTable")
+            ),
+            tabPanel(title = "Outside survey date",
+              fluidRow(
+                valueBoxOutput(outputId = "totalOutsideSurvey",
+                  width = 3
+                )
+              ),
+              hr(),
+              DT::dataTableOutput("outsideTable")
+            )
           )
         )
       ),
@@ -186,18 +210,40 @@ ui <- dashboardPage(
           box(title = "Variables to check enumerator performance",
             solidHeader = TRUE,
             status = "primary",
-            width = 2,
+            width = 4,
             selectInput(inputId = "vars",
               label = "Select variables",
               choices = c("Choose..." = "."),
             )
           ),
-          box(title = "",
-            solidHeader = FALSE,
+          box(title = "Plot settings",
+            solidHeader = TRUE,
             status = "primary",
-            width = 10,
-            plotOutput(outputId = "performancePlot")
+            width = 4,
+            radioButtons(inputId = "performPlotDirection",
+              label = "Direction",
+              choices = c("horizontal" = "h", "vertical" = "v"),
+              selected = "h",
+              inline = TRUE
+            ),
+            sliderInput(inputId = "performPlotCols",
+              label = "Plot panel columns",
+              value = 3,
+              min = 1,
+              max = 4,
+              step = 1
+            ),
+            sliderInput(inputId = "performPlotHeight",
+              label = "Plot height",
+              value = 600,
+              min = 400,
+              max = 800,
+              step = 10
+            )
           )
+        ),
+        fluidRow(
+          uiOutput("performancePlotBox")
         )
       )#,
       #tabItem(tabName = "standard",
