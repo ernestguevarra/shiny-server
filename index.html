@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Shiny Gallery</title>
+  <style type="text/css">
+    body, html {
+      font-family: Helvetica, Arial, sans-serif;
+      background-color: #F5F5F5;
+      color: #114;
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    #titleBar {
+      height: 80px;
+      background-color: #002147;
+      overflow: hidden;
+      border-bottom: 1px solid #002147;
+      -moz-box-shadow:    0px 0px 10px 3px #BBC;
+      -webkit-box-shadow: 0px 0px 10px 3px #BBC;
+      box-shadow:         0px 0px 10px 3px #BBC;
+    }
+    #titleBar #container {
+      margin-top: 14px;
+    }
+    #titleBar h1 {
+      margin: 0 auto .5em auto;
+      padding: .2em;
+      color: #EEE;
+      text-align: center;
+    }
+    #intro {
+      background-color: #DDD;
+      margin: 1em 1em 0 1em;
+      padding: .75em;
+      text-align: center;
+      border: 1px solid #CCC;
+      font-size: 18px;
+    }
+    #intro p {
+      margin: .3em 0 .3em 0;
+    }
+    #outer-content {
+      max-width: 910px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #content {
+      margin: 1em auto 1em auto;
+      float: left;
+    }
+    #main{
+      margin-right: 350px;
+      float: left;
+      line-height: 24px;
+    }
+
+    #shiny{
+      float: left;
+      width: 305px;
+      margin-left: 100px;
+      /*padding-left: 20px;
+      border-left: 1px solid #AAA;*/
+    }
+    #shiny img {
+      margin-top: 60px;
+    }
+    .caption{
+      font-size: 13px;
+    }
+    code {
+      background-color: #E5E5E5;
+      border: 1px solid #AAA;
+      -webkit-border-radius: 3px;
+      -khtml-border-radius: 3px; 
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      padding: 0 .5em 0 .5em;
+    }
+  </style>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-102485058-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-102485058-1');
+  </script>
+
+</head>
+<body>
+  <div id="titleBar">
+    <div id="container">
+      <h1>Valid Measures Shiny App Gallery</h1>
+    </div>
+  </div>
+
+  <div id="shiny">
+    
+    <a href="http://apps.validmeasures.org/wsup"><img src="./images/appWASH.png" style="border: 3px solid #002147; width: 300px; height: 300px float:left"></a>
+        
+    <div class="caption">
+        <a href="http://apps.validmeasures.org/wsup">Urban Water and Sanitation Survey</a>
+    </div>
+
+  </div>
+
+  <div id="shiny">  
+
+    <a href="http://apps.validmeasures.org/zscorer"><img src="./images/zscorer.png" style="border: 3px solid #002147; width: 300px; height: 300px float:right"></a>
+
+    <div class="caption">
+        <a href="http://apps.validmeasures.org/zscorer">Anthropometric indices z-score calculator</a>
+    </div>
+
+  </div>
+
+  <div id="shiny">  
+
+    <a href="http://apps.validmeasures.org/liberiaCoverage"><img src="./images/zscorer.png" style="border: 3px solid #002147; width: 300px; height: 300px float:right"></a>
+
+    <div class="caption">
+        <a href="http://apps.validmeasures.org/liberiaCoverage">Liberia Coverage Assessment</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
