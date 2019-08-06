@@ -1,0 +1,16 @@
+name: "validmeasures.io"
+output_dir: "."
+navbar: 
+  title: "validmeasures.io"
+  left:
+    - icon: fa-home fa-lg
+      href: index.html
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/validmeasures
+    - icon: fa-twitter fa-lg
+      href: https://twitter.com/validmeasures
+output:
+  html_document:
+    theme: sandstone
+    
