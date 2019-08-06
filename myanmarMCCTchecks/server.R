@@ -7,6 +7,11 @@
 # Define server logic for application
 #
 server <- function(input, output, session) {
+  ## Keep alive
+  output$keepAlive <- renderText({
+    req(input$count)
+    paste("keep alive ", input$count)
+  })
   ## Update data input for startDate
   observe({
       updateDateInput(session = session,
@@ -392,9 +397,38 @@ server <- function(input, output, session) {
       choices = names(surveyData())
     )
   })
+  ## Create UI for plot settings
+  output$plotSettingsBox <- renderUI({
+    req(input$getData)
+    box(title = "Plot settings",
+      solidHeader = TRUE,
+      status = "primary",
+      width = 4,
+      radioButtons(inputId = "performPlotDirection",
+        label = "Direction",
+        choices = c("horizontal" = "h", "vertical" = "v"),
+        selected = "h",
+        inline = TRUE
+      ),
+      sliderInput(inputId = "performPlotCols",
+        label = "Plot panel columns",
+        value = 3,
+        min = 1,
+        max = 4,
+        step = 1
+      ),
+      sliderInput(inputId = "performPlotHeight",
+        label = "Plot height",
+        value = 600,
+        min = 400,
+        max = 800,
+        step = 10
+      )
+    )
+  })
   ## Create UI for performance plot
   output$performancePlotBox <- renderUI({
-    req(input$performPlotHeight)
+    req(input$getData, input$performPlotHeight)
     box(title = "Enumerator performance",
       solidHeader = TRUE,
       status = "primary",

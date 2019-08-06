@@ -233,31 +233,7 @@ ui <- dashboardPage(
               choices = c("Choose..." = "."),
             )
           ),
-          box(title = "Plot settings",
-            solidHeader = TRUE,
-            status = "primary",
-            width = 4,
-            radioButtons(inputId = "performPlotDirection",
-              label = "Direction",
-              choices = c("horizontal" = "h", "vertical" = "v"),
-              selected = "h",
-              inline = TRUE
-            ),
-            sliderInput(inputId = "performPlotCols",
-              label = "Plot panel columns",
-              value = 3,
-              min = 1,
-              max = 4,
-              step = 1
-            ),
-            sliderInput(inputId = "performPlotHeight",
-              label = "Plot height",
-              value = 600,
-              min = 400,
-              max = 800,
-              step = 10
-            )
-          )
+          uiOutput("plotSettingsBox")
         ),
         fluidRow(
           uiOutput("performancePlotBox")
