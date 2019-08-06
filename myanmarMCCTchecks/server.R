@@ -67,7 +67,7 @@ server <- function(input, output, session) {
     progress$set(message = "Pulling data from ODK server", value = 0.5)
 
     isolate(
-      get_mcct_data(id = "baseline_mcct",
+      get_mcct_data(id = "baseline_mcct_final",
                     username = input$username,
                     password = input$password,
                     start = input$startDate,
