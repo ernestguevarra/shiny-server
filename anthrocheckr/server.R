@@ -169,7 +169,7 @@ server <- function(input, output, session) {
                                                 vec = c(0, 1, 2, 3),
                                                 rightmost.closed = FALSE)]
 
-    biasClassDF <- data.frame("ID" = 1:31,
+    biasClassDF <- data.frame("ID" = 1:input$nEnumerators,
                               "height_bias" = biasDF$height,
                               height_class,
                               "weight_bias" = biasDF$weight,
