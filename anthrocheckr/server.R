@@ -149,7 +149,7 @@ server <- function(input, output, session) {
     median_muac <- median(dataStdLong()$measure_value[dataStdLong()$measure_type == "muac"], na.rm = TRUE)
     median_weight <- median(dataStdLong()$measure_value[dataStdLong()$measure_type == "weight"], na.rm = TRUE)
 
-    biasDF <- data.frame("eid" = 1:31,
+    biasDF <- data.frame("eid" = 1:input$nEnumerators,
                          "height" = mean_measure[[1]]$height / median_height,
                          "muac" = mean_measure[[2]]$muac / median_muac,
                          "weight" = mean_measure[[3]]$weight / median_weight)
