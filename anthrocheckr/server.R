@@ -145,8 +145,8 @@ server <- function(input, output, session) {
     mean_measure <- summary_measure(x = dataStdLong()$measure_value,
                                     index = dataStdLong()[ , c("eid", "measure_type")])
 
-    median_height <- median(dataStdLong()$measure_value[dataStdLong()$measure_type == "height"])
-    median_muac <- median(dataStdLong()$measure_value[dataStdLong()$measure_type == "muac"])
+    median_height <- median(dataStdLong()$measure_value[dataStdLong()$measure_type == "height"], na.rm = TRUE)
+    median_muac <- median(dataStdLong()$measure_value[dataStdLong()$measure_type == "muac"], na.rm = TRUE)
     median_weight <- median(dataStdLong()$measure_value[dataStdLong()$measure_type == "weight"], na.rm = TRUE)
 
     biasDF <- data.frame("eid" = 1:31,
