@@ -88,29 +88,38 @@ server <- function(input, output, session) {
   ## Calculate TEM
   temDF <- eventReactive(input$analyseData, {
 
-    weightTEM <- calculate_tem_cohort(
-      m1 = dataStdLong()$measure_value[dataStdLong()$round == 1 & dataStdLong()$measure_type == "weight" & !is.na(dataStdLong()$measure_value)],
-      m2 = dataStdLong()$measure_value[dataStdLong()$round == 2 & dataStdLong()$measure_type == "weight" & !is.na(dataStdLong()$measure_value)],
-      index = dataStdLong()[dataStdLong()$round == 1 & dataStdLong()$measure_type == "weight" & !is.na(dataStdLong()$measure_value),
-                            c("eid", "measure_type")],
-      n = input$nWeight
-    )
+    weightTEM <- NA
+    
+    if(all(!is.na(dataStdLong()$measure_value[dataStdLong()$measure_type == "weight"]))) {
+      weightTEM <- calculate_tem_cohort(
+        m1 = dataStdLong()$measure_value[dataStdLong()$round == 1 & dataStdLong()$measure_type == "weight" & !is.na(dataStdLong()$measure_value)],
+        m2 = dataStdLong()$measure_value[dataStdLong()$round == 2 & dataStdLong()$measure_type == "weight" & !is.na(dataStdLong()$measure_value)],
+        index = dataStdLong()[dataStdLong()$round == 1 & dataStdLong()$measure_type == "weight" & !is.na(dataStdLong()$measure_value),
+                              c("eid", "measure_type")],
+        n = input$nWeight)
+    }
 
-    heightTEM <- calculate_tem_cohort(
-      m1 = dataStdLong()$measure_value[dataStdLong()$round == 1 & dataStdLong()$measure_type == "height" & !is.na(dataStdLong()$measure_value)],
-      m2 = dataStdLong()$measure_value[dataStdLong()$round == 2 & dataStdLong()$measure_type == "height" & !is.na(dataStdLong()$measure_value)],
-      index = dataStdLong()[dataStdLong()$round == 1 & dataStdLong()$measure_type == "height" & !is.na(dataStdLong()$measure_value),
-                            c("eid", "measure_type")],
-      n = input$nHeight
-    )
+    heightTEM <- NA
+    
+    if(all(!is.na(dataStdLong()$measure_value[dataStdLong()$measure_type == "height"]))) {
+      heightTEM <- calculate_tem_cohort(
+        m1 = dataStdLong()$measure_value[dataStdLong()$round == 1 & dataStdLong()$measure_type == "height" & !is.na(dataStdLong()$measure_value)],
+        m2 = dataStdLong()$measure_value[dataStdLong()$round == 2 & dataStdLong()$measure_type == "height" & !is.na(dataStdLong()$measure_value)],
+        index = dataStdLong()[dataStdLong()$round == 1 & dataStdLong()$measure_type == "height" & !is.na(dataStdLong()$measure_value),
+                              c("eid", "measure_type")],
+        n = input$nHeight)
+    }
 
-    muacTEM <- calculate_tem_cohort(
-      m1 = dataStdLong()$measure_value[dataStdLong()$round == 1 & dataStdLong()$measure_type == "muac" & !is.na(dataStdLong()$measure_value)],
-      m2 = dataStdLong()$measure_value[dataStdLong()$round == 2 & dataStdLong()$measure_type == "muac" & !is.na(dataStdLong()$measure_value)],
-      index = dataStdLong()[dataStdLong()$round == 1 & dataStdLong()$measure_type == "muac" & !is.na(dataStdLong()$measure_value),
-                            c("eid", "measure_type")],
-      n = input$nMUAC
-    )
+    muacTEAM <- NA
+    
+    if(all(!is.na(dataStdLong()$measure_value[dataStdLong()$measure_type == "height"]))) {
+      muacTEM <- calculate_tem_cohort(
+        m1 = dataStdLong()$measure_value[dataStdLong()$round == 1 & dataStdLong()$measure_type == "muac" & !is.na(dataStdLong()$measure_value)],
+        m2 = dataStdLong()$measure_value[dataStdLong()$round == 2 & dataStdLong()$measure_type == "muac" & !is.na(dataStdLong()$measure_value)],
+        index = dataStdLong()[dataStdLong()$round == 1 & dataStdLong()$measure_type == "muac" & !is.na(dataStdLong()$measure_value),
+                              c("eid", "measure_type")],
+        n = input$nMUAC)
+    }
 
     resultsDF <- data.frame(weightTEM, heightTEM, muacTEM)
 
