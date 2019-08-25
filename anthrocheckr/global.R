@@ -2,6 +2,7 @@
 #if(!require(kableExtra)) install.packages("kableExtra")
 if(!require(tidyr)) install.packages("tidyr")
 if(!require(readxl)) install.packages("readxl")
+if(!require(openxlsx)) install.packages("openxlsx")
 #if(!require(devtools)) install.packages("devtools")
 if(!require(shiny)) install.packages("shiny")
 if(!require(shinydashboard)) install.packages("shinydashboard")
