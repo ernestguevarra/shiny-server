@@ -151,10 +151,15 @@ ui <- dashboardPage(
             tabPanel(title = "Nutrition Screening",
               value = "screenGM",
               fluidRow(
-                box(title = "Overall estimates",
+                box(title = "Overall estimates (plot)",
                   status = "warning",
                   solidHeader = TRUE,
                   plotlyOutput(outputId = "screenPlot")
+                ),
+                box(title = "Overall estimates (table)",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  tableOutput(outputId = "screenTable")
                 )
               )
             ),
@@ -168,24 +173,85 @@ ui <- dashboardPage(
                 ),
                 box(title = "Reasons for non-coverage",
                   status = "warning",
-                  solidHeader = TRUE
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "cmamReasons")
                 )
               )
             ),
             tabPanel(title = "Stunting",
-              value = "stuntGM"
+              value = "stuntGM",
+              fluidRow(
+                box(title = "Overall estimates (plot)",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "stuntPlot")
+                ),
+                box(title = "Overall estiamtes (table)",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  tableOutput("stuntTable")
+                )
+              )
             ),
             tabPanel(title = "Underweight",
-              value = "underweightGM"
+              value = "underweightGM",
+              fluidRow(
+                box(title = "Overall estimates (plot)",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "underweightPlot")
+                ),
+                box(title = "Overall estimates (table)",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  tableOutput(outputId = "underweightTable")
+                )
+              )
             ),
             tabPanel(title = "Wasting (WHZ)",
-              value = "whzGM"
+              value = "whzGM",
+              fluidRow(
+                box(title = "Overall estimates (plot)",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "whzPlot")
+                ),
+                box(title = "Overall estimates (table)",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  tableOutput(outputId = "whzTable")
+                )
+              )
             ),
             tabPanel(title = "Wasting (MUAC)",
-              value = "muacGM"
+              value = "muacGM",
+              fluidRow(
+                box(title = "Overall estimates (plot)",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "muacPlot")
+                ),
+                box(title = "Overall estimates (table)",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  tableOutput(outputId = "muacTable")
+                )
+              )
             ),
             tabPanel(title = "Oedema",
-              value = "oedemaGM"
+              value = "oedemaGM",
+              fluidRow(
+                box(title = "Overall estimates (plot)",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "oedemaPlot")
+                ),
+                box(title = "Overall estimats (table)",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  tableOutput(outputId = "oedemaTable")
+                )
+              )
             )
           )
         )
