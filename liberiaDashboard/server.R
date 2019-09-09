@@ -458,7 +458,7 @@ server <- function(input, output, session) {
                                       "Severe stunting prevalence"))
       ##
       ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.3) + 
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) + 
         #scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
         #                   limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -491,7 +491,7 @@ server <- function(input, output, session) {
                                       "Severe underweight prevalence"))
       ##
       ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.3) + 
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) + 
         #scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
         #                   limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -524,7 +524,7 @@ server <- function(input, output, session) {
                                       "Severe acute malnutrition by weight-for-height z-score prevalence"))
       ##
       ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.3) + 
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) + 
         #scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
         #                   limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -557,7 +557,7 @@ server <- function(input, output, session) {
                                       "Severe acute malnutrition by MUAC prevalence"))
       ##
       ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.3) + 
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5 + 
         #scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
         #                   limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -581,7 +581,7 @@ server <- function(input, output, session) {
       x <- anthroBoot[anthroBoot$varLabel == "oedema", ]
       ##
       ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.75) + 
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) + 
         #scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
         #                   limits = c(0, 100)) +
         #scale_x_discrete(labels = xlabs) +
