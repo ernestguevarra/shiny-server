@@ -33,14 +33,14 @@ ui <- dashboardPage(
     ## Sidebar menu
     sidebarMenu(
       id = "tabs",
-      menuItem(text = "Urban Montserrado", 
-        tabName = "gm", 
-        icon = icon(name = "pencil", 
+      menuItem(text = "Urban Montserrado",
+        tabName = "gm",
+        icon = icon(name = "globe",
                     lib = "font-awesome",
                     class = "fa-lg")),
-      menuItem(text = "Grand Bassa", 
+      menuItem(text = "Grand Bassa",
         tabName = "gb",
-        icon = icon(name = "tablet",
+        icon = icon(name = "globe",
                     lib = "font-awesome",
                     class = "fa-lg"))
     )

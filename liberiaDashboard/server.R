@@ -4,7 +4,7 @@
 #
 # This is a Shiny web application to support the implementation of health and
 # nutrition coverage surveys in Liberia.
-# 
+#
 # This code is for the server logic function of the Shiny web aplication.
 #
 #
@@ -30,8 +30,8 @@ server <- function(input, output, session) {
   })
   observe({
     ##
-    subList <- indicatorList[indicatorList$varLabel %in% c("ifa1", "ifa2", "ifa3", 
-                                                           "ifa4", "ifa5", "ifa6", 
+    subList <- indicatorList[indicatorList$varLabel %in% c("ifa1", "ifa2", "ifa3",
+                                                           "ifa4", "ifa5", "ifa6",
                                                            "ifa7", "icf1", "icf2",
                                                            "icf3", "mnp1", "mnp2",
                                                            "mnp3", "mnp4", "vit1",
@@ -49,42 +49,42 @@ server <- function(input, output, session) {
     ##
     req(input$gm)
     ##
-    indicatorChoices <- subList[subList$df == str_replace(string = input$gm, 
-                                                          pattern = "GM|GB", 
+    indicatorChoices <- subList[subList$df == str_replace(string = input$gm,
+                                                          pattern = "GM|GB",
                                                           replacement = "DF"),
                                 "varLabel"]
     ##
     indicatorChoices <- as.character(indicatorChoices)
     ##
-    names(indicatorChoices) <- subList[subList$df == str_replace(string = input$gm, 
-                                                                 pattern = "GM|GB", 
+    names(indicatorChoices) <- subList[subList$df == str_replace(string = input$gm,
+                                                                 pattern = "GM|GB",
                                                                  replacement = "DF"),
                                        "varNames"]
     ##
     if(input$gm == "stuntGM") {
       indicatorChoices <- c("global.haz", "moderate.haz", "severe.haz")
-      names(indicatorChoices) <- c("Global sunting prevalence", 
+      names(indicatorChoices) <- c("Global sunting prevalence",
                                    "Moderate stunting prevalence",
                                    "Severe stunting prevalence")
     }
     ##
     if(input$gm == "underweightGM") {
       indicatorChoices <- c("global.waz", "moderate.waz", "severe.waz")
-      names(indicatorChoices) <- c("Global underweight prevalence", 
+      names(indicatorChoices) <- c("Global underweight prevalence",
                                    "Moderate underweight prevalence",
                                    "Severe underweight prevalence")
     }
     ##
     if(input$gm == "whzGM") {
       indicatorChoices <- c("gam.whz", "mam.whz", "sam.whz")
-      names(indicatorChoices) <- c("Global wasting prevalence by WHZ", 
+      names(indicatorChoices) <- c("Global wasting prevalence by WHZ",
                                    "Moderate wasting prevalence by WHZ",
                                    "Severe wasting prevalence by WHZ")
     }
     ##
     if(input$gm == "muacGM") {
       indicatorChoices <- c("gam.muac", "mam.muac", "sam.muac")
-      names(indicatorChoices) <- c("Global wasting prevalence by MUAC", 
+      names(indicatorChoices) <- c("Global wasting prevalence by MUAC",
                                    "Moderate wasting prevalence by MUAC",
                                    "Severe wasting prevalence by MUAC")
     }
@@ -116,7 +116,24 @@ server <- function(input, output, session) {
     ##
     values <- c(0,1)
     palette <- brewer.pal(n = 10, name = "RdYlGn")
+    labs <- labelFormat(suffix = "%", transform = function(x) x * 100)
+    labels <- paste(round(covHex()[[input$varLabel]] * 100, digits = 1), "%", sep = "")
     ##
+    if(input$varLabel == "ifa5") {
+      values <- ifaInt$ifa5
+      labs <- labelFormat()
+      labels <- paste(round(covHex()[[input$varLabel]], digits = 1), "days", sep = " ")
+    }
+    if(input$varLabel == "icf3") {
+      values <- iycfInt$icf3
+      labs <- labelFormat()
+      labels <- paste(round(covHex()[[input$varLabel]], digits = 1), "times", sep = " ")
+    }
+    if(input$varLabel == "mnp4") {
+      values <- mnpInt$mnp4
+      labs <- labelFormat()
+      labels <- paste(round(covHex()[[input$varLabel]], digits = 1), "times", sep = " ")
+    }
     if(input$varLabel == "global.haz") {
       values <- c(0, max(anthroInt$global.haz))
       palette <- rev(brewer.pal(n = 10, name = "RdYlGn"))
@@ -189,16 +206,16 @@ server <- function(input, output, session) {
           dashArray = "",
           fillOpacity = 0.7,
           bringToFront = TRUE),
-        label = paste(round(covHex()[[input$varLabel]] * 100, digits = 1), "%", sep = ""),
+        label = labels,
         labelOptions = labelOptions(
           style = list("font-weight" = "normal", padding = "3px 8px"),
           textsize = "12px",
           direction = "auto"))%>%
-      addLegend(pal = pal, 
+      addLegend(pal = pal,
                 opacity = 0.7,
                 values = values,
-                position = "bottomleft", 
-                labFormat = labelFormat(suffix = "%", transform = function(x) x * 100),
+                position = "bottomleft",
+                labFormat = labs,
                 layerId = "legend")
   })
   ##
@@ -208,7 +225,7 @@ server <- function(input, output, session) {
   observeEvent(input$round == "r2" & input$gm == "ifaGM", {
     output$ifaPlot <- renderPlotly({
       ##
-      x <- ifaBoot[ifaBoot$varLabel %in% c("ifa1", "ifa2", "ifa3", 
+      x <- ifaBoot[ifaBoot$varLabel %in% c("ifa1", "ifa2", "ifa3",
                                            "ifa4", "ifa6", "ifa7"), ]
       ##
       xlabs <- c("At least one\nANC visit",
@@ -218,7 +235,7 @@ server <- function(input, output, session) {
                  "Consumed\nIFA\nat least\n90 days",
                  "Consumed\nIFA\n180 days")
       ##
-      x$varNames <- factor(x = x$varNames, 
+      x$varNames <- factor(x = x$varNames,
                            levels = c("At least one ANC visit",
                                       "Know/heard about iron-folic acid",
                                       "Received/purchased iron-folic acid",
@@ -226,8 +243,8 @@ server <- function(input, output, session) {
                                       "Consumed iron-folic acid for at least 90 days",
                                       "Consumed iron-folic acid for 180 days"))
       ##
-      ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-      geom_col(color = "#993300", fill = "#993300", alpha = 0.7) + 
+      ggplot(data = x, aes(x = varNames, y = estimate * 100)) +
+      geom_col(color = "#993300", fill = "#993300", alpha = 0.7) +
       scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
                          limits = c(0, 100)) +
       scale_x_discrete(labels = xlabs) +
@@ -237,7 +254,7 @@ server <- function(input, output, session) {
     })
     ##
     output$ifaReasons <- renderPlotly({
-      x <- ifaBoot[ifaBoot$varLabel %in% c(paste("ifa3", letters[1:9], sep = ""), 
+      x <- ifaBoot[ifaBoot$varLabel %in% c(paste("ifa3", letters[1:9], sep = ""),
       ##
                                            paste("ifa4", letters[1:4], sep = "")), ]
       ##
@@ -262,12 +279,12 @@ server <- function(input, output, session) {
       xlabs <- c("Know/heard \nabout\nIYCF\ncounselling",
                  "Attended\nIYCF\ncounselling")
       ##
-      x$varNames <- factor(x = x$varNames, 
+      x$varNames <- factor(x = x$varNames,
                            levels = c("Know/heard about IYCF counselling",
                                       "Attended IYCF counselling"))
       ##
-      ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) + 
+      ggplot(data = x, aes(x = varNames, y = estimate * 100)) +
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) +
         scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
                            limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -300,12 +317,12 @@ server <- function(input, output, session) {
       xlabs <- c("Know/heard\nabout\nMNP",
                  "Received/\npurchased\nMNP")
       ##
-      x$varNames <- factor(x = x$varNames, 
+      x$varNames <- factor(x = x$varNames,
                            levels = c("Heard about micronutrient powder",
                                       "Received/purchased micronutrient powder"))
       ##
-      ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) + 
+      ggplot(data = x, aes(x = varNames, y = estimate * 100)) +
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) +
         scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
                            limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -338,8 +355,8 @@ server <- function(input, output, session) {
       ##
       xlabs <- "Received\nvitamin A\nin the\npast 6 months"
       ##
-      ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) + 
+      ggplot(data = x, aes(x = varNames, y = estimate * 100)) +
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) +
         scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
                            limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -374,14 +391,14 @@ server <- function(input, output, session) {
                  "Child\nchecked\nfor\noedema\nin the\npast month",
                  "Child\nweight\nmeasured\nin the\npast month")
       ##
-      x$varNames <- factor(x = x$varNames, 
+      x$varNames <- factor(x = x$varNames,
                            levels = c("Child height measured in the past month",
                                       "Child MUAC measured in the past month",
                                       "Child checked for oedema in the past month",
                                       "Child weight measured in the past month"))
       ##
-      ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7) + 
+      ggplot(data = x, aes(x = varNames, y = estimate * 100)) +
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7) +
         scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
                            limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -394,10 +411,10 @@ server <- function(input, output, session) {
       x <- screenBoot
       x <- x[ , c("varNames", "estimate", "lcl", "ucl")]
       names(x) <- c("Indicator", "Estimate", "95% LCL", "95% UCL")
-      x[ , 2:4] <- x[ , 2:4] * 100 
+      x[ , 2:4] <- x[ , 2:4] * 100
       x
     })
-  })  
+  })
   ##
   observeEvent(input$round == "r2" & input$gm == "cmamGM", {
     output$cmamPlot <- renderPlotly({
@@ -407,12 +424,12 @@ server <- function(input, output, session) {
       xlabs <- c("Case-finding\neffectiveness",
                  "Treatment\ncoverage")
       ##
-      x$varNames <- factor(x = x$varNames, 
+      x$varNames <- factor(x = x$varNames,
                            levels = c("Case-finding effectiveness",
                                       "Treatment coverage"))
       ##
-      ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) + 
+      ggplot(data = x, aes(x = varNames, y = estimate * 100)) +
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) +
         scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
                            limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -452,13 +469,13 @@ server <- function(input, output, session) {
                  "Moderate stunting",
                  "Severe stunting")
       ##
-      x$varNames <- factor(x = x$varNames, 
+      x$varNames <- factor(x = x$varNames,
                            levels = c("Global stunting prevalence",
                                       "Moderate stunting prevalence",
                                       "Severe stunting prevalence"))
       ##
-      ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) + 
+      ggplot(data = x, aes(x = varNames, y = estimate * 100)) +
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) +
         #scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
         #                   limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -471,7 +488,7 @@ server <- function(input, output, session) {
       x <- anthroBoot[anthroBoot$varLabel %in% c("global.haz", "moderate.haz", "severe.haz"), ]
       x <- x[ , c("varNames", "estimate", "lcl", "ucl")]
       names(x) <- c("Indicator", "Estimate", "95% LCL", "95% UCL")
-      x[ , 2:4] <- x[ , 2:4] * 100 
+      x[ , 2:4] <- x[ , 2:4] * 100
       x
     })
   })
@@ -485,13 +502,13 @@ server <- function(input, output, session) {
                  "Moderate underweight",
                  "Severe underweight")
       ##
-      x$varNames <- factor(x = x$varNames, 
+      x$varNames <- factor(x = x$varNames,
                            levels = c("Global underweight prevalence",
                                       "Moderate underweight prevalence",
                                       "Severe underweight prevalence"))
       ##
-      ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) + 
+      ggplot(data = x, aes(x = varNames, y = estimate * 100)) +
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) +
         #scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
         #                   limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -504,7 +521,7 @@ server <- function(input, output, session) {
       x <- anthroBoot[anthroBoot$varLabel %in% c("global.waz", "moderate.waz", "severe.waz"), ]
       x <- x[ , c("varNames", "estimate", "lcl", "ucl")]
       names(x) <- c("Indicator", "Estimate", "95% LCL", "95% UCL")
-      x[ , 2:4] <- x[ , 2:4] * 100 
+      x[ , 2:4] <- x[ , 2:4] * 100
       x
     })
   })
@@ -518,13 +535,13 @@ server <- function(input, output, session) {
                  "Moderate wasting\nby WHZ",
                  "Severe wasting\nby WHZ")
       ##
-      x$varNames <- factor(x = x$varNames, 
+      x$varNames <- factor(x = x$varNames,
                            levels = c("Global acute malnutrition by weight-for-height z-score prevalence",
                                       "Moderate acute malnutrition by weight-for-height z-score prevalence",
                                       "Severe acute malnutrition by weight-for-height z-score prevalence"))
       ##
-      ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) + 
+      ggplot(data = x, aes(x = varNames, y = estimate * 100)) +
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) +
         #scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
         #                   limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -537,7 +554,7 @@ server <- function(input, output, session) {
       x <- anthroBoot[anthroBoot$varLabel %in% c("gam.whz", "mam.whz", "sam.whz"), ]
       x <- x[ , c("varNames", "estimate", "lcl", "ucl")]
       names(x) <- c("Indicator", "Estimate", "95% LCL", "95% UCL")
-      x[ , 2:4] <- x[ , 2:4] * 100 
+      x[ , 2:4] <- x[ , 2:4] * 100
       x
     })
   })
@@ -551,13 +568,13 @@ server <- function(input, output, session) {
                  "Moderate wasting\nby MUAC",
                  "Severe wasting\nby MUAC")
       ##
-      x$varNames <- factor(x = x$varNames, 
+      x$varNames <- factor(x = x$varNames,
                            levels = c("Global acute malnutrition by MUAC prevalence",
                                       "Moderate acute malnutrition by MUAC prevalence",
                                       "Severe acute malnutrition by MUAC prevalence"))
       ##
-      ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) + 
+      ggplot(data = x, aes(x = varNames, y = estimate * 100)) +
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) +
         #scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
         #                   limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -570,7 +587,7 @@ server <- function(input, output, session) {
       x <- anthroBoot[anthroBoot$varLabel %in% c("gam.muac", "mam.muac", "sam.muac"), ]
       x <- x[ , c("varNames", "estimate", "lcl", "ucl")]
       names(x) <- c("Indicator", "Estimate", "95% LCL", "95% UCL")
-      x[ , 2:4] <- x[ , 2:4] * 100 
+      x[ , 2:4] <- x[ , 2:4] * 100
       x
     })
   })
@@ -580,8 +597,8 @@ server <- function(input, output, session) {
       ##
       x <- anthroBoot[anthroBoot$varLabel == "oedema", ]
       ##
-      ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) + 
+      ggplot(data = x, aes(x = varNames, y = estimate * 100)) +
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.5) +
         #scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
         #                   limits = c(0, 100)) +
         #scale_x_discrete(labels = xlabs) +
@@ -594,7 +611,7 @@ server <- function(input, output, session) {
       x <- anthroBoot[anthroBoot$varLabel == "oedema", ]
       x <- x[ , c("varNames", "estimate", "lcl", "ucl")]
       names(x) <- c("Indicator", "Estimate", "95% LCL", "95% UCL")
-      x[ , 2:4] <- x[ , 2:4] * 100 
+      x[ , 2:4] <- x[ , 2:4] * 100
       x
     })
   })
