@@ -12,6 +12,7 @@ library(shinythemes)
 library(rgdal)
 library(rgeos)
 library(raster)
+library(stringr)
 library(uypa)
 
 mapbox.satellite <- "https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
