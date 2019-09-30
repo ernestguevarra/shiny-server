@@ -24,8 +24,3 @@ mapbox.standard  <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj5di36jn0g
 mapbox.decimal   <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj5ms1akt3pbi2smtcewsex9m/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
 mapbox.terminal  <- "https://api.mapbox.com/styles/v1/ernestguevarra/cj6g0tzbd30kc2sph2wyh666m/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJuZXN0Z3VldmFycmEiLCJhIjoiejRRLXlZdyJ9.sqS1zi0rDH5CIzvcn9SXSg"
 
-lng1 <- bbox(diamaguene)[1, 1]
-lng2 <- bbox(diamaguene)[1, 2]
-lat1 <- bbox(diamaguene)[2, 1]
-lat2 <- bbox(diamaguene)[2, 2]
-

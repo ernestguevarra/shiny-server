@@ -12,20 +12,12 @@ function(input, output, session) {
         urlTemplate = mapbox.street,
         attribution = "Map by <a href = 'http://www.mapbox.com/'>Mapbox</a>"
       ) %>%
+      addMiniMap(tile = mapbox.satellite,
+                 toggleDisplay = TRUE) %>%
       addMarkers(lng = diamagueneLocations$X_location_longitude,
                  lat = diamagueneLocations$X_location_latitude,
-                 popup = c(paste(
-                   paste("<img src='images/",
-                         stringr::str_remove(string = diamagueneLocations$png,
-                                             pattern = ".png"),
-                         "_tn.jpg' />",sep = ""),
-                   paste("<b>Infrastructure: </b>",
-                         diamagueneLocations$infra,
-                         sep = ""),
-                   paste("<b>Description: </b>",
-                         diamagueneLocations$description,
-                         sep = ""),
-                   sep = "<br/>"))
+                 popup = create_popup_content(df = diamagueneLocations),
+                 clusterOptions = markerClusterOptions()
       ) %>%
       setView(lng = coordinates(diamaguene)[1] + 0.005,
               lat = coordinates(diamaguene)[2] + 0.005,
