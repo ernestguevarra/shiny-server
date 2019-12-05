@@ -1,0 +1,12 @@
+name: lqas
+title: lqas
+username:
+account: rapidsurveys
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1565395
+bundleId: 2643258
+url: https://rapidsurveys.shinyapps.io/lqas/
+when: 1575541808.55707
+asMultiple: FALSE
+asStatic: FALSE
