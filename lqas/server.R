@@ -63,7 +63,7 @@ function(input, output, session) {
     z <- data.frame(
       Classification = c("Low", "Moderate", "High",
                          "Overall", "Gross misclassification"),
-      Probability = c(round(df$probs, 4))
+      Probability = c(round(df$probs, 6))
     )
   })
   ##
