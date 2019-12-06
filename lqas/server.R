@@ -20,13 +20,12 @@ function(input, output, session) {
   #              max = 100)
   #})
   ##
-  observeEvent(input$dUpper - input$dLower < 30, {
+  observe({
+    req(input$dUpper - input$dLower < 30)
     showNotification(session = session,
                      ui = "Lower triage and upper triage threshold have a narrow gap. Continue if this is correct or change parameters.",
-                     type = "error")
+                     type = "warning")
   })
-  
-  
   ##############################################################################
   ## Simulation
   ##############################################################################
