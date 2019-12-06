@@ -81,7 +81,14 @@ navbarPage(title = "SLEAC Classification Probability", id = "chosenTab",
       mainPanel(width = 9,
         tabsetPanel(id = "outputType", selected = 1,
           tabPanel(title = "Table", value = 1,
-            tableOutput(outputId = "probClassTable")
+            fluidRow(
+              column(width = 4,
+                uiOutput(outputId = "table1")
+              ),
+              column(width = 4,
+                uiOutput(outputId = "table2")
+              )
+            )
           ),
           tabPanel(title = "Plot", value = 2,
             plotOutput(outputId = "probClassPlot", height = "600px")

@@ -21,7 +21,7 @@ function(input, output, session) {
   #})
   ##
   observe({
-    req(input$dUpper - input$dLower < 30)
+    req(input$dUpper - input$dLower < 30, input$dUpper - input$dLower > 0)
     showNotification(session = session,
                      ui = "Lower triage and upper triage threshold have a narrow gap. Continue if this is correct or change parameters.",
                      type = "warning")
@@ -32,11 +32,11 @@ function(input, output, session) {
   ## Simulate
   x <- eventReactive(input$runTest, {
     validate(
-      need(input$dLower < input$dUpper, "Lower triage threshold should be less than upper triage threshold.")
+      need(input$dLower < input$dUpper, "Lower triage threshold should be less than upper triage threshold. Check parameters before proceeding.")
     )
     
     validate(
-      need(input$dUpper > input$dLower, "Upper triage threshold should be more than lower triage threshold.")
+      need(input$dUpper > input$dLower, "Upper triage threshold should be more than lower triage threshold. Check parameters before proceeding.")
     )
     
     ## Create concatenating object for replicate simulations
@@ -80,13 +80,40 @@ function(input, output, session) {
       Probability = c(round(df$probs, 6))
     )
   })
+  ## Parameters
+  params <- reactive({
+    z <- data.frame(
+      Parameters = c("Sample size", "Population size", "Lower triage threshold", "Upper triage threshold"),
+      Values = c(input$sampleSize, input$populationSize, input$dLower, input$dUpper)
+    )
+  })
   ##
   ##############################################################################
   ## Output
   ##############################################################################
+  ## Table - parameters
+  output$paramsTable <- renderTable({
+    params()
+  })
   ## Table
   output$probClassTable <- renderTable({
     y()
+  })
+  ##
+  output$table1 <- renderUI({
+    req(x())
+    wellPanel(
+      h3("Classification parameters"),
+      tableOutput(outputId = "paramsTable")
+    )
+  })
+  ##
+  output$table2 <- renderUI({
+    req(y())
+    wellPanel(
+      h3("Probability of classification"),
+      tableOutput(outputId = "probClassTable")
+    )
   })
   ## Plot
   output$probClassPlot <- renderPlot({
