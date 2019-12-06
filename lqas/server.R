@@ -10,21 +10,36 @@ function(input, output, session) {
   ## INPUTS
   ##############################################################################
   ## Input for dUpper
-  output$dUpper <- renderUI({
-    req(input$dLower)
+  #output$dUpper <- renderUI({
+  #  req(input$dLower)
     #dUpperDefault <- input$dLower + 30
-    sliderInput(inputId = "dUpper",
-                label = "Upper triage threshold (%)",
-                value = input$dLower + 30,
-                min = input$dLower + 30,
-                max = 95)
-  })
+  #  sliderInput(inputId = "dUpper",
+  #              label = "Upper triage threshold (%)",
+  #              value = input$dLower + 30,
+  #              min = input$dLower + 30,
+  #              max = 100)
+  #})
   ##
+  observeEvent(input$dUpper - input$dLower < 30, {
+    showNotification(session = session,
+                     ui = "Lower triage and upper triage threshold have a narrow gap. Continue if this is correct or change parameters.",
+                     type = "error")
+  })
+  
+  
   ##############################################################################
   ## Simulation
   ##############################################################################
   ## Simulate
   x <- eventReactive(input$runTest, {
+    validate(
+      need(input$dLower < input$dUpper, "Lower triage threshold should be less than upper triage threshold.")
+    )
+    
+    validate(
+      need(input$dUpper > input$dLower, "Upper triage threshold should be more than lower triage threshold.")
+    )
+    
     ## Create concatenating object for replicate simulations
     x <- NULL
     replicates <- 20
