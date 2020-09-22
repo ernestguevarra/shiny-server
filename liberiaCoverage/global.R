@@ -32,10 +32,10 @@ if(!require(raster)) install.packages("raster")
 if(!require(leaflet)) install.packages("leaflet")
 if(!require(ggmap)) install.packages("ggmap")
 if(!require(DT)) install.packages("DT")
-if(!require(DT)) install.packages("zscorer")
+if(!require(zscorer)) install.packages("zscorer")
 
 if(!require(liberia)) install_github("validmeasures/liberia")
-if(!require(spatialsampler)) install_github("SpatialWorks/spatialsampler")
+if(!require(spatialsampler)) install_github("spatialworks/spatialsampler")
 if(!require(odkr)) install_github("validmeasures/odkr")
 if(!require(sampsizer)) install_github("ernestguevarra/sampsizer")
 
